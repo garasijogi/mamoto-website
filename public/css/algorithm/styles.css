@@ -1,0 +1,175 @@
+@font-face {
+  font-family: 'JosefinSlab-Regular';
+  src: url("/fonts/josefinslab-regular-webfont.woff");
+}
+
+@font-face {
+  font-family: 'Lora-Regular';
+  src: url("/fonts/lora-regular-webfont.woff");
+}
+
+* {
+  font-family: 'JosefinSlab-Regular';
+}
+
+.al-bg-gradient-dark {
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0) 100%);
+  padding: 1em 0;
+}
+
+.al-bg-white ul.al-navigation-ul {
+  border-bottom: 1px solid #888888;
+  padding: 1em 0;
+}
+
+.al-nav-text-white li a, .al-nav-text-white li span {
+  color: white;
+  text-decoration: none;
+}
+
+.al-nav-text-goldbrown li a, .al-nav-text-goldbrown li span {
+  color: #888888;
+  text-decoration: none;
+}
+
+.al-navigation-ul li span:hover i,
+.al-navigation-ul li a:hover,
+.al-navigation-ul li span:hover
+{
+  color: #DCBE8E !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.al-navigation-ul li a,
+.al-navigation-ul li span {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+body.al-home-body {
+  background: url("/images/jumbotron.png");
+}
+
+.al-bg-img {
+  background: url("/images/wedding-ring.png");
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position-x: center;
+}
+
+body.login-page {
+  background: url("/images/wedding-ring.png");
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position-x: center;
+}
+
+.al-full-content {
+  height: 100vh;
+}
+
+.al-circle-list-btn a {
+  padding: 5px;
+  border: 2px solid #DCBE8E;
+  border-radius: 25px;
+}
+
+#book-now-btn:hover {
+  background-color: #DCBE8E;
+  color: white !important;
+}
+.al-jumbotron {
+  height: 70vh;
+}
+
+#jumbotron {
+  height: 80%;
+  background-image: url("/images/mamoto_picture_logo.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 40%;
+}
+
+.al-jumbotron-text {
+  font-family: 'Lora-Regular';
+  position: absolute;
+  padding-left: 3.5vw;
+  top: 40vh;
+  left: 0;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+.al-arrow-left {
+  background-image: url("/icons/arrow-left.svg");
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 76px;
+}
+
+.al-arrow-right:hover{
+  background-image: url("/icons/arrow-right-hover.svg");
+  transform: rotate(0deg);
+}
+
+.al-arrow-left:hover{
+  background-image: url("/icons/arrow-right-hover.svg");
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.al-arrow-right {
+  background-image: url("/icons/arrow-left.svg");
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 76px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.al-navigation-ul li {
+  position: relative;
+  display: inline-block;
+}
+
+.al-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0,0,0,0.2);
+  min-width: 80px;
+  max-width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  text-align: center;
+}
+
+.al-opacity-full {
+  background-color: rgba(220, 190, 142, 1) !important;
+}
+
+.al-dropdown-content ul {
+  padding-inline-start: 0;
+}
+
+.al-dropdown-content ul li {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 0.73rem;
+  color: white;
+  font-weight: bold;
+}
+
+.al-navigation-ul li:hover .al-dropdown-content {
+  display: block;
+}
+
+.al-navigation-ul ul li:hover, .al-navigation-ul ul li:hover a {
+  background-color: #DCBE8E;
+  color: white !important;
+}
+
+.al-opacity-full ul li:hover, .al-navigation-ul ul li:hover a {
+  background-color: rgba(0,0,0,0.4);
+  color: white !important;
+}
