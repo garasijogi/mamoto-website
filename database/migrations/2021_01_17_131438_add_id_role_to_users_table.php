@@ -14,7 +14,7 @@ class AddIdRoleToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('id_role')->after('username');
+            $table->foreignId('role_id')->after('username');
         });
     }
 
@@ -26,7 +26,7 @@ class AddIdRoleToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('id_role');
+            $table->dropColumn('role_id');
         });
     }
 }

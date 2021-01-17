@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         \App\User::create([
             'name' => 'Mamoto Super Admin',
-            'id_role' => 1,
+            'role_id' => 1,
             'username' => 'admin',
             'password' => bcrypt('mamoto1234'),
         ]);
