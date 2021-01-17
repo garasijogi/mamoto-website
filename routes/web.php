@@ -13,10 +13,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//1) User routes
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/portfolio/wedding', 'PortfolioController@wedding')->name('portfolio.wedding');
+Route::get('/portfolio/prewed', 'PortfolioController@prewed')->name('portfolio.prewed');
+Route::get('/portfolio/sp', 'PortfolioController@sp')->name('portfolio.sp');
+Route::get('/portfolio/lamaran', 'PortfolioController@lamaran')->name('portfolio.lamaran');
+Route::get('/about', 'AboutController@index')->name('about');
+Route::get('/faq', 'FAQController@index')->name('faq');
+Route::get('/booknow', 'BookNowController@index')->name('booknow');
+Route::get('/promo', 'PromoController@index')->name('promo');
+
+//2) Admin Routes
+Route::prefix('admin')->middleware('auth')->group(function () {
+
+    //2.1) Dashboard
+    Route::get('', 'DashboardController@index')->name('admin');
+
+    //2.2) Kelola User
+    Route::get('user', 'KelolaUserController@index')->name('admin.user');
+
+    //2.3) Kelola Home
+    Route::get('home', 'KelolaHomeController@index')->name('admin.home');
+
+    //2.4) Kelola Portfolio
+    Route::get('portfolio', 'KelolaPortfolioController@index')->name('admin.portfolio');
+
+    //2.5) Kelola About
+    Route::get('about', 'KelolaAboutController@index')->name('admin.about');
+
+    //2.6) Kelola Promo
+    Route::get('promo', 'KelolaPromoController@index')->name('admin.promo');
+
+    //2.7) Kelola FAQ
+    Route::get('faq', 'KelolaFAQController@index')->name('admin.faq');
+
+    //2.8) Kelola Pesanan
+    Route::get('pesanan', 'KelolaPesananController@index')->name('admin.pesanan');
+
+    //2.9) Kelola Feedback
+    Route::get('feedback', 'KelolaFeedbackController@index')->name('admin.feedback');
 });
 
+//3) Auth
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
