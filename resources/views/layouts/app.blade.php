@@ -13,9 +13,10 @@
   </title>
 
   {{-- styles --}}
-  <link href="{{ asset('css/algorithm/styles.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  @include('layouts.css.al-styles')
+  @include('layouts.css.rr-styles')
+  @include('layouts.css.ns-styles')
+
 </head>
 
 <body class="{{request()->routeIs('home') ? 'al-home-body' : ''}}">
@@ -25,6 +26,12 @@
       @yield('content')
     </div>
   </div>
+
+  {{-- scripts --}}
+  @include('layouts.js.al-scripts')
+  @include('layouts.js.rr-scripts')
+  @include('layouts.js.ns-scripts')
+  
 </body>
 
 </html>
