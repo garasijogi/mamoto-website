@@ -32,12 +32,20 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.2) Kelola User
     Route::get('user', 'KelolaUserController@index')->name('admin.user');
+    Route::get('user/create', 'KelolaUserController@create')->name('admin.user.create');
+    Route::post('user/store', 'KelolaUserController@store');
+    Route::get('user/{user:username}/edit', 'KelolaUserController@edit');
+    Route::patch('user/{user:username}/edit', 'KelolaUserController@update');
+    Route::delete('user/{user:username}/delete', 'KelolaUserController@destroy');
 
     //2.3) Kelola Home
     Route::get('home', 'KelolaHomeController@index')->name('admin.home');
 
     //2.4) Kelola Portfolio
     Route::get('portfolio', 'KelolaPortfolioController@index')->name('admin.portfolio');
+    Route::get('portfolio/create', 'KelolaPortfolioController@create')->name('admin.portfolio.create');
+    Route::post('portfolio/store', 'KelolaPortfolioController@store');
+    Route::get('{portfolio:slug}', 'KelolaPortfolioController@show')->name('admin.portfolio.show');
 
     //2.5) Kelola About
     Route::get('about', 'KelolaAboutController@index')->name('admin.about');
