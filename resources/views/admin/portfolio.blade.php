@@ -7,7 +7,7 @@
 @include('layouts.css.al-styles')
 
 @section('content_header')
-<h1 class="px-4">Kelola Portfolio</h1>
+<h1 class="px-4 mt-2">Kelola Portfolio</h1>
 @endsection
 
 @section('content')
@@ -41,18 +41,10 @@
                   @endforeach
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>
@@ -82,18 +74,10 @@
                   @endforeach
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>
@@ -123,18 +107,10 @@
                   @endforeach
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>
@@ -164,18 +140,10 @@
                   @endforeach
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>

@@ -3,5 +3,77 @@
 }
 
 .al-portfolio-card:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+body {
+  background: #f4f6f9 !important;
+}
+/* image modal viewer */
+/* Style the Image Used to Trigger the Modal */
+img.al-thumbnail {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+img.al-thumbnail:hover {
+  opacity: 0.7;
+}
+
+/* The Modal (background) */
+.al-image-viewer-modal {
+  padding: 10vh 0;
+  display: none; /* Hidden by default */
+  justify-content: center;
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.al-image-viewer-modal-content {
+  margin: auto;
+  max-height: 80vh;
+  max-width: 100vh;
+  object-fit: cover;
+  background: transparent;
+}
+
+/* Add Animation - Zoom in the Modal */
+.al-image-viewer-modal-content {
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0.5)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.al-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  transition: 0.3s;
+}
+
+.al-close-btn:hover,
+.al-close-btn:focus {
+  color:slategray !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .al-image-viewer-modal-content {
+    width: 100%;
+  }
 }

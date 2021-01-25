@@ -35,6 +35,16 @@ function savePhoto(input) {
     const file = files[i]
     $("#al-showPhotoName").append("<li class='d-flex justify-content-between list-group-item' >" + file.name + "<a href='#'><i class='text-danger fas fa-window-close'/></a></li>");
   }
-
-
 }
+
+// imageview
+function imageView(id) {
+  $('#al-imageViewer').css('display', 'flex');
+  let src = $('img.' + id).attr('src');
+  $('#al-imageViewed').attr('src', src);
+  $('body').css('overflow', 'hidden');
+}
+$('i.al-close-btn').click(function () {
+  $('#al-imageViewer').css('display', 'none')
+  $('body').css('overflow', 'auto');
+})

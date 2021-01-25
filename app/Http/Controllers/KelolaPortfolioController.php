@@ -21,7 +21,22 @@ class KelolaPortfolioController extends Controller
 
     public function show(Portfolio $portfolio)
     {
-        return view('admin.showportfolio', compact('portfolio'));
+        $jenis_portfolio = '';
+        switch ($portfolio->pfType_id) {
+            case 'W':
+                $jenis_portfolio = 'Wedding';
+                break;
+            case 'preW':
+                $jenis_portfolio = 'Pre-Wedding';
+                break;
+            case 's':
+                $jenis_portfolio = 'Siraman/Pengajian';
+                break;
+            case 'l':
+                $jenis_portfolio = 'Lamaran';
+                break;
+        }
+        return view('admin.showportfolio', compact('portfolio', 'jenis_portfolio'));
         // return view('posts.show', compact('post', 'posts'));
     }
 
