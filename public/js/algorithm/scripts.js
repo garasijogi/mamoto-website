@@ -38,7 +38,7 @@ function savePhoto(input) {
 }
 
 // imageview
-function imageView(id) {
+function alImageView(id) {
   $('#al-imageViewer').css('display', 'flex');
   let src = $('img.' + id).attr('src');
   $('#al-imageViewed').attr('src', src);
@@ -48,3 +48,10 @@ $('i.al-close-btn').click(function () {
   $('#al-imageViewer').css('display', 'none')
   $('body').css('overflow', 'auto');
 })
+
+//delete photo name list
+function alDelPhotoName(id) {
+  $('#li-' + id).attr('class', 'd-none');
+  $('#div-' + id).attr('class', 'd-none');
+  $('#al-deletePhotoContainer').append("<input type='hidden' name='imgDel[]' value='" + id + "' />")
+}
