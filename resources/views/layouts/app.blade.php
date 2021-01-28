@@ -31,7 +31,7 @@
   @include('layouts.js.al-scripts')
   @include('layouts.js.rr-scripts')
   @include('layouts.js.ns-scripts')
-  
+
 </body>
 
 </html>

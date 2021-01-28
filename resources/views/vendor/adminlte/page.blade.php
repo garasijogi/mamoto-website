@@ -69,6 +69,8 @@
             </div>
             @endif
 
+            @yield('modals')
+
             <div class="{{ config('adminlte.classes_content') ?: $def_container_class }}">
                 @yield('content')
             </div>

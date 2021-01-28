@@ -4,6 +4,7 @@
   rel="stylesheet">
 @elseif (Request::route()->getPrefix()=='/admin')
 <link href="{{ asset('css/algorithm/admin-styles.css') }}" rel="stylesheet">
+<link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 @else
 <link href="{{ asset('css/algorithm/styles.css') }}" rel="stylesheet">
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
