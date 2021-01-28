@@ -28,3 +28,7 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+# webpack compiled files
+public/css/app.css
+public/js/app.js
