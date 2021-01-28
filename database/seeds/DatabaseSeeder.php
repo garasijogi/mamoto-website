@@ -11,8 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(Portfolio_typesTableSeeder::class);
+        $this->call(RyumadaTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(User_rolesTableSeeder::class);
-        $this->call(Portfolio_typesTableSeeder::class);
     }
 }
