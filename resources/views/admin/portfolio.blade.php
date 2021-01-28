@@ -7,7 +7,7 @@
 @include('layouts.css.al-styles')
 
 @section('content_header')
-<h1 class="px-4">Kelola Portfolio</h1>
+<h1 class="px-4 mt-2">Kelola Portfolio</h1>
 @endsection
 
 @section('content')
@@ -32,6 +32,7 @@
             <a href="{{route('admin.portfolio.show', $p->slug)}}" class="al-portfolio-link">
               <div class="card p-2 al-portfolio-card" style="width: 18rem;">
                 <div class="row">
+                  @if (count(json_decode($p->photo)) >= 4)
                   @foreach (array_slice(json_decode($p->photo), 0, 4) as $index => $photo)
                   <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
@@ -39,20 +40,45 @@
                       alt="Card image cap">
                   </div>
                   @endforeach
+                  @elseif (count(json_decode($p->photo)) == 3)
+                  @foreach (array_slice(json_decode($p->photo), 0, 3) as $index => $photo)
+                  @if ($index == 2)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @else
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endif
+                  @endforeach
+                  @elseif (count(json_decode($p->photo)) == 2)
+                  @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @else
+                  @foreach (array_slice(json_decode($p->photo), 0, 1) as $index => $photo)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @endif
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>
@@ -73,6 +99,7 @@
             <a href="{{route('admin.portfolio.show', $p->slug)}}" class="al-portfolio-link">
               <div class="card p-2 al-portfolio-card" style="width: 18rem;">
                 <div class="row">
+                  @if (count(json_decode($p->photo)) >= 4)
                   @foreach (array_slice(json_decode($p->photo), 0, 4) as $index => $photo)
                   <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
@@ -80,20 +107,45 @@
                       alt="Card image cap">
                   </div>
                   @endforeach
+                  @elseif (count(json_decode($p->photo)) == 3)
+                  @foreach (array_slice(json_decode($p->photo), 0, 3) as $index => $photo)
+                  @if ($index == 2)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @else
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endif
+                  @endforeach
+                  @elseif (count(json_decode($p->photo)) == 2)
+                  @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @else
+                  @foreach (array_slice(json_decode($p->photo), 0, 1) as $index => $photo)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @endif
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>
@@ -114,6 +166,7 @@
             <a href="{{route('admin.portfolio.show', $p->slug)}}" class="al-portfolio-link">
               <div class="card p-2 al-portfolio-card" style="width: 18rem;">
                 <div class="row">
+                  @if (count(json_decode($p->photo)) >= 4)
                   @foreach (array_slice(json_decode($p->photo), 0, 4) as $index => $photo)
                   <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
@@ -121,20 +174,45 @@
                       alt="Card image cap">
                   </div>
                   @endforeach
+                  @elseif (count(json_decode($p->photo)) == 3)
+                  @foreach (array_slice(json_decode($p->photo), 0, 3) as $index => $photo)
+                  @if ($index == 2)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @else
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endif
+                  @endforeach
+                  @elseif (count(json_decode($p->photo)) == 2)
+                  @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @else
+                  @foreach (array_slice(json_decode($p->photo), 0, 1) as $index => $photo)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @endif
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>
@@ -155,6 +233,7 @@
             <a href="{{route('admin.portfolio.show', $p->slug)}}" class="al-portfolio-link">
               <div class="card p-2 al-portfolio-card" style="width: 18rem;">
                 <div class="row">
+                  @if (count(json_decode($p->photo)) >= 4)
                   @foreach (array_slice(json_decode($p->photo), 0, 4) as $index => $photo)
                   <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
@@ -162,20 +241,45 @@
                       alt="Card image cap">
                   </div>
                   @endforeach
+                  @elseif (count(json_decode($p->photo)) == 3)
+                  @foreach (array_slice(json_decode($p->photo), 0, 3) as $index => $photo)
+                  @if ($index == 2)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @else
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='100px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endif
+                  @endforeach
+                  @elseif (count(json_decode($p->photo)) == 2)
+                  @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
+                  <div class="col-6 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @else
+                  @foreach (array_slice(json_decode($p->photo), 0, 1) as $index => $photo)
+                  <div class="col-12 mb-2">
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                      src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
+                      alt="Card image cap">
+                  </div>
+                  @endforeach
+                  @endif
                 </div>
                 <div class="card-body py-0 px-1">
-                  <h5 class="text-justify">
-                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}</h5>
-                  <p class="card-text">
-                    <div class="row">
-                      @foreach (json_decode($p->details) as $key=> $d)
-                      <div class="col-6">
-                        <h6 class="text-left">{{ucwords(str_replace('-', ' ', $key))}}</h6>
-                        <h6 class="text-left text-secondary">{{ucfirst($d)}}</h6>
-                      </div>
-                      @endforeach
-                    </div>
-                  </p>
+                  <h6 class="text-center">
+                    {{mb_strimwidth(ucfirst($p->name), 0, 30, "...")}}
+                  </h6>
+                  <small class="text-left text-secondary">{{date("d-m-Y", strtotime($p->date))}}</small>
                 </div>
               </div>
             </a>

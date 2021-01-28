@@ -45,6 +45,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('portfolio', 'KelolaPortfolioController@index')->name('admin.portfolio');
     Route::get('portfolio/create', 'KelolaPortfolioController@create')->name('admin.portfolio.create');
     Route::post('portfolio/store', 'KelolaPortfolioController@store');
+    Route::get('portfolio/{portfolio:slug}', 'KelolaPortfolioController@show')->name('admin.portfolio.show');
+    Route::get('portfolio/{portfolio:slug}/edit', 'KelolaPortfolioController@edit');
+    Route::patch('portfolio/{portfolio:slug}/edit', 'KelolaPortfolioController@update');
+    Route::delete('portfolio/{portfolio:slug}/delete', 'KelolaPortfolioController@destroy');
 
     //2.5) Kelola About
     Route::get('about', 'KelolaAboutController@index')->name('admin.about');
@@ -61,7 +65,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     //2.9) Kelola Feedback
     Route::get('feedback', 'KelolaFeedbackController@index')->name('admin.feedback');
 
-    /* ---------------------------------- SLUG ---------------------------------- */
+    /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio
     Route::get('{portfolio:slug}', 'KelolaPortfolioController@show')->name('admin.portfolio.show');
 
