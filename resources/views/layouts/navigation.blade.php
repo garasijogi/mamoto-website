@@ -27,8 +27,7 @@
     </li>
     <li class="d-inline p-3"><a href="{{route('about')}}">ABOUT</a></li>
     <li class="d-inline p-3"><a href="{{route('faq')}}">FAQ</a></li>
-    <li class="d-inline p-3 al-circle-list-btn"><a href="{{route('booknow')}}" id='book-now-btn'>BOOK
-        NOW</a></li>
+    <li class="d-inline p-3 al-circle-list-btn"><a href="{{route('booknow')}}" id='book-now-btn'>BOOK NOW</a></li>
     <li class="d-inline p-3"><a href="{{route('promo')}}">PROMO</a></li>
   </ul>
 </nav>
