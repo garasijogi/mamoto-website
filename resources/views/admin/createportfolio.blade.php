@@ -62,6 +62,7 @@
       </div>
       <div id='al-showPhotoNameDiv' class='d-none' style="max-height:43vh;overflow:auto">
         <ul id='al-showPhotoName' class="d-none"></ul>
+        <div id="al-deletePhotoContainer"></div>
       </div>
 
       {{-- video --}}

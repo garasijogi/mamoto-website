@@ -17,12 +17,14 @@ $(function () {
 });
 
 function savePhoto(input) {
+  $('#al-imageList').empty();
+  $("#al-showPhotoName").empty();
   var files = input.files
   // image list
   for (let i = 0; i < files.length; i++) {
     var reader = new FileReader();
     reader.onload = function (e) {
-      $('#al-imageList').append("<div class='card d-inline-block mx-2'><div class='card-body'><img src='" + e.target.result + "' width='100px' height='100px' style='object-fit:cover;'/></div></div>")
+      $('#al-imageList').append("<div id='div-" + i + "' class='card d-inline-block mx-2'><div class='card-body'><img src='" + e.target.result + "' width='100px' height='100px' style='object-fit:cover;'/></div></div>")
     };
     reader.readAsDataURL(files[i]);
   }
@@ -33,7 +35,31 @@ function savePhoto(input) {
   $("#al-showPhotoName").attr('class', 'd-block list-group mb-4');
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
-    $("#al-showPhotoName").append("<li class='d-flex justify-content-between list-group-item' >" + file.name + "<a href='#'><i class='text-danger fas fa-window-close'/></a></li>");
+    $("#al-showPhotoName").append("<li id='li-" + i + "' class='al-delete-img-btn d-flex justify-content-between list-group-item' >" + file.name + "<div id='" + i + "' class='al-delete-img-btn' onclick='alDelPhotoName(" + i + ")'><i class='text-danger fas fa-window-close'></i></div></li>");
+  }
+}
+
+function editPhoto(input) {
+  $("#al-addPhotoName").empty();
+  $("div.al-editImageCard").unwrap();
+  $("div.al-editImageCard").remove();
+  var files = input.files
+  // image list
+  for (let i = 0; i < files.length; i++) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#al-imageList').append("<div id='div-" + i + "' class='card d-inline-block mx-2'><div class='card-body al-editImageCard'><img src='" + e.target.result + "' width='100px' height='100px' style='object-fit:cover;'/></div></div>")
+    };
+    reader.readAsDataURL(files[i]);
+  }
+
+  //file name list
+  $("#al-photoBox").remove();
+  $("#al-showPhotoNameDiv").attr('class', 'd-block');
+  $("#al-addPhotoName").attr('class', 'd-block list-group mb-4');
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i]
+    $("#al-addPhotoName").append("<li id='li-" + i + "' class='al-delete-img-btn d-flex justify-content-between list-group-item' >" + file.name + "<div id='" + i + "' class='al-delete-img-btn' onclick='alDelPhotoName(" + i + ")'><i class='text-danger fas fa-window-close'></i></div></li>");
   }
 }
 
@@ -49,8 +75,17 @@ $('i.al-close-btn').click(function () {
   $('body').css('overflow', 'auto');
 })
 
-//delete photo name list
+// imageview on editportfolio
+function alImageViewEdit(id) {
+  $('#al-imageViewer').css('display', 'flex');
+  let src = $('img.' + id.replace('li-', '')).attr('src');
+  $('#al-imageViewed').attr('src', src);
+  $('body').css('overflow', 'hidden');
+}
+
+// delete photo name list
 function alDelPhotoName(id) {
+  event.stopPropagation();
   $('#li-' + id).attr('class', 'd-none');
   $('#div-' + id).attr('class', 'd-none');
   $('#al-deletePhotoContainer').append("<input type='hidden' name='imgDel[]' value='" + id + "' />")

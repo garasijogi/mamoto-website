@@ -83,3 +83,7 @@ img.al-thumbnail:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
+.al-delete-img-btn {
+  /* z-index: 9999; */
+}
