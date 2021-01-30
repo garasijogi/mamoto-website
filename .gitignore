@@ -1,6 +1,10 @@
-/vendor/
+# Vendor packages
+*/vendor/*
+composer.lock
 node_modules/
 npm-debug.log
+package-lock.json
+vendor/
 yarn-error.log
 
 # Laravel 4 specific
@@ -15,11 +19,16 @@ public/hot
 public_html/storage
 public_html/hot
 
-storage/*.key
+# vscode settings
+.vscode/*
+
+# laravel settings
 .env
 Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
-storage/debugbar/*
-.vscode/*
+
+# webpack compiled files
+public/css/app.css
+public/js/app.js
