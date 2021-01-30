@@ -63,4 +63,5 @@ npm install && npm run dev
 ```
 php artisan adminlte:install
 ```
-4. And done.
+4. copy ```.env.example``` and rename it to ```.env```, then set it with your own local enviroment.
+5.. And done.
