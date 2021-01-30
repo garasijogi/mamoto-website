@@ -1,10 +1,12 @@
 {
-    "name": "laravel/laravel",
-    "type": "project",
-    "description": "The Laravel Framework.",
+    "name": "garasijogi/mamoto-website",
+    "type": "website",
+    "description": "Website Development for Mamoto Pictures.",
     "keywords": [
-        "framework",
-        "laravel"
+        "website",
+        "laravel7",
+        "laravel",
+        "adminlte"
     ],
     "license": "MIT",
     "require": {
