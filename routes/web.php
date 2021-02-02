@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,6 +53,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.5) Kelola About
     Route::get('about', 'KelolaAboutController@index')->name('admin.about');
+    Route::get('about/edit', 'KelolaAboutController@edit')->name('admin.about.edit');
 
     //2.6) Kelola Promo
     Route::get('promo', 'KelolaPromoController@index')->name('admin.promo');
