@@ -32,6 +32,7 @@ Homestead.json
 # webpack compiled files
 public/css/app.css
 public/js/app.js
+public/js/app.js.LICENSE.txt
 
 # miscelanous
 _todo/*
