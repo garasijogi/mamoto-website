@@ -11,5 +11,15 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/js');
+
+/* --------------------------- about script mixer --------------------------- */
+mix.scripts([
+        'resources/js/admin/about_summernote.js',
+    ], 'public/js/admin/about.js');
+/* --------------------------- admin script mixer --------------------------- */
+mix.scripts([
+        'resources/js/admin/swal_toast.js', // toast using sweet alert2
+    ], 'public/js/admin/_admin.js')
+
+mix.sass('resources/sass/app.scss', 'public/css');
