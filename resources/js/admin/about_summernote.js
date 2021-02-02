@@ -2,6 +2,8 @@ $(function () {
 	/* Summernote Intitialization and Validation */
 	var summernoteForm = $('#aboutForm');
 	var summernoteElement = $('#post');
+	var about_url = $('input[name="about_url"]').val();
+	var token_csrf = $('input[name="token_csrf"]').val();
 	
 	summernoteElement.summernote({
 		height: 300,
@@ -20,11 +22,30 @@ $(function () {
 			['insert', ['picture', 'video', 'link', 'hr']],
 			// PRODUCTION remove codeview
 			['view', ['fullscreen', 'codeview', 'help']],
-			['mybutton', ['hello']]
+			['myButton', ['myVideo']]
 		],
 		buttons: {
-			hello: HelloButton
-		},
+      myVideo: function(context) {
+        var ui = $.summernote.ui;
+        var button = ui.button({
+          contents: '<i class="fa fa-video-camera"/>',
+          tooltip: 'video',
+          click: function() {
+            var div = document.createElement('div');
+            div.classList.add('embed-container');
+            var iframe = document.createElement('iframe');
+            iframe.src = prompt('Enter video url:');
+            iframe.setAttribute('frameborder', 0);
+            iframe.setAttribute('width', '100%');
+            iframe.setAttribute('allowfullscreen', true);
+            div.appendChild(iframe);
+            context.invoke('editor.insertNode', div);
+          }
+        });
+
+        return button.render();
+      }
+    },
 		callbacks: {
 			onChange: function (contents, $editable) {
 				// Note that at this point, the value of the `textarea` is not the same as the one
@@ -34,10 +55,7 @@ $(function () {
 				if(summernoteElement.summernote('isEmpty')){
 					summernoteElement.parent().addClass('bg-danger');
 					// tampilkan toast
-					Toast.fire({
-						icon: 'error',
-						title: 'Harap isi about post.'
-					})
+					toastValidateError();
 				} else {
 					summernoteElement.parent().removeClass('bg-danger');
 				}
@@ -45,31 +63,12 @@ $(function () {
 		}
 	});
 
-	var HelloButton = function (context) {
-		var ui = $.summernote.ui;
-	
-		// create button
-		var button = ui.button({
-			contents: '<i class="fa fa-child"/> Hello',
-			tooltip: 'hello',
-			click: function () {
-				// invoke insertText method with 'hello' on editor module.
-				context.invoke('editor.insertText', 'hello');
-			}
-		});
-	
-		return button.render();   // return button as jquery object
-	}
-
 	$('#submitAbout').on('click', function(){
 		// post validator, if empty
 		if(summernoteElement.summernote('isEmpty')){
 			summernoteElement.parent().addClass('bg-danger');
 			// tampilkan toast
-			Toast.fire({
-				icon: 'error',
-				title: 'Harap isi about post.'
-			})
+			toastValidateError();
 		} else {
 			summernoteElement.parent().removeClass('bg-danger');
 
@@ -77,8 +76,44 @@ $(function () {
 			Swal.fire({
 				icon: 'success',
 				title: 'Completed',
-				text: 'Validation success'
+				text: summernoteElement.summernote('code')
 			});
+
+			$.ajax({
+				headers: {
+					'X-CSRF-TOKEN': token_csrf
+				},
+				url: about_url,
+				data: {
+					post: summernoteElement.summernote('code')
+				},
+				method: "POST",
+				beforeSend: function() {
+					Swal.fire({
+            icon: 'info',
+            title: 'Menyimpan Perubahan...',
+            html: '<p>Harap Tunggu, sistem sedang menyimpan perubahanmu.<br/><br/><i class="fa fa-spinner fa-spin fa-2x"></i></p>',
+            showConfirmButton: false,
+            // allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false
+        	});
+				},
+				success: function(data){
+					console.log(data);
+					Toast.fire({
+						icon: 'success',
+						title: 'Perubahanmu sudah disimpan'
+					})
+				}
+			})
 		}
 	});
 });
+
+function toastValidateError(){
+	Toast.fire({
+		icon: 'error',
+		title: 'Harap isi about post'
+	});
+}
