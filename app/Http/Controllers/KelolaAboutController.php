@@ -9,8 +9,8 @@ class KelolaAboutController extends Controller
 {
     public function index()
     {
-        return Company_about::where('id', 0)->get();
+        $about = Company_about::where('id', 0)->get();
 
-        return view('admin.about');
+        return view('admin.about', compact('about'));
     }
 }
