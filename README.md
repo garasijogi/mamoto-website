@@ -59,13 +59,17 @@ composer install
 ```
 npm install && npm run dev
 ```
-3. run adminlte artisan install command
+3. run adminlte artisan install and plugin's install
 ```
-php artisan adminlte:install
+php artisan adminlte:install && php artisan adminlte:plugins install
 ```
 4. run artisan generate app key
 ```
 php artisan key:generate
 ```
-5. copy ```.env.example``` and rename it to ```.env```, then set it with your own local enviroment.
-6. And done.
+5. start your database engine(mysql/postgresql) on your system, create database named ```mamotodb```, and then run this command to migrate the database and seed it
+```
+php artisan migrate && php artisan db:seed
+```
+6. copy ```.env.example``` and rename it to ```.env```, then set it with your own local environment.
+7. And done.
