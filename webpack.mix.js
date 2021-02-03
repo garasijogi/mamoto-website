@@ -21,5 +21,10 @@ mix.scripts([
 mix.scripts([
         'resources/js/admin/swal_toast.js', // toast using sweet alert2
     ], 'public/js/admin/_admin.js')
+/* ------------------------ summernote custom script ------------------------ */
+/**
+ * This summernote custom script added responsive to video and image
+ */
+mix.copy('resources/js/admin/summernote-custom/summernote-bs4.js', 'public/vendor/summernote/summernote-bs4.js')
 
 mix.sass('resources/sass/app.scss', 'public/css');

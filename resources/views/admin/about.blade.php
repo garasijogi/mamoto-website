@@ -38,7 +38,9 @@
 @section('js')
 {{-- scripts --}}
 {{-- <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script> --}}
-<script src="{{ asset('vendor/summernote/summernote-bs4.min.js') }}"></script>
+<script src="{{ asset('vendor/summernote/summernote-bs4.js') }}"></script>
+{{-- <script src="{{ asset('js/admin/summernote-custom/summernote.js') }}"></script> --}}
+
 <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
 {{-- custom scripts --}}
