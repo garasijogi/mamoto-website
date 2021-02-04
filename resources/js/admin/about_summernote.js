@@ -2,6 +2,7 @@ $(function () {
 	/* Summernote Intitialization and Validation */
 	var summernoteForm = $('#aboutForm');
 	var summernoteElement = $('#post');
+	var summernoteSaveButton = $('#saveAbout');
 	var about_url = $('input[name="about_url"]').val();
 	var token_csrf = $('input[name="token_csrf"]').val();
 	
@@ -19,33 +20,10 @@ $(function () {
 			['color', ['color']],
 			['para', ['ul', 'ol', 'paragraph', 'style']],
 			['height', ['height']],
-			['insert', ['picture', 'video', 'link', 'hr']],
+			['insert', ['gallery', 'video', 'link', 'hr']],
 			// PRODUCTION remove codeview
 			['view', ['fullscreen', 'codeview', 'help']],
-			['myButton', ['myVideo']]
 		],
-		buttons: {
-      myVideo: function(context) {
-        var ui = $.summernote.ui;
-        var button = ui.button({
-          contents: '<i class="fa fa-video-camera"/>',
-          tooltip: 'video',
-          click: function() {
-            var div = document.createElement('div');
-            div.classList.add('embed-container');
-            var iframe = document.createElement('iframe');
-            iframe.src = prompt('Enter video url:');
-            iframe.setAttribute('frameborder', 0);
-            iframe.setAttribute('width', '100%');
-            iframe.setAttribute('allowfullscreen', true);
-            div.appendChild(iframe);
-            context.invoke('editor.insertNode', div);
-          }
-        });
-
-        return button.render();
-      }
-    },
 		callbacks: {
 			onChange: function (contents, $editable) {
 				// Note that at this point, the value of the `textarea` is not the same as the one
@@ -59,11 +37,32 @@ $(function () {
 				} else {
 					summernoteElement.parent().removeClass('bg-danger');
 				}
+
+				// ubah style tombol save
+				summernoteSaveButton.removeClass('btn-secondary').addClass('btn-primary');
+			},
+		},
+		gallery: { // summernote gallery settings
+			source: {
+					// data: [],
+					url: 'http://eissasoubhi.github.io/summernote-gallery/server/example.json',
+					responseDataKey: 'data',
+					nextPageKey: 'links.next',
+			},
+			modal: {
+					loadOnScroll: true,
+					maxHeight: 300,
+					title: "Tambahkan Gambar",
+					close_text: 'Batalkan',
+					ok_text: 'Tambahkan',
+					selectAll_text: 'Pilih Semua',
+					deselectAll_text: 'Pilih Tidak Semua',
+					noImageSelected_msg: 'Tidak ada gambar yang dipilih, harap pilih satu',
 			}
-		}
+	}
 	});
 
-	$('#submitAbout').on('click', function(){
+	summernoteSaveButton.on('click', function(){
 		// post validator, if empty
 		if(summernoteElement.summernote('isEmpty')){
 			summernoteElement.parent().addClass('bg-danger');
@@ -101,6 +100,7 @@ $(function () {
 				},
 				success: function(data){
 					console.log(data);
+					summernoteSaveButton.removeClass('btn-primary').addClass('btn-secondary');
 					Toast.fire({
 						icon: 'success',
 						title: 'Perubahanmu sudah disimpan'
@@ -111,6 +111,7 @@ $(function () {
 	});
 });
 
+// toast validate error for about
 function toastValidateError(){
 	Toast.fire({
 		icon: 'error',

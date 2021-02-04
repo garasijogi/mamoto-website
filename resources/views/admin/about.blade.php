@@ -7,20 +7,21 @@
 @endsection
 
 @section('content')
-<p>{{ $about }}</p>
+{{-- <p>{{ $about }}</p> --}}
 <div class="card">
 	<div class="card-body">
 		<div class="d-flex justify-content-end mb-2">
-			<div>
+			<div class="btn-group">
 				{{-- <button type="submit" class="btn btn-primary" form="aboutForm"><i class="fa fa-save"></i> Save</button> --}}
-				<button id="submitAbout" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+				<button data-toggle="modal" data-target="#jqueryFileUpload" class="btn btn-info"><i class="fa fa-images"></i> Images Gallery</button>
+				<button id="saveAbout" class="btn btn-secondary"><i class="fa fa-save"></i> Simpan</button>
 			</div>
 		</div>
 		{{-- <form id="aboutForm" action="{{ route('admin.about.edit') }}" method="post"> --}}
 			{{-- @csrf --}}
 			<div class="form-group p-2 rounded">
 				<label for="post">About Post</label>
-				<textarea name="post" id="post" class="form-control" required data-msg="Please write something :)" rows="10" required></textarea>
+				<textarea name="post" id="post" class="form-control" required data-msg="Please write something :)" rows="10" required>{{ $about->post }}</textarea>
 			</div>
 
 			{{-- token and url --}}
@@ -29,18 +30,24 @@
 		{{-- </form> --}}
 	</div>
 </div>
+
+{{-- include jquery fileUpload --}}
+@include('admin._partials.jquery_fileUpload')
+
 @endsection
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('js/admin/jquery-file-upload/jquery-file-upload.css') }}">
 @endsection
 
 @section('js')
 {{-- scripts --}}
 {{-- <script src="{{ asset('vendor/jquery-validation/jquery.validate.min.js') }}"></script> --}}
 <script src="{{ asset('vendor/summernote/summernote-bs4.js') }}"></script>
+<script src="{{ asset('js/admin/summernote-gallery/summernote-gallery.min.js') }}"></script>
+<script src="{{ asset('js/admin/jquery-file-upload/jquery-file-upload.min.js') }}"></script>
 {{-- <script src="{{ asset('js/admin/summernote-custom/summernote.js') }}"></script> --}}
-
 <script src="{{ asset('vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
 {{-- custom scripts --}}

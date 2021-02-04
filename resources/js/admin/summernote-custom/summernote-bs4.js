@@ -252,6 +252,9 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.exten
       image: 'Picture',
       insert: 'Insert Image',
       resizeFull: 'Resize full',
+      resize90: 'Resize 90%',
+      resize85: 'Resize 85%',
+      resizeHalFull: 'Resize half Full',
       resizeHalf: 'Resize half',
       resizeQuarter: 'Resize quarter',
       resizeNone: 'Original size',
@@ -5863,7 +5866,7 @@ function () {
             $image.attr('data-filename', param);
           }
 
-          $image.addClass('img-fluid').css('width', Math.min(_this3.$editable.width(), $image.width()));
+          $image.css('width', Math.min(_this3.$editable.width(), $image.width()));
         }
 
         $image.show();
@@ -7775,6 +7778,27 @@ function () {
           contents: '<span class="note-fontsize-10">100%</span>',
           tooltip: _this3.lang.image.resizeFull,
           click: _this3.context.createInvokeHandler('editor.resize', '1')
+        }).render();
+      });
+      this.context.memo('button.resize90', function () {
+        return _this3.button({
+          contents: '<span class="note-fontsize-10">90%</span>',
+          tooltip: _this3.lang.image.resize90,
+          click: _this3.context.createInvokeHandler('editor.resize', '0.90')
+        }).render();
+      });
+      this.context.memo('button.resize85', function () {
+        return _this3.button({
+          contents: '<span class="note-fontsize-10">85%</span>',
+          tooltip: _this3.lang.image.resize85,
+          click: _this3.context.createInvokeHandler('editor.resize', '0.85')
+        }).render();
+      });
+      this.context.memo('button.resizeHalFull', function () {
+        return _this3.button({
+          contents: '<span class="note-fontsize-10">75%</span>',
+          tooltip: _this3.lang.image.resizeHalFull,
+          click: _this3.context.createInvokeHandler('editor.resize', '0.75')
         }).render();
       });
       this.context.memo('button.resizeHalf', function () {
@@ -9721,7 +9745,7 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.summe
     // popover
     popatmouse: true,
     popover: {
-      image: [['resize', ['resizeFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']], ['float', ['floatLeft', 'floatRight', 'floatNone']], ['remove', ['removeMedia']]],
+      image: [['resize', ['resizeFull', 'resize90', 'resize85', 'resizeHalFull', 'resizeHalf', 'resizeQuarter', 'resizeNone']], ['float', ['floatLeft', 'floatRight', 'floatNone']], ['remove', ['removeMedia']]],
       link: [['link', ['linkDialogShow', 'unlink']]],
       table: [['add', ['addRowDown', 'addRowUp', 'addColLeft', 'addColRight']], ['delete', ['deleteRow', 'deleteCol', 'deleteTable']]],
       air: [['color', ['color']], ['font', ['bold', 'underline', 'clear']], ['para', ['ul', 'paragraph']], ['table', ['table']], ['insert', ['link', 'picture']], ['view', ['fullscreen', 'codeview']]]

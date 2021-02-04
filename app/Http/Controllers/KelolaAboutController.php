@@ -10,7 +10,7 @@ class KelolaAboutController extends Controller
 {
     public function index()
     {
-        $about = Company_about::where('id', 0)->get();
+        $about = Company_about::where('id', 0)->first();
 
         return view('admin.about', compact('about'));
     }
@@ -24,6 +24,6 @@ class KelolaAboutController extends Controller
         $company_about->post = $attr['post'];
         $company_about->save();
         return $company_about;
-        
+
     }
 }
