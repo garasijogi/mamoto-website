@@ -1,11 +1,4 @@
 $(function () {
-	/* Summernote Intitialization and Validation */
-	var summernoteForm = $('#aboutForm');
-	var summernoteElement = $('#post');
-	var summernoteSaveButton = $('#saveAbout');
-	var about_url = $('input[name="about_url"]').val();
-	var token_csrf = $('input[name="token_csrf"]').val();
-	
 	summernoteElement.summernote({
 		height: 300,
 		focus: true,
@@ -39,7 +32,7 @@ $(function () {
 				}
 
 				// ubah style tombol save
-				summernoteSaveButton.removeClass('btn-secondary').addClass('btn-primary');
+				summernoteSaveButton.removeClass('btn-secondary').addClass('btn-danger');
 			},
 		},
 		gallery: { // summernote gallery settings
@@ -100,7 +93,7 @@ $(function () {
 				},
 				success: function(data){
 					console.log(data);
-					summernoteSaveButton.removeClass('btn-primary').addClass('btn-secondary');
+					summernoteSaveButton.removeClass('btn-danger').addClass('btn-secondary');
 					Toast.fire({
 						icon: 'success',
 						title: 'Perubahanmu sudah disimpan'

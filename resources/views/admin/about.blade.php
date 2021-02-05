@@ -11,10 +11,12 @@
 <div class="card">
 	<div class="card-body">
 		<div class="d-flex justify-content-end mb-2">
-			<div class="btn-group">
+			<div>
+				<button data-toggle="modal" data-target="#jqueryFileUpload" class="btn btn-info"><i class="fa fa-images" title="Tambah/Hapus gambar"></i> Images Gallery</button>
+			</div>
+			<div class="ml-2">
 				{{-- <button type="submit" class="btn btn-primary" form="aboutForm"><i class="fa fa-save"></i> Save</button> --}}
-				<button data-toggle="modal" data-target="#jqueryFileUpload" class="btn btn-info"><i class="fa fa-images"></i> Images Gallery</button>
-				<button id="saveAbout" class="btn btn-secondary"><i class="fa fa-save"></i> Simpan</button>
+				<button id="saveAbout" class="btn btn-secondary"><i class="fa fa-save" title="Simpan Perubahanmu"></i> Simpan</button>
 			</div>
 		</div>
 		{{-- <form id="aboutForm" action="{{ route('admin.about.edit') }}" method="post"> --}}
@@ -27,6 +29,7 @@
 			{{-- token and url --}}
 			<input type="hidden" name="token_csrf" value="{{ csrf_token() }}">
 			<input type="hidden" name="about_url" value="{{ route('admin.about.edit') }}">
+			<input type="hidden" name="upload_url" value="{{ route('admin.uploadGambar') }}">
 		{{-- </form> --}}
 	</div>
 </div>
