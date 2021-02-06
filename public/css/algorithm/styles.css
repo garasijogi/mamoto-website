@@ -1,3 +1,5 @@
+/* 1) All elements */
+
 @font-face {
   font-family: 'JosefinSlab-Regular';
   src: url("/fonts/josefinslab-regular-webfont.woff");
@@ -8,17 +10,49 @@
   src: url("/fonts/lora-regular-webfont.woff");
 }
 
-* {
+body {
+  background-color: white !important;
+}
+
+nav {
   font-family: 'JosefinSlab-Regular';
+}
+
+#app {
+  font-family: 'Lora-Regular';
+}
+
+
+/* 2) All Body */
+.al-container {
+  padding: 6rem 5rem 5rem 5rem;
+}
+
+/* 3) Navigation Bar */
+.al-navbar {
+  padding-left: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.al-mamoto-black-logo {
+  filter: grayscale(1) invert(1);
+  width: 12vw;
 }
 
 .al-bg-gradient-dark {
   background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0) 100%);
-  padding: 1em 0;
+  /* padding: 1em 0; */
 }
 
-.al-bg-white ul.al-navigation-ul {
-  border-bottom: 1px solid #888888;
+.al-bg-white {
+  background-color: white;
+}
+
+.al-bg-white ul.al-navigation-ul, .al-bg-gradient-dark ul.al-navigation-ul{
+  /* border-bottom: 1px solid #888888; */
+  margin: 0 !important;
   padding: 1em 0;
 }
 
@@ -51,12 +85,12 @@ body.al-home-body {
   background: url("/images/jumbotron.png");
 }
 
-.al-bg-img {
+/* .al-bg-img {
   background: url("/images/wedding-ring.png");
   background-repeat: no-repeat;
   background-size: 60%;
   background-position-x: center;
-}
+} */
 
 body.login-page {
   background: url("/images/wedding-ring.png");
@@ -67,6 +101,7 @@ body.login-page {
 
 .al-full-content {
   height: 100vh;
+  margin-left: 6vw;
 }
 
 .al-circle-list-btn a {
@@ -172,4 +207,55 @@ body.login-page {
 .al-opacity-full ul li:hover, .al-navigation-ul ul li:hover a {
   background-color: rgba(0,0,0,0.4);
   color: white !important;
+}
+
+/* 4) Portfolio Elements */
+.al-big-title {
+  position:absolute;
+  left:0;
+  right:0;
+  height: 13rem;
+  background-color: #F8EDEB;
+}
+
+.al-big-title-font {
+  color: #999999;
+  font-size: 3em;
+  font-weight: 500;
+}
+
+.al-breadcrumb h6 {
+  font-size: .8em;
+  font-weight: 600;
+  color: #999999;
+}
+
+.al-portfolio-cards {
+  padding-top: 13rem;
+}
+
+.al-grey-color {
+  color: #999999;
+}
+
+.al-pink-color {
+  color: #F8EDEB;
+}
+
+.al-font1 {
+  font-family: 'JosefinSlab-Regular';
+}
+
+.al-font2 {
+  font-family: 'Lora-Regular';
+}
+
+.al-portfolio-card{
+  padding-top: 4rem;
+  transition: .3s;
+}
+
+.al-portfolio-card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }

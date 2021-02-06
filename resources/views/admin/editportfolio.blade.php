@@ -66,9 +66,9 @@
         <ul id='al-showPhotoName' class="d-block list-group">
           @foreach (json_decode($portfolio->photo) as $index => $photo)
           <li id='li-{{$index}}' class='al-delete-img-btn d-flex justify-content-between list-group-item'
-            onclick="alImageViewEdit(this.id)">
+            onclick="alImageView(this.id, 'li')">
             {{$photo->name}}
-            <div id='{{$index}}' class="al-delete-img-btn" onclick="alDelPhotoName(this.id)">
+            <div id='{{$index}}' class="al-delete-img-btn" onclick="alDelPhoto(this.id, 0)">
               <i class="text-danger fas fa-window-close"></i>
             </div>
           </li>
@@ -255,12 +255,15 @@
     <div class="text-center">
       <div id='al-imageList' class="p-4 position-relative">
         @foreach (json_decode($portfolio->photo) as $index => $photo)
-        <div id='div-{{$index}}' class='card d-inline-block mx-2'>
+        <div id='div-{{$index}}' class='card al-img-card-selected d-inline-block mx-2'
+          onclick="alImageView(this.id, 'div')">
           <div class='card-body'>
             <img class='{{$index}}'
               src="/storage/images/portfolio/{{$portfolio->pfType_id}}/{{$portfolio->slug}}/{{$photo->name}}"
               width='100px' height='100px' style='object-fit:cover;' />
           </div>
+          <button id="button-{{$index}}" onclick="alDelPhoto(this.id, 1)" class="btn al-del-img-card"> <i
+              class="fas fa-times fa-lg text-red"></i> </button>
         </div>
         @endforeach
       </div>

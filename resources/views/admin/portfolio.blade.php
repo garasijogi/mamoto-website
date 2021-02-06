@@ -58,7 +58,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2">
+                  <div class="col-6 mb-2 pb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
@@ -125,7 +125,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2">
+                  <div class="col-6 mb-2 pb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
@@ -192,7 +192,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2">
+                  <div class="col-6 mb-2 pb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
@@ -259,7 +259,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2">
+                  <div class="col-6 mb-2 pb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">

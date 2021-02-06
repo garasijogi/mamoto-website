@@ -1,4 +1,7 @@
-<nav class="al-navbar pr-2 {{request()->routeIs('home') ? 'al-bg-gradient-dark' : 'al-bg-white'}}">
+<nav id='al-navbar'
+  class="fixed-top al-navbar pr-2 {{request()->routeIs('home') ? 'al-bg-gradient-dark' : 'al-bg-white'}}">
+  <a href="#" class="logo"><img class="al-mamoto-black-logo" src="{{url('/images/mamoto_picture_logo.png')}}"
+      alt=""></a>
   <ul
     class="al-navigation-ul d-flex justify-content-end {{request()->routeIs('home') ? 'al-nav-text-white' : 'al-nav-text-goldbrown'}}">
     <li class="d-inline p-3"><a href="{{route('home')}}">HOME</a></li>

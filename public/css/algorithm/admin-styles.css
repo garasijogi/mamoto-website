@@ -84,6 +84,23 @@ img.al-thumbnail:hover {
   cursor: pointer;
 }
 
-.al-delete-img-btn {
-  /* z-index: 9999; */
+.al-del-img-card {
+  background-color: transparent;
+  border-color: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px !important;
+  display: none;
 }
+
+.al-img-card-selected {
+  position: relative;
+  z-index: 30;
+}
+
+.al-img-card-selected:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+

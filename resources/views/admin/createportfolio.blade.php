@@ -226,6 +226,18 @@
 </div>
 @endsection
 
+@section('modals')
+<!-- Image Viewer Modal -->
+<div id="al-imageViewer" class="al-image-viewer-modal">
+
+  <!-- The Close Button -->
+  <i class="al-close-btn fas fa-times fa-2x text-white"></i>
+
+  <!-- Modal Content (The Image) -->
+  <img class="al-image-viewer-modal-content" id="al-imageViewed">
+</div>
+@endsection
+
 @section('js')
 @include('layouts.js.al-scripts')
 @endsection

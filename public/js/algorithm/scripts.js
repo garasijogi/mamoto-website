@@ -1,3 +1,6 @@
+// 1) User
+
+// 2) Admin
 // delete user
 $(document).on('click', '.al-deleteUser', function () {
   var username = $(this).attr('data-username');
@@ -19,12 +22,12 @@ $(function () {
 function savePhoto(input) {
   $('#al-imageList').empty();
   $("#al-showPhotoName").empty();
-  var files = input.files
+  var files = input.files;
   // image list
   for (let i = 0; i < files.length; i++) {
     var reader = new FileReader();
     reader.onload = function (e) {
-      $('#al-imageList').append("<div id='div-" + i + "' class='card d-inline-block mx-2'><div class='card-body'><img src='" + e.target.result + "' width='100px' height='100px' style='object-fit:cover;'/></div></div>")
+      $('#al-imageList').append("<div id='div-" + i + "' class='card al-img-card-selected d-inline-block mx-2' onclick='alImageView(this.id, 0)'><div class='card-body'><img class='" + i + "' src='" + e.target.result + "' width='100px' height='100px' style='object-fit:cover;' /></div><button id='button-" + i + "' onclick='alDelPhoto(this.id, 1)' class='btn al-del-img-card'> <i class='fas fa-times fa-lg text-red'></i> </button></div>")
     };
     reader.readAsDataURL(files[i]);
   }
@@ -35,7 +38,7 @@ function savePhoto(input) {
   $("#al-showPhotoName").attr('class', 'd-block list-group mb-4');
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
-    $("#al-showPhotoName").append("<li id='li-" + i + "' class='al-delete-img-btn d-flex justify-content-between list-group-item' >" + file.name + "<div id='" + i + "' class='al-delete-img-btn' onclick='alDelPhotoName(" + i + ")'><i class='text-danger fas fa-window-close'></i></div></li>");
+    $("#al-showPhotoName").append("<li id='li-" + i + "' class='al-delete-img-btn d-flex justify-content-between list-group-item' onclick='alImageView(this.id, 1)' >" + file.name + "<div id='" + i + "' class='al-delete-img-btn' onclick='alDelPhoto(" + i + ", 0)'><i class='text-danger fas fa-window-close'></i></div></li>");
   }
 }
 
@@ -59,12 +62,25 @@ function editPhoto(input) {
   $("#al-addPhotoName").attr('class', 'd-block list-group mb-4');
   for (let i = 0; i < files.length; i++) {
     const file = files[i]
-    $("#al-addPhotoName").append("<li id='li-" + i + "' class='al-delete-img-btn d-flex justify-content-between list-group-item' >" + file.name + "<div id='" + i + "' class='al-delete-img-btn' onclick='alDelPhotoName(" + i + ")'><i class='text-danger fas fa-window-close'></i></div></li>");
+    $("#al-addPhotoName").append("<li id='li-" + i + "' class='al-delete-img-btn d-flex justify-content-between list-group-item' >" + file.name + "<div id='" + i + "' class='al-delete-img-btn' onclick='alDelPhoto(" + i + ", 0)'><i class='text-danger fas fa-window-close'></i></div></li>");
   }
 }
 
 // imageview
-function alImageView(id) {
+function alImageView(id, target) {
+  switch (target) {
+    case 'id': id = id;
+      break;
+    case 'li': id = id.replace('li-', '');
+      break;
+    case 'div': id = id.replace('div-', '');
+      break;
+    case 0: id = id.replace('div-', '');
+      break;
+    case 1: id = id.replace('li-', '');
+      break;
+    default: id = id;
+  }
   $('#al-imageViewer').css('display', 'flex');
   let src = $('img.' + id).attr('src');
   $('#al-imageViewed').attr('src', src);
@@ -75,18 +91,22 @@ $('i.al-close-btn').click(function () {
   $('body').css('overflow', 'auto');
 })
 
-// imageview on editportfolio
-function alImageViewEdit(id) {
-  $('#al-imageViewer').css('display', 'flex');
-  let src = $('img.' + id.replace('li-', '')).attr('src');
-  $('#al-imageViewed').attr('src', src);
-  $('body').css('overflow', 'hidden');
-}
-
 // delete photo name list
-function alDelPhotoName(id) {
+function alDelPhoto(id, target) {
+  switch (target) {
+    case 1: id = id.replace('button-', '');
+      break;
+    default: id = id;
+  }
   event.stopPropagation();
   $('#li-' + id).attr('class', 'd-none');
   $('#div-' + id).attr('class', 'd-none');
   $('#al-deletePhotoContainer').append("<input type='hidden' name='imgDel[]' value='" + id + "' />")
-}
+};
+
+// show delete img button on img preview list
+$('div').on('mouseenter', '.al-img-card-selected', function (e) {
+  $('#button-' + (this.id).replace('div-', '')).css('display', 'unset');
+}).on('mouseleave', '.al-img-card-selected', function () {
+  $('.al-del-img-card').css('display', 'none');
+});

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - Home')
 @section('content')
-<div class="al-home-body">
+<div class="al-home-body al-container">
     <div class="row align-items-center">
         <div class="col d-flex">
             <a href="" class="al-arrow-left">

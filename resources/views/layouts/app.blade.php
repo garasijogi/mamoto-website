@@ -22,7 +22,7 @@
 <body class="{{request()->routeIs('home') ? 'al-home-body' : ''}}">
   @include('layouts.navigation')
   <div id="app">
-    <div class="m-4 al-full-content {{request()->routeIs('home') ? '' : 'al-bg-img'}}">
+    <div class="mx-4 al-full-content {{request()->routeIs('home') ? '' : 'al-bg-img'}}">
       @yield('content')
     </div>
   </div>
