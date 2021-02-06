@@ -48,8 +48,10 @@ mix.copy('resources/js/admin/_plugins/jquery-file-upload', 'public/js/admin/jque
  */
 
 /* --------------------------- about script mixer --------------------------- */
+mix.styles('resources/css/about/about.css', 'public/css/about.css');
 mix.scripts([
     'resources/js/admin/about/about__initial.js',
     'resources/js/admin/about/about_summernote.js',
+    'resources/js/admin/about/about_upload.js',
     'resources/js/admin/jquery-fileUpload.js',
 ], 'public/js/admin/about.js');

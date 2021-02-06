@@ -68,7 +68,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('feedback', 'KelolaFeedbackController@index')->name('admin.feedback');
 
     //2.10) Kelola Gambar
-    Route::post('kelolaGambar/upload', 'kelolaGambarController@upload')->name('admin.uploadGambar');
+    Route::post('kelolagambar/upload', 'kelolaGambarController@upload')->name('admin.uploadGambar');
+    Route::get('kelolagambar/getIndex', 'kelolaGambarController@getIndex')->name('admin.uploadGetIndex');
 
     /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio

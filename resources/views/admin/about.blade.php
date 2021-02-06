@@ -30,6 +30,8 @@
 			<input type="hidden" name="token_csrf" value="{{ csrf_token() }}">
 			<input type="hidden" name="about_url" value="{{ route('admin.about.edit') }}">
 			<input type="hidden" name="upload_url" value="{{ route('admin.uploadGambar') }}">
+			<input type="hidden" name="url_getIndex" value="{{ route('admin.uploadGetIndex') }}">
+			<input type="hidden" name="url_path" value="{{ url('storage/gallery/about') }}">
 		{{-- </form> --}}
 	</div>
 </div>
@@ -42,6 +44,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('js/admin/jquery-file-upload/jquery-file-upload.css') }}">
+<link rel="stylesheet" href="{{ asset('css/about.css') }}">
 @endsection
 
 @section('js')
