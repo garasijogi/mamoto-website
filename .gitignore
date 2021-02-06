@@ -33,7 +33,11 @@ Homestead.json
 public/css/app.css
 public/js/app.js
 public/js/app.js.LICENSE.txt
+public/css/about.css
 
 # miscelanous
 _todo/*
 public/mix-manifest.json
+
+# storage link
+public/storage
