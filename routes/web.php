@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 //1) User routes
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/portfolio/wedding', 'PortfolioController@wedding')->name('portfolio.wedding');
-Route::get('/portfolio/prewed', 'PortfolioController@prewed')->name('portfolio.prewed');
-Route::get('/portfolio/sp', 'PortfolioController@sp')->name('portfolio.sp');
-Route::get('/portfolio/lamaran', 'PortfolioController@lamaran')->name('portfolio.lamaran');
+Route::prefix('portfolio')->group(function () {
+    Route::get('wedding', 'PortfolioController@wedding')->name('portfolio.wedding');
+    Route::get('prewed', 'PortfolioController@prewed')->name('portfolio.prewed');
+    Route::get('sp', 'PortfolioController@sp')->name('portfolio.sp');
+    Route::get('lamaran', 'PortfolioController@lamaran')->name('portfolio.lamaran');
+    Route::get('{pfType_id}/{portfolios:slug}', 'PortfolioController@show')->name('portfolio.show');
+});
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
@@ -68,7 +71,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio
     Route::get('{portfolio:slug}', 'KelolaPortfolioController@show')->name('admin.portfolio.show');
-
 });
 
 //3) Auth

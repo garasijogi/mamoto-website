@@ -24,8 +24,11 @@
   <div id="app">
     <div class="mx-4 al-full-content {{request()->routeIs('home') ? '' : 'al-bg-img'}}">
       @yield('content')
+      @include('layouts.footer')
     </div>
   </div>
+
+  @yield('modals')
 
   {{-- scripts --}}
   @include('layouts.js.al-scripts')

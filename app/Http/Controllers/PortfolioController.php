@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Portfolio;
 use App\Portfolio_type;
 use Illuminate\Http\Request;
 
@@ -40,6 +41,13 @@ class PortfolioController extends Controller
         return view('portfolio', [
             'title' => 'Lamaran',
             'portfolios' => $portfolios
+        ]);
+    }
+
+    public function show(Portfolio_type $pfType_id, Portfolio $portfolios){
+        return view('showportfolio', [
+            'title' => $portfolios->name,
+            'portfolio' => $portfolios
         ]);
     }
 }
