@@ -1,8 +1,9 @@
-.rr-about-header{
-  font-size: 48px;
-  margin-top: 52px;
+/* ------------------------------- main styles ------------------------------ */
+.rr-about-content {
+  font-size: 20px;
 }
 
-.rr-about-content{
-  font-size: 20px;
+.rr-about-header {
+  font-size: 48px;
+  margin-top: 52px;
 }

@@ -12,11 +12,12 @@
 	<div class="card-body">
 		<div class="d-flex justify-content-end mb-2">
 			<div>
-				<button data-toggle="modal" data-target="#jqueryFileUpload" class="btn btn-info"><i class="fa fa-images" title="Tambah/Hapus gambar"></i> Images Gallery</button>
+				{{-- <button data-toggle="modal" data-target="#modalGallery" class="btn btn-info"><i class="fa fa-images" title="Tambah/Hapus gambar"></i> Images Gallery</button> --}}
+				<button id="showGallery" class="btn btn-info" title="Tambah/Hapus gambar"><i class="fa fa-images"></i> Images Gallery</button>
 			</div>
 			<div class="ml-2">
 				{{-- <button type="submit" class="btn btn-primary" form="aboutForm"><i class="fa fa-save"></i> Save</button> --}}
-				<button id="saveAbout" class="btn btn-secondary"><i class="fa fa-save" title="Simpan Perubahanmu"></i> Simpan</button>
+				<button id="saveAbout" class="btn btn-secondary" title="Simpan Perubahanmu"><span class="saveIcon"><i class="fa fa-save"></i></span> Simpan</button>
 			</div>
 		</div>
 		{{-- <form id="aboutForm" action="{{ route('admin.about.edit') }}" method="post"> --}}
@@ -37,14 +38,13 @@
 </div>
 
 {{-- include jquery fileUpload --}}
-@include('admin._partials.jquery_fileUpload')
-
+@include('admin._partials.modal-gallery')
 @endsection
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('js/admin/jquery-file-upload/jquery-file-upload.css') }}">
-<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/about.css') }}">
 @endsection
 
 @section('js')

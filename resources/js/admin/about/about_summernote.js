@@ -22,6 +22,8 @@ summernoteElement.summernote({
 			// you entered into the summernote editor, so you have to set it yourself to make
 			// the validation consistent and in sync with the value.
 			summernoteElement.val(summernoteElement.summernote('isEmpty') ? "" : contents);
+			// ganti icon jadi spinner
+			icon_save.empty().append('<span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>');
 			if(summernoteElement.summernote('isEmpty')){
 				summernoteElement.parent().addClass('bg-danger');
 				// tampilkan toast
@@ -38,11 +40,11 @@ summernoteElement.summernote({
 		source: {
 			// data: [],
 			url: url_getIndex + 
-				"?page=" + url_getNextPage + 
+				"?page=1" + 
 				"&path=" + path +
 				"&index=" + index +
 				"&url_getIndex=" + url_getIndex +
-				"&url_getNextPage=" + url_getNextPage +
+				"&url_getNextPage=1" +
 				"&url_path=" + url_path +
 				"&path=" + path,
 			// responseDataKey: 'data',
@@ -92,12 +94,13 @@ summernoteSaveButton.on('click', function(){
 					title: 'Menyimpan Perubahan...',
 					html: '<p>Harap Tunggu, sistem sedang menyimpan perubahanmu.<br/><br/><i class="fa fa-spinner fa-spin fa-2x"></i></p>',
 					showConfirmButton: false,
-					// allowOutsideClick: false,
+					allowOutsideClick: false,
 					allowEscapeKey: false,
 					allowEnterKey: false
 				});
 			},
 			success: function(data){
+				icon_save.empty().append('<i class="fa fa-save"></i>');
 				console.log(data);
 				summernoteSaveButton.removeClass('btn-danger').addClass('btn-secondary');
 				Toast.fire({

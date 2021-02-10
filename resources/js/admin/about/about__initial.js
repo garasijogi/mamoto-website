@@ -6,6 +6,13 @@ var summernoteSaveButton = $('#saveAbout');
 // url and token
 var about_url  = $('input[name="about_url"]').val();
 var token_csrf = $('input[name="token_csrf"]').val();
+// selectors
+var btn_showGallery = $('#showGallery');
+var btn_showImage = $('.btn-image-view');
+var gallery_content = $('.gallery-content');
+var modal_gallery   = $('#modalGallery');
+var modal_galleryPaginate = 1;
+var icon_save = $('.saveIcon');
 
 // variable initialization for file uploader
 var allowedTypes    = "pdf,doc,docx,ppt,pptx,xps,odt,xls,xlsx,wps,jpg,jpeg,gif,png";
@@ -14,4 +21,3 @@ var path            = 'gallery/about';                                          
 var upload_url      = $('input[name="upload_url"]').val();
 var url_getIndex    = $('input[name="url_getIndex"]').val();
 var url_path        = $('input[name="url_path"]').val();
-var url_getNextPage = 1;
