@@ -48,11 +48,24 @@ mix.copy('resources/js/admin/_plugins/jquery-file-upload', 'public/js/admin/jque
  */
 
 /* --------------------------- about script mixer --------------------------- */
-mix.styles('resources/css/admin/about.css', 'public/css/admin/about.css');
+// admin styles
+mix.styles(
+    [
+        'resources/css/admin/about.css',
+        'resources/css/admin/imageViewer.css',
+    ],
+    'public/css/admin/about.css'
+);
+// public site styles
 mix.styles('resources/css/about.css', 'public/css/about.css');
-mix.scripts([
-    'resources/js/admin/about/about__initial.js',
-    'resources/js/admin/about/about_summernote.js',
-    'resources/js/admin/about/about_upload.js',
-    'resources/js/admin/jquery-fileUpload.js',
-], 'public/js/admin/about.js');
+mix.scripts(
+    [
+        "resources/js/admin/about/about__initial.js",
+        "resources/js/admin/about/about_summernote.js",
+        "resources/js/admin/about/about_gallery.js",
+        "resources/js/admin/about/about_upload.js",
+        "resources/js/admin/jquery-fileUpload.js",
+        "resources/js/admin/modal-imageViewer.js"
+    ],
+    "public/js/admin/about.js"
+);
