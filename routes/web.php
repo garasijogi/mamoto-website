@@ -58,6 +58,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.7) Kelola FAQ
     Route::get('faq', 'KelolaFAQController@index')->name('admin.faq');
+    Route::get('faq/create', 'KelolaFAQController@create')->name('admin.faq.create');
+    Route::post('faq/store', 'KelolaFAQController@store');
+    Route::get('faq/{faq:id}/edit', 'KelolaFAQController@edit');
+    Route::patch('faq/{faq:id}/edit', 'KelolaFAQController@update');
+    Route::delete('faq/{faq:id}/delete', 'KelolaFAQController@destroy');
 
     //2.8) Kelola Pesanan
     Route::get('pesanan', 'KelolaPesananController@index')->name('admin.pesanan');
