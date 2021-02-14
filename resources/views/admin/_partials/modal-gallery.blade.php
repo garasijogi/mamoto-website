@@ -21,7 +21,8 @@
         <div id="fileuploader">Upload</div>
         <div class="container">
           <div class="row gallery-content">
-            @for ($i = 0; $i < 20; $i++)
+            {{-- this is just for example, the actual is using script --}}
+            {{-- @for ($i = 0; $i < 20; $i++)
               <div class="col-lg-2 col-md-6 col-sm-6 col-6 p-2">
                 <div class="d-flex justify-content-center">
                   <div class="card p-2">
@@ -29,13 +30,13 @@
                       <div class="rr-gallery-container-image">
                         <div class="rr-gallery-box rr-gallery-stack-image">
                           <img class="rr-gallery-image" src="https://picsum.photos/id/{{ rand(0,999) }}/1080/860" alt="images" />
-                          {{-- <img class="rr-gallery-image" src="'+value.src+'" alt="'+value.title+'" /> --}}
+                          <img class="rr-gallery-image" src="'+value.src+'" alt="'+value.title+'" />
                         </div>
                         <div class="rr-gallery-box rr-gallery-stack-top">
                           <div class="rr-gallery-box-button-container">
                             <div class="btn-group">
-                              <button class="btn btn-info btn-image-view"><i class="fa fa-search"></i></button>
-                              <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                              <a href="javascript:showImage('+value.src+', '+value.title+')" class="btn btn-info btn-image-view"><i class="fa fa-search"></i></a>
+                              <a href="javascript:deleteImage('+value.name+')" class="btn btn-danger btn-image-delete" >><i class="fa fa-trash"></i></a>
                             </div>
                           </div>
                         </div>
@@ -44,7 +45,7 @@
                   </div>
                 </div>
               </div>
-            @endfor
+            @endfor --}}
           </div>
           <div class="row gallery-spinner justify-content-center my-3 bg-gray-light">
             <div class="text-center">

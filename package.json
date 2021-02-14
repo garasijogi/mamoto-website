@@ -23,6 +23,7 @@
         "sass-loader": "^8.0.0",
         "stylus": "^0.54.8",
         "stylus-loader": "^5.0.0",
+        "sweetalert2": "^10.14.1",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
