@@ -18,8 +18,8 @@ mix.sass('resources/sass/app.scss', 'public/css'); // master app styles
 mix.js('resources/js/app.js', 'public/js'); // master app scripts
 
 /* --------------------------- admin script mixer --------------------------- */
-mix.scripts([
-    'resources/js/admin/swal_toast.js', // toast using sweet alert2
+mix.js([
+    'resources/js/admin/_admin.js',
 ], 'public/js/admin/_admin.js')
 
 
@@ -34,7 +34,8 @@ mix.scripts([
 /**
  * This summernote custom script added responsive to video and image
  */
-mix.copy('resources/js/admin/_plugins/summernote-custom/summernote-bs4.js', 'public/vendor/summernote/summernote-bs4.js');
+mix.copy('resources/js/admin/_plugins/summernote', 'public/vendor/summernote'); // copy all summernote package files
+mix.copy('resources/js/admin/_plugins/summernote-custom/summernote-bs4.min.js', 'public/vendor/summernote/summernote-bs4.min.js'); // copy customized summernote javascript
 mix.copy('resources/js/admin/_plugins/summernote-gallery/summernote-gallery.min.js', 'public/js/admin/summernote-gallery/summernote-gallery.min.js');
 
 /* ------------------------------ other plugin ------------------------------ */
@@ -61,6 +62,8 @@ mix.styles('resources/css/about.css', 'public/css/about.css');
 mix.scripts(
     [
         "resources/js/admin/about/about__initial.js",
+        // "resources/js/admin/about/about__plugins.js",
+        'resources/js/admin/swal_toast.js', // toast using sweet alert2
         "resources/js/admin/about/about_summernote.js",
         "resources/js/admin/about/about_gallery.js",
         "resources/js/admin/about/about_upload.js",
