@@ -57,7 +57,7 @@
                     <span class="sr-only">Loading...</span>
                   </div>
                   <div>
-                    <p class="m-0">Memuat Text Editor...</p>
+                    <p class="m-0">Memuat Gambar...</p>
                   </div>
                 </div>
               </div>
