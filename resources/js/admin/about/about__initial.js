@@ -9,6 +9,7 @@ var token_csrf = $('input[name="token_csrf"]').val();
 // selectors
 var btn_showGallery = $('#showGallery');
 var btn_showImage = $('.btn-image-view');
+var btn_deleteImage = $('.btn-image-delete');
 var gallery_content = $('.gallery-content');
 var modal_gallery   = $('#modalGallery');
 var modal_galleryPaginate = 1;

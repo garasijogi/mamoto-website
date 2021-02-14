@@ -5,6 +5,7 @@ summernoteElement.summernote({
 	placeholder: 'Hi, Please type the post, you can add photos or videos too.',
 	tabDisable: true,
 	tabsize: 4,
+	lang: 'id-ID',
 	toolbar: [
 		['style', ['bold', 'italic', 'underline', 'clear']],
 		['font', ['strikethrough', 'superscript', 'subscript']],
@@ -101,7 +102,7 @@ summernoteSaveButton.on('click', function(){
 			},
 			success: function(data){
 				icon_save.empty().append('<i class="fa fa-save"></i>');
-				console.log(data);
+				// console.log(data);
 				summernoteSaveButton.removeClass('btn-danger').addClass('btn-secondary');
 				Toast.fire({
 					icon: 'success',
