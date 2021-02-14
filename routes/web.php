@@ -70,6 +70,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     //2.10) Kelola Gambar
     Route::post('kelolagambar/upload', 'kelolaGambarController@upload')->name('admin.uploadGambar');
     Route::get('kelolagambar/getIndex', 'kelolaGambarController@getIndex')->name('admin.uploadGetIndex');
+    Route::post('kelolagambar/removeIndex', 'kelolaGambarController@removeIndex')->name('admin.uploadRemoveIndex');
 
     /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio

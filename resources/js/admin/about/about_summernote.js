@@ -34,8 +34,11 @@ summernoteElement.summernote({
 			}
 			
 			// ubah style tombol save
-			summernoteSaveButton.removeClass('btn-secondary').addClass('btn-danger');
+			summernoteSaveButton.removeClass('btn-secondary').addClass('btn-primary');
 		},
+		onInit: function(){
+			$('.summernote-spinner').hide();
+		}
 	},
 	gallery: { // summernote gallery settings
 		source: {
@@ -64,6 +67,28 @@ summernoteElement.summernote({
 	}
 });
 
+// action summernote reset button
+summernoteResetButton.on('click', function(){
+	Swal.fire({
+		title: 'Reset postingan about?',
+		text: "Kamu akan menghapus semua postingan about!",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Ya',
+		cancelButtonText: 'Tidak',
+		focusCancel: true,
+		allowOutsideClick: false
+	}).then((result) => {
+		if (result.isConfirmed) {
+			summernoteElement.summernote('code', summernote_defaultText); // kosongkan field post
+			updateAbout(); // update ke database
+		}
+	})
+});
+
+// action summernote save button
 summernoteSaveButton.on('click', function(){
 	// post validator, if empty
 	if(summernoteElement.summernote('isEmpty')){
@@ -74,44 +99,42 @@ summernoteSaveButton.on('click', function(){
 		summernoteElement.parent().removeClass('bg-danger');
 		
 		// lakukan ajax save data
-		Swal.fire({
-			icon: 'success',
-			title: 'Completed',
-			text: summernoteElement.summernote('code')
-		});
-		
-		$.ajax({
-			headers: {
-				'X-CSRF-TOKEN': token_csrf
-			},
-			url: about_url,
-			data: {
-				post: summernoteElement.summernote('code')
-			},
-			method: "POST",
-			beforeSend: function() {
-				Swal.fire({
-					icon: 'info',
-					title: 'Menyimpan Perubahan...',
-					html: '<p>Harap Tunggu, sistem sedang menyimpan perubahanmu.<br/><br/><i class="fa fa-spinner fa-spin fa-2x"></i></p>',
-					showConfirmButton: false,
-					allowOutsideClick: false,
-					allowEscapeKey: false,
-					allowEnterKey: false
-				});
-			},
-			success: function(data){
-				icon_save.empty().append('<i class="fa fa-save"></i>');
-				// console.log(data);
-				summernoteSaveButton.removeClass('btn-danger').addClass('btn-secondary');
-				Toast.fire({
-					icon: 'success',
-					title: 'Perubahanmu sudah disimpan'
-				})
-			}
-		})
+		updateAbout(); // update ke database
 	}
 });
+
+function updateAbout(){
+	$.ajax({
+		headers: {
+			'X-CSRF-TOKEN': token_csrf
+		},
+		url: about_url,
+		data: {
+			post: summernoteElement.summernote('code')
+		},
+		method: "POST",
+		beforeSend: function () {
+			Swal.fire({
+				icon: 'info',
+				title: 'Menyimpan Perubahan...',
+				html: '<p>Harap Tunggu, sistem sedang menyimpan perubahanmu.<br/><br/><i class="fa fa-spinner fa-spin fa-2x"></i></p>',
+				showConfirmButton: false,
+				allowOutsideClick: false,
+				allowEscapeKey: false,
+				allowEnterKey: false
+			});
+		},
+		success: function (data) {
+			icon_save.empty().append('<i class="fa fa-save"></i>');
+			// console.log(data);
+			summernoteSaveButton.removeClass('btn-primary').addClass('btn-secondary');
+			Toast.fire({
+				icon: 'success',
+				title: 'Perubahanmu sudah disimpan'
+			})
+		}
+	})
+}
 
 // toast validate error for about
 function toastValidateError(){

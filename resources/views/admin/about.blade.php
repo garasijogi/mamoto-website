@@ -13,18 +13,31 @@
 		<div class="d-flex justify-content-end mb-2">
 			<div>
 				{{-- <button data-toggle="modal" data-target="#modalGallery" class="btn btn-info"><i class="fa fa-images" title="Tambah/Hapus gambar"></i> Images Gallery</button> --}}
-				<button id="showGallery" class="btn btn-info" title="Tambah/Hapus gambar"><i class="fa fa-images"></i> Images Gallery</button>
+				<button id="showGallery" class="btn btn-info" title="Tambah/Hapus gambar"><i class="fa fa-images"></i> Galeri About</button>
 			</div>
 			<div class="ml-2">
 				{{-- <button type="submit" class="btn btn-primary" form="aboutForm"><i class="fa fa-save"></i> Save</button> --}}
-				<button id="saveAbout" class="btn btn-secondary" title="Simpan Perubahanmu"><span class="saveIcon"><i class="fa fa-save"></i></span> Simpan</button>
+				<div class="btn-group">
+					<button id="resetAbout" class="btn btn-warning" title="Hapus semua post about"><i class="fa fa-sync"></i> Reset</button>
+					<button id="saveAbout" class="btn btn-secondary" title="Simpan Perubahanmu"><span class="saveIcon"><i class="fa fa-save"></i></span> Simpan</button>
+				</div>
 			</div>
 		</div>
 		{{-- <form id="aboutForm" action="{{ route('admin.about.edit') }}" method="post"> --}}
 			{{-- @csrf --}}
 			<div class="form-group p-2 rounded">
 				<label for="post">About Post</label>
-				<textarea name="post" id="post" class="form-control" required data-msg="Please write something :)" rows="10" required>{{ $about->post }}</textarea>
+				<textarea name="post" id="post" class="form-control" required data-msg="Please write something :)" rows="10" style="display: none" required>{{ $about->post }}</textarea>
+				<div class="row summernote-spinner justify-content-center my-3 py-2">
+					<div class="text-center">
+						<div class="spinner-grow text-primary" role="status" style="width: 5rem; height: 5rem;">
+							<span class="sr-only">Loading...</span>
+						</div>
+						<div>
+							<p class="m-0">Memuat Gambar...</p>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			{{-- token and url --}}
@@ -32,6 +45,7 @@
 			<input type="hidden" name="about_url" value="{{ route('admin.about.edit') }}">
 			<input type="hidden" name="upload_url" value="{{ route('admin.uploadGambar') }}">
 			<input type="hidden" name="url_getIndex" value="{{ route('admin.uploadGetIndex') }}">
+			<input type="hidden" name="url_removeIndex" value="{{ route('admin.uploadRemoveIndex') }}">
 			<input type="hidden" name="url_path" value="{{ url('storage/gallery/about') }}">
 		{{-- </form> --}}
 	</div>
