@@ -1,0 +1,11 @@
+.rr-image-container-noPromo {
+  width: 50em;
+  height: 10em;
+  position: relative;
+  overflow: hidden;
+}
+
+.rr-image-responsive {
+  width: 100%;
+  height: 100%;
+}

@@ -72,3 +72,20 @@ mix.scripts(
     ],
     "public/js/admin/about.js"
 );
+
+/* --------------------------- promo scripts mixer -------------------------- */
+mix.styles(
+    [
+        'resources/css/admin/promo.css',
+        'resources/css/admin/imageViewer.css',
+    ],
+    'public/css/admin/promo.css'
+);
+mix.scripts(
+    [
+        'resources/js/admin/promo/promo__initial.js',
+        'resources/js/admin/swal_toast.js', // toast using sweet alert2
+        'resources/js/admin/promo/promo_index.js',
+    ],
+    'public/js/admin/promo.js'
+);
