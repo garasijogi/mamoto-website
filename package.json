@@ -28,6 +28,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "loader-utils": "^2.0.0"
+        "cropperjs": "^1.5.10",
+        "loader-utils": "^2.0.0",
+        "tippy.js": "^6.2.7"
     }
 }
