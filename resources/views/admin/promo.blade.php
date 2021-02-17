@@ -21,7 +21,7 @@
 <div class="card">
   <div class="card-body">
     <div class="d-flex justify-content-center mb-3">
-      <div class="rr-image-container-noPromo" style="background-image: url({{ asset('images/default/discount.svg') }}); background-repeat: round;">
+      <div class="rr-promo-noPromo-image-container" style="background-image: url({{ asset('images/default/discount.svg') }}); background-repeat: round;">
         {{-- <img class="rr-image-responsive" src="{{ asset('images/default/discount.svg') }}"alt="tidak ada promo yang ditambahkan"> --}}
       </div>
     </div>
@@ -34,7 +34,7 @@
 <!-- Modal tambah promo -->
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
@@ -43,7 +43,74 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label for="promo-name">Judul</label>
+              <input name="name" type="text" class="form-control" id="promo-name" placeholder="Judul Promo" data-toggle="tippy" data-title="Masukkan judul promo">
+            </div>
+            <div class="form-group">
+              <label for="promo-post">Keterangan</label>
+              <textarea name="post" class="form-control" id="promo-post" rows="5" placeholder="Keterangan Promo" data-toggle="tippy" data-title="Masukkan keterangan promo"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="promo-link">Teks Whatsapp</label>
+              <textarea name="link" class="form-control" id="promo-link" rows="3" placeholder="Teks Pesan di Whatsapp" data-toggle="tippy" data-title="Masukkan text pesan untuk pemesanan melalui whatsapp"></textarea>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col">
+                <label class="d-block text-center">Poster atau Gambar</label>
+              </div>
+            </div>
+            <div class="row justify-content-center image-promo-container">
+              <div class="col-lg-7 col-sm-8 col card mb-0 p-3 m-sm-0 m-4">
+                <label class="label mb-0 rr-promo-add-label" data-toggle="tippy" data-title="Tambahkan Poster atau Gambar">
+                  <img class="rounded rr-image-responsive rr-promo-add-image" src="{{ asset('images/default/image.svg') }}" alt="image poster">
+                  <input type="file" class="sr-only" id="inputImage" name="image" accept="image/*">
+                  <div class="rr-promo-add-image-stack rounded-lg d-flex justify-content-center">
+                    <p class="label mb-0 align-self-center text-white">Pilih poster promo</p>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="image-cropper-container" style="display: none">
+              <div class="row justify-content-center">
+                <div class="col card mb-0 p-3 m-sm-0 m-4">
+                  <div>
+                    <img id="cropper" class="rounded rr-promo-image-cropper" src="{{ asset('images/default/image.svg') }}">
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center mt-2">
+                <div class="col-auto">
+                  <div class="d-flex justify-content-center">
+                    <div class="btn-group mr-2">
+                      <button id="cropperModeDrag" class="btn btn-primary btn-sm"><i class="fa fa-arrows-alt"></i></button>
+                      <button id="cropperModeCrop" class="btn btn-primary btn-sm"><i class="fa fa-crop-alt"></i></button>
+                    </div>
+                    <div class="btn-group mr-2">
+                      <button id="cropperZoomIn" class="btn btn-primary btn-sm"><i class="fa fa-search-plus"></i></button>
+                      <button id="cropperZoomOut" class="btn btn-primary btn-sm"><i class="fa fa-search-minus"></i></button>
+                    </div>
+                    <div class="btn-group">
+                      <button id="cropperRotateLeft" class="btn btn-primary btn-sm"><i class="fa fa-undo"></i></button>
+                      <button id="cropperRotateRight" class="btn btn-primary btn-sm"><i class="fa fa-redo"></i></button>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="d-flex justify-content-center">
+                    <div class="btn-group">
+                      {{-- <button class="btn btn-danger image-cropper-btn-cancel"><i class="fa fa-times-circle"></i> Cancel</button> --}}
+                      <button class="btn btn-success image-cropper-btn"><i class="fa fa-check-circle"></i> Crop</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -61,5 +128,6 @@
 
 @section('js')
 <script src="{{ asset('js/admin/_admin.js') }}"></script>
+<script src="{{ asset('js/admin/promo_plugins.js') }}"></script>
 <script src="{{ asset('js/admin/promo.js') }}"></script>
 @endsection
