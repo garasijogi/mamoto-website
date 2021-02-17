@@ -89,3 +89,6 @@ mix.scripts(
     ],
     'public/js/admin/promo.js'
 );
+mix.js('./resources/js/admin/promo/promo__plugins.js', './public/js/admin/promo_plugins.js');
+// mix.copy('node_modules/cropperjs/dist/cropper.min.css', './public/js/admin/cropperjs/cropper.min.css');
+// mix.copy('node_modules/cropperjs/dist/cropper.min.css', './public/js/admin/cropperjs/cropper.min.css');
