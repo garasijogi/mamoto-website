@@ -1,9 +1,4 @@
 // remove promo action
-// btnPromo_add.on('click', function(){
-//   Swal.fire({icon: 'success', title: '', text: ''});
-// });
-
-// add promo action
 btnPromo_remove.on('click', function(){
   Swal.fire({icon: 'success', title: '', text: ''});
 });
@@ -42,10 +37,6 @@ image_input.on('change', function(e){
   });
 });
 
-// image_cropper_btn_cancel.on('click', function(){
-//   closeCropper();
-// });
-
 // crop button action
 image_cropper_btn.on('click', function () {
   var initialImagePromoUrl;
@@ -63,27 +54,22 @@ image_cropper_btn.on('click', function () {
     cropper.destroy();
   }
 });
-
+// crop button tools
 image_cropper_btn_zoomIn.on('click', function (e) {
   cropper.zoom(0.1);
 });
-
 image_cropper_btn_zoomOut.on('click', function (e) {
   cropper.zoom(-0.1);
 });
-
 image_cropper_btn_rotateLeft.on('click', function(e){
   cropper.rotate(-45);
 });
-
 image_cropper_btn_rotateRight.on('click', function(e){
   cropper.rotate(45);
 })
-
 image_cropper_btn_modeDrag.on('click', function(e){
   cropper.setDragMode('move');
 });
-
 image_cropper_btn_modeCrop.on('click', function (e) {
   cropper.setDragMode('crop');
 });
@@ -127,15 +113,62 @@ $('#formAddPromo').validate({
   },
   // submit handler untuk mengirim form lewat ajax
   submitHandler: function(form){
-    let name = form.name.value;
-    let post = form.post.value;
-    let link = form.link.value;
     let photo = input_image.val();
 
     if(photo == "" || photo == undefined || photo == null) {
       Swal.fire({ icon: 'error', title: 'Poster tidak boleh kosong.', text: 'Harap upload poster promo.' });
     } else {
-      Swal.fire({ icon: 'success', title: '', text: '' });
+      // prepare form data
+      let formData = {
+        name: form.name.value,
+        post: form.post.value,
+        link: form.link.value,
+        photo: photo
+      };
+      // lakukan ajax request
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': token_csrf
+        },
+        url: url_formAdd,
+        method: 'POST',
+        data: formData,
+        beforeSend: function(){
+          // reset the form and image chooser
+          formAddPromo[0].reset();
+          image_promo.attr('src', image_default); // reset image chooser ke default
+          modal_addPromo.modal('hide'); // sembunyikan modal form add
+          input_image.val(''); // kosongkan input hidden image
+          // menampilkan swal loading
+          Swal.fire({
+            icon: 'info',
+            title: 'Menambahkan Promo..',
+            html: '<p>Harap Tunggu, sistem sedang menambahkan promo.<br/><br/><img src="'+image_spinner_src+'" alt="loading icon" style="width: 5em;"></p>',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false
+          });
+        },
+        success: function(data){
+          Swal.fire({icon: 'success', title: 'Promo telah ditambahkan'});
+
+          // refresh data promo
+        },
+        error: function(e){
+          response = e.responseJSON;
+          // buat pesan error
+          let msg_error = "";
+          $.each(response, function(index, value){
+            $.each(value, function(i,v){
+              msg_error += '<li style="list-style-type: none;">' + v + '</li>';
+            });
+          });
+
+          // tampilkan pesan error di swal
+          Swal.fire({icon: 'error', title: 'Error', html: msg_error});
+        }
+      })
     }
   }
 });

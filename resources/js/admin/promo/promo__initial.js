@@ -25,5 +25,14 @@ const image_spinner_src = $('input[name="spinner"]').val();
 // form
 const formAddPromo = $('#formAddPromo');
 
+// image default
+const image_default = $('input[name="image_default"]').val();
+
+// modals
+const modal_addPromo = $('#modal_addPromo');
+
 // url variables
-const url_formAdd = $('input[name="url_formAdd"]');
+const url_formAdd = $('input[name="url_formAdd"]').val();
+
+// token csrf untuk ajax request
+const token_csrf = $('input[name="token_csrf"]').val();

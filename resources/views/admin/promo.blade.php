@@ -9,7 +9,7 @@
   </div>
   <div class="btn-group">
     <button type="button" class="btn btn-danger btn-promo-remove"><i class="fa fa-trash-alt"></i> Hapus Promo</button>
-    <button type="button" class="btn btn-success btn-promo-add" data-toggle="modal" data-target="#staticBackdrop"><i
+    <button type="button" class="btn btn-success btn-promo-add" data-toggle="modal" data-target="#modal_addPromo"><i
         class="fa fa-plus-circle"></i> Tambah Promo</button>
   </div>
 </div>
@@ -32,12 +32,12 @@
 </div>
 
 <!-- Modal tambah promo -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modal_addPromo" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="modal_addPromoLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="modal_addPromoLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -126,7 +126,9 @@
   </div>
 </div>
 
+<input type="hidden" name="token_csrf" value="{{ csrf_token() }}">
 <input type="hidden" name="spinner" value="{{ asset('images/default/spinner.svg') }}">
+<input type="hidden" name="image_default" value="{{ asset('images/default/image.svg') }}">
 <input type="hidden" name="url_formAdd" value="{{ route('admin.promo.add') }}">
 @endsection
 
