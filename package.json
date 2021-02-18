@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "cropperjs": "^1.5.10",
+        "jquery-validation": "^1.19.3",
         "loader-utils": "^2.0.0",
         "tippy.js": "^6.2.7"
     }

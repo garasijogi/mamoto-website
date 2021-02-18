@@ -40,6 +40,8 @@ mix.copy('resources/js/admin/_plugins/summernote-gallery/summernote-gallery.min.
 
 /* ------------------------------ other plugin ------------------------------ */
 mix.copy('resources/js/admin/_plugins/jquery-file-upload', 'public/js/admin/jquery-file-upload'); // jquery file upload
+mix.copy('./node_modules/jquery-validation/dist/jquery.validate.min.js', 'public/js/admin/jquery-validate/');
+mix.copy('./node_modules/jquery-validation/dist/additional-methods.min.js', 'public/js/admin/jquery-validate/');
 
 /* -------------------------------------------------------------------------- */
 /*                                module script                               */
