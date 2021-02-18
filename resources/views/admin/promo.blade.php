@@ -45,18 +45,25 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-lg-6">
-            <div class="form-group">
-              <label for="promo-name">Judul</label>
-              <input name="name" type="text" class="form-control" id="promo-name" placeholder="Judul Promo" data-toggle="tippy" data-title="Masukkan judul promo">
-            </div>
-            <div class="form-group">
-              <label for="promo-post">Keterangan</label>
-              <textarea name="post" class="form-control" id="promo-post" rows="5" placeholder="Keterangan Promo" data-toggle="tippy" data-title="Masukkan keterangan promo"></textarea>
-            </div>
-            <div class="form-group">
-              <label for="promo-link">Teks Whatsapp</label>
-              <textarea name="link" class="form-control" id="promo-link" rows="3" placeholder="Teks Pesan di Whatsapp" data-toggle="tippy" data-title="Masukkan text pesan untuk pemesanan melalui whatsapp"></textarea>
-            </div>
+            <form id="formAddPromo" action="#" method="post" novalidate>
+              <div class="form-group">
+                <label for="promo-name">Judul</label>
+                <input name="name" type="text" class="form-control" id="promo-name" placeholder="Judul Promo" data-toggle="tippy"
+                  data-title="Masukkan judul promo">
+              </div>
+              <div class="form-group">
+                <label for="promo-post">Keterangan</label>
+                <textarea name="post" class="form-control" id="promo-post" rows="5" placeholder="Keterangan Promo" data-toggle="tippy"
+                  data-title="Masukkan keterangan promo"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="promo-link">Teks Whatsapp</label>
+                <textarea name="link" class="form-control" id="promo-link" rows="3" placeholder="Teks Pesan di Whatsapp"
+                  data-toggle="tippy" data-title="Masukkan text pesan untuk pemesanan melalui whatsapp"></textarea>
+              </div>
+              {{-- image form --}}
+              <input type="hidden" name="photo">
+            </form>
           </div>
           <div class="col-lg-6">
             <div class="row">
@@ -77,9 +84,9 @@
             </div>
             <div class="image-cropper-container" style="display: none">
               <div class="row justify-content-center">
-                <div class="col card mb-0 p-3 m-sm-0 m-4">
+                <div class="col-auto card mb-0 p-3 m-sm-0 m-4">
                   <div>
-                    <img id="cropper" class="rounded rr-promo-image-cropper" src="{{ asset('images/default/image.svg') }}">
+                    <img id="cropper" class="rounded rr-promo-image-cropper" src="{{ asset('images/default/spinner.svg') }}">
                   </div>
                 </div>
               </div>
@@ -87,23 +94,22 @@
                 <div class="col-auto">
                   <div class="d-flex justify-content-center">
                     <div class="btn-group mr-2">
-                      <button id="cropperModeDrag" class="btn btn-primary btn-sm"><i class="fa fa-arrows-alt"></i></button>
-                      <button id="cropperModeCrop" class="btn btn-primary btn-sm"><i class="fa fa-crop-alt"></i></button>
+                      <button id="cropperModeDrag" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Geser Gambar"><i class="fa fa-arrows-alt"></i></button>
+                      <button id="cropperModeCrop" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Potong Gambar"><i class="fa fa-crop-alt"></i></button>
                     </div>
                     <div class="btn-group mr-2">
-                      <button id="cropperZoomIn" class="btn btn-primary btn-sm"><i class="fa fa-search-plus"></i></button>
-                      <button id="cropperZoomOut" class="btn btn-primary btn-sm"><i class="fa fa-search-minus"></i></button>
+                      <button id="cropperZoomIn" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Perbesar"><i class="fa fa-search-plus"></i></button>
+                      <button id="cropperZoomOut" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Perkecil"><i class="fa fa-search-minus"></i></button>
                     </div>
                     <div class="btn-group">
-                      <button id="cropperRotateLeft" class="btn btn-primary btn-sm"><i class="fa fa-undo"></i></button>
-                      <button id="cropperRotateRight" class="btn btn-primary btn-sm"><i class="fa fa-redo"></i></button>
+                      <button id="cropperRotateLeft" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Rotasi Kiri"><i class="fa fa-undo"></i></button>
+                      <button id="cropperRotateRight" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Rotasi Kanan "><i class="fa fa-redo"></i></button>
                     </div>
                   </div>
                   <hr>
                   <div class="d-flex justify-content-center">
                     <div class="btn-group">
-                      {{-- <button class="btn btn-danger image-cropper-btn-cancel"><i class="fa fa-times-circle"></i> Cancel</button> --}}
-                      <button class="btn btn-success image-cropper-btn"><i class="fa fa-check-circle"></i> Crop</button>
+                      <button class="btn btn-success image-cropper-btn" data-toggle="tippy" data-title="Oke Siap!"><i class="fa fa-check-circle"></i> Potong</button>
                     </div>
                   </div>
                 </div>
@@ -112,14 +118,16 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+      <div class="modal-footer justify-content-lg-start">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i>&#09;Batalkan</button>
+        <button type="submit" class="btn btn-primary" form="formAddPromo"><i class="fa fa-plus-circle"></i>&#09;Tambahkan Promo</button>
       </div>
     </div>
   </div>
 </div>
 
+<input type="hidden" name="spinner" value="{{ asset('images/default/spinner.svg') }}">
+<input type="hidden" name="url_formAdd" value="{{ route('admin.promo.add') }}">
 @endsection
 
 @section('css')
@@ -128,6 +136,10 @@
 
 @section('js')
 <script src="{{ asset('js/admin/_admin.js') }}"></script>
+{{-- jquery validate --}}
+<script src="{{ asset('js/admin/jquery-validate/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('js/admin/jquery-validate/additional-methods.min.js') }}"></script>
+{{-- promo scripts --}}
 <script src="{{ asset('js/admin/promo_plugins.js') }}"></script>
 <script src="{{ asset('js/admin/promo.js') }}"></script>
 @endsection

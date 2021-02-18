@@ -48,6 +48,7 @@
 .rr-promo-image-cropper{
   display: block;
   max-width: 100%;
+  max-height: 35em;
 }
 
 .rr-image-responsive {
