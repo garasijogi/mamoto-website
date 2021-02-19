@@ -48,13 +48,11 @@
             <form id="formAddPromo" action="#" method="post" novalidate>
               <div class="form-group">
                 <label for="promo-name">Judul</label>
-                <input name="name" type="text" class="form-control" id="promo-name" placeholder="Judul Promo" data-toggle="tippy"
-                  data-title="Masukkan judul promo">
+                <input name="name" type="text" class="form-control" id="promo-name" placeholder="Judul Promo">
               </div>
               <div class="form-group">
                 <label for="promo-post">Keterangan</label>
-                <textarea name="post" class="form-control" id="promo-post" rows="5" placeholder="Keterangan Promo" data-toggle="tippy"
-                  data-title="Masukkan keterangan promo"></textarea>
+                <textarea name="post" class="form-control" id="promo-post" rows="5" placeholder="Keterangan Promo"></textarea>
               </div>
               <div class="form-group">
                 <label for="promo-link">Teks Whatsapp</label>
@@ -73,10 +71,10 @@
             </div>
             <div class="row justify-content-center image-promo-container">
               <div class="col-lg-7 col-sm-8 col card mb-0 p-3 m-sm-0 m-4">
-                <label class="label mb-0 rr-promo-add-label" data-toggle="tippy" data-title="Tambahkan Poster atau Gambar">
+                <label class="label mb-0 rr-promo-add-label">
                   <img class="rounded rr-image-responsive rr-promo-add-image" src="{{ asset('images/default/image.svg') }}" alt="image poster">
                   <input type="file" class="sr-only" id="inputImage" name="image" accept="image/*">
-                  <div class="rr-promo-add-image-stack rounded-lg d-flex justify-content-center">
+                  <div class="rr-promo-add-image-stack rr-promo-add-image-stack-static rounded-lg d-flex justify-content-center">
                     <p class="label mb-0 align-self-center text-white">Pilih poster promo</p>
                   </div>
                 </label>
@@ -109,6 +107,7 @@
                   <hr>
                   <div class="d-flex justify-content-center">
                     <div class="btn-group">
+                      {{-- // TODO tambah change photo button --}}
                       <button class="btn btn-success image-cropper-btn" data-toggle="tippy" data-title="Oke Siap!"><i class="fa fa-check-circle"></i> Potong</button>
                     </div>
                   </div>

@@ -49,6 +49,8 @@ image_cropper_btn.on('click', function () {
     image_promo.attr('src', image_cropped); // tambahkan ke image input
     input_image.val(image_cropped); // tambahkan ke form image
     image_cropper.src = image_spinner_src; // ganti image cropper jadi image spinner
+    // hapus class lama biar bisa hover
+    (image_promo_stack.hasClass('rr-promo-add-image-stack-static')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-static').addClass('rr-promo-add-image-stack-hover') : "";
     image_promo_container.show();
     image_cropper_container.hide();
     cropper.destroy();
@@ -116,7 +118,7 @@ $('#formAddPromo').validate({
     let photo = input_image.val();
 
     if(photo == "" || photo == undefined || photo == null) {
-      Swal.fire({ icon: 'error', title: 'Poster tidak boleh kosong.', text: 'Harap upload poster promo.' });
+      Swal.fire({ icon: 'error', title: 'Poster tidak boleh kosong.', text: 'Harap tambahkan poster promo.' });
     } else {
       // prepare form data
       let formData = {
@@ -137,6 +139,7 @@ $('#formAddPromo').validate({
           // reset the form and image chooser
           formAddPromo[0].reset();
           image_promo.attr('src', image_default); // reset image chooser ke default
+          (image_promo_stack.hasClass('rr-promo-add-image-stack-hover')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-hover').addClass('rr-promo-add-image-stack-static') : "";
           modal_addPromo.modal('hide'); // sembunyikan modal form add
           input_image.val(''); // kosongkan input hidden image
           // menampilkan swal loading

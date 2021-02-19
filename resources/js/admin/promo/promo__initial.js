@@ -9,6 +9,7 @@ const input_image = $('input[name="photo"]');
 var cropper;
 const image_promo = $('.rr-promo-add-image');
 const image_promo_container = $('.image-promo-container');
+const image_promo_stack = $('.rr-promo-add-image-stack');
 const image_cropper = document.getElementById('cropper');
 const image_cropper_btn = $('.image-cropper-btn');
 const image_cropper_btn_cancel = $('.image-cropper-btn-cancel');
