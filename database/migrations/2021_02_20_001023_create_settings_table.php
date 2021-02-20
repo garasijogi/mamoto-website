@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePromosTable extends Migration
+class CreateSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePromosTable extends Migration
      */
     public function up()
     {
-        Schema::create('promos', function (Blueprint $table) {
-            $table->string('id', 14)->unique()->primary();
-            $table->text('name');
-            $table->text('post');
-            $table->text('photo');
-            $table->text('link');
+        Schema::create('settings', function (Blueprint $table) {
+            $table->id();
+            $table->string('module_name', 32);
+            $table->string('setting_name', 32)->unique(); // untuk nama setting setiap modul harus berbeda
+            $table->text('setting_value');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreatePromosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promos');
+        Schema::dropIfExists('settings');
     }
 }

@@ -21,7 +21,12 @@
   transition: opacity 0.5s ease-out;
 }
 
-.rr-promo-add-image-stack:hover {
+.rr-promo-add-image-stack.rr-promo-add-image-stack-static {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.rr-promo-add-image-stack-hover:hover {
   opacity: 1;
   cursor: pointer;
 }
@@ -34,6 +39,7 @@
 }
 
 /* make the image to square */
+
 .rr-promo-add-image {
   position: absolute;
   top: 0;
@@ -45,7 +51,7 @@
   color: white;
 }
 
-.rr-promo-image-cropper{
+.rr-promo-image-cropper {
   display: block;
   max-width: 100%;
   max-height: 35em;

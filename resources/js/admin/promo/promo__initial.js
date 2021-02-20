@@ -1,6 +1,9 @@
-// place for variables
+// buttons
 const btnPromo_add = $('.btn-promo-add'); // btn for showing add modal
 const btnPromo_remove = $('.btn-promo-remove'); // btn for removing all promos
+
+// containers
+const container_promo = $('.promo-content');
 
 // input variables
 const input_image = $('input[name="photo"]');
@@ -30,10 +33,18 @@ const formAddPromo = $('#formAddPromo');
 const image_default = $('input[name="image_default"]').val();
 
 // modals
-const modal_addPromo = $('#modal_addPromo');
+const modal_promo = $('#modal_promo');
 
-// url variables
-const url_formAdd = $('input[name="url_formAdd"]').val();
+// spinner
+const spinner_promo = $('.promo-spinner');
 
 // token csrf untuk ajax request
 const token_csrf = $('input[name="token_csrf"]').val();
+
+// url variables
+const url_formAdd = $('input[name="url_formAdd"]').val();
+const url_get = $('input[name="url_get"]').val();
+let url_next = "";
+
+// ubah locale moment
+// moment.lang('id');

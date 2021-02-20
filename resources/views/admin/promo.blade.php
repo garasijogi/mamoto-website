@@ -8,8 +8,8 @@
     <h1>Kelola Promo</h1>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-danger btn-promo-remove"><i class="fa fa-trash-alt"></i> Hapus Promo</button>
-    <button type="button" class="btn btn-success btn-promo-add" data-toggle="modal" data-target="#modal_addPromo"><i
+    <button type="button" class="btn btn-danger btn-promo-remove"><i class="fa fa-trash-alt"></i> Hapus Semua Promo</button>
+    <button type="button" class="btn btn-success btn-promo-add" data-toggle="modal" data-target="#modal_promo"><i
         class="fa fa-plus-circle"></i> Tambah Promo</button>
   </div>
 </div>
@@ -20,24 +20,99 @@
 {{-- main content --}}
 <div class="card">
   <div class="card-body">
-    <div class="d-flex justify-content-center mb-3">
-      <div class="rr-promo-noPromo-image-container" style="background-image: url({{ asset('images/default/discount.svg') }}); background-repeat: round;">
-        {{-- <img class="rr-image-responsive" src="{{ asset('images/default/discount.svg') }}"alt="tidak ada promo yang ditambahkan"> --}}
+    {{-- promo cards --}}
+    <div>
+      {{-- content --}}
+      <div class="row promo-content">
+        {{-- @for ($i = 0; $i < 11; $i++)
+          <div class="col-lg-6 col">
+            <div class="card mb-3" style="max-width: 100%">
+              <div class="row no-gutters">
+                <div class="col-lg-5 col-md-4">
+                  <img class="rr-image-responsive" src="{{ "https://picsum.photos/id/".rand(0, 99)."/1080" }}"
+                    alt="{{ "https://picsum.photos/id/".rand(0, 99)."/1080" }}">
+                </div>
+                <div class="col-lg-7 col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content.
+                      This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">ditambahkan '+timestamp+'</small></p>
+                    <div class="d-flex justify-content-end">
+                      <div class="btn-group">
+                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                        <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        @endfor --}}
+        {{-- <div class="col-lg-6 col">
+          <div class="card mb-3" style="max-width: 100%">
+            <div class="row no-gutters">
+              <div class="col-lg-5 col-md-4">
+                <img class="rr-image-responsive" src="'+url_gallery+value.photo+'" alt="Poster Promo -> '+value.name+'">
+              </div>
+              <div class="col-lg-7 col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">'+value.name+'</h5>
+                  <p class="card-text mb-0">'value.post'</p>
+                  <p class="card-text"><small class="text-muted">Ditambahkan '+timestamp+'</small></p>
+                  <div class="d-flex justify-content-end">
+                    <div class="btn-group" data-id="'+value.id+'">
+                      <button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button>
+                      <button class="btn btn-primary btn-promo-edit"><i class="fa fa-eye"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> --}}
+      </div>
+      {{-- loading spinner --}}
+      <div class="my-2 promo-spinner">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <div class="spinner-grow text-primary" role="status">
+              <span class="sr-only">Memuat...</span>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <p class="m-0">Memuat...</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="d-flex justify-content-center">
-      <p><b>Tidak ada Promo</b> yang ditambahkan.</p>
+
+    {{-- tampilan tidak ada promo --}}
+    <div style="display: none">
+      <div class="d-flex justify-content-center mb-3">
+        <div class="rr-promo-noPromo-image-container"
+          style="background-image: url({{ asset('images/default/discount.svg') }}); background-repeat: round;">
+          {{-- <img class="rr-image-responsive" src="{{ asset('images/default/discount.svg') }}"alt="tidak ada promo yang
+          ditambahkan"> --}}
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <p><b>Tidak ada Promo</b> yang ditambahkan.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Modal tambah promo -->
-<div class="modal fade" id="modal_addPromo" data-backdrop="static" data-keyboard="false" tabindex="-1"
-  aria-labelledby="modal_addPromoLabel" aria-hidden="true">
+<!-- modal promo -->
+<div class="modal fade" id="modal_promo" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  aria-labelledby="modal_promoLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modal_addPromoLabel">Modal title</h5>
+        <h5 class="modal-title" id="modal_promoLabel">Modal title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -129,6 +204,8 @@
 <input type="hidden" name="spinner" value="{{ asset('images/default/spinner.svg') }}">
 <input type="hidden" name="image_default" value="{{ asset('images/default/image.svg') }}">
 <input type="hidden" name="url_formAdd" value="{{ route('admin.promo.add') }}">
+<input type="hidden" name="url_get" value="{{ route('admin.promo.get') }}">
+<input type="hidden" name="url_gallery" value="{{ url('storage/') }}">
 @endsection
 
 @section('css')
