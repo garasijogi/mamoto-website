@@ -94,7 +94,7 @@ function deleteImage(id) {
 				},
 				success: function(data){
 					if(data == 1){
-						Swal.fire("Deleted!", "Your file has been deleted.", "success");
+						Swal.fire("Dihapus!", "Foto telah dihapus.", "success");
 						// hapus element
 						el = '#' + id.split('.')[0]
 						$(el).parents('.col-lg-2').remove();
