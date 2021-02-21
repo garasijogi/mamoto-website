@@ -45,7 +45,6 @@ class RyumadaTableSeeder extends Seeder
         DB::table('settings')->insert([
             'module_name' => 'contact',
             'setting_name' => 'wa_link',
-            // PRODUCTION ubah nomor telpon
             'setting_value' => "https://wa.me/",
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
