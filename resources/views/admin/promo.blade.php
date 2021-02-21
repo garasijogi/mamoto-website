@@ -8,9 +8,8 @@
     <h1>Kelola Promo</h1>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-danger btn-promo-remove"><i class="fa fa-trash-alt"></i> Hapus Semua Promo</button>
-    <button type="button" class="btn btn-success btn-promo-add" data-toggle="modal" data-target="#modal_promo"><i
-        class="fa fa-plus-circle"></i> Tambah Promo</button>
+    <button type="button" class="btn btn-danger btn-promo-removeAll"><i class="fa fa-trash-alt"></i> Hapus Semua Promo</button>
+    <button type="button" class="btn btn-success btn-promo-add"><i class="fa fa-plus-circle"></i> Tambah Promo</button>
   </div>
 </div>
 @endsection
@@ -24,45 +23,19 @@
     <div>
       {{-- content --}}
       <div class="row promo-content">
-        {{-- @for ($i = 0; $i < 11; $i++)
-          <div class="col-lg-6 col">
-            <div class="card mb-3" style="max-width: 100%">
-              <div class="row no-gutters">
-                <div class="col-lg-5 col-md-4">
-                  <img class="rr-image-responsive" src="{{ "https://picsum.photos/id/".rand(0, 99)."/1080" }}"
-                    alt="{{ "https://picsum.photos/id/".rand(0, 99)."/1080" }}">
-                </div>
-                <div class="col-lg-7 col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text mb-0">This is a wider card with supporting text below as a natural lead-in to additional content.
-                      This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">ditambahkan '+timestamp+'</small></p>
-                    <div class="d-flex justify-content-end">
-                      <div class="btn-group">
-                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-                        <button class="btn btn-primary"><i class="fa fa-eye"></i></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        @endfor --}}
-        {{-- <div class="col-lg-6 col">
-          <div class="card mb-3" style="max-width: 100%">
+        {{-- example code of card content --}}
+        {{-- <div class="col-lg-6 col-12 card-promo">
+          <div class="card mb-3" style="max-width:100%">
             <div class="row no-gutters">
-              <div class="col-lg-5 col-md-4">
-                <img class="rr-image-responsive" src="'+url_gallery+value.photo+'" alt="Poster Promo -> '+value.name+'">
+              <div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '">
               </div>
               <div class="col-lg-7 col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">'+value.name+'</h5>
-                  <p class="card-text mb-0">'value.post'</p>
-                  <p class="card-text"><small class="text-muted">Ditambahkan '+timestamp+'</small></p>
-                  <div class="d-flex justify-content-end">
-                    <div class="btn-group" data-id="'+value.id+'">
+                <div class="card-body h-100 card-body-promo-card">
+                  <h5 class="card-title">' + value.name + '</h5>
+                  <p class="card-text mb-0">' +value.post+'</p>
+                  <p class="card-text"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p>
+                  <div class="d-flex justify-content-end btn-promo-container">
+                    <div class="btn-group" data-id="' + value.id +'">
                       <button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button>
                       <button class="btn btn-primary btn-promo-edit"><i class="fa fa-eye"></i></button>
                     </div>
@@ -111,16 +84,23 @@
   aria-labelledby="modal_promoLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
+      <div class="overlay dark overlay-promo-modal" style="display: none">
+        <div class="row no-gutters h-100 w-100 justify-content-center">
+          <div class="col-lg-1 col-2 align-self-lg-center mt-5" >
+            <img class="w-100" src="{{ asset('images/default/spinner.svg') }}" alt="spinner">
+          </div>
+        </div>
+      </div>
       <div class="modal-header">
-        <h5 class="modal-title" id="modal_promoLabel">Modal title</h5>
+        <h5 class="modal-title" id="modal_promoLabel">Form Promo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-lg-6">
-            <form id="formAddPromo" action="#" method="post" novalidate>
+          <div class="col-lg-6 order-lg-1 order-2">
+            <form id="formPromo" action="#" method="post" novalidate>
               <div class="form-group">
                 <label for="promo-name">Judul</label>
                 <input name="name" type="text" class="form-control" id="promo-name" placeholder="Judul Promo">
@@ -138,7 +118,7 @@
               <input type="hidden" name="photo">
             </form>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-6 order-lg-2 order-1">
             <div class="row">
               <div class="col">
                 <label class="d-block text-center">Poster atau Gambar</label>
@@ -182,7 +162,7 @@
                   <hr>
                   <div class="d-flex justify-content-center">
                     <div class="btn-group">
-                      {{-- // TODO tambah change photo button --}}
+                      {{-- // HOLD tambah change photo button --}}
                       <button class="btn btn-success image-cropper-btn" data-toggle="tippy" data-title="Oke Siap!"><i class="fa fa-check-circle"></i> Potong</button>
                     </div>
                   </div>
@@ -194,7 +174,7 @@
       </div>
       <div class="modal-footer justify-content-lg-start">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i>&#09;Batalkan</button>
-        <button type="submit" class="btn btn-primary" form="formAddPromo"><i class="fa fa-plus-circle"></i>&#09;Tambahkan Promo</button>
+        <button type="submit" class="btn btn-primary btn-promo-submit" form="formPromo"><i class="fa fa-plus-circle"></i>&#09;Tambahkan Promo</button>
       </div>
     </div>
   </div>
@@ -204,7 +184,9 @@
 <input type="hidden" name="spinner" value="{{ asset('images/default/spinner.svg') }}">
 <input type="hidden" name="image_default" value="{{ asset('images/default/image.svg') }}">
 <input type="hidden" name="url_formAdd" value="{{ route('admin.promo.add') }}">
+<input type="hidden" name="url_formEdit" value="{{ route('admin.promo.edit') }}">
 <input type="hidden" name="url_get" value="{{ route('admin.promo.get') }}">
+<input type="hidden" name="url_getOnce" value="{{ route('admin.promo.getOnce') }}">
 <input type="hidden" name="url_gallery" value="{{ url('storage/') }}">
 @endsection
 

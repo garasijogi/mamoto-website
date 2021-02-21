@@ -1,3 +1,14 @@
+.btn-promo-container {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 0 1vw 1vw 0;
+}
+
+.card-body-promo-card {
+  position: relative;
+}
+
 .rr-promo-noPromo-image-container {
   width: 50em;
   height: 10em;
@@ -13,7 +24,7 @@
   top: 0;
   background-color: rgba(00, 00, 00, 0.5);
   opacity: 0;
-  z-index: 9999;
+  z-index: 111;
   /* opacity animation */
   -webkit-transition: opacity 0.5s ease-out;
   -moz-transition: opacity 0.5s ease-out;

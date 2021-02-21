@@ -1,12 +1,24 @@
 // buttons
-const btnPromo_add = $('.btn-promo-add'); // btn for showing add modal
-const btnPromo_remove = $('.btn-promo-remove'); // btn for removing all promos
+const btnPromo_addPromo = $('.btn-promo-add'); // btn for showing add modal
+const btnPromo_edit = '.btn-promo-edit'; // btn for edit promo
+const btnPromo_remove = '.btn-promo-remove'; // btn for remove promo
+const btnPromo_removeAll = $('.btn-promo-removeAll'); // btn for removing all promos
+const btnPromo_submit = $('.btn-promo-submit');
+
+// buttons content
+const btnContent_add = '<i class="fa fa-plus-circle"></i>&#09;Tambahkan Promo';
+const btnContent_edit = '<i class="fa fa-pencil-alt"></i>&#09;Edit Promo';
 
 // containers
 const container_promo = $('.promo-content');
 
 // input variables
+const input_name = $('input[name="name"]');
+const textarea_post = $('textarea[name="post"]');
+const textarea_link = $('textarea[name="link"]');
 const input_image = $('input[name="photo"]');
+let edit_promo_id; // id promo container for editor
+let edit_promo_originPhoto; // container original photo
 
 // cropper variables
 var cropper;
@@ -27,7 +39,7 @@ const image_input = $('#inputImage');
 const image_spinner_src = $('input[name="spinner"]').val();
 
 // form
-const formAddPromo = $('#formAddPromo');
+const formPromo = $('#formPromo');
 
 // image default
 const image_default = $('input[name="image_default"]').val();
@@ -35,15 +47,23 @@ const image_default = $('input[name="image_default"]').val();
 // modals
 const modal_promo = $('#modal_promo');
 
+// overlay
+const overlay_promo_modal = $('.overlay-promo-modal');
+
 // spinner
 const spinner_promo = $('.promo-spinner');
+
+// toggles
+let toggle_form = 'add';
 
 // token csrf untuk ajax request
 const token_csrf = $('input[name="token_csrf"]').val();
 
 // url variables
 const url_formAdd = $('input[name="url_formAdd"]').val();
+const url_formEdit = $('input[name="url_formEdit"]').val();
 const url_get = $('input[name="url_get"]').val();
+const url_getOnce = $('input[name="url_getOnce"]').val();
 let url_next = "";
 
 // ubah locale moment
