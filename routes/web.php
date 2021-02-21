@@ -58,7 +58,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     //2.6) Kelola Promo
     Route::get('promo', 'KelolaPromoController@index')->name('admin.promo');
     Route::get('promo/get', 'KelolaPromoController@get')->name('admin.promo.get');
+    Route::post('promo/getOnce', 'KelolaPromoController@getOnce')->name('admin.promo.getOnce');
     Route::post('promo/add', 'KelolaPromoController@add')->name('admin.promo.add');
+    Route::post('promo/edit', 'KelolaPromoController@edit')->name('admin.promo.edit');
 
     //2.7) Kelola FAQ
     Route::get('faq', 'KelolaFAQController@index')->name('admin.faq');
