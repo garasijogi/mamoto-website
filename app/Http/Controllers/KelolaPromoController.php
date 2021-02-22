@@ -32,7 +32,18 @@ class KelolaPromoController extends Controller
 		} else {
 
 			/* ----------------- taruh file foto dalam bentuk file jpeg ----------------- */
-			$file_name = $this->photoSave($formData['photo']);
+			// cek apa foto base64, dengan mengecek ada tanda koma pada input
+			if(strpos($formData['photo'], ',')){
+				$is_base64 = $this->is_base64($formData['photo']);
+				if ($is_base64['_is'] == false) {
+					return response()->json('forbidden', 422);
+				} else {					
+					// taruh file baru pada storage
+					$file_name = $this->photoSave($is_base64['data']);
+				}
+			} else {
+				return response()->json('forbidden', 422);
+			}
 
 			/* -------------------- buat id dengan mengambil counter ------------------- */
 			$counter_data = Counter::firstWhere('name', 'promo');
@@ -72,7 +83,6 @@ class KelolaPromoController extends Controller
 		}
 	}
 
-	// NOW make edit function
 	public function edit(Request $request, Promo $promo)
 	{
 		$formData = $request->all();
@@ -82,16 +92,24 @@ class KelolaPromoController extends Controller
 			return response()->json($validator->errors(), 422);
 		} else {
 			/* ----------------------------- mengolah gambar ---------------------------- */
-			// cek apa foto base64
-			$file_photo = base64_decode($formData['photo'], true);
-			if($file_photo 	== false){
-				// hapus file lama
-				Storage::delete($this->path, explode('/', $formData['photo_origin'])[2]);
-				// taruh file baru pada storage
-				$file_name = $this->photoSave($formData['photo']);
+			// cek apa foto base64, dengan mengecek ada tanda koma pada input
+			if (strpos($formData['photo'], ',')) {
+				// previously
+				// $is_base64 = base64_decode($base64_photo, true);
+				$is_base64 = $this->is_base64($formData['photo']);
+				// validation base64 valid string
+				if($is_base64['_is'] == false){
+					return response()->json('forbidden', 422);
+				} else {
+					// hapus file lama
+					Storage::delete($this->path.explode('/', $formData['photo_origin'])[2]);
+					// taruh file baru pada storage
+					$file_name = $this->photoSave($is_base64['data']);
+				}
 			} else {
-				$file_name = $formData['photo'];
+				$file_name = explode('/', $formData['photo'])[2];
 			}
+			// $file_photo = base64_decode(, true);
 
 			// ambil formData yg dibutuhkan aja untuk menghindari input di luar form
 			$formData_validated = $this->setValidatedFormData($formData['id'], $file_name, $formData);
@@ -149,11 +167,20 @@ class KelolaPromoController extends Controller
 		}
 	}
 
+	public function is_base64($formData_photo)
+	{
+		$base64_photo = explode(',', $formData_photo)[1];
+		$is_base64 = base64_decode($base64_photo, true);
+		return [
+			'_is' => $is_base64,
+			'data' => $base64_photo
+		]; // will return base64 decoded or false boolean
+	}
+
 	public function photoSave($base64_photo)
 	{
-		$file_photo = explode(',', $base64_photo);
 		$file_name = md5(uniqid('promo-') . microtime()) . ".jpg";
-		Storage::put($this->path . $file_name, base64_decode($file_photo[1])); // taruh file foto dalam folder gallery promo
+		Storage::put($this->path . $file_name, base64_decode($base64_photo)); // taruh file foto dalam folder gallery promo
 		return $file_name;
 	}
 
