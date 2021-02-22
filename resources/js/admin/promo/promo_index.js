@@ -268,7 +268,6 @@ formPromo.validate({
           },
           success: function(data){
             Swal.fire({ icon: 'success', title: 'Promo telah disimpan' });
-            // TODO add command to retrieve again edited promo
             let el = container_promo.find('div[data-id="' + data.id + '"]');
             el.parent().siblings('h5.card-title').text(data.name);
             el.parent().siblings('p.card-text.mb-0.font-weight-lighter').text(data.post);
