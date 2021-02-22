@@ -19,11 +19,25 @@ const getPromo = (url=url_get) => {
       url_next = data.next_page_url // ganti url next
       if (url_next == null || url_next == undefined || url_next == "") {
         spinner_promo.hide();
+        scrollEnabled = true;
       }
-      $.each(data.data, function(index, value) {
-        container_promo.append('<div div class= "col-lg-6 col-12 card-promo" > <div class="card mb-3" style="max-width:100%"><div class="row no-gutters"><div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '"></div><div class="col-lg-7 col-md-8"><div class="card-body h-100 card-body-promo-card"><h5 class="card-title font-weight-bolder">' + value.name + '</h5><p class="card-text mb-0 font-weight-lighter">' +value.post+'</p><p class="card-text"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p><div class="d-flex justify-content-end btn-promo-container"><div class="btn-group" data-id="' + value.id +'"><button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i class="fa fa-eye"></i></button></div></div></div></div></div></div></div>');
-      });
-      scrollEnabled = true;
+      // cek apa datanya ada
+      if (data.data == [] || data.data == "" || data.data == null || data.data == undefined){
+        container_promo_content.hide();
+        container_promo_contentNo.show();
+        flag_previousRetrieveNull = true; // nyalakan flag
+      } else {
+        // apabila data ada tapi sebelumnya datanya belum ada
+        if(flag_previousRetrieveNull == true){
+          container_promo_content.show();
+          container_promo_contentNo.hide();
+          flag_previousRetrieveNull = false; // matikan flag
+        }
+        $.each(data.data, function (index, value) {
+          container_promo_row.append('<div div class= "col-lg-6 col-12 card-promo" > <div class="card mb-3" style="max-width:100%"><div class="row no-gutters"><div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '"></div><div class="col-lg-7 col-md-8"><div class="card-body h-100 card-body-promo-card"><h5 class="card-title font-weight-bolder">' + value.name + '</h5><p class="card-text mb-0 font-weight-lighter">' + value.post + '</p><p class="card-text"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p><div class="d-flex justify-content-end btn-promo-container"><div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i class="fa fa-eye"></i></button></div></div></div></div></div></div></div>');
+        });
+      }
+      
     },
     error: function(e){
       Swal.fire({icon: 'error', title: 'Oops...', text: 'Something went wrong!'});
@@ -51,10 +65,43 @@ btnPromo_addPromo.on('click', function () {
 });
 // remove all button
 btnPromo_removeAll.on('click', function () {
-  Swal.fire({ icon: 'success', title: '', text: '' });
+  Swal.fire({
+    icon: 'warning',
+    title: 'Apa anda yakin?',
+    html: '<div class="bg-gray text-white py-2"><b>saya yakin untuk menghapus promo</b></div>',
+    input: 'text',
+    inputLabel: 'Ketikkan kalimat di atas, untuk menghapus semua promo',
+    showCancelButton: true,
+    allowOutsideClick: false,
+    inputValidator: (value) => {
+      if (value != 'saya yakin untuk menghapus promo') {
+        return 'Kalimat yang anda ketikkan salah'
+      } else {
+        // window.location.replace(url_removeAll);
+        $.ajax({
+          headers: {
+            'X-CSRF-TOKEN': token_csrf
+          },
+          url: url_removeAll,
+          method: 'POST',
+          success: function (data) {
+            Toast.fire({ icon: 'success', title: 'Semua Promo berhasil dihapus' });
+
+            // refresh data promo
+            container_promo_row.empty();
+            spinner_promo.show();
+            getPromo(url_get);
+          },
+          error: function (e) {
+            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!' });
+          }
+        });
+      }
+    }
+  })
 });
 // trigger cliknya dari container tapi liat ke dalemnya apa arahnya ke edit atau remove
-container_promo.on('click', btnPromo_edit, function () {
+container_promo_row.on('click', btnPromo_edit, function () {
   // ganti id form jadi form edit
   toggle_form = 'edit';
   btnPromo_submit.html(btnContent_edit); // ganti tulisan button
@@ -90,8 +137,50 @@ container_promo.on('click', btnPromo_edit, function () {
     }
   })
 });
-container_promo.on('click', btnPromo_remove, function () {
-  Swal.fire({ icon: 'success', title: 'Remove Button', text: '' });
+container_promo_row.on('click', btnPromo_remove, function () {
+  let id_promoToRemove = $(this).parent().data('id');
+  Swal.fire({
+    title: 'Hapus Promo ini?',
+    text: "Promo yang sudah dihapus tidak dapat dikembalikan kembali.",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya',
+    cancelButtonText: 'Tidak',
+    focusCancel: true,
+    allowOutsideClick: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        headers: {
+          'X-CSRF-TOKEN': token_csrf
+        },
+        url: url_remove,
+        data: {
+          'id': id_promoToRemove
+        },
+        method: 'POST',
+        beforeSend: function(){
+          showLoadingSwal('Menghapus Promo', 'Harap tunggu sistem sedang menghapus promo ini.');
+        },
+        success: function (data) {
+          // hapus element dari DOM
+          $('[data-id="'+id_promoToRemove+'"]').parents('.card-promo').remove();
+          // jika element dom habis maka nyalakan no element dengan
+          if (container_promo_row.is(':empty')) {
+            container_promo_content.hide();
+            container_promo_contentNo.show();
+            flag_previousRetrieveNull = true; // nyalakan flag
+          }
+          Toast.fire({ icon: 'success', title: 'Promo telah dihapus' });
+        },
+        error: function (e) {
+          Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!' });
+        }
+      })
+    }
+  })
 });
 
 /* --------------------------------- cropper -------------------------------- */
@@ -238,15 +327,15 @@ formPromo.validate({
             showLoadingSwal('Menambahkan Promo..', 'Harap Tunggu, sistem sedang menambahkan promo.');
           },
           success: function (data) {
-            Swal.fire({ icon: 'success', title: 'Promo telah ditambahkan' });
+            Toast.fire({ icon: 'success', title: 'Promo telah ditambahkan' });
 
             // refresh data promo
-            container_promo.empty();
+            container_promo_row.empty();
             spinner_promo.show();
             getPromo(url_get);
           },
           error: function (e) {
-            showErrorSwal(e.responseJSON);
+            showErrorSwal_validation(e.responseJSON);
           }
         })
       } else if (toggle_form == 'edit') { // action edit promo
@@ -267,14 +356,15 @@ formPromo.validate({
             showLoadingSwal('Menyimpan Promo..', 'Harap Tunggu, sistem sedang menyimpan perubahanmu.');
           },
           success: function(data){
-            Swal.fire({ icon: 'success', title: 'Promo telah disimpan' });
-            let el = container_promo.find('div[data-id="' + data.id + '"]');
+            Toast.fire({ icon: 'success', title: 'Promo telah disimpan' });
+            // edit DOM element
+            let el = container_promo_row.find('div[data-id="' + data.id + '"]');
             el.parent().siblings('h5.card-title').text(data.name);
             el.parent().siblings('p.card-text.mb-0.font-weight-lighter').text(data.post);
             el.parents('div.col-lg-7.col-md-8').siblings('div.col-lg-5.col-md-4').find('img').attr('src', data.photo);
           },
           error: function(e){
-            showErrorSwal(e.responseJSON);
+            showErrorSwal_validation(e.responseJSON);
           }
         });
       // action error
@@ -302,7 +392,7 @@ const resetForm = () => {
 }
 
 // show swalerror on ajax error, validation error
-const showErrorSwal = (response) => {
+const showErrorSwal_validation = (response) => {
   // buat pesan error
   let msg_error = "";
   $.each(response, function (index, value) {

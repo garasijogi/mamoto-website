@@ -10,7 +10,12 @@ const btnContent_add = '<i class="fa fa-plus-circle"></i>&#09;Tambahkan Promo';
 const btnContent_edit = '<i class="fa fa-pencil-alt"></i>&#09;Edit Promo';
 
 // containers
-const container_promo = $('.promo-content');
+const container_promo_row = $('.promo-content');
+const container_promo_contentNo = $('.container-promo-contentNo');
+const container_promo_content = $('.container-promo-content');
+
+// flags
+let flag_previousRetrieveNull = false;
 
 // input variables
 const input_name = $('input[name="name"]');
@@ -64,6 +69,8 @@ const url_formAdd = $('input[name="url_formAdd"]').val();
 const url_formEdit = $('input[name="url_formEdit"]').val();
 const url_get = $('input[name="url_get"]').val();
 const url_getOnce = $('input[name="url_getOnce"]').val();
+const url_remove = $('input[name="url_remove"]').val();
+const url_removeAll = $('input[name="url_removeAll"]').val();
 let url_next = "";
 
 // ubah locale moment

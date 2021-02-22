@@ -20,7 +20,7 @@
 <div class="card">
   <div class="card-body">
     {{-- promo cards --}}
-    <div>
+    <div class="container-promo-content">
       {{-- content --}}
       <div class="row promo-content">
         {{-- example code of card content --}}
@@ -64,7 +64,7 @@
     </div>
 
     {{-- tampilan tidak ada promo --}}
-    <div style="display: none">
+    <div class="container-promo-contentNo" style="display: none">
       <div class="d-flex justify-content-center mb-3">
         <div class="rr-promo-noPromo-image-container"
           style="background-image: url({{ asset('images/default/discount.svg') }}); background-repeat: round;">
@@ -188,6 +188,8 @@
 <input type="hidden" name="url_get" value="{{ route('admin.promo.get') }}">
 <input type="hidden" name="url_getOnce" value="{{ route('admin.promo.getOnce') }}">
 <input type="hidden" name="url_gallery" value="{{ url('storage/') }}">
+<input type="hidden" name="url_remove" value="{{ route('admin.promo.remove') }}">
+<input type="hidden" name="url_removeAll" value="{{ route('admin.promo.removeAll') }}">
 @endsection
 
 @section('css')

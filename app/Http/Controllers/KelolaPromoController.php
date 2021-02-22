@@ -7,6 +7,7 @@ use App\Promo;
 use App\Setting;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -182,6 +183,40 @@ class KelolaPromoController extends Controller
 		$file_name = md5(uniqid('promo-') . microtime()) . ".jpg";
 		Storage::put($this->path . $file_name, base64_decode($base64_photo)); // taruh file foto dalam folder gallery promo
 		return $file_name;
+	}
+
+	public function remove(Request $request)
+	{
+		$formData = $request->all();
+		// buat validator
+		$validator = Validator::make($formData, [
+			'id' => 'required|max:14'
+		]);
+
+		if ($validator->fails()) {
+			return response()->json('forbidden', 403);
+		} else {
+			// ambil informasi detail promo
+			$promo = Promo::where('id', $formData['id'])->first()->toArray();
+			// hapus foto promo dari system
+			Storage::delete($this->path . explode('/', $promo['photo'])[2]);
+			// hapus promo dari database
+			Promo::find($formData['id'])->delete();
+			return response()->json('success');
+		}
+	}
+
+	protected function removeAll(Promo $promo)
+	{
+		// truncate 
+		$table = $promo->getTable();
+		DB::table($table)->truncate();
+		// remove all photo
+		$allFiles = Storage::allFiles($this->path);
+		foreach($allFiles as $v){
+			Storage::delete($this->path . explode('/', $v)[2]);
+		}
+		return response()->json('success');
 	}
 
 	protected function setValidatedFormData($id, $file_name, $formData)
