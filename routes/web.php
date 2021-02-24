@@ -25,6 +25,10 @@ Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
 Route::get('/promo', 'PromoController@index')->name('promo');
 
+// promo routes
+Route::get('/promo/get', 'KelolaPromoController@get')->name('promo.get');
+Route::post('/promo/getOnce', 'KelolaPromoController@getOnce')->name('promo.getOnce');
+
 //2) Admin Routes
 Route::prefix('admin')->middleware('auth')->group(function () {
 
@@ -57,6 +61,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.6) Kelola Promo
     Route::get('promo', 'KelolaPromoController@index')->name('admin.promo');
+    // FIXME resolve get route security
     Route::get('promo/get', 'KelolaPromoController@get')->name('admin.promo.get');
     Route::post('promo/getOnce', 'KelolaPromoController@getOnce')->name('admin.promo.getOnce');
     Route::post('promo/add', 'KelolaPromoController@add')->name('admin.promo.add');

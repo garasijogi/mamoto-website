@@ -84,13 +84,7 @@
   aria-labelledby="modal_promoLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="overlay dark overlay-promo-modal" style="display: none">
-        <div class="row no-gutters h-100 w-100 justify-content-center">
-          <div class="col-lg-1 col-2 align-self-lg-center mt-5" >
-            <img class="w-100" src="{{ asset('images/default/spinner.svg') }}" alt="spinner">
-          </div>
-        </div>
-      </div>
+      @include('layouts.overlay')
       <div class="modal-header">
         <h5 class="modal-title" id="modal_promoLabel">Form Promo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">

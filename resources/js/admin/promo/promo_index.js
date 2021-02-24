@@ -17,8 +17,10 @@ const getPromo = (url=url_get) => {
     },
     success: function(data){
       url_next = data.next_page_url // ganti url next
+      // jika url_next nya tidak kosong, maka aktifkan scroll event
       if (url_next == null || url_next == undefined || url_next == "") {
         spinner_promo.hide();
+      } else {
         scrollEnabled = true;
       }
       // cek apa datanya ada
@@ -46,8 +48,10 @@ const getPromo = (url=url_get) => {
 };
 // scroll modal listener
 $(window).on("scroll", function () {
-  if (!(url_next == null || url_next == undefined || url_next == "")) {
-    if(scrollEnabled){
+  if (url_next == null || url_next == undefined || url_next == "") {
+    // nothing
+  } else {
+    if (scrollEnabled) {
       var scrollHeight = Math.floor($('html').height());
       var scrollPosition = Math.floor($(window).height() + $(window).scrollTop());
       if (scrollPosition >= scrollHeight) {

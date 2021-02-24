@@ -83,6 +83,19 @@ mix.styles(
     ],
     'public/css/admin/promo.css'
 );
+mix.styles([
+        'resources/css/promo.css',
+        'resources/css/admin/imageViewer.css'
+    ], 
+    'public/css/promo.css'
+);
+mix.js('resources/js/promo.js', 'public/js/promo.js'); // script untuk di userpage
+mix.scripts([
+        'public/js/promo.js',
+        "resources/js/admin/modal-imageViewer.js",
+    ],
+    'public/js/promo.js'
+)
 mix.scripts(
     [
         'resources/js/admin/promo/promo__initial.js',
