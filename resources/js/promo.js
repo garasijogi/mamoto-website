@@ -81,7 +81,6 @@ $(function () {
 });
 
 // AJAX handler
-// NOW AJAX Get Promo
 const getPromo = (url=url_get) => {
   $.ajax({
     headers: {
