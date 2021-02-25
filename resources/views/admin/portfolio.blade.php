@@ -3,6 +3,7 @@
 @section('title', 'Kelola Portfolio')
 
 @section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
 @include('layouts.css.al-styles')
 
 @section('content_header')
@@ -57,7 +58,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2 pb-2">
+                  <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
@@ -66,7 +67,7 @@
                   @else
                   @foreach (array_slice(json_decode($p->photo), 0, 1) as $index => $photo)
                   <div class="col-12 mb-2">
-                    <img class="card-img-top" width='100px' height='500px' style='object-fit:cover;'
+                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
                   </div>
@@ -124,7 +125,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2 pb-2">
+                  <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
@@ -191,7 +192,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2 pb-2">
+                  <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
@@ -258,7 +259,7 @@
                   @endforeach
                   @elseif (count(json_decode($p->photo)) == 2)
                   @foreach (array_slice(json_decode($p->photo), 0, 2) as $index => $photo)
-                  <div class="col-6 mb-2 pb-2">
+                  <div class="col-6 mb-2">
                     <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">

@@ -16,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 //1) User routes
 Route::get('/', 'HomeController@index')->name('home');
-Route::prefix('portfolio')->group(function () {
-    Route::get('wedding', 'PortfolioController@wedding')->name('portfolio.wedding');
-    Route::get('prewed', 'PortfolioController@prewed')->name('portfolio.prewed');
-    Route::get('sp', 'PortfolioController@sp')->name('portfolio.sp');
-    Route::get('lamaran', 'PortfolioController@lamaran')->name('portfolio.lamaran');
-    Route::get('{pfType_id}/{portfolios:slug}', 'PortfolioController@show')->name('portfolio.show');
-});
+Route::get('/portfolio/wedding', 'PortfolioController@wedding')->name('portfolio.wedding');
+Route::get('/portfolio/prewed', 'PortfolioController@prewed')->name('portfolio.prewed');
+Route::get('/portfolio/sp', 'PortfolioController@sp')->name('portfolio.sp');
+Route::get('/portfolio/lamaran', 'PortfolioController@lamaran')->name('portfolio.lamaran');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
@@ -48,10 +45,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.3) Kelola Home
     Route::get('home', 'KelolaHomeController@index')->name('admin.home');
-    Route::get('jumbotron', 'KelolaHomeController@jumbotron')->name('admin.jumbotron');
-    Route::patch('jumbotron/{jumbotron:id}/edit', 'KelolaHomeController@update_jumbotron');
-    Route::get('displayed-portfolio/{id}', 'KelolaHomeController@displayed_portfolio')->name('admin.displayedportfolio');
-    Route::patch('displayed-portfolio/{pftype}/edit', 'KelolaHomeController@update_dp');
 
     //2.4) Kelola Portfolio
     Route::get('portfolio', 'KelolaPortfolioController@index')->name('admin.portfolio');
@@ -94,6 +87,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio
     Route::get('{portfolio:slug}', 'KelolaPortfolioController@show')->name('admin.portfolio.show');
+
 });
 
 //3) Auth

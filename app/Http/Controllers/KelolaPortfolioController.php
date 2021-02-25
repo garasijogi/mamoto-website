@@ -47,21 +47,9 @@ class KelolaPortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
-        // delete image if requests exist
-        if (isset($request->imgDel)) {
-            // add request fileList to new array variable
-            $photoArray = $request->file('fileList');
-            foreach ($request->imgDel as $imgDel) {
-                unset($photoArray[$imgDel]);
-            };
-            $photoArray = \array_values($photoArray);
-        } else {
-            $photoArray = $request->file('fileList');
-        }
-
         // imagesList
         if ($request->hasfile('fileList')) {
-            foreach ($photoArray as $index => $image) {
+            foreach ($request->file('fileList') as $index => $image) {
                 $images_data[$index]['id'] = $index + 1;
                 $images_data[$index]['name'] = $image->getClientOriginalName();
                 $images_data[$index]['type'] = $image->getClientOriginalExtension();

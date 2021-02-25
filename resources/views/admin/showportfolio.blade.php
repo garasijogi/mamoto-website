@@ -3,6 +3,7 @@
 @section('title', 'Kelola Portfolio')
 
 @section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
 @include('layouts.css.al-styles')
 
 @section('content_header')
@@ -16,7 +17,7 @@
       <div class="row">
         @foreach (json_decode($portfolio->photo) as $index => $photo)
         <div class="col-6 my-2 d-flex justify-content-center">
-          <div id='{{$index}}' onclick="alImageView(this.id, 'id')">
+          <div id='{{$index}}' onclick="alImageView(this.id)">
             <img class='{{$index}} al-thumbnail' width='300px' height='200px' style='object-fit:cover;'
               src="/storage/images/portfolio/{{$portfolio->pfType_id}}/{{$portfolio->slug}}/{{$photo->name}}"
               alt="Card image cap">
