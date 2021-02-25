@@ -22,7 +22,9 @@
 <body>
   @include('layouts.navigation')
   <div id="app">
-    @yield('content')
+    <div class="content">
+      @yield('content')
+    </div>
     @include('layouts.footer')
   </div>
 

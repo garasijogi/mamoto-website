@@ -2,7 +2,7 @@
 @section('title', 'Mamoto Picture - Promo')
 @section('content')
 {{-- title --}}
-<h1 class="rr-about-header text-center mb-5">Promo</h1>
+<h1 class="rr-about-header text-center mb-5 rr-promo-title">Promo</h1>
 
 {{-- content --}}
 <div class="rr-about-content container">
@@ -10,8 +10,7 @@
     {{-- no data --}}
     <div class="col-12 promo-noPromo" style="display: none;">
       <div class="d-flex justify-content-center">
-        <div class="promo-noPromo-img"
-        style="background-image: url({{ asset('images/default/discount.svg') }});"></div>
+        <div class="promo-noPromo-img" style="background-image: url({{ asset('images/default/discount.svg') }});"></div>
       </div>
       <div class="d-flex justify-content-center">
         <p><b>Tidak ada Promo</b> yang ditambahkan.</p>
@@ -89,9 +88,9 @@
 @endsection
 
 @section('css-ryu')
-  <link rel="stylesheet" href="{{ asset('css/promo.css') }}">
+<link rel="stylesheet" href="{{ asset('css/promo.css') }}">
 @endsection
 
 @section('js-ryu')
-  <script src="{{ asset('js/promo.js') }}"></script>
+<script src="{{ asset('js/promo.js') }}"></script>
 @endsection

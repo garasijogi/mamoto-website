@@ -31,6 +31,7 @@
     </div>
     <div class="al-dp">
         @foreach ($displayed_portfolios as $index => $dp)
+        @if (!empty($dp->portfolio))
         <a href="/portfolio/{{ $dp->portfolio->pfType_id }}/{{ $dp->portfolio->slug }}"
             class="d-block text-decoration-none">
             <div class="row al-dp-card {{ $index > 0 ? 'py-5' : 'pb-5 pt-3' }}">
@@ -106,6 +107,7 @@
                 @endif
             </div>
         </a>
+        @endif
         @endforeach
     </div>
 

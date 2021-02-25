@@ -28,6 +28,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "cropper": "^4.1.0",
+        "jquery-cropper": "^1.0.1",
+        "js": "^0.1.0",
         "cropperjs": "^1.5.10",
         "jquery-validation": "^1.19.3",
         "loader-utils": "^2.0.0",

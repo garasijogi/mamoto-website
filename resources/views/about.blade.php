@@ -2,7 +2,7 @@
 @section('title', 'Mamoto Picture - About')
 @section('content')
 {{-- title --}}
-<h1 class="rr-about-header text-center mb-5">About Us</h1>
+<h1 class="rr-about-header text-center mb-5 pt-5">About Us</h1>
 
 {{-- content --}}
 <div class="rr-about-content container">
@@ -15,5 +15,5 @@
 @endsection
 
 @section('css-ryu')
-  <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+<link rel="stylesheet" href="{{ asset('css/about.css') }}">
 @endsection

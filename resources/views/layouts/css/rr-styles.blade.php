@@ -1,1 +1,1 @@
-@yield('css-ryu');
+@yield('css-ryu')

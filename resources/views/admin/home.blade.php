@@ -73,11 +73,16 @@
                     @endswitch
                 </div>
                 <div class="col-12">
+                    @if (empty($dp->portfolio->photo))
+                    <img width='250px' height='250px' style='object-fit:cover;' src="/images/no-image.png"
+                        alt=" Card image cap">
+                    @else
                     @foreach (array_slice(json_decode($dp->portfolio->photo), 0, 1) as $photo)
                     <img width='250px' height='250px' style='object-fit:cover;'
                         src="/storage/images/portfolio/{{$dp->pfType_id}}/{{$dp->portfolio->slug}}/{{$photo->name}}"
                         alt=" Card image cap">
                     @endforeach
+                    @endif
                 </div>
                 <div class="col-12 text-center p-2">
                     <a href="/admin/displayed-portfolio/W" class="btn btn-sm btn-primary text-white">

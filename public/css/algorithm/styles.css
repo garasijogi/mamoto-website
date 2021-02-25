@@ -388,3 +388,7 @@ footer p {
   font-family: 'JosefinSlab-Regular';
   color: var(--darkgrey);
 }
+
+.content {
+  min-height: 60vh !important;
+}
