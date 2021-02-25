@@ -5,3 +5,6 @@
  */
 
 require('./bootstrap');
+
+// cropper
+require('cropper');

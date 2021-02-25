@@ -3,7 +3,6 @@
 @section('title', 'Kelola Portfolio - Tambah')
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
 @include('layouts.css.al-styles')
 @endsection
 
@@ -62,6 +61,7 @@
       </div>
       <div id='al-showPhotoNameDiv' class='d-none' style="max-height:43vh;overflow:auto">
         <ul id='al-showPhotoName' class="d-none"></ul>
+        <div id="al-deletePhotoContainer"></div>
       </div>
 
       {{-- video --}}
@@ -222,6 +222,18 @@
       </div>
     </div>
   </div>
+</div>
+@endsection
+
+@section('modals')
+<!-- Image Viewer Modal -->
+<div id="al-imageViewer" class="al-image-viewer-modal">
+
+  <!-- The Close Button -->
+  <i class="al-close-btn fas fa-times fa-2x text-white"></i>
+
+  <!-- Modal Content (The Image) -->
+  <img class="al-image-viewer-modal-content" id="al-imageViewed">
 </div>
 @endsection
 

@@ -3,7 +3,6 @@
 @section('title', 'Kelola Portfolio - Edit')
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
 @include('layouts.css.al-styles')
 @endsection
 
@@ -51,7 +50,7 @@
       <div id="photoSelector" class="form-group mb-2">
         <label for="fileList">Photo</label>
         <div class="custom-file">
-          <input type="file" name="fileList[]" onchange="savePhoto(this);" class="custom-file-input"
+          <input type="file" name="fileList[]" onchange="editPhoto(this);" class="custom-file-input"
             id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" multiple>
           <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
         </div>
@@ -63,15 +62,18 @@
       </div>
       @if (!empty($portfolio->photo))
       <div id='al-showPhotoNameDiv' class='d-block' style="max-height:43vh;overflow:auto">
-        <ul id='al-showPhotoName' class="d-block list-group mb-4">
+        <ul id='al-showPhotoName' class="d-block list-group">
           @foreach (json_decode($portfolio->photo) as $index => $photo)
-          <li id='li-{{$index}}' class='d-flex justify-content-between list-group-item'>
+          <li id='li-{{$index}}' class='al-delete-img-btn d-flex justify-content-between list-group-item'
+            onclick="alImageView(this.id, 'li')">
             {{$photo->name}}
-            <div id='{{$index}}' class="al-delete-img-btn" onclick="alDelPhotoName(this.id)">
+            <div id='{{$index}}' class="al-delete-img-btn" onclick="alDelPhoto(this.id, 0)">
               <i class="text-danger fas fa-window-close"></i>
             </div>
           </li>
           @endforeach
+        </ul>
+        <ul id='al-addPhotoName' class="d-block list-group mb-4">
         </ul>
         <div id="al-deletePhotoContainer"></div>
       </div>
@@ -252,11 +254,15 @@
     <div class="text-center">
       <div id='al-imageList' class="p-4 position-relative">
         @foreach (json_decode($portfolio->photo) as $index => $photo)
-        <div id='div-{{$index}}' class='card d-inline-block mx-2'>
-          <div class='card-body'><img
+        <div id='div-{{$index}}' class='card al-img-card-selected d-inline-block mx-2'
+          onclick="alImageView(this.id, 'div')">
+          <div class='card-body'>
+            <img class='{{$index}}'
               src="/storage/images/portfolio/{{$portfolio->pfType_id}}/{{$portfolio->slug}}/{{$photo->name}}"
               width='100px' height='100px' style='object-fit:cover;' />
           </div>
+          <button id="button-{{$index}}" onclick="alDelPhoto(this.id, 1)" class="btn al-del-img-card"> <i
+              class="fas fa-times fa-lg text-red"></i> </button>
         </div>
         @endforeach
       </div>
@@ -265,6 +271,18 @@
     <h6 id='al-photoBox' class="text-center" style="line-height: 55vh">Belum ada foto untuk ditampilkan</h6>
     @endif
   </div>
+</div>
+@endsection
+
+@section('modals')
+<!-- Image Viewer Modal -->
+<div id="al-imageViewer" class="al-image-viewer-modal">
+
+  <!-- The Close Button -->
+  <i class="al-close-btn fas fa-times fa-2x text-white"></i>
+
+  <!-- Modal Content (The Image) -->
+  <img class="al-image-viewer-modal-content" id="al-imageViewed">
 </div>
 @endsection
 
