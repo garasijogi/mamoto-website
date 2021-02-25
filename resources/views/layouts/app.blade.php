@@ -19,13 +19,11 @@
 
 </head>
 
-<body class="{{request()->routeIs('home') ? 'al-home-body' : ''}}">
+<body>
   @include('layouts.navigation')
   <div id="app">
-    <div class="mx-4 al-full-content {{request()->routeIs('home') ? '' : 'al-bg-img'}}">
-      @yield('content')
-      @include('layouts.footer')
-    </div>
+    @yield('content')
+    @include('layouts.footer')
   </div>
 
   @yield('modals')

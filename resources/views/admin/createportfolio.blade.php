@@ -3,7 +3,6 @@
 @section('title', 'Kelola Portfolio - Tambah')
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
 @include('layouts.css.al-styles')
 @endsection
 

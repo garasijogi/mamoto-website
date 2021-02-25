@@ -3,7 +3,6 @@
 @section('title', 'Kelola Portfolio')
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
 @include('layouts.css.al-styles')
 
 @section('content_header')
@@ -67,7 +66,7 @@
                   @else
                   @foreach (array_slice(json_decode($p->photo), 0, 1) as $index => $photo)
                   <div class="col-12 mb-2">
-                    <img class="card-img-top" width='100px' height='200px' style='object-fit:cover;'
+                    <img class="card-img-top" width='100px' height='500px' style='object-fit:cover;'
                       src="/storage/images/portfolio/{{$p->pfType_id}}/{{$p->slug}}/{{$photo->name}}"
                       alt="Card image cap">
                   </div>

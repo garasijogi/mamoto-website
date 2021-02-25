@@ -5,6 +5,14 @@
   }
 }
 
+/* color configs */
+:root {
+  --goldbrown: #888888;
+  --pipiss: #F8EDEB;
+  --darkgrey: #999999;
+  --verylightgrey: #f2f2f2;
+}
+
 /* 1) All elements */
 
 @font-face {
@@ -67,7 +75,6 @@ nav {
 }
 
 .al-bg-white ul.al-navigation-ul, .al-bg-gradient-dark ul.al-navigation-ul{
-  /* border-bottom: 1px solid #888888; */
   margin: 0 !important;
   padding: 1em 0;
 }
@@ -78,7 +85,7 @@ nav {
 }
 
 .al-nav-text-goldbrown li a, .al-nav-text-goldbrown li span {
-  color: #888888;
+  color: var(--goldbrown);
   text-decoration: none;
 }
 
@@ -86,7 +93,7 @@ nav {
 .al-navigation-ul li a:hover,
 .al-navigation-ul li span:hover
 {
-  color: #F8EDEB !important;
+  color: var(--pipiss) !important;
   text-decoration: none;
   cursor: pointer;
 }
@@ -97,16 +104,12 @@ nav {
   font-weight: 600;
 }
 
-body.al-home-body {
-  background: url("/images/jumbotron.png");
-}
-
-/* .al-bg-img {
-  background: url("/images/wedding-ring.png");
+.al-jumbotron-carousel {
+  background-image: url("../../../storage/images/jumbotron/jumbotron1.png");
   background-repeat: no-repeat;
-  background-size: 60%;
-  background-position-x: center;
-} */
+  background-size: 100%;
+  background-position: center;
+}
 
 body.login-page {
   background: url("/images/wedding-ring.png");
@@ -117,17 +120,17 @@ body.login-page {
 
 .al-full-content {
   height: 100vh;
-  margin-left: 6vw;
+  /* margin-left: 6vw; */
 }
 
 .al-circle-list-btn a {
   padding: 5px;
-  border: 2px solid #F8EDEB;
+  border: 2px solid var(--pipiss);
   border-radius: 25px;
 }
 
 #book-now-btn:hover {
-  background-color: #F8EDEB;
+  background-color: var(--pipiss);
   color: white !important;
 }
 .al-jumbotron {
@@ -224,12 +227,12 @@ body.login-page {
 }
 
 .al-navigation-ul ul li:hover, .al-navigation-ul ul li:hover a {
-  background-color: #F8EDEB;
+  background-color: var(--pipiss);
   color: grey !important;
 }
 
 .al-opacity-full ul li:hover, .al-navigation-ul ul li:hover a {
-  background-color: #F8EDEB;
+  background-color: var(--pipiss);
   color: grey !important;
 }
 
@@ -239,11 +242,11 @@ body.login-page {
   left:0;
   right:0;
   height: 13rem;
-  background-color: #F8EDEB;
+  background-color: var(--pipiss);
 }
 
 .al-big-title-font {
-  color: #999999;
+  color: var(--darkgrey);
   font-size: 3em;
   font-weight: 500;
 }
@@ -251,7 +254,7 @@ body.login-page {
 .al-breadcrumb h6 {
   font-size: .8em;
   font-weight: 600;
-  color: #999999;
+  color: var(--darkgrey);
 }
 
 .al-portfolio-cards {
@@ -259,11 +262,11 @@ body.login-page {
 }
 
 .al-grey-color {
-  color: #999999;
+  color: var(--darkgrey);
 }
 
 .al-pink-color {
-  color: #F8EDEB;
+  color: var(--pipiss);
 }
 
 .al-font1 {
@@ -357,5 +360,31 @@ footer p {
   cursor: pointer;
 }
 
+/* displayed portfolios */
+.al-dp-title{
+  font-size: 1.7rem;
+}
 
+.al-dp {
+  padding: 0 5rem;
+}
 
+.al-dp-card {
+  transition: .3s;
+}
+
+.al-dp-card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.al-img-circle {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.al-feedback {
+  background-color:var(--pipiss);
+  font-family: 'JosefinSlab-Regular';
+  color: var(--darkgrey);
+}
