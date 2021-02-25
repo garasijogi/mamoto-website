@@ -16,6 +16,7 @@ class RyumadaTableSeeder extends Seeder
         // company_about table seeder
         DB::table('company_about')->insert([
             'id' => 0,
+            'post' => 'Mamoto Pictures.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
