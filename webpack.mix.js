@@ -50,6 +50,9 @@ mix.copy('./node_modules/jquery-validation/dist/additional-methods.min.js', 'pub
  * add your module scripts right here, please sort it by A-Z
  */
 
+/* -------------------------- rr styles and scripts ------------------------- */
+mix.styles('resources/css/rr.css', 'public/css/rr.css');
+
 /* --------------------------- about script mixer --------------------------- */
 // admin styles
 mix.styles(
@@ -60,7 +63,6 @@ mix.styles(
     'public/css/admin/about.css'
 );
 // public site styles
-mix.styles('resources/css/about.css', 'public/css/about.css');
 mix.scripts(
     [
         "resources/js/admin/about/about__initial.js",
