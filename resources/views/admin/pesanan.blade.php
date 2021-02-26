@@ -8,7 +8,6 @@
 
 @section('content')
     <div class="container">
-        <a href="/admin/faq/create" class="btn btn-sm btn-primary">Tambah FAQ.</a>
         <table class="table mt-3 col-10">
             <thead class="thead-light">
                 <tr>
@@ -36,17 +35,44 @@
                             @endforeach
                         </td>
                         <td class="d-flex justify-content-start">
-                            <a href="" class="text-primary"><abbr title="Edit FAQ">
-                                    <i class="fas fa-fw fa-edit"></i></abbr></a>
+                            <button type="button" class="btn btn-sm btn-primary collapsible" data-toggle="collapse"
+                                data-target="#ns-details{{ $book->id }}" aria-expanded="false"
+                                aria-controls="ns-details{{ $book->id }}">
+                                <i class="fas fa-fw fa-info"></i> Detail</button>
                         </td>
                     </tr>
+                    <td colspan="5" class="collapse" id="ns-details{{ $book->id }}">
+                        <div class="card text-white bg-info">
+                            <div class="row card-body">
+                                <div class="col-lg-6 col-md-12">
+                                    <p><b>Nama : </b> {{ $book->name }}</p>
+                                    <p><b>No Telp : </b> {{ $book->phone }}</p>
+                                    <p><b>Email : </b> {{ $book->email }}</p>
+                                    <p><b>Tgl Booking : </b> {{ $book->booking_date }}</p>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <p>Events :
+                                        @foreach (json_decode($book->events) as $e)
+                                            <li class="p-0"> {{ $e }} </li>
+                                        @endforeach
+                                    </p>
+                                    <p>Lokasi : {{ $book->location }}</p>
+                                    <p>Catatan : {{ $book->note }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 @endforeach
             </tbody>
         </table>
     </div>
 @endsection
+@section('js')
+    <script>
+        function showDetails(data) {
+            var content = document.getElementsByClassName('');
+            console.log(data)
+        }
 
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    </script>
 @endsection

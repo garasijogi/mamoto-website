@@ -27,6 +27,8 @@ Route::get('/booksuccess', function(){
     return view('booksuccess');
 })->name('booksuccess');
 Route::get('/promo', 'PromoController@index')->name('promo');
+Route::get('/feedback', 'FeedbackController@index')->name('promo');
+Route::post('/feedback/post', 'FeedbackController@store');
 
 //2) Admin Routes
 Route::prefix('admin')->middleware('auth')->group(function () {

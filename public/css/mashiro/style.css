@@ -15,6 +15,8 @@
 /* Book Now Pages */
 .ns-book-now{
     background-image: url("/images/background.jpg");
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
     object-fit: cover;
 }
 .ns-form::placeholder{
@@ -23,7 +25,7 @@
 }
 .ns-label{
     font-family: 'Lora-Regular';
-    font-size: 10pt;
+    font-size: 11pt;
     font-weight: bold;
 }
 .ns-card{
@@ -73,4 +75,10 @@
 .ns-message{
     font-size: 18pt;
     text-align: center;
+}
+
+/* Feedback */
+.ns-fb-greet{
+    font-size: 14pt;
+    font-weight: bold;
 }
