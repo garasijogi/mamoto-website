@@ -127,7 +127,7 @@ return [
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
+    'classes_sidebar_nav' => 'nav-flat',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
@@ -226,7 +226,7 @@ return [
     'menu' => [
         [
             'text' => 'search',
-            'search' => true,
+            'search' => false,
             'topnav' => true,
         ],
         [
@@ -240,9 +240,17 @@ return [
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
         [
-            'text' => 'Kelola User',
-            'url'  => 'admin/user',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Pesanan',
+            'url'  => 'admin/pesanan',
+            'icon' => 'fas fa-fw fa-shopping-cart',
+        ],
+        [
+            'text' => 'Feedback',
+            'url'  => 'admin/feedback',
+            'icon' => 'fas fa-fw fa-comments',
+        ],
+        [
+            'header' => 'KONTEN WEBSITE',
         ],
         [
             'text' => 'Kelola Home',
@@ -255,14 +263,22 @@ return [
             'icon' => 'fas fa-fw fa-images',
         ],
         [
+            'text' => 'Kelola Promo',
+            'url'  => 'admin/promo',
+            'icon' => 'fas fa-fw fa-percent',
+        ],
+        [
+            'header' => 'LAINNYA',
+        ],
+        [
             'text' => 'Kelola About',
             'url'  => 'admin/about',
             'icon' => 'fas fa-fw fa-info-circle',
         ],
         [
-            'text' => 'Kelola Promo',
-            'url'  => 'admin/promo',
-            'icon' => 'fas fa-fw fa-percent',
+            'text' => 'Kelola Contact',
+            'url'  => 'admin/contact',
+            'icon' => 'fas fa-fw fa-id-card',
         ],
         [
             'text' => 'Kelola FAQ',
@@ -270,15 +286,19 @@ return [
             'icon' => 'fas fa-fw fa-question-circle',
         ],
         [
-            'text' => 'Kelola Pesanan',
-            'url'  => 'admin/pesanan',
-            'icon' => 'fas fa-fw fa-shopping-cart',
+            'header' => '',
         ],
         [
-            'text' => 'Kelola Feedback',
-            'url'  => 'admin/feedback',
-            'icon' => 'fas fa-fw fa-comments',
-        ],
+            'text' => 'Pengaturan',
+            'icon' => 'fas fa-cogs',
+            'submenu' => [
+                [
+                    'text' => 'Kelola User',
+                    'url'  => 'admin/user',
+                    'icon' => 'fas fa-fw fa-user',
+                ],
+            ]
+        ]
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',
