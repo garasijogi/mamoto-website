@@ -12,68 +12,77 @@
                             <h6 class="ns-title">Let's Talk About your Moment</h6>
                         </div>
                         <div class="container-fluid col-lg-10 mt-5">
-                            <form action="" method="post" class="ns-font-form">
+                            <form action="/booknow/book" method="post" class="ns-font-form">
+                                @csrf
                                 {{-- Full Name --}}
                                 <div class="form-group">
                                     <label for="" class="ns-label">Full Name</label>
                                     <input type="text" class="form-control form-control-lg ns-form"
-                                        placeholder="Please Write your Full Name">
+                                        placeholder="Please Write your Full Name" name="name">
+                                    @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 {{-- No Handphone --}}
                                 <div class="form-group">
                                     <label for="" class="ns-label">Handphone Number</label>
                                     <input type="text" class="form-control form-control-lg ns-form"
-                                        placeholder="Please Enter your Phone Number">
+                                        placeholder="Please Enter your Phone Number" name="phone">
+                                    @error('phone')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 {{-- Email --}}
                                 <div class="form-group">
                                     <label for="" class="ns-label">E-Mail</label>
                                     <input type="email" class="form-control form-control-lg ns-form"
-                                        placeholder="Please Enter your email">
+                                        placeholder="Please Enter your email" name="email">
+                                    @error('email')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 {{-- Type of Events --}}
                                 <div class="form-group">
                                     <label for="" class="ns-label">Type Of Event <sup>*Full Package harap checklist semua
                                             kotak</sup></label> <br>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                            value="option1">
-                                        <label class="form-check-label" for="inlineCheckbox1">Wedding</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                            value="option2">
-                                        <label class="form-check-label" for="inlineCheckbox2">Pra-Wedding</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                            value="option3">
-                                        <label class="form-check-label" for="inlineCheckbox3">Siraman / Pengajian</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4"
-                                            value="option4">
-                                        <label class="form-check-label" for="inlineCheckbox4">Lamaran</label>
-                                    </div>
+                                    @foreach ($events as $event)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="{{ $event->id }}"
+                                                value="{{ $event->name }}" name="event[{{ $event->id }}]">
+                                            <label class="form-check-label"
+                                                for="{{ $event->id }}">{{ $event->name }}</label>
+                                        </div>
+                                    @endforeach
+                                    @error('events')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 {{-- Booking Date --}}
                                 <div class="form-group">
                                     <label for="" class="ns-label">Booking Date</label>
                                     <input placeholder="Please Select the Booking Date"
                                         class="textbox-n form-control form-control-lg ns-form" type="text"
-                                        onfocus="(this.type='date')" id="date">
+                                        onfocus="(this.type='date')" name="booking_date">
+                                    @error('booking_date')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 {{-- Location --}}
                                 <div class="form-group">
                                     <label for="" class="ns-label">Location</label>
                                     <textarea placeholder="Please write the full location to venue"
-                                        class="textbox-n form-control form-control-lg ns-form" rows="3"></textarea>
+                                        class="textbox-n form-control form-control-lg ns-form" rows="3"
+                                        name="location"></textarea>
+                                    @error('location')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 {{-- Note --}}
                                 <div class="form-group">
                                     <label for="" class="ns-label">Note <sup>*Optional</sup></label>
                                     <textarea placeholder="Write an additional information"
-                                        class="textbox-n form-control form-control-lg ns-form" rows="3"></textarea>
+                                        class="textbox-n form-control form-control-lg ns-form" rows="3"
+                                        name="note"></textarea>
                                 </div>
                                 <button type="submit" class="btn mb-2 px-5 mx-auto d-block ns-submit">Book Now</button>
                             </form>

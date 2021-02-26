@@ -22,6 +22,10 @@ Route::get('/portfolio/lamaran', 'PortfolioController@lamaran')->name('portfolio
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
+Route::post('/booknow/book', 'BookNowController@store');
+Route::get('/booksuccess', function(){
+    return view('booksuccess');
+})->name('booksuccess');
 Route::get('/promo', 'PromoController@index')->name('promo');
 
 //2) Admin Routes
