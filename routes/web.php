@@ -27,6 +27,7 @@ Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
 Route::get('/promo', 'PromoController@index')->name('promo');
+Route::get('/contact', 'ContactController@index')->name('contact');
 
 // promo routes
 Route::get('/promo/get', 'KelolaPromoController@get')->name('promo.get');

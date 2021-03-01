@@ -76,6 +76,7 @@ mix.scripts(
 );
 
 /* -------------------------- contact scripts mixer ------------------------- */
+mix.styles('resources/css/contact.css', 'public/css/contact.css'); // userpage css
 mix.js('resources/js/admin/contact/contact__plugins.js', 'public/js/admin/contact_plugins.js');
 mix.scripts(
     [
