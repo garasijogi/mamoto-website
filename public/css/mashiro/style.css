@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'JosefinSlab-Regular';
+  src: url("/fonts/josefinslab-regular-webfont.woff");
+}
+
+@font-face {
+  font-family: 'Lora-Regular';
+  src: url("/fonts/lora-regular-webfont.woff");
+}
+
+* {
+  font-family: 'JosefinSlab-Regular';
+}
+
+/* Book Now Pages */
+.ns-book-now{
+    background-image: url("/images/background.jpg");
+    /* filter: blur(8px);
+    -webkit-filter: blur(8px); */
+    object-fit: cover;
+}
+.ns-form::placeholder{
+    font-family: 'Lora-Regular';
+    font-size: 10pt;
+}
+.ns-label{
+    font-family: 'Lora-Regular';
+    font-size: 11pt;
+    font-weight: bold;
+}
+.ns-card{
+    border :  6px solid #F8EDEB;
+    border-radius: 25px;
+}
+.ns-submit{
+    font-family: 'Lora-Regular';
+    font-size: 18px;
+    border :  6px solid #F8EDEB;
+    border-radius: 25px;
+}
+.ns-submit:hover{
+    background-color: #F8EDEB;
+}
+.ns-title {
+    font-family: 'Lora-Regular';
+}
+
+/* FAQ Pages */
+.ns-faq-title{
+    margin-bottom: 90px;
+}
+.ns-question{
+    font-family: 'Lora-Regular';
+    font-size: 16pt;
+}
+.ns-content{
+    display: none;
+    margin-top: 24px;
+}
+.ns-content > p {
+    font-size: 14pt;
+}
+.ns-button{
+    background-color: white;
+    border-radius: 50px;
+    border: 2px solid #888888;
+    color: #888888;
+    font-size: 16px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+/* Book Success */
+.ns-message{
+    font-size: 18pt;
+    text-align: center;
+}
+
+/* Feedback */
+.ns-fb-greet{
+    font-size: 14pt;
+    font-weight: bold;
+}
