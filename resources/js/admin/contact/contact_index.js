@@ -11,7 +11,11 @@ btn_submit.on('click', function(){
   let id = el_p.data('id');
   let value = el_input.val();
 
-  saveContact(id, value, el_p, el_editor);
+  if(value == "" || value == null){
+    Toast.fire({ icon: 'error', title: 'Kontak tidak boleh kosong.' });
+  } else {
+    saveContact(id, value, el_p, el_editor);
+  }
 });
 
 input_edit.on('keyup', function(e){
@@ -22,14 +26,41 @@ input_edit.on('keyup', function(e){
     let id = el_p.data('id');
     let value = $(this).val();
 
-    saveContact(id, value, el_p, el_editor);
+    if(value == "" || value == null){
+      Toast.fire({ icon: 'error', title: 'Kontak tidak boleh kosong.' });
+    } else {
+      saveContact(id, value, el_p, el_editor);
+    }
   }
 });
 
 /* -------------------------------- function -------------------------------- */
 const saveContact = (id, value, el_p, el_editor) => {
   // NOW buat ajax function untuk save ke database
-  el_p.text(value);
-  el_editor.hide();
-  el_p.fadeIn();
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': token_csrf
+    },
+    url: url_save,
+    data: {
+      id: id,
+      contact: value
+    },
+    method: 'POST',
+    beforeSend: function(){
+      el_p.parent().append('<div class="spinner-grow text-primary" role="status"><span class="sr-only">Loading...</span></div>');
+      el_editor.hide();
+    },
+    complete: function(){
+      el_p.siblings('.spinner-grow').remove();
+      el_p.fadeIn();
+    },
+    success: function(){
+      el_p.text(value);
+      Toast.fire({ icon: 'success', title: 'Perubahan berhasil disimpan' });
+    },
+    error: function(e){
+      Toast.fire({ icon: 'error', title: 'Something went wrong!' });
+    }
+  })
 }

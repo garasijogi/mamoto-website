@@ -93,6 +93,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.11) Kelola Contact
     Route::get('contact', 'KelolaContactController@index')->name('admin.contact');
+    Route::post('contact/save', 'KelolaContactController@save')->name('admin.contact.save');
 
     /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio

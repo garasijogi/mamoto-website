@@ -1,3 +1,7 @@
+// variables
+const token_csrf = $('input[name="token_csrf"]').val();
+const url_save = $('input[name="url_save"]').val();
+
 // classes
 const class_contactInput = '.contact-input';
 const class_inputGroup_contact = '.input-group-contact';

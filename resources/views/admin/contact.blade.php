@@ -35,29 +35,15 @@
                 </td>
               </tr>
               @endforeach
-              <tr>
-                <td>sadwqafwq</td>
-                <td class="contact-edit" data-id="12334"></td>
-              </tr>
-              <tr>
-                <td>sadwqafwq</td>
-                <td class="contact-edit" data-id="12334">
-                  <p class="m-0 text-contact">jkfehsrgikewsfew</p>
-                  <div class="input-group input-group-sm">
-                    <input type="text" class="form-control contact-input" data-id="1234">
-                    <span class="input-group-append">
-                      <button type="button" class="btn btn-primary btn-flat contact-submit"><i class="fa fa-save"></i>
-                        save</button>
-                    </span>
-                  </div>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+
+	<input type="hidden" name="token_csrf" value="{{ csrf_token() }}">
+	<input type="hidden" name="url_save" value="{{ route('admin.contact.save') }}">
 @endsection
 
 @section('css')
