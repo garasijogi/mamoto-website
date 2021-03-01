@@ -91,6 +91,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('kelolagambar/getIndex', 'kelolaGambarController@getIndex')->name('admin.uploadGetIndex');
     Route::post('kelolagambar/removeIndex', 'kelolaGambarController@removeIndex')->name('admin.uploadRemoveIndex');
 
+    //2.11) Kelola Contact
+    Route::get('contact', 'KelolaContactController@index')->name('admin.contact');
+
     /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio
     Route::get('{portfolio:slug}', 'KelolaPortfolioController@show')->name('admin.portfolio.show');
