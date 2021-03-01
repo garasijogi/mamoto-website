@@ -27,11 +27,11 @@ Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
 Route::post('/booknow/book', 'BookNowController@store');
-Route::get('/booksuccess', function(){
+Route::get('/booksuccess', function () {
     return view('booksuccess');
 })->name('booksuccess');
 Route::get('/promo', 'PromoController@index')->name('promo');
-Route::get('/feedback', 'FeedbackController@index')->name('promo');
+Route::get('/feedback', 'FeedbackController@index')->name('feedback');
 Route::post('/feedback/post', 'FeedbackController@store');
 
 // promo routes
