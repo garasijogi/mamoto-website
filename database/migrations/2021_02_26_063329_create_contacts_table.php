@@ -18,6 +18,8 @@ class CreateContactsTable extends Migration
             $table->id();
             $table->string('name', 64)->unique();
             $table->string('contact', 128);
+            $table->text('link');
+            $table->string('text', 64);
             $table->string('logo', 64);
             $table->timestamps();
         });
