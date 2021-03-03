@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Counter;
 use App\Promo;
-use App\Setting;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -129,10 +129,9 @@ class KelolaPromoController extends Controller
 	{
 		/* ---------------------- teks wa untuk order langsung ---------------------- */
 		// ambil data setting nomor dan link dari table settings
-		$wa_api = Setting::select('setting_value')->firstWhere('setting_name', 'wa_link');
-		$wa_number = Setting::select('setting_value')->firstWhere('setting_name', 'promo_waNumber');
+		$wa = Contact::firstWhere('name', 'whatsapp');
 		// buat link whatsapp lengkap dengan textnya
-		$wa_link = $wa_api->setting_value . $wa_number->setting_value . "?text=";
+		$wa_link = $wa->link . $wa->contact . "?text=";
 
 		// ambil data promo paginate 6 per refresh
 		$promo_list = Promo::latest()->paginate(6)->toArray();
