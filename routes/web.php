@@ -26,8 +26,14 @@ Route::prefix('portfolio')->group(function () {
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
+Route::post('/booknow/book', 'BookNowController@store');
+Route::get('/booksuccess', function () {
+    return view('booksuccess');
+})->name('booksuccess');
 Route::get('/promo', 'PromoController@index')->name('promo');
 Route::get('/contact', 'ContactController@index')->name('contact');
+Route::get('/feedback', 'FeedbackController@index')->name('feedback');
+Route::post('/feedback/post', 'FeedbackController@store');
 
 // promo routes
 Route::get('/promo/get', 'KelolaPromoController@get')->name('promo.get');
@@ -80,6 +86,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.7) Kelola FAQ
     Route::get('faq', 'KelolaFAQController@index')->name('admin.faq');
+    Route::get('faq/create', 'KelolaFAQController@create')->name('admin.faq.create');
+    Route::post('faq/store', 'KelolaFAQController@store');
+    Route::get('faq/{faq:id}/edit', 'KelolaFAQController@edit');
+    Route::patch('faq/{faq:id}/edit', 'KelolaFAQController@update');
+    Route::delete('faq/{faq:id}/delete', 'KelolaFAQController@destroy');
 
     //2.8) Kelola Pesanan
     Route::get('pesanan', 'KelolaPesananController@index')->name('admin.pesanan');

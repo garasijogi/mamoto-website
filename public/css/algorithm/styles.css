@@ -392,3 +392,7 @@ footer p {
 .content {
   min-height: 60vh !important;
 }
+
+.al-mt-container {
+  margin-top: 5.3rem;
+}
