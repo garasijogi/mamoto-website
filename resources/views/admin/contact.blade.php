@@ -16,6 +16,8 @@
               <tr>
                 <th>Nama Kontak</th>
                 <th>Kontak</th>
+                <th data-toggle="tippy" data-title="Text yang akan tampil pada halaman kontak">Text</th>
+                <th data-toggle="tippy" data-title="Untuk mengarahkan pengguna menuju halaman sosial media dipilih">Link</th>
               </tr>
             </thead>
             <tbody>
@@ -26,7 +28,29 @@
                   <p class="m-0 contact-edit" data-id="{{ $value->name }}" data-toggle="tippy" data-title="Klik untuk edit">
                     {{ $value->contact }}</p>
                   <div class="input-group input-group-sm input-group-contact" style="display: none">
-                    <input type="text" class="form-control contact-input" value="{{ $value->contact }}">
+                    <input type="text" class="form-control input-edit" value="{{ $value->contact }}" data-input="contact">
+                    <span class="input-group-append">
+                      <button type="button" class="btn btn-primary btn-flat contact-submit"><i class="fa fa-save"></i>
+                        save</button>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <p class="m-0 contact-edit" data-id="{{ $value->name }}" data-toggle="tippy" data-title="Klik untuk edit">
+                    {{ $value->text }}</p>
+                  <div class="input-group input-group-sm input-group-contact" style="display: none">
+                    <input type="text" class="form-control input-edit" value="{{ $value->text }}" data-input="text">
+                    <span class="input-group-append">
+                      <button type="button" class="btn btn-primary btn-flat contact-submit"><i class="fa fa-save"></i>
+                        save</button>
+                    </span>
+                  </div>
+                </td>
+                <td>
+                  <p class="m-0 contact-edit" data-id="{{ $value->name }}" data-toggle="tippy" data-title="Klik untuk edit">
+                    {{ $value->link }}</p>
+                  <div class="input-group input-group-sm input-group-contact" style="display: none">
+                    <input type="text" class="form-control input-edit" value="{{ $value->link }}" data-input="link">
                     <span class="input-group-append">
                       <button type="button" class="btn btn-primary btn-flat contact-submit"><i class="fa fa-save"></i>
                         save</button>

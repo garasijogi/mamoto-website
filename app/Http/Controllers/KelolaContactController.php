@@ -18,14 +18,21 @@ class KelolaContactController extends Controller
     {
         $formData = $request->all();
         // validasi
-        $validator = Validator::make($formData,[
-            'contact' => 'required'
+        if($formData['input_name'] == 'contact' || $formData['input_name'] == 'text' || $formData['input_name'] == 'link'){
+            // successfull validation
+        } else {
+            return response()->json('forbidden', 403);
+        }
+        $validator = Validator::make($formData, [
+            'id' => 'required',
+            'input_name' => 'required',
+            'value' => 'required',
         ]);
         if($validator->fails()){
 			return response()->json($validator->errors(), 422);
         } else {
             $contact->where('name', $formData['id'])->update([
-                'contact' => $formData['contact']
+                $formData['input_name'] => $formData['value']
             ]);
 
             return response()->json('success');

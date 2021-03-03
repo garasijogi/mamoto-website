@@ -9,12 +9,13 @@ btn_submit.on('click', function(){
   const el_editor = $(this).parents(class_inputGroup_contact);
 
   let id = el_p.data('id');
+  let input_name = el_input.data('input');
   let value = el_input.val();
 
   if(value == "" || value == null){
     Toast.fire({ icon: 'error', title: 'Kontak tidak boleh kosong.' });
   } else {
-    saveContact(id, value, el_p, el_editor);
+    saveContact(id, input_name, value, el_p, el_editor);
   }
 });
 
@@ -24,19 +25,20 @@ input_edit.on('keyup', function(e){
     const el_editor = $(this).parents(class_inputGroup_contact);
 
     let id = el_p.data('id');
+    let input_name = $(this).data('input');
     let value = $(this).val();
 
     if(value == "" || value == null){
-      Toast.fire({ icon: 'error', title: 'Kontak tidak boleh kosong.' });
+      Toast.fire({ icon: 'error', title: 'Tidak boleh kosong.' });
     } else {
-      saveContact(id, value, el_p, el_editor);
+      saveContact(id, input_name, value, el_p, el_editor);
     }
   }
 });
 
 /* -------------------------------- function -------------------------------- */
-const saveContact = (id, value, el_p, el_editor) => {
-  // NOW buat ajax function untuk save ke database
+// untuk menyimpan data ke database
+const saveContact = (id, input_name, value, el_p, el_editor) => {
   $.ajax({
     headers: {
       'X-CSRF-TOKEN': token_csrf
@@ -44,7 +46,8 @@ const saveContact = (id, value, el_p, el_editor) => {
     url: url_save,
     data: {
       id: id,
-      contact: value
+      input_name: input_name,
+      value: value,
     },
     method: 'POST',
     beforeSend: function(){
