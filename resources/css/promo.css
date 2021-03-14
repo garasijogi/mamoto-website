@@ -1,3 +1,7 @@
+.container-promo{
+  color: #999;
+}
+
 .overlay-promo-modal {
   display: none;
   position: absolute;
