@@ -31,6 +31,7 @@ Route::get('/booksuccess', function () {
     return view('booksuccess');
 })->name('booksuccess');
 Route::get('/promo', 'PromoController@index')->name('promo');
+Route::get('/contact', 'ContactController@index')->name('contact');
 Route::get('/feedback', 'FeedbackController@index')->name('feedback');
 Route::post('/feedback/post', 'FeedbackController@store');
 
@@ -101,6 +102,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('kelolagambar/upload', 'kelolaGambarController@upload')->name('admin.uploadGambar');
     Route::get('kelolagambar/getIndex', 'kelolaGambarController@getIndex')->name('admin.uploadGetIndex');
     Route::post('kelolagambar/removeIndex', 'kelolaGambarController@removeIndex')->name('admin.uploadRemoveIndex');
+
+    //2.11) Kelola Contact
+    Route::get('contact', 'KelolaContactController@index')->name('admin.contact');
+    Route::post('contact/save', 'KelolaContactController@save')->name('admin.contact.save');
 
     /* ---------------------------------- MAIN SLUG ---------------------------------- */
     //2.9) Kelola Portofolio
