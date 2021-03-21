@@ -48,6 +48,10 @@ nav {
   padding: 6rem 5rem 5rem 5rem;
 }
 
+body:after{
+  content: url(/icons/arrow-right-hover.svg) url(/icons/arrow-left.svg);
+ }
+
 /* 3) Navigation Bar */
 .al-navbar {
   padding-left: 6rem;
@@ -160,6 +164,9 @@ body.login-page {
   background-repeat: no-repeat;
   width: 32px;
   height: 76px;
+  border:none;
+  background-color:transparent;
+  outline:none;
 }
 
 .al-arrow-right:hover{
@@ -180,6 +187,9 @@ body.login-page {
   height: 76px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+  border:none;
+  background-color:transparent;
+  outline:none;
 }
 
 .al-navigation-ul li {

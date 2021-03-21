@@ -7,8 +7,8 @@
         data-jumbotron4="{{ $jumbotrons[3]->path }}">
         <div class="row align-items-center">
             <div class="col d-flex">
-                <a href="#" class="al-arrow-left" onclick="changeJumbotron('previous')">
-                </a>
+                <button class="al-arrow-left" onclick="changeJumbotron('previous')">
+                    </a>
             </div>
             <div class="col-9 al-jumbotron">
                 <div id='jumbotron'>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="col d-flex flex-row-reverse">
-                <a href="#" id="1" class="al-arrow-right" onclick="changeJumbotron('next')"></a>
+                <button class="al-arrow-right" onclick="changeJumbotron('next')"></a>
             </div>
         </div>
     </div>
@@ -111,24 +111,40 @@
         @endforeach
     </div>
 
-    <div class="al-feedback al-dp my-5 py-5 text-center">
-        <h1>Testimoni</h1>
-        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="al-img-circle my-3">
-        <h5 class="font-italic col-6 m-auto">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum non magni asperiores error neque quas sint?
-            Alias aliquid repellat non sed nisi, illum ab nesciunt similique neque sunt eligendi voluptatem hic
-            molestias, ut rem dicta sint esse officiis assumenda expedita excepturi ipsa. Itaque mollitia odit
-            possimus
-            accusamus corrupti excepturi sequi quos molestias deleniti ipsa, amet dolorem cumque, suscipit
-            praesentium
-            repellat vel alias animi quasi nihil deserunt doloremque veniam repellendus qui. Commodi autem quos,
-            porro
-            repudiandae consequuntur quibusdam atque, eveniet quaerat modi, aut ut perferendis reprehenderit dolorem
-            dicta recusandae at vero veniam animi. Omnis aliquid magni cum, quia sint quisquam facere.
-        </h5>
-        <h4 class="pt-4">
-            - Azam & Nissa -
-        </h4>
+    <div class="al-feedback al-dp my-5 py-4 text-center">
+        <div class="row align-items-center">
+            <div class="col-2">
+                <div class="col d-flex">
+                    <button class="al-arrow-left"
+                        onclick="changeFeedback('previous', {{ count($displayed_feedbacks) }})">
+                        </a>
+                </div>
+            </div>
+            <div class="col-8">
+                <h1>Testimoni</h1>
+                @foreach ($displayed_feedbacks as $index => $df)
+                <div class="{{ $index > 0 ? 'd-none '. $index : 'feedback-selected '. $index }}">
+                    <img src="{{ $df->photo_path }}" alt="Avatar" class="al-img-circle my-3">
+                    <h5 class="font-italic col-6 m-auto">
+                        {{ $df->feedback->kesan_pesan}}
+                    </h5>
+                    <h5 class="font-italic col-6 m-auto">
+                        {{ $df->feedback->kritik_saran}}
+                    </h5>
+                    <h4 class="pt-4">
+                        - {{ $df->feedback->mempelai_wanita }} & {{ $df->feedback->mempelai_pria }} -
+                    </h4>
+                </div>
+                @endforeach
+            </div>
+            <div class="col-2">
+                <div class="col d-flex flex-row-reverse">
+                    <button class="al-arrow-right"
+                        onclick="changeFeedback('next', {{ count($displayed_feedbacks) }})"></a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>

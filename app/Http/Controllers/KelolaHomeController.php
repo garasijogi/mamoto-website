@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Company_jumbotron;
+use App\Displayed_feedback;
 use App\Displayed_portfolio;
+use App\Feedback;
+use App\Http\Requests\Displayed_feedbackRequest;
 use App\Portfolio_type;
 use App\User;
 use Faker\Provider\Image;
@@ -16,7 +19,9 @@ class KelolaHomeController extends Controller
     {
         $jumbotrons = Company_jumbotron::get();
         $displayed_portfolios = Displayed_portfolio::with('portfolio')->get();
-        return view('admin.home', compact('jumbotrons', 'displayed_portfolios'));
+        $displayed_feedbacks = Displayed_feedback::all();
+        $feedbacks = Feedback::whereNotIn('id', $displayed_feedbacks->pluck('feedback_id')->whereNotNull())->get();
+        return view('admin.home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'feedbacks'));
     }
 
     public function jumbotron()
@@ -77,6 +82,25 @@ class KelolaHomeController extends Controller
         $dp->update($attr);
         //flash message
         session()->flash('success', 'Portfolio yang ditampilkan telah diganti');
+        //return back
+        return redirect('admin/home');
+    }
+
+    public function update_df(Displayed_feedbackRequest $request, User $user)
+    {
+        $this->authorize('update', $user);
+        $photo = str_replace('data:image/png;base64,', '', $request->inputCustomerFile);
+        $photo = str_replace(' ', '+', $photo);
+        $fileName = 'fb_photo' . $request->dp_id . '.png';
+        Storage::put("public/images/feedback/" . $fileName, base64_decode($photo));
+
+        $attr = [
+            'feedback_id' => $request->feedback_id,
+            'photo_path' => '/storage/images/feedback/' . $fileName
+        ];
+
+        Displayed_feedback::find($request->dp_id)->update($attr);
+        session()->flash('success', 'Feedback yang ditampilkan telah diganti.');
         //return back
         return redirect('admin/home');
     }
