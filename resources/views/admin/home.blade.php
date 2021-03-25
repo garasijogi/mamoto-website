@@ -29,7 +29,7 @@
                     @foreach ($jumbotrons as $index => $jumbotron)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                         <img class="d-block w-100" height="300px" style="object-fit: contain;"
-                            src="{{ $jumbotron->path }}" alt="slide {{ $index+1 }}">
+                            src="{{ $jumbotron->path ?? "/images/no-image.png" }}" alt="slide {{ $index+1 }}">
                     </div>
                     @endforeach
                 </div>
@@ -89,7 +89,10 @@
                     @endif
                 </div>
                 <div class="col-12 text-center p-2">
-                    <a href="/admin/displayed-portfolio/W" class="btn btn-sm btn-primary text-white">
+                    <h6>
+                        {{ $dp->portfolio->name }}
+                    </h6>
+                    <a href="/admin/displayed-portfolio/{{ $dp->pfType_id }}" class="btn btn-sm btn-primary text-white">
                         Ganti Portfolio
                     </a>
                 </div>
@@ -153,10 +156,20 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <button data-id="{{ $df->id }}" data-toggle="modal" data-target="#feedback-modal"
-                                class="btn change-feedback btn-sm btn-primary">
-                                Ganti
-                            </button>
+                            <div class="row">
+                                <div class="col px-0">
+                                    <button data-id="{{ $df->id }}" data-toggle="modal" data-target="#feedback-modal"
+                                        class="btn change-feedback btn-sm btn-primary mx-0">
+                                        Ganti
+                                    </button>
+                                </div>
+                                <div class="col px-0">
+                                    <a data-id="{{ $df->id }}" data-toggle="modal" data-target="#reset-feedback-modal"
+                                        class="text-white btn reset-feedback btn-sm btn-danger">
+                                        Reset
+                                    </a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
@@ -226,7 +239,8 @@
                         <div class="img-container">
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-8">
-                                    <img id="image" src="" alt='Your image' width="250px" height="250px">
+                                    <img id="image" src="/images/no-image.png" alt='Your image' width="250px"
+                                        height="250px">
                                 </div>
                             </div>
                         </div>
@@ -272,6 +286,25 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-primary" onclick="crop_image()">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- modal for reset feedback --}}
+<div class="modal fade" id="reset-feedback-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Konfirmasi</h5>
+            </div>
+            <div class="modal-body">
+                <h6>Apakah Anda yakin ingin mereset feedback ke- yang ditampilkan?</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Ya</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             </div>
         </div>
     </div>

@@ -193,7 +193,10 @@ $("#crop").on('click', function () {
     reader.readAsDataURL(blob);
     reader.onloadend = function () {
       var base64data = reader.result;
+      console.log(base64data)
       $("#image").attr("src", base64data);
+      $("#jumbo" + index).attr("src", base64data);
+      $("#inputjumbo" + index).attr("value", base64data);
       $modal.modal('hide');
     }
   });
@@ -284,6 +287,15 @@ $('.change-feedback').on('click', function () {
 
 $('.dp-id').on('click', function () {
   $('#feedback_id').attr('value', $(this).data('id'));
+})
+
+$('.reset-feedback').on('click', function () {
+  $('#reset-feedback-modal .modal-body h6').text('Apakah Anda yakin ingin mereset feedback ke-' + $(this).data('id') + ' yang ditampilkan?');
+  $('#reset-feedback-modal .modal-footer button.btn-primary').attr('data-id', $(this).data('id'));
+})
+
+$('#reset-feedback-modal .modal-footer button.btn-primary').on('click', function () {
+  window.location.href = '/admin/displayed-feedback/' + $(this).data('id') + '/clear';
 })
 
 

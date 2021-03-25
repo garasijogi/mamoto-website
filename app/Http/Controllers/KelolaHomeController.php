@@ -104,4 +104,22 @@ class KelolaHomeController extends Controller
         //return back
         return redirect('admin/home');
     }
+
+    public function clear_df(Displayed_feedback $df, User $user)
+    {
+        $this->authorize('update', $user);
+
+        $photo_path = (explode('/storage', $df->photo_path)[1]);
+        \Storage::delete('public' . $photo_path);
+
+        $attr = [
+            'feedback_id' => null,
+            'photo_path' => null
+        ];
+
+        Displayed_feedback::find($df->id)->update($attr);
+        session()->flash('success', 'Feedback yang ditampilkan telah direset.');
+
+        return redirect('admin/home');
+    }
 }

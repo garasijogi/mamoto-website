@@ -66,7 +66,7 @@ class AlgorithmTableSeeder extends Seeder
         \App\Company_jumbotron::insert([
             [
                 'id' => 1,
-                'path' => '/storage/images/jumbotron/jumbotron1.png',
+                'path' => null,
                 'name' => 'jumbotron1',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -74,7 +74,7 @@ class AlgorithmTableSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'path' => '/storage/images/jumbotron/jumbotron2.png',
+                'path' => null,
                 'name' => 'jumbotron2',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -82,7 +82,7 @@ class AlgorithmTableSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'path' => '/storage/images/jumbotron/jumbotron3.png',
+                'path' => null,
                 'name' => 'jumbotron3',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -90,7 +90,7 @@ class AlgorithmTableSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'path' => '/storage/images/jumbotron/jumbotron4.png',
+                'path' => null,
                 'name' => 'jumbotron4',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),

@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body class="user-body">
   @include('layouts.navigation')
   <div id="app">
     <div class="content">
