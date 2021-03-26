@@ -89,9 +89,12 @@
                     @endif
                 </div>
                 <div class="col-12 text-center p-2">
+                    @if (!empty($dp->portfolio->name))
                     <h6>
                         {{ $dp->portfolio->name }}
                     </h6>
+                    @endif
+
                     <a href="/admin/displayed-portfolio/{{ $dp->pfType_id }}" class="btn btn-sm btn-primary text-white">
                         Ganti Portfolio
                     </a>
