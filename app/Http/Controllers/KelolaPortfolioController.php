@@ -67,7 +67,7 @@ class KelolaPortfolioController extends Controller
                 $images_data[$index]['type'] = $image->getClientOriginalExtension();
                 $images_data[$index]['size'] = $image->getSize();
                 $images_data[$index]['date_uploaded'] = date('d-m-Y');
-                $image->storeAs("public/images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
+                $image->storeAs("images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
             }
             $imagesList = json_encode($images_data);
         }
@@ -138,7 +138,7 @@ class KelolaPortfolioController extends Controller
         // delete image if requests exist
         if (isset($request->imgDel)) {
             foreach ($request->imgDel as $imgDel) {
-                \Storage::delete('public/images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug . '/' . $photoArray[$imgDel]['name']);
+                \Storage::delete('images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug . '/' . $photoArray[$imgDel]['name']);
                 unset($photoArray[$imgDel]);
             };
             $photoArray = \array_values($photoArray);
@@ -152,7 +152,7 @@ class KelolaPortfolioController extends Controller
                 $images_data[$index]['type'] = $image->getClientOriginalExtension();
                 $images_data[$index]['size'] = $image->getSize();
                 $images_data[$index]['date_uploaded'] = date('d-m-Y');
-                $image->storeAs("public/images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
+                $image->storeAs("images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
             }
             $photoArray = array_merge($photoArray, $images_data);
             $photoArray = json_decode(json_encode($photoArray), true);
@@ -209,7 +209,7 @@ class KelolaPortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
-        \Storage::deleteDirectory('public/images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug);
+        \Storage::deleteDirectory('images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug);
         $this->authorize('delete', $portfolio);
         $portfolio->delete();
         session()->flash('error', 'Portfolio telah dihapus');

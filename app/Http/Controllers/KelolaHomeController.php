@@ -53,7 +53,7 @@ class KelolaHomeController extends Controller
         $jumbotron_data = str_replace('data:image/png;base64,', '', $jumbotron_data);
         $jumbotron_data = str_replace(' ', '+', $jumbotron_data);
         $fileName = 'jumbotron' . $jumbotron->id . '.png';
-        Storage::put("public/images/jumbotron/" . $fileName, base64_decode($jumbotron_data));
+        Storage::put("images/jumbotron/" . $fileName, base64_decode($jumbotron_data));
 
         //update data jumbotron
         $this->authorize('update', $user);
@@ -92,7 +92,7 @@ class KelolaHomeController extends Controller
         $photo = str_replace('data:image/png;base64,', '', $request->inputCustomerFile);
         $photo = str_replace(' ', '+', $photo);
         $fileName = 'fb_photo' . $request->dp_id . '.png';
-        Storage::put("public/images/feedback/" . $fileName, base64_decode($photo));
+        Storage::put("images/feedback/" . $fileName, base64_decode($photo));
 
         $attr = [
             'feedback_id' => $request->feedback_id,
