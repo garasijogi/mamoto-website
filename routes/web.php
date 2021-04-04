@@ -59,6 +59,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::patch('jumbotron/{jumbotron:id}/edit', 'KelolaHomeController@update_jumbotron');
     Route::get('displayed-portfolio/{id}', 'KelolaHomeController@displayed_portfolio')->name('admin.displayedportfolio');
     Route::patch('displayed-portfolio/{pftype}/edit', 'KelolaHomeController@update_dp');
+    Route::patch('displayed-feedback/edit', 'KelolaHomeController@update_df');
+    Route::get('displayed-feedback/{df:id}/clear', 'KelolaHomeController@clear_df');
 
     //2.4) Kelola Portfolio
     Route::get('portfolio', 'KelolaPortfolioController@index')->name('admin.portfolio');

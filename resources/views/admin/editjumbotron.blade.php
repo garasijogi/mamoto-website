@@ -23,8 +23,7 @@
                 <div class="col-4">
                     <img id="jumbo{{ $index+1 }}" width="350px" height="200px"
                         style="display: block;object-fit: contain;max-width:100%"
-                        src="{{ file_exists($jumbotron->path) ? $jumbotron->path : "/images/no-image.png" }}"
-                        alt="Jumbotron {{ $index+1 }}">
+                        src="{{$jumbotron->path ?? "/images/no-image.png" }}" alt="Jumbotron {{ $index+1 }}">
                 </div>
                 <div class="col-8">
                     {{-- photo --}}

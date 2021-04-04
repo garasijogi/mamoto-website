@@ -15,7 +15,7 @@ class CreateCompanyJumbotronsTable extends Migration
     {
         Schema::create('company_jumbotrons', function (Blueprint $table) {
             $table->id();
-            $table->text('path');
+            $table->text('path')->nullable();
             $table->string('name');
             $table->date('date');
             $table->timestamps();

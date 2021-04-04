@@ -193,8 +193,10 @@ $("#crop").on('click', function () {
     reader.readAsDataURL(blob);
     reader.onloadend = function () {
       var base64data = reader.result;
-      $("#jumbo" + index).attr("src", base64data)
-      $('#inputjumbo' + index).attr('value', base64data);
+      console.log(base64data)
+      $("#image").attr("src", base64data);
+      $("#jumbo" + index).attr("src", base64data);
+      $("#inputjumbo" + index).attr("value", base64data);
       $modal.modal('hide');
     }
   });
@@ -224,4 +226,87 @@ function changeJumbotron(where) {
       $('.al-jumbotron-carousel').css('background-image', url);
     })
     .fadeIn(500);
+}
+
+// displayed feedback on kelola home
+function modalCustomerPhotoUpload() {
+  $('#feedback-modal').modal('hide');
+  $('.modal-backdrop').remove();
+}
+
+$("#customer-photo").on("change", function (e) {
+  var files = e.target.files;
+
+  for (let i = 0; i < files.length; i++) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $("#image").attr("src", e.target.result);
+      $("#image-cropped").attr("src", e.target.result);
+    };
+    reader.readAsDataURL(files[i]);
+  }
+
+  $('#modal').modal("show");
+  $('#modal').on('shown.bs.modal', function () {
+    cropper = $("#image-cropped").cropper({
+      aspectRatio: 1 / 1,
+      viewMode: 3
+    });
+  }).on('hidden.bs.modal', function () {
+    $('#image-cropped').cropper('destroy');
+    cropper = null;
+  });
+});
+
+function crop_image() {
+  var canvas = $('#image-cropped').cropper('getCroppedCanvas', {
+    width: 512,
+    height: 512,
+  });
+
+  canvas.toBlob(function (blob) {
+    url = URL.createObjectURL(blob);
+    var reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = function () {
+      var base64data = reader.result;
+      $("#image").attr("src", base64data);
+      $('#inputCustomerFile').attr('value', base64data);
+      $("#modal").modal('hide');
+    }
+  });
+}
+
+function submitForm(formName) {
+  $('#' + formName).submit();
+}
+
+$('.change-feedback').on('click', function () {
+  $('#dp_id').attr('value', $(this).data('id'));
+})
+
+$('.dp-id').on('click', function () {
+  $('#feedback_id').attr('value', $(this).data('id'));
+})
+
+$('.reset-feedback').on('click', function () {
+  $('#reset-feedback-modal .modal-body h6').text('Apakah Anda yakin ingin mereset feedback ke-' + $(this).data('id') + ' yang ditampilkan?');
+  $('#reset-feedback-modal .modal-footer button.btn-primary').attr('data-id', $(this).data('id'));
+})
+
+$('#reset-feedback-modal .modal-footer button.btn-primary').on('click', function () {
+  window.location.href = '/admin/displayed-feedback/' + $(this).data('id') + '/clear';
+})
+
+
+//feedback on home user
+function changeFeedback(where, size) {
+  let index = parseInt(($('.feedback-selected').attr("class").split(/\s+/))[1]);
+  size = parseInt(size);
+  let goTo = index;
+  where == 'next' ? goTo++ : goTo--;
+  goTo + 1 > size ? goTo = 0 : '';
+  goTo < 0 ? goTo = size - 1 : '';
+  $('.feedback-selected').attr("class", 'd-none ' + index);
+  $('.' + goTo).attr("class", "feedback-selected " + goTo);
 }
