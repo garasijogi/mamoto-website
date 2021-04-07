@@ -161,5 +161,13 @@ class AlgorithmTableSeeder extends Seeder
                 'updated_at' => Carbon::now()
             ],
         ]);
+
+        //Displayed promo table
+        \App\DisplayedPromo::insert([
+            [
+                'id' => 1,
+                'promo_id' => null
+            ],
+        ]);
     }
 }

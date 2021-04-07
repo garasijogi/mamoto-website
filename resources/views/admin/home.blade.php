@@ -27,8 +27,10 @@
                 </ol>
                 <div class="carousel-inner">
                     @foreach ($jumbotrons as $index => $jumbotron)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <img class="d-block w-100" height="300px" style="object-fit: contain;"
+                    <div
+                        class="carousel-item {{ !empty($jumbotron->path) ? '' : 'bg-dark'  }} {{ $index === 0 ? 'active' : '' }}">
+                        <img class="d-block w-100 shadow-sm {{ !empty($jumbotron->path) ? '' : 'al-invert'  }}"
+                            height="300px" style="object-fit: contain;"
                             src="{{ $jumbotron->path ?? "/images/no-image.png" }}" alt="slide {{ $index+1 }}">
                     </div>
                     @endforeach
@@ -110,17 +112,20 @@
     </div>
     <div class="row text-center">
         <div class="col-12">
-            <img width='500px' height='250px' style='object-fit:cover;'
-                src="https://i0.wp.com/www.theweddingvowsg.com/wp-content/uploads/2016/09/wedding-photographers-indonesia-Featured-photo-Bunn-Salarzon.jpg?resize=960%2C637&ssl=1"
+            <img width='500px' height='250px' style='object-fit:contain;'
+                src="{{ !empty($displayed_promo->photo) ? '/storage/'.$displayed_promo->photo : '/images/no-image.png' }}"
                 alt="Card image cap">
         </div>
         <div class="col-12 p-2">
-            <h6>Promo Akhir Bulan serba 20%</h6>
+            <h6>{{ $displayed_promo->name ?? 'Belum ada promo yang dipilih' }}</h6>
         </div>
         <div class="col-12 pb-2">
-            <button class="btn btn-sm btn-primary">
+            <a class="btn btn-sm btn-primary" href="{{ route('admin.displayedpromo') }}">
                 Ganti Promo
-            </button>
+            </a>
+            <a class="btn btn-sm btn-danger" href="/admin/displayed-promo/0/edit">
+                Reset
+            </a>
         </div>
     </div>
 
@@ -280,7 +285,7 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-8 al-cropper-height">
                             <img id="image-cropped" src="" alt='Your image'>
                         </div>
                     </div>

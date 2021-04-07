@@ -250,7 +250,8 @@ $("#customer-photo").on("change", function (e) {
   $('#modal').on('shown.bs.modal', function () {
     cropper = $("#image-cropped").cropper({
       aspectRatio: 1 / 1,
-      viewMode: 3
+      viewMode: 2,
+      dragMode: 'move'
     });
   }).on('hidden.bs.modal', function () {
     $('#image-cropped').cropper('destroy');

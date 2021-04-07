@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Company_jumbotron;
 use App\Displayed_feedback;
 use App\Displayed_portfolio;
+use App\DisplayedPromo;
 use App\Feedback;
 use App\Http\Requests\Displayed_feedbackRequest;
 use App\Portfolio_type;
+use App\Promo;
 use App\User;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
@@ -17,11 +19,12 @@ class KelolaHomeController extends Controller
 {
     public function index()
     {
+        $displayed_promo = DisplayedPromo::find(1)->promo;
         $jumbotrons = Company_jumbotron::get();
         $displayed_portfolios = Displayed_portfolio::with('portfolio')->get();
         $displayed_feedbacks = Displayed_feedback::all();
         $feedbacks = Feedback::whereNotIn('id', $displayed_feedbacks->pluck('feedback_id')->whereNotNull())->get();
-        return view('admin.home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'feedbacks'));
+        return view('admin.home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'feedbacks', 'displayed_promo'));
     }
 
     public function jumbotron()
@@ -72,6 +75,38 @@ class KelolaHomeController extends Controller
         $portfolios = $portfolio_type->find($id)->portfolios()->latest()->paginate(10);
         $pftype = $id;
         return view('admin.editdisplayedportfolio', compact('portfolios', 'pftype'));
+    }
+
+    public function displayed_promo()
+    {
+        $promos = Promo::all();
+        return view('admin.editdisplayedpromo', compact('promos'));
+    }
+
+    public function update_displayed_promo($id)
+    {
+        $displayed_promo = DisplayedPromo::find(1);
+        if ($id != 0) {
+            $promo = Promo::find($id);
+            $displayed_promo->update([
+                'promo_id' => $promo->id
+            ]);
+
+            //flash message
+            session()->flash('success', 'Promo yang ditampilkan telah diganti');
+        } else {
+            session()->flash('success', 'Promo yang ditampilkan telah direset');
+            $this->reset_displayed_promo($displayed_promo);
+        }
+        //return back
+        return redirect('admin/home');
+    }
+
+    public function reset_displayed_promo($displayed_promo)
+    {
+        $displayed_promo->update([
+            'promo_id' => null
+        ]);
     }
 
     public function update_dp(Request $request, User $user, $pftype)

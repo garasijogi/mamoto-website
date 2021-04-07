@@ -415,3 +415,17 @@ img#image {
 .cropper-disabled .cropper-point {
   cursor: not-allowed;
 }
+
+.al-cropper-height {
+  max-height: 80vh;
+  min-height: 70vh;
+}
+
+.al-promo-card:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.al-invert {
+    filter: brightness(0) invert(1);
+}
