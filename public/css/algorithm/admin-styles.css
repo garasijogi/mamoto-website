@@ -5,6 +5,18 @@
   }
 }
 
+/* color configs */
+:root {
+  --goldbrown: #888888;
+  --pipiss: #F8EDEB;
+  --darkgrey: #999999;
+  --verylightgrey: #f2f2f2;
+}
+
+.al-grey-color {
+  color: var(--darkgrey);
+}
+
 .al-portfolio-link, .al-portfolio-link:hover {
   color: inherit;
 }

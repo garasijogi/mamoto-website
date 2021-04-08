@@ -14,9 +14,10 @@
 <div class="px-4">
     <div class="row">
 
+        @if ($promos->count() > 0)
         @foreach ($promos as $promo)
         <div class="col-6 al-promo-card">
-            <a href="/admin/displayed-promo/{{ $promo->id }}/edit" class="text-dark">
+            <a href="/admin/displayed-promo/{{ $promo->id }}/add" class="text-dark">
                 <div class="card">
                     <div class="row">
                         <div class="col-6">
@@ -35,6 +36,11 @@
             </a>
         </div>
         @endforeach
+        @else
+        <h6 class="al-grey-color pl-2">
+            Tidak ada data promo atau seluruh promo telah dipilih.
+        </h6>
+        @endif
 
     </div>
 </div>

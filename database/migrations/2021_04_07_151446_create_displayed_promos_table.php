@@ -17,7 +17,7 @@ class CreateDisplayedPromosTable extends Migration
             $table->id();
             $table->string('promo_id', 14)->nullable();
 
-            $table->foreign('promo_id')->references('id')->on('promos')->onDelete('set null');
+            $table->foreign('promo_id')->references('id')->on('promos')->onDelete('cascade');
         });
     }
 

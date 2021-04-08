@@ -1,30 +1,35 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - Home')
 @section('content')
-<div class="al-home-jumbotron al-full-content">
-    <div class="al-jumbotron-carousel al-container" data-now="1" data-jumbotron1="{{ $jumbotrons[0]->path }}"
-        data-jumbotron2="{{ $jumbotrons[1]->path }}" data-jumbotron3="{{ $jumbotrons[2]->path }}"
-        data-jumbotron4="{{ $jumbotrons[3]->path }}">
-        <div class="row align-items-center">
-            <div class="col d-flex">
-                <button class="al-arrow-left" onclick="changeJumbotron('previous')">
-                    </a>
-            </div>
-            <div class="col-9 al-jumbotron">
-                <div id='jumbotron'>
-                    <div>
-                        <h6 class="al-jumbotron-text">Let's talk about your moment</h6>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex flex-row-reverse">
-                <button class="al-arrow-right" onclick="changeJumbotron('next')"></a>
-            </div>
+
+<div id="jumbotron-carousel" class="carousel slide al-home-jumbotron al-full-content" data-ride="carousel">
+    <div id='jumbotron'>
+
+    </div>
+    <div class="al-jumbotron-text-wrapper">
+        <h6 class="al-jumbotron-text">Let's talk about your moment</h6>
+    </div>
+    <div class="carousel-inner">
+        <div class="col-12 al-jumbotron al-jumbotron-carousel-1 al-container carousel-item active">
+
         </div>
+        <div class="col-12 al-jumbotron al-jumbotron-carousel-2 al-container carousel-item">
+        </div>
+        <div class="col-12 al-jumbotron al-jumbotron-carousel-3 al-container carousel-item">
+        </div>
+        <div class="col-12 al-jumbotron al-jumbotron-carousel-4 al-container carousel-item">
+        </div>
+
+        <a class="carousel-control-prev" href="#jumbotron-carousel" role="button" data-slide="prev">
+            <button class="al-arrow-left"></button>
+        </a>
+        <a class="carousel-control-next" href="#jumbotron-carousel" role="button" data-slide="next">
+            <button class="al-arrow-right"></button>
+        </a>
     </div>
 </div>
 <div>
-    <div class="al-displayed-portfolios">
+    <div class="al-displayed-portfolios pt-4">
         <p class="text-center al-dp-title al-grey-color">
             Our Latest Project
         </p>
@@ -111,41 +116,57 @@
         @endforeach
     </div>
 
-    <div class="al-feedback al-dp my-5 py-4 text-center">
+    {{-- 
+    @if (!empty($promo))
+    <div class="al-dp py-4 text-center">
         <div class="row align-items-center">
             <div class="col-2">
                 <div class="col d-flex">
-                    <button class="al-arrow-left"
-                        onclick="changeFeedback('previous', {{ count($displayed_feedbacks) }})">
-                        </a>
+
                 </div>
             </div>
             <div class="col-8">
-                <h1>Testimoni</h1>
-                @foreach ($displayed_feedbacks as $index => $df)
-                <div class="{{ $index > 0 ? 'd-none '. $index : 'feedback-selected '. $index }}">
-                    <img src="{{ $df->photo_path }}" alt="Avatar" class="al-img-circle my-3">
+                <h1 class="al-grey-color al-dp-title">Promo</h1>
+            </div>
+            <div class="col-2">
+                <div class="col d-flex flex-row-reverse">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif --}}
+
+    @if ($displayed_feedbacks->count() > 0)
+    <div class="al-feedback al-dp my-5 py-4 text-center">
+        <div id="feedback-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <h1 class="al-dp-title">Testimoni</h1>
+                @foreach ($displayed_feedbacks as $index => $displayed_feedback)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <img src="{{ $displayed_feedback->photo_path }}" alt="Avatar" class="al-img-circle my-3">
                     <h5 class="font-italic col-6 m-auto">
-                        {{ $df->feedback->kesan_pesan}}
+                        {{ $displayed_feedback->feedback->kesan_pesan}}
                     </h5>
                     <h5 class="font-italic col-6 m-auto">
-                        {{ $df->feedback->kritik_saran}}
+                        {{ $displayed_feedback->feedback->kritik_saran}}
                     </h5>
                     <h4 class="pt-4">
-                        - {{ $df->feedback->mempelai_wanita }} & {{ $df->feedback->mempelai_pria }} -
+                        - {{ $displayed_feedback->feedback->mempelai_wanita }} &
+                        {{ $displayed_feedback->feedback->mempelai_pria }} -
                     </h4>
                 </div>
                 @endforeach
             </div>
-            <div class="col-2">
-                <div class="col d-flex flex-row-reverse">
-                    <button class="al-arrow-right"
-                        onclick="changeFeedback('next', {{ count($displayed_feedbacks) }})"></a>
-                </div>
-            </div>
+            <a class="carousel-control-prev" href="#feedback-carousel" role="button" data-slide="prev">
+                <button class="al-arrow-left"></button>
+            </a>
+            <a class="carousel-control-next" href="#feedback-carousel" role="button" data-slide="next">
+                <button class="al-arrow-right"></button>
+            </a>
         </div>
-
     </div>
+    @endif
 
 </div>
 @endsection
