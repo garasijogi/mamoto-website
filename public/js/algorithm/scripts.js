@@ -176,10 +176,10 @@ $("#crop").on('click', function () {
     reader.readAsDataURL(blob);
     reader.onloadend = function () {
       var base64data = reader.result;
-      console.log(base64data)
       $("#image").attr("src", base64data);
       $("#jumbo" + index).attr("src", base64data);
       $("#inputjumbo" + index).attr("value", base64data);
+      $('.form-jumbotron-' + index).trigger('submit');
       $modal.modal('hide');
     }
   });
