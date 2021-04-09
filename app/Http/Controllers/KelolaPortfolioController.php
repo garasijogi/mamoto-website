@@ -37,7 +37,6 @@ class KelolaPortfolioController extends Controller
                 break;
         }
         return view('admin.showportfolio', compact('portfolio', 'jenis_portfolio'));
-        // return view('posts.show', compact('post', 'posts'));
     }
 
     public function create()
@@ -110,7 +109,6 @@ class KelolaPortfolioController extends Controller
             'slug' => \Str::slug(request('name')),
         ];
 
-        // dd($attr);
         //create new portfolio
         Portfolio::create($attr);
         // flash message
@@ -133,7 +131,6 @@ class KelolaPortfolioController extends Controller
         //authorize
         $this->authorize('update', $portfolio);
         $photoArray = json_decode($portfolio->photo, true);
-        // dd($photoArray);
 
         // delete image if requests exist
         if (isset($request->imgDel)) {
