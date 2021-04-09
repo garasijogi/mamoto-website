@@ -38,7 +38,7 @@
         @foreach ($displayed_portfolios as $index => $dp)
         @if (!empty($dp->portfolio))
         <a href="/portfolio/{{ $dp->portfolio->pfType_id }}/{{ $dp->portfolio->slug }}"
-            class="d-block text-decoration-none">
+            class="d-block text-decoration-none" data-aos="fade-{{ $index % 2 != 0 ? 'left' : 'right' }}">
             <div class="row al-dp-card {{ $index > 0 ? 'py-5' : 'pb-5 pt-3' }}">
                 @if ($index % 2 != 0)
                 <div class="col-4 align-self-center">
@@ -138,7 +138,7 @@
     @endif --}}
 
     @if ($displayed_feedbacks->count() > 0)
-    <div class="al-feedback al-dp my-5 py-4 text-center">
+    <div class="al-feedback al-dp my-5 py-4 text-center" data-aos="fade-up">
         <div id="feedback-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <h1 class="al-dp-title">Testimoni</h1>

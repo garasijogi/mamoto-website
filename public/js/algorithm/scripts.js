@@ -1,4 +1,9 @@
 // 1) User
+// animate on scroll library
+AOS.init({
+  offset: 350,
+  duration: 800
+});
 
 // 2) Admin
 // delete user

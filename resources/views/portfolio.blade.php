@@ -21,11 +21,11 @@ Portfolio - {{$title}}
     <div class="al-portfolio-cards-content">
       <div class="row d-flex justify-content-center">
         @if($portfolios->isEmpty())
-            <h6 class="py-5 al-grey-color">Belum ada Portfolio untuk ditampilkan.</h6>
+        <h6 class="py-5 al-grey-color">Belum ada Portfolio untuk ditampilkan.</h6>
         @endif
         @foreach ($portfolios as $portfolio)
         @foreach (array_slice(json_decode($portfolio->photo), 0, 1) as $index => $photo)
-        <div class="col-6 px-5 al-portfolio-card text-center">
+        <div class="col-6 px-5 al-portfolio-card text-center" data-aos="{{ $index > 0 ? 'fade-up' : '' }}">
           <a href="/portfolio/{{ $portfolio->pfType_id }}/{{ $portfolio->slug }}" class="d-block text-decoration-none">
             <img width='420px' height='350px' style='object-fit:cover;'
               src="/storage/images/portfolio/{{$portfolio->pfType_id}}/{{$portfolio->slug}}/{{$photo->name}}"

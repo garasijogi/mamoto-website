@@ -21,7 +21,8 @@ Portfolio - {{$title}}
     <div class="al-portfolio-cards-content">
       @foreach (json_decode($portfolio->photo) as $index => $photo)
       <div class="py-3"></div>
-      <div class="col-12 px-5 py-4 al-portfolio-card text-center">
+      <div class="col-12 px-5 py-4 al-portfolio-card text-center"
+        data-aos="{{ $index > 0 ? ($index % 2 != 0 ?  'fade-left' : 'fade-right') : '' }}">
         <div id='{{$index}}' onclick="alImageView(this.id, 'id')">
           <img class='{{$index}}' width='720px' height='500px' style='object-fit:cover;'
             src="/storage/images/portfolio/{{$portfolio->pfType_id}}/{{$portfolio->slug}}/{{$photo->name}}"
