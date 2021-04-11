@@ -24,21 +24,20 @@
       {{-- content --}}
       <div class="row promo-content">
         {{-- example code of card content --}}
-        {{-- <div class="col-lg-6 col-12 card-promo">
+        {{-- <div div class="col-lg-6 col-12 card-promo">
           <div class="card mb-3" style="max-width:100%">
             <div class="row no-gutters">
-              <div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '">
-              </div>
+              <div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '"
+                  alt="Poster Promo ->' + value.name + '"></div>
               <div class="col-lg-7 col-md-8">
                 <div class="card-body h-100 card-body-promo-card">
-                  <h5 class="card-title">' + value.name + '</h5>
-                  <p class="card-text mb-0">' +value.post+'</p>
+                  <h5 class="card-title font-weight-bolder">' + value.name + '</h5>
+                  <p class="card-text mb-0 font-weight-lighter">' + value.post + '</p>
                   <p class="card-text"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p>
                   <div class="d-flex justify-content-end btn-promo-container">
-                    <div class="btn-group" data-id="' + value.id +'">
-                      <button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button>
-                      <button class="btn btn-primary btn-promo-edit"><i class="fa fa-eye"></i></button>
-                    </div>
+                    <div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i
+                          class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i
+                          class="fa fa-eye"></i></button></div>
                   </div>
                 </div>
               </div>
@@ -68,7 +67,8 @@
       <div class="d-flex justify-content-center mb-3">
         <div class="rr-promo-noPromo-image-container"
           style="background-image: url({{ asset('images/default/discount.svg') }}); background-repeat: round;">
-          {{-- <img class="rr-image-responsive" src="{{ asset('images/default/discount.svg') }}"alt="tidak ada promo yang
+          {{-- <img class="rr-image-responsive" src="{{ asset('images/default/discount.svg') }}"alt="tidak ada promo
+          yang
           ditambahkan"> --}}
         </div>
       </div>
@@ -101,7 +101,13 @@
               </div>
               <div class="form-group">
                 <label for="promo-post">Keterangan</label>
-                <textarea name="post" class="form-control" id="promo-post" rows="5" placeholder="Keterangan Promo"></textarea>
+                <textarea name="post" class="form-control" id="promo-post" rows="5"
+                  placeholder="Keterangan Promo"></textarea>
+              </div>
+              <div class="form-group">
+                <label for="period">periode</label>
+                <input name="daterange" type="text" class="form-control" id="period" placeholder="Periode Promo">
+                <input name="period" type="hidden" id="period-hidden">
               </div>
               <div class="form-group">
                 <label for="promo-link">Teks Whatsapp</label>
@@ -121,9 +127,11 @@
             <div class="row justify-content-center image-promo-container">
               <div class="col-lg-7 col-sm-8 col card mb-0 p-3 m-sm-0 m-4">
                 <label class="label mb-0 rr-promo-add-label">
-                  <img class="rounded rr-image-responsive rr-promo-add-image" src="{{ asset('images/default/image.svg') }}" alt="image poster">
+                  <img class="rounded rr-image-responsive rr-promo-add-image"
+                    src="{{ asset('images/default/image.svg') }}" alt="image poster">
                   <input type="file" class="sr-only" id="inputImage" name="image" accept="image/*">
-                  <div class="rr-promo-add-image-stack rr-promo-add-image-stack-static rounded-lg d-flex justify-content-center">
+                  <div
+                    class="rr-promo-add-image-stack rr-promo-add-image-stack-static rounded-lg d-flex justify-content-center">
                     <p class="label mb-0 align-self-center text-white">Pilih poster promo</p>
                   </div>
                 </label>
@@ -133,7 +141,8 @@
               <div class="row justify-content-center">
                 <div class="col-auto card mb-0 p-3 m-sm-0 m-4">
                   <div>
-                    <img id="cropper" class="rounded rr-promo-image-cropper" src="{{ asset('images/default/spinner.svg') }}">
+                    <img id="cropper" class="rounded rr-promo-image-cropper"
+                      src="{{ asset('images/default/spinner.svg') }}">
                   </div>
                 </div>
               </div>
@@ -141,23 +150,30 @@
                 <div class="col-auto">
                   <div class="d-flex justify-content-center">
                     <div class="btn-group mr-2">
-                      <button id="cropperModeDrag" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Geser Gambar"><i class="fa fa-arrows-alt"></i></button>
-                      <button id="cropperModeCrop" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Potong Gambar"><i class="fa fa-crop-alt"></i></button>
+                      <button id="cropperModeDrag" class="btn btn-primary btn-sm" data-toggle="tippy"
+                        data-title="Geser Gambar"><i class="fa fa-arrows-alt"></i></button>
+                      <button id="cropperModeCrop" class="btn btn-primary btn-sm" data-toggle="tippy"
+                        data-title="Potong Gambar"><i class="fa fa-crop-alt"></i></button>
                     </div>
                     <div class="btn-group mr-2">
-                      <button id="cropperZoomIn" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Perbesar"><i class="fa fa-search-plus"></i></button>
-                      <button id="cropperZoomOut" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Perkecil"><i class="fa fa-search-minus"></i></button>
+                      <button id="cropperZoomIn" class="btn btn-primary btn-sm" data-toggle="tippy"
+                        data-title="Perbesar"><i class="fa fa-search-plus"></i></button>
+                      <button id="cropperZoomOut" class="btn btn-primary btn-sm" data-toggle="tippy"
+                        data-title="Perkecil"><i class="fa fa-search-minus"></i></button>
                     </div>
                     <div class="btn-group">
-                      <button id="cropperRotateLeft" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Rotasi Kiri"><i class="fa fa-undo"></i></button>
-                      <button id="cropperRotateRight" class="btn btn-primary btn-sm" data-toggle="tippy" data-title="Rotasi Kanan "><i class="fa fa-redo"></i></button>
+                      <button id="cropperRotateLeft" class="btn btn-primary btn-sm" data-toggle="tippy"
+                        data-title="Rotasi Kiri"><i class="fa fa-undo"></i></button>
+                      <button id="cropperRotateRight" class="btn btn-primary btn-sm" data-toggle="tippy"
+                        data-title="Rotasi Kanan "><i class="fa fa-redo"></i></button>
                     </div>
                   </div>
                   <hr>
                   <div class="d-flex justify-content-center">
                     <div class="btn-group">
                       {{-- // HOLD tambah change photo button --}}
-                      <button class="btn btn-success image-cropper-btn" data-toggle="tippy" data-title="Oke Siap!"><i class="fa fa-check-circle"></i> Potong</button>
+                      <button class="btn btn-success image-cropper-btn" data-toggle="tippy" data-title="Oke Siap!"><i
+                          class="fa fa-check-circle"></i> Potong</button>
                     </div>
                   </div>
                 </div>
@@ -167,8 +183,10 @@
         </div>
       </div>
       <div class="modal-footer justify-content-lg-start">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times-circle"></i>&#09;Batalkan</button>
-        <button type="submit" class="btn btn-primary btn-promo-submit" form="formPromo"><i class="fa fa-plus-circle"></i>&#09;Tambahkan Promo</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+            class="fa fa-times-circle"></i>&#09;Batalkan</button>
+        <button type="submit" class="btn btn-primary btn-promo-submit" form="formPromo"><i
+            class="fa fa-plus-circle"></i>&#09;Tambahkan Promo</button>
       </div>
     </div>
   </div>
@@ -188,6 +206,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/admin/promo.css') }}">
+<link rel="stylesheet" href="{{ asset('js/admin/daterangepicker/daterangepicker.css') }}">
 @endsection
 
 @section('js')
@@ -197,5 +216,6 @@
 <script src="{{ asset('js/admin/jquery-validate/additional-methods.min.js') }}"></script>
 {{-- promo scripts --}}
 <script src="{{ asset('js/admin/promo_plugins.js') }}"></script>
+<script src="{{ asset('js/admin/daterangepicker/daterangepicker.min.js') }}"></script>
 <script src="{{ asset('js/admin/promo.js') }}"></script>
 @endsection

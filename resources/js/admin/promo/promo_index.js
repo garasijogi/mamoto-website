@@ -217,7 +217,7 @@ image_input.on('change', function(e){
   image_cropper_container.show();
   // initialize image cropper
   cropper = new Cropper(image_cropper, {
-    aspectRatio: 1,
+    aspectRatio: 16 / 9,
     viewMode: 3,
   });
 });
@@ -258,6 +258,63 @@ image_cropper_btn_modeDrag.on('click', function(e){
 });
 image_cropper_btn_modeCrop.on('click', function (e) {
   cropper.setDragMode('crop');
+});
+
+/* ---------------------------- daterange picker ---------------------------- */
+input_daterange.daterangepicker({
+  "autoUpdateInput": false,
+  "minDate": moment(),
+  "locale": {
+    "format": "DD MMMM YYYY",
+    "applyLabel": "Pilih",
+    "cancelLabel": "Hapus",
+    "separator": " - ",
+    "daysOfWeek": [
+      "Min",
+      "Sen",
+      "Sel",
+      "Rab",
+      "Kam",
+      "Jum",
+      "Sab"
+    ],
+    "monthNames": [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember"
+    ],
+    "firstDay": 1
+  },
+  "opens": "center",
+  "drops": "auto"
+}, function (start, end, label) {
+});
+// on apply daterangepicker
+input_daterange.on('apply.daterangepicker', function (ev, picker) {
+  $(this).val(picker.startDate.format('DD MMMM YYYY') + ' - ' + picker.endDate.format('DD MMMM YYYY')); // set value tanggal dan format locally
+
+  // ubah value pada input hidden period
+  let dateRaw = $(this).val();
+  let dateArray = dateRaw.split(" - ");
+  $.each(dateArray, function (i, v) {
+    dateArray[i] = moment(v, "DD MMMM YYYY", 'id').format('YYYY-MM-DD');
+  });
+  let dateChoosen = dateArray[0] + "/" + dateArray[1];
+  input_period.val(dateChoosen);
+});
+// on cancel, clear the form control
+input_daterange.on('cancel.daterangepicker', function (ev, picker) {
+  $(this).val(''); // hapus form
+  input_period.val('');
 });
 
 /* ------------------------------ form handler ------------------------------ */
@@ -306,9 +363,13 @@ formPromo.validate({
       Swal.fire({ icon: 'error', title: 'Poster tidak boleh kosong.', text: 'Harap tambahkan poster promo.' });
     } else {
       // prepare form data
+      let period = input_period.val();
+      let period_splitted = period.split('/');
       let formData = {
         name: form.name.value,
         post: form.post.value,
+        period_start: period_splitted[0],
+        period_end: period_splitted[1],
         link: form.link.value,
         photo: photo
       };
@@ -324,14 +385,14 @@ formPromo.validate({
           method: 'POST',
           data: formData,
           beforeSend: function () {
-            // reset the form and image chooser
-            resetForm();
-            modal_promo.modal('hide'); // sembunyikan modal form add
             // menampilkan swal loading
             showLoadingSwal('Menambahkan Promo..', 'Harap Tunggu, sistem sedang menambahkan promo.');
           },
           success: function (data) {
             Toast.fire({ icon: 'success', title: 'Promo telah ditambahkan' });
+            // reset the form and image chooser
+            resetForm();
+            modal_promo.modal('hide'); // sembunyikan modal form add
 
             // refresh data promo
             container_promo_row.empty();
@@ -393,6 +454,7 @@ const resetForm = () => {
   image_promo.attr('src', image_default); // reset image chooser ke default
   (image_promo_stack.hasClass('rr-promo-add-image-stack-hover')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-hover').addClass('rr-promo-add-image-stack-static') : "";
   input_image.val(''); // kosongkan input hidden image
+  input_period.val('');
 }
 
 // show swalerror on ajax error, validation error

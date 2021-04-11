@@ -17,6 +17,8 @@ class CreatePromosTable extends Migration
             $table->string('id', 14)->unique()->primary();
             $table->text('name');
             $table->text('post');
+            $table->date('period_start');
+            $table->date('period_end');
             $table->text('photo');
             $table->text('link');
             $table->timestamps();

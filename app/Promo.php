@@ -8,7 +8,7 @@ class Promo extends Model
 {
     public $incrementing = false;
 
-    protected $fillable = ['id', 'name', 'post', 'link', 'photo'];
+    protected $fillable = ['id', 'name', 'period_start', 'period_end', 'post', 'link', 'photo'];
     protected $keyType = 'string';
 
 }

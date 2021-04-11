@@ -29,11 +29,12 @@
     },
     "dependencies": {
         "cropper": "^4.1.0",
-        "jquery-cropper": "^1.0.1",
-        "js": "^0.1.0",
         "cropperjs": "^1.5.10",
+        "jquery-cropper": "^1.0.1",
         "jquery-validation": "^1.19.3",
+        "js": "^0.1.0",
         "loader-utils": "^2.0.0",
+        "moment": "^2.29.1",
         "tippy.js": "^6.2.7"
     }
 }

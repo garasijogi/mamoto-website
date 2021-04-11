@@ -15,3 +15,8 @@ $('[data-toggle="tippy"]').on('mouseenter', function () {
     theme: 'material',
   });
 });
+
+// momentjs
+window.moment = require('moment');
+import 'moment/locale/id';
+moment.locale('id');

@@ -30,6 +30,10 @@ mix.js([
  * place custom plugin script that cannot be covered by npm right here
  */
 
+/* ----------------------------- daterangepicker ---------------------------- */
+mix.copy('resources/js/admin/daterangepicker/daterangepicker.css', 'public/js/admin/daterangepicker/daterangepicker.css')
+mix.copy('resources/js/admin/daterangepicker/daterangepicker.min.js', 'public/js/admin/daterangepicker/daterangepicker.min.js')
+
 /* ------------------------ summernote custom script ------------------------ */
 /**
  * This summernote custom script added responsive to video and image
