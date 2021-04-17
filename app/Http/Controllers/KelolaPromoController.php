@@ -262,7 +262,6 @@ class KelolaPromoController extends Controller
 		return Validator::make($formData, [
 			'name' => 'required|min:8',
 			'post' => 'required|min:12',
-			// NOW perbaiki date_format mengikuti aturan PHP
 			'period_start' => 'required|date_format:Y-m-d',
 			'period_end' => 'required|date_format:Y-m-d',
 			'link' => 'required',
