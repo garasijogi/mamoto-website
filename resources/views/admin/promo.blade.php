@@ -1,5 +1,3 @@
-{{-- //NOW edit hidden daterange --}}
-{{-- //NOW submit beserta daterange saat edut --}}
 @extends('adminlte::page')
 
 @section('title', 'Kelola Promo')
