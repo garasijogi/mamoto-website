@@ -1,4 +1,6 @@
 <?php
+// NOW buat fungsi get expired promos
+// NOW buat date di add promo untuk yang terbaru saja
 
 namespace App\Http\Controllers;
 
@@ -124,7 +126,12 @@ class KelolaPromoController extends Controller
 			return response()->json($formData_validated);
 		}
 	}
-
+	
+	/**
+	 * ambil semua data promo untu AJAX
+	 *
+	 * @return response()->json($promo_list)
+	 */
 	public function get()
 	{
 		/* ---------------------- teks wa untuk order langsung ---------------------- */
@@ -134,7 +141,8 @@ class KelolaPromoController extends Controller
 		$wa_link = $wa->link . $wa->contact . "?text=";
 
 		// ambil data promo paginate 6 per refresh
-		$promo_list = Promo::latest()->paginate(6)->toArray();
+		// NOW fungsi whereDate ini masih salah
+		$promo_list = Promo::whereDate('period_end', '>=', date('Y-m-d', time()))->latest()->paginate(6)->toArray();
 		foreach ($promo_list['data'] as $k => $v) {
 			$promo_list['data'][$k] = [
 				'id' => $v['id'],
@@ -142,6 +150,8 @@ class KelolaPromoController extends Controller
 				'post' => \Str::limit($v['post'], 92, '...'),
 				'photo' => url($this->url_storage) . "/" . $v['photo'],
 				'link' => $wa_link . $v['link'],
+				'period_start' => Carbon::parse($v['period_start'])->isoFormat('LL'),
+				'period_end' => Carbon::parse($v['period_end'])->isoFormat('LL'),
 				'created_at' => Carbon::parse($v['created_at'])->diffForHumans(),
 				'updated_at' => Carbon::parse($v['updated_at'])->diffForHumans()
 			];

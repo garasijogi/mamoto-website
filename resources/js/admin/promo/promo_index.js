@@ -274,6 +274,7 @@ image_cropper_btn_modeCrop.on('click', function (e) {
 /* ---------------------------- daterange picker ---------------------------- */
 input_daterange.daterangepicker({
   "autoUpdateInput": false,
+  "minDate": moment(),
   "startDate": moment(),
   "endDate": moment().add(1, 'months'),
   // "minDate": moment(),

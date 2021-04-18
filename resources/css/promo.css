@@ -1,4 +1,4 @@
-.container-promo{
+.container-promo {
   color: #999;
 }
 
@@ -43,7 +43,7 @@
 .promo-img {
   cursor: pointer;
   width: 100%;
-  padding-top: 100%;
+  padding-top: 56.25%;
   background-size: cover;
 }
 
@@ -53,6 +53,10 @@
   background-color: #999;
   /* margin-bottom: 2.085em; */
   margin-bottom: 1.0425em;
+}
+
+.promo-moreInfo{
+  font-size: 1.3em;
 }
 
 .promo-noPromo-img {
@@ -77,4 +81,8 @@
   font-style: normal;
   font-weight: normal;
   color: #888888;
+}
+
+.text-promo-period {
+  font-size: 0.857em;
 }
