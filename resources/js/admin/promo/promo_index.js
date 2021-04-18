@@ -134,12 +134,16 @@ container_promo_row.on('click', btnPromo_edit, function () {
       edit_promo_originPhoto = data.photo;
       image_promo.attr('src', data.photo_link); // reset image chooser ke default
 
-      // set tanggal periode
+      // set tanggal periode pada daterange
       let period_start = moment(data.period_start, "YYYY-MMMM-DD", 'id').format('DD MMMM YYYY');
       let period_end = moment(data.period_end, "YYYY-MMMM-DD", 'id').format('DD MMMM YYYY');
       input_daterange.data('daterangepicker').setStartDate(period_start);
       input_daterange.data('daterangepicker').setEndDate(period_end);
       input_daterange.val(period_start + " - " + period_end);
+      // set tanggal periode pada hidden daterange
+      let dateChoosen = data.period_start + "/" + data.period_end;
+      input_period.val(dateChoosen);
+
       // ganti kelas stack jadi hover
       (image_promo_stack.hasClass('rr-promo-add-image-stack-static')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-static').addClass('rr-promo-add-image-stack-hover') : "";
     },
@@ -271,6 +275,7 @@ image_cropper_btn_modeCrop.on('click', function (e) {
 input_daterange.daterangepicker({
   "autoUpdateInput": false,
   "startDate": moment(),
+  "endDate": moment().add(1, 'months'),
   // "minDate": moment(),
   "locale": {
     "format": "DD MMMM YYYY",
@@ -367,11 +372,18 @@ formPromo.validate({
   submitHandler: function(form){
     let photo = input_image.val();
 
+    // validator daterange
+    let period = input_period.val();
+    if (period == "" || period == undefined || period == null){
+      Swal.fire({ icon: 'error', title: 'Periode promo tidak boleh kosong.', text: 'Harap tambahkan periode promo.' });
+      return false;
+    }
+
+    // validator poster
     if (photo == "" || photo == undefined || photo == null) {
       Swal.fire({ icon: 'error', title: 'Poster tidak boleh kosong.', text: 'Harap tambahkan poster promo.' });
     } else {
       // prepare form data
-      let period = input_period.val();
       let period_splitted = period.split('/');
       let formData = {
         name: form.name.value,
@@ -463,6 +475,10 @@ const resetForm = () => {
   (image_promo_stack.hasClass('rr-promo-add-image-stack-hover')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-hover').addClass('rr-promo-add-image-stack-static') : "";
   input_image.val(''); // kosongkan input hidden image
   input_period.val('');
+
+  // reset daterange
+  input_daterange.data('daterangepicker').setStartDate(moment());
+  input_daterange.data('daterangepicker').setEndDate(moment().add(1, 'months'));
 }
 
 // show swalerror on ajax error, validation error
