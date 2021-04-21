@@ -27,8 +27,10 @@
                 </ol>
                 <div class="carousel-inner">
                     @foreach ($jumbotrons as $index => $jumbotron)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <img class="d-block w-100" height="300px" style="object-fit: contain;"
+                    <div
+                        class="carousel-item {{ !empty($jumbotron->path) ? '' : 'bg-dark'  }} {{ $index === 0 ? 'active' : '' }}">
+                        <img class="d-block w-100 shadow-sm {{ !empty($jumbotron->path) ? '' : 'al-invert'  }}"
+                            height="300px" style="object-fit: contain;"
                             src="{{ $jumbotron->path ?? "/images/no-image.png" }}" alt="slide {{ $index+1 }}">
                     </div>
                     @endforeach
@@ -89,11 +91,9 @@
                     @endif
                 </div>
                 <div class="col-12 text-center p-2">
-                    @if (!empty($dp->portfolio->name))
-                    <h6>
-                        {{ $dp->portfolio->name }}
+                    <h6 class="{{ empty($dp->portfolio->name) ? 'al-grey-color' : '' }}">
+                        {{ $dp->portfolio->name ?? 'Belum dipilih' }}
                     </h6>
-                    @endif
 
                     <a href="/admin/displayed-portfolio/{{ $dp->pfType_id }}" class="btn btn-sm btn-primary text-white">
                         Ganti Portfolio
@@ -108,19 +108,38 @@
     <div class="al-tab border-bottom mb-2">
         <h6 class="font-weight-bold">Promo yang ditampilkan</h6>
     </div>
-    <div class="row text-center">
-        <div class="col-12">
-            <img width='500px' height='250px' style='object-fit:cover;'
-                src="https://i0.wp.com/www.theweddingvowsg.com/wp-content/uploads/2016/09/wedding-photographers-indonesia-Featured-photo-Bunn-Salarzon.jpg?resize=960%2C637&ssl=1"
-                alt="Card image cap">
-        </div>
-        <div class="col-12 p-2">
-            <h6>Promo Akhir Bulan serba 20%</h6>
-        </div>
-        <div class="col-12 pb-2">
-            <button class="btn btn-sm btn-primary">
-                Ganti Promo
-            </button>
+    <div class="row text-center pb-4 justify-content-md-center">
+        <div class="col-md-6 text-center">
+            <div id="promo-carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @foreach ($displayed_promos as $index => $displayed_promo)
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"
+                        class="{{ $index == 0 ? 'active' : '' }}"></li>
+                    @endforeach
+                </ol>
+                <div class="carousel-inner">
+                    @foreach ($displayed_promos as $index => $displayed_promo)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <img class="d-block w-100" height="300px" style="object-fit: contain;"
+                            src="/storage/{{ $displayed_promo->promo->photo }}" alt="slide {{ $index+1 }}">
+                        <a href="" class="py-2 fas fa-trash fa-lg text-danger"></a>
+                    </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#promo-carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#promo-carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="{{ route('admin.displayedpromo') }}" class="btn btn-sm btn-primary">Tambah</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -280,7 +299,7 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row d-flex justify-content-center">
-                        <div class="col-md-8">
+                        <div class="col-md-8 al-cropper-height">
                             <img id="image-cropped" src="" alt='Your image'>
                         </div>
                     </div>

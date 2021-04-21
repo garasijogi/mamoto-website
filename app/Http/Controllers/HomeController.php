@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Company_jumbotron;
 use App\Displayed_feedback;
 use App\Displayed_portfolio;
+use App\DisplayedPromo;
+use App\Promo;
 
 class HomeController extends Controller
 {
@@ -21,9 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $promo = DisplayedPromo::all();
         $jumbotrons = Company_jumbotron::get();
         $displayed_portfolios = Displayed_portfolio::with('portfolio')->get();
         $displayed_feedbacks = Displayed_feedback::with('feedback')->whereNotNull('feedback_id')->get();
-        return view('home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks'));
+        return view('home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'promo'));
     }
 }

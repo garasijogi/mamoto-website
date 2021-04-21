@@ -1,4 +1,5 @@
 {{-- scripts --}}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/algorithm/scripts.js') }}"></script>

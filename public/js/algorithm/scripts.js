@@ -1,4 +1,9 @@
 // 1) User
+// animate on scroll library
+AOS.init({
+  offset: 350,
+  duration: 800
+});
 
 // 2) Admin
 // delete user
@@ -111,21 +116,6 @@ $('div').on('mouseenter', '.al-img-card-selected', function (e) {
   $('.al-del-img-card').css('display', 'none');
 });
 
-//change foto
-// function changePhoto(input, id) {
-//   var files = input.files;
-// $('#image').cropper('destroy');
-// //   // image list
-// for (let i = 0; i < files.length; i++) {
-//   var reader = new FileReader();
-//   reader.onload = function (e) {
-//     $("#image").attr("src", e.target.result);
-//     $("#jumbo" + id).attr("src", e.target.result);
-//   };
-//   reader.readAsDataURL(files[i]);
-// }
-// }
-
 //cropper
 var $modal = $('#modal');
 var image = $('#image');
@@ -150,8 +140,6 @@ $(".image").on("change", function (e) {
     $modal.modal('show');
   };
 
-  // $("#image").attr("src", e.target.result);
-  // $("#jumbo" + id).attr("src", e.target.result);
   var reader;
   var file;
   var url;
@@ -193,10 +181,10 @@ $("#crop").on('click', function () {
     reader.readAsDataURL(blob);
     reader.onloadend = function () {
       var base64data = reader.result;
-      console.log(base64data)
       $("#image").attr("src", base64data);
       $("#jumbo" + index).attr("src", base64data);
       $("#inputjumbo" + index).attr("value", base64data);
+      $('.form-jumbotron-' + index).trigger('submit');
       $modal.modal('hide');
     }
   });
@@ -213,20 +201,6 @@ $('.selected').on('click', function () {
 $('.submit-form').on('click', function () {
   $('#selected_portfolio_form').submit();
 })
-
-function changeJumbotron(where) {
-  let now = parseInt($('.al-jumbotron-carousel').data('now'));
-  where == 'next' ? now++ : now--;
-  now > 4 ? now = 1 : now = now;
-  now < 1 ? now = 4 : now = now;
-  $('.al-jumbotron-carousel').data('now', '' + now);
-  let url = 'url("../../..' + $('.al-jumbotron-carousel').data('jumbotron' + now) + '")';
-  $('.al-jumbotron-carousel')
-    .fadeOut(500, function () {
-      $('.al-jumbotron-carousel').css('background-image', url);
-    })
-    .fadeIn(500);
-}
 
 // displayed feedback on kelola home
 function modalCustomerPhotoUpload() {
@@ -250,7 +224,8 @@ $("#customer-photo").on("change", function (e) {
   $('#modal').on('shown.bs.modal', function () {
     cropper = $("#image-cropped").cropper({
       aspectRatio: 1 / 1,
-      viewMode: 3
+      viewMode: 2,
+      dragMode: 'move'
     });
   }).on('hidden.bs.modal', function () {
     $('#image-cropped').cropper('destroy');
@@ -297,16 +272,3 @@ $('.reset-feedback').on('click', function () {
 $('#reset-feedback-modal .modal-footer button.btn-primary').on('click', function () {
   window.location.href = '/admin/displayed-feedback/' + $(this).data('id') + '/clear';
 })
-
-
-//feedback on home user
-function changeFeedback(where, size) {
-  let index = parseInt(($('.feedback-selected').attr("class").split(/\s+/))[1]);
-  size = parseInt(size);
-  let goTo = index;
-  where == 'next' ? goTo++ : goTo--;
-  goTo + 1 > size ? goTo = 0 : '';
-  goTo < 0 ? goTo = size - 1 : '';
-  $('.feedback-selected').attr("class", 'd-none ' + index);
-  $('.' + goTo).attr("class", "feedback-selected " + goTo);
-}

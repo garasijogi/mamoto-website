@@ -1,3 +1,7 @@
+html {
+  overflow-x: hidden;
+}
+
 /* 0) Pre configs */
 @media only screen and (max-width: 700px){
   .al-image-viewer-modal-content {
@@ -108,8 +112,29 @@ body.user-body:after{
   font-weight: 600;
 }
 
-.al-jumbotron-carousel {
+.al-jumbotron-carousel-1 {
   background-image: url("../../../storage/images/jumbotron/jumbotron1.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.al-jumbotron-carousel-2 {
+  background-image: url("../../../storage/images/jumbotron/jumbotron2.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.al-jumbotron-carousel-3 {
+  background-image: url("../../../storage/images/jumbotron/jumbotron3.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.al-jumbotron-carousel-4 {
+  background-image: url("../../../storage/images/jumbotron/jumbotron4.png");
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
@@ -138,17 +163,28 @@ body.login-page {
   color: white !important;
 }
 .al-jumbotron {
-  height: 70vh;
+  height: 100vh;
 }
 
 #jumbotron {
-  height: 80%;
+  position: absolute;
+  z-index: 10;
   background-image: url("/images/mamoto_picture_logo.png");
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: 40%;
+  background-size: 60%;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  left: 12vw;
 }
-
+.al-jumbotron-text-wrapper {
+  position:absolute;
+  z-index: 20;
+  width: 80vh;
+  left: 11vw;
+  top: 23vh;
+}
 .al-jumbotron-text {
   font-family: 'Lora-Regular';
   position: absolute;
@@ -169,12 +205,12 @@ body.login-page {
   outline:none;
 }
 
-.al-arrow-right:hover{
+.carousel-control-next:hover .al-arrow-right {
   background-image: url("/icons/arrow-right-hover.svg");
   transform: rotate(0deg);
 }
 
-.al-arrow-left:hover{
+.carousel-control-prev:hover .al-arrow-left {
   background-image: url("/icons/arrow-right-hover.svg");
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Company_jumbotron;
 use App\Displayed_feedback;
 use App\Displayed_portfolio;
+use App\DisplayedPromo;
 use App\Feedback;
 use App\Http\Requests\Displayed_feedbackRequest;
 use App\Portfolio_type;
+use App\Promo;
 use App\User;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
@@ -17,11 +19,12 @@ class KelolaHomeController extends Controller
 {
     public function index()
     {
+        $displayed_promos = DisplayedPromo::all();
         $jumbotrons = Company_jumbotron::get();
         $displayed_portfolios = Displayed_portfolio::with('portfolio')->get();
         $displayed_feedbacks = Displayed_feedback::all();
         $feedbacks = Feedback::whereNotIn('id', $displayed_feedbacks->pluck('feedback_id')->whereNotNull())->get();
-        return view('admin.home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'feedbacks'));
+        return view('admin.home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'feedbacks', 'displayed_promos'));
     }
 
     public function jumbotron()
@@ -72,6 +75,33 @@ class KelolaHomeController extends Controller
         $portfolios = $portfolio_type->find($id)->portfolios()->latest()->paginate(10);
         $pftype = $id;
         return view('admin.editdisplayedportfolio', compact('portfolios', 'pftype'));
+    }
+
+    public function displayed_promo()
+    {
+        $displayed_promo_id = DisplayedPromo::all()->pluck('promo_id');
+        $promos = Promo::whereNotIn('id', $displayed_promo_id)->get();
+        return view('admin.editdisplayedpromo', compact('promos'));
+    }
+
+    public function store_displayed_promo($id)
+    {
+        $promo = Promo::find($id);
+        DisplayedPromo::create([
+            'promo_id' => $promo->id
+        ]);
+
+        //flash message
+        session()->flash('success', 'Promo yang ditampilkan telah ditambah');
+        //return back
+        return redirect('admin/home');
+    }
+
+    public function destroy_displayed_promo($displayed_promo)
+    {
+        $displayed_promo->update([
+            'promo_id' => null
+        ]);
     }
 
     public function update_dp(Request $request, User $user, $pftype)
