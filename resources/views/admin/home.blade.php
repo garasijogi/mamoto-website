@@ -121,7 +121,7 @@
                     @foreach ($displayed_promos as $index => $displayed_promo)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                         <img class="d-block w-100" height="300px" style="object-fit: contain;"
-                            src="/storage/{{ $displayed_promo->promo->photo }}" alt="slide {{ $index+1 }}">
+                            src="{{ !empty($displayed_promo->promo->photo) ? '/storage/'.$displayed_promo->promo->photo : '/images/no-image.png' }}" alt="slide {{ $index+1 }}">
                         <a href="" class="py-2 fas fa-trash fa-lg text-danger"></a>
                     </div>
                     @endforeach
