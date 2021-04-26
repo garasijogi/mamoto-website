@@ -1,7 +1,7 @@
 // 1) User
 // animate on scroll library
 AOS.init({
-  offset: 350,
+  offset: 200,
   duration: 800
 });
 

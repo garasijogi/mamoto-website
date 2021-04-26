@@ -2,7 +2,7 @@
 @section('title', 'Mamoto Picture - Home')
 @section('content')
 
-<div id="jumbotron-carousel" class="carousel slide al-home-jumbotron al-full-content" data-ride="carousel">
+<div id="jumbotron-carousel" class="carousel slide al-home-jumbotron" data-ride="carousel">
     <div id='jumbotron'>
 
     </div>
@@ -69,7 +69,7 @@
                 @else
                 <div class="col-8 text-right">
                     @foreach (array_slice(json_decode($dp->portfolio->photo), 0, 1) as $photo)
-                    <img width='700px' height='400px' style='object-fit:cover;'
+                    <img width='700px' height='400px' style='object-fit:cover;' class="al-portfolio-card-preview"
                         src="/storage/images/portfolio/{{$dp->pfType_id}}/{{$dp->portfolio->slug}}/{{$photo->name}}"
                         alt=" Card image cap">
                     @endforeach
