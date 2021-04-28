@@ -2,13 +2,13 @@
     <div class="row">
         <div class="col-6 d-flex justify-content-center">
             <div class="text-center">
-                <img src="/images/hipdi_logo.png" width="120px" height="120px" style="object-fit: contain">
+                <img class="al-footer-img" src="/images/hipdi_logo.png" width="120px" height="120px" style="object-fit: contain">
                 <p class="al-grey-color pt-2">Terdaftar di Himpunan Pengusaha Dokumentasi Indonesia <br>HIPDI</p>
             </div>
         </div>
         <div class="col-6 d-flex justify-content-center">
             <div class="text-center">
-                <img src="/images/cv_logo.svg" width="120px" height="120px">
+                <img class="al-footer-img" src="/images/cv_logo.svg" width="120px" height="120px">
                 <p class="al-grey-color pt-2">Terdaftar sebagai CV di Kementerian Hukum dan HAM <br>(Kemenkunham)</p>
             </div>
         </div>

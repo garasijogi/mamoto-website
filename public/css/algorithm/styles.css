@@ -1,5 +1,7 @@
 html {
   overflow-x: hidden;
+  min-height: 100% !important;
+  height: 100%;
 }
 
 /* 0) Pre configs */
@@ -57,6 +59,73 @@ body.user-body:after{
  }
 
 /* 3) Navigation Bar */
+#al-navbar-mobile {
+  display: none;
+}
+
+.al-navbar-mobile-container {
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 5vw;
+}
+
+.al-black-background {
+  position: fixed;
+  z-index: 1031;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  transition: ease 1s;
+}
+
+.al-right-menu-wrapper{
+  top: 0;
+  right: -100vw;
+  width: 35vw;
+  height: 100%;
+  z-index: 1032;
+  position: fixed;
+  background-color: white;
+  transition: ease .5s;
+}
+
+.al-right-menu {
+  padding: 2rem 1rem;
+}
+
+.al-portfolio-menu-item {
+  padding-left: .5rem;
+}
+
+.al-menu-close-btn {
+  color: #d1d1d1;
+  float:right;
+  padding: 1rem 16% 0 0;
+}
+
+.al-menu-item, .al-menu-item li, .al-portflio-expand {
+  color: #888888;
+  text-decoration: none;
+  list-style-type: none;
+  padding: .5rem 0;
+}
+
+.al-menu-parent-portfolio {
+  width: 100%;
+}
+
+.al-menu-item:hover, .al-menu-item li:hover, .al-portflio-expand:hover, .al-menu-item {
+  text-decoration: none !important;
+  color: black;
+  cursor: pointer;
+}
+
+.al-portfolio-menu-item *{
+  display: none;
+}
+
 .al-navbar {
   padding-left: 6rem;
   display: flex;
@@ -66,11 +135,13 @@ body.user-body:after{
 
 .al-mamoto-black-logo {
   filter: grayscale(1) invert(1);
-  width: 12vw;
+  width: 10vw;
+  min-width: 4rem;
 }
 
 .al-mamoto-white-logo {
-  width: 12vw;
+  width: 10vw;
+  min-width: 4rem;
 }
 
 .al-bg-gradient-dark {
@@ -116,28 +187,28 @@ body.user-body:after{
   background-image: url("../../../storage/images/jumbotron/jumbotron1.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  /* background-position: center; */
 }
 
 .al-jumbotron-carousel-2 {
   background-image: url("../../../storage/images/jumbotron/jumbotron2.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  /* background-position: center; */
 }
 
 .al-jumbotron-carousel-3 {
   background-image: url("../../../storage/images/jumbotron/jumbotron3.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  /* background-position: center; */
 }
 
 .al-jumbotron-carousel-4 {
   background-image: url("../../../storage/images/jumbotron/jumbotron4.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  /* background-position: center; */
 }
 
 body.login-page {
@@ -189,7 +260,7 @@ body.login-page {
   font-family: 'Lora-Regular';
   position: absolute;
   padding-left: 3.5vw;
-  top: 40vh;
+  top: 20vw;
   left: 0;
   color: white;
   text-shadow: 1px 1px 1px black;
@@ -207,7 +278,8 @@ body.login-page {
 
 .carousel-control-next:hover .al-arrow-right {
   background-image: url("/icons/arrow-right-hover.svg");
-  transform: rotate(0deg);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
 }
 
 .carousel-control-prev:hover .al-arrow-left {
@@ -389,7 +461,7 @@ body.login-page {
 /* footer */
 footer {
   overflow-x: hidden;
-  padding-top: 2rem;
+  padding: 2rem .5rem 0 .5rem;
   position:absolute;
   left:0;
   right:0;
@@ -442,3 +514,296 @@ footer p {
 .al-mt-container {
   margin-top: 5.3rem;
 }
+
+/* mobile responsive */
+@media only screen and (max-width:600px){
+  #al-navbar-mobile {
+    display: block;
+  }
+
+  .al-dp-title {
+    font-size: 1.35rem;
+  }
+
+  h3.al-font-portfolio-name {
+    font-size: 1.2rem;
+  }
+
+  .carousel-item h4.pt-4 {
+    font-size: 1.2rem;
+  }
+
+  .al-footer-img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .al-jumbotron {
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 30vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.5, 0.5);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.5, 0.5);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.5);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.5, 0.5);
+  }
+
+  .al-jumbotron-text{
+    top: -4vw;
+  }
+
+  .al-dp-card.row {
+    display: block;
+  }
+
+  .col-4.align-self-center {
+    padding: 1rem 0;
+    max-width: 100%;
+  }
+
+  .al-portfolio-card-preview {
+    width: 80vw !important;
+    height: 46vw !important;
+    text-align: center;
+  }
+
+  .al-dp {
+    padding: 0 8.5%;
+  }
+
+}
+
+@media only screen and (max-width: 800px){
+  #al-navbar.fixed-top {
+    top: -100% !important;
+  }
+
+  .al-dp-card.row {
+    display: block;
+  }
+
+  .col-4.align-self-center {
+    padding: 1rem 0;
+    max-width: 100%;
+  }
+
+  .al-portfolio-card-preview {
+    width: 80vw !important;
+    height: 46vw !important;
+    text-align: center;
+  }
+
+}
+
+@media only screen and (min-width:601px) and (max-width:800px){
+  #al-navbar-mobile {
+    display: block;
+  }
+
+  .al-dp-title {
+    font-size: 1.4rem;
+  }
+
+  .al-footer-img {
+    width: 85px !important;
+    height: 85px !important;
+  }
+
+  h3.al-font-portfolio-name {
+    font-size: 1.25rem;
+  }
+
+  .al-portfolio-card-preview {
+    width: 85vw !important;
+    height: 48vw !important;
+  }
+
+  .al-jumbotron-text{
+    top: 6vw;
+  }
+
+  .al-jumbotron {
+    min-height: 40vh;
+    max-height: 40vh;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 40vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.7, 0.7);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.7);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-dp {
+    padding: 0 6.5%;
+  }
+}
+
+@media only screen and (min-width:801px) and (max-width:1000px){
+  .al-footer-img {
+    width: 95px !important;
+    height: 95px !important;
+  }
+
+  .al-dp-title {
+    font-size: 1.5rem;
+  }
+
+  h3.al-font-portfolio-name {
+    font-size: 1.35rem;
+  }
+
+  .al-portfolio-card-preview {
+    width: 60vw !important;
+    height: 34vw !important;
+  }
+
+  .al-jumbotron-text{
+    top: 14vw;
+  }
+
+  .al-jumbotron {
+    min-height: 60vh;
+    max-height: 60vh;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 60vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.7, 0.7);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.7);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-dp {
+    padding: 0 6.5%;
+  }
+
+  .al-dp-card.row {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1200px){
+  .al-portfolio-card-preview {
+    width: 60vw !important;
+    height: 34vw !important;
+  }
+
+  .al-jumbotron {
+    min-height: 80vh;
+    max-height: 80vh;
+  }
+
+  .al-jumbotron-text{
+    top: 18vw;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 80vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.8, 0.8);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.8, 0.8);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.8);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.8, 0.8);
+  }
+}
+
+@media only screen and (min-width: 1201px){
+  .al-jumbotron {
+    min-height: 90vh;
+    max-height: 90vh;
+  }
+
+  .al-jumbotron-text{
+    top: 19vw;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 90vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-1, 1);
+  }
+
+  .al-arrow-left {
+    transform: scale(1, 1);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(1);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-1, 1);
+  }
+}
+
+@media only screen and (min-width: 1300px){
+  .al-jumbotron {
+    min-height: 100vh;
+    max-height:100vh;
+  }
+
+  .al-jumbotron-text{
+    top: 20vw;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 90vh;
+  }
+}
+
+
