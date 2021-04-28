@@ -59,6 +59,73 @@ body.user-body:after{
  }
 
 /* 3) Navigation Bar */
+#al-navbar-mobile {
+  display: none;
+}
+
+.al-navbar-mobile-container {
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 5vw;
+}
+
+.al-black-background {
+  position: fixed;
+  z-index: 1031;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  transition: ease 1s;
+}
+
+.al-right-menu-wrapper{
+  top: 0;
+  right: -100vw;
+  width: 35vw;
+  height: 100%;
+  z-index: 1032;
+  position: fixed;
+  background-color: white;
+  transition: ease .5s;
+}
+
+.al-right-menu {
+  padding: 2rem 1rem;
+}
+
+.al-portfolio-menu-item {
+  padding-left: .5rem;
+}
+
+.al-menu-close-btn {
+  color: #d1d1d1;
+  float:right;
+  padding: 1rem 16% 0 0;
+}
+
+.al-menu-item, .al-menu-item li, .al-portflio-expand {
+  color: #888888;
+  text-decoration: none;
+  list-style-type: none;
+  padding: .5rem 0;
+}
+
+.al-menu-parent-portfolio {
+  width: 100%;
+}
+
+.al-menu-item:hover, .al-menu-item li:hover, .al-portflio-expand:hover, .al-menu-item {
+  text-decoration: none !important;
+  color: black;
+  cursor: pointer;
+}
+
+.al-portfolio-menu-item *{
+  display: none;
+}
+
 .al-navbar {
   padding-left: 6rem;
   display: flex;
@@ -68,11 +135,13 @@ body.user-body:after{
 
 .al-mamoto-black-logo {
   filter: grayscale(1) invert(1);
-  width: 12vw;
+  width: 10vw;
+  min-width: 4rem;
 }
 
 .al-mamoto-white-logo {
-  width: 12vw;
+  width: 10vw;
+  min-width: 4rem;
 }
 
 .al-bg-gradient-dark {
@@ -392,7 +461,7 @@ body.login-page {
 /* footer */
 footer {
   overflow-x: hidden;
-  padding-top: 2rem;
+  padding: 2rem .5rem 0 .5rem;
   position:absolute;
   left:0;
   right:0;
@@ -448,6 +517,10 @@ footer p {
 
 /* mobile responsive */
 @media only screen and (max-width:600px){
+  #al-navbar-mobile {
+    display: block;
+  }
+
   .al-dp-title {
     font-size: 1.35rem;
   }
@@ -538,6 +611,10 @@ footer p {
 }
 
 @media only screen and (min-width:601px) and (max-width:800px){
+  #al-navbar-mobile {
+    display: block;
+  }
+
   .al-dp-title {
     font-size: 1.4rem;
   }
