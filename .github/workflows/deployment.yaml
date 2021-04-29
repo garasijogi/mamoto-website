@@ -1,7 +1,7 @@
 name: Update Dependencies
 on: [push]
 jobs:
-  Explore-Github-Actions:
+  Update-Dependencies:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
