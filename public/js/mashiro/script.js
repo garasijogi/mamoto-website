@@ -36,4 +36,12 @@ for (let i = 0; i < faq.length; i++) {
     });
     
 }
+$(document).ready(function() {
+    $(".datepicker").datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true,
+    });
+});
+    
 

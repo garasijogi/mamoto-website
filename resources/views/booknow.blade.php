@@ -12,7 +12,7 @@
                             <h6 class="ns-title">Let's Talk About your Moment</h6>
                         </div>
                         <div class="container-fluid col-lg-10 mt-5">
-                            <form action="/booknow/book" method="post" class="ns-font-form">
+                            <form action="/order/book" method="post" class="ns-font-form">
                                 @csrf
                                 {{-- Full Name --}}
                                 <div class="form-group">
@@ -61,8 +61,8 @@
                                 <div class="form-group">
                                     <label for="" class="ns-label">Booking Date</label>
                                     <input placeholder="Please Select the Booking Date"
-                                        class="textbox-n form-control form-control-lg ns-form" type="text"
-                                        onfocus="(this.type='date')" name="booking_date">
+                                        class="textbox-n form-control form-control-lg ns-form datepicker" type="text"
+                                        name="booking_date">
                                     @error('booking_date')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror

@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="container">
-        <table class="table mt-3 col-10">
+        <table class="table mt-3">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
@@ -29,11 +29,15 @@
                         <th scope="row">{{ $i++ }}</th>
                         <td>{{ $feedback->mempelai_pria }}</td>
                         <td>{{ $feedback->mempelai_wanita }}</td>
-                        <td class="d-flex justify-content-start">
+                        <td class="d-flex">
                             <button type="button" class="btn btn-sm btn-primary collapsible" data-toggle="collapse"
                                 data-target="#ns-details{{ $feedback->id }}" aria-expanded="false"
                                 aria-controls="ns-details{{ $feedback->id }}">
-                                <i class="fas fa-fw fa-info"></i> Detail</button>
+                                <i class="fas fa-fw fa-info"></i>Detail</button>
+                            <button type="button" class="btn btn-sm btn-warning ml-2">
+                                <i class="fas fa-fw fa-edit"></i>Edit</button>
+                            <button type="button" class="btn btn-sm btn-danger ml-2">
+                                <i class="fas fa-fw fa-trash"></i>Delete</button>
                         </td>
                     </tr>
                     <td colspan="4" class="collapse" id="ns-details{{ $feedback->id }}">

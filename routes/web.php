@@ -21,8 +21,8 @@ Route::get('/portfolio/sp', 'PortfolioController@sp')->name('portfolio.sp');
 Route::get('/portfolio/lamaran', 'PortfolioController@lamaran')->name('portfolio.lamaran');
 Route::get('/about', 'AboutController@index')->name('about');
 Route::get('/faq', 'FAQController@index')->name('faq');
-Route::get('/booknow', 'BookNowController@index')->name('booknow');
-Route::post('/booknow/book', 'BookNowController@store');
+Route::get('/order', 'BookNowController@index')->name('order');
+Route::post('/order/book', 'BookNowController@store');
 Route::get('/booksuccess', function(){
     return view('booksuccess');
 })->name('booksuccess');
@@ -72,6 +72,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.8) Kelola Pesanan
     Route::get('pesanan', 'KelolaPesananController@index')->name('admin.pesanan');
+    Route::post('pesanan/change-status/{id}', 'KelolaPesananController@changeStatus');
+    Route::post('pesanan/{id}/delete', 'KelolaPesananController@destroy');
 
     //2.9) Kelola Feedback
     Route::get('feedback', 'KelolaFeedbackController@index')->name('admin.feedback');
