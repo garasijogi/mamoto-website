@@ -1,10 +1,10 @@
 # Vendor packages
-*/vendor/*
+# */vendor/*
 composer.lock
 node_modules/
 npm-debug.log
 package-lock.json
-vendor/
+# vendor/
 yarn-error.log
 
 # Laravel 4 specific
@@ -30,19 +30,19 @@ Homestead.json
 .phpunit.result.cache
 
 # webpack compiled files
-public/css/app.css
-public/js/app.js
-public/js/app.js.LICENSE.txt
-public/css/about.css
-public/css/promo.css
-public/css/contact.css
-public/css/rr.css
+# public/css/app.css
+# public/js/app.js
+# public/js/app.js.LICENSE.txt
+# public/css/about.css
+# public/css/promo.css
+# public/css/contact.css
+# public/css/rr.css
 
 # miscelanous
 _todo/*
-public/mix-manifest.json
+# public/mix-manifest.json
 
 # storage link
 public/storage
-public/js/promo.js
 public/js/promo.js.LICENSE.txt
+public/js/app.js.LICENSE.txt
