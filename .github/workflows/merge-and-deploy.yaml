@@ -1,21 +1,21 @@
 name: Merge and Deploy
-on:
-  push:
-    branches:
-      - 'staging-demo'
+on: [push]
 jobs:
-  sync-branch:
+  merge-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
-      - name: Merge staging-demo > deploy-staging
+      - name: Merge ${{ github.ref }} > deploy-staging
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
-          from_branch: staging-demo
+          from_branch: ${{ github.ref }}
           target_branch: deploy-staging
           github_token: ${{ github.token }}
+      
+      # remove workspaces first before running another checkout
+      - uses: AutoModality/action-clean@v1
       
       # checkout the branch
       - uses: actions/checkout@v2
@@ -47,6 +47,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: deploy-staging
           
       - run: echo "🍏 This job's status is ${{ job.status }}."
