@@ -17,6 +17,9 @@ jobs:
           target_branch: deploy-staging
           github_token: ${{ github.token }}
       
+      # remove workspaces first before running another checkout
+      - uses: AutoModality/action-clean@v1
+      
       # checkout the branch
       - uses: actions/checkout@v2
         with:
