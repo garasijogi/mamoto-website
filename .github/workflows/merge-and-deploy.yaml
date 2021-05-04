@@ -1,19 +1,16 @@
 name: Merge and Deploy
-on:
-  push:
-    branches:
-      - 'staging-demo'
+on: [push]
 jobs:
-  sync-branch:
+  merge-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
 
-      - name: Merge staging-demo > deploy-staging
+      - name: Merge ${{ github.ref }} > deploy-staging
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
-          from_branch: staging-demo
+          from_branch: ${{ github.ref }}
           target_branch: deploy-staging
           github_token: ${{ github.token }}
       
