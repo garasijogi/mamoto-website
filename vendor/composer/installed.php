@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b6a73424e6c591c9b1506a42ce5af084b1574c58',
+    'reference' => '8d7ce545949fd740e961eec09e9f96af87e77c1a',
     'name' => 'garasijogi/mamoto-website',
   ),
   'versions' => 
@@ -99,7 +99,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b6a73424e6c591c9b1506a42ce5af084b1574c58',
+      'reference' => '8d7ce545949fd740e961eec09e9f96af87e77c1a',
     ),
     'guzzlehttp/guzzle' => 
     array (
