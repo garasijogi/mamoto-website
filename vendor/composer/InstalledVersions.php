@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '51b71ad6a195a901ead8237ce763ed43b596b616',
+    'reference' => 'b6a73424e6c591c9b1506a42ce5af084b1574c58',
     'name' => 'garasijogi/mamoto-website',
   ),
   'versions' => 
@@ -123,7 +123,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '51b71ad6a195a901ead8237ce763ed43b596b616',
+      'reference' => 'b6a73424e6c591c9b1506a42ce5af084b1574c58',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -429,21 +429,21 @@ private static $installed = array (
     ),
     'nesbot/carbon' => 
     array (
-      'pretty_version' => '2.46.0',
-      'version' => '2.46.0.0',
+      'pretty_version' => '2.47.0',
+      'version' => '2.47.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2fd2c4a77d58a4e95234c8a61c5df1f157a91bf4',
+      'reference' => '606262fd8888b75317ba9461825a24fc34001e1e',
     ),
     'nikic/php-parser' => 
     array (
-      'pretty_version' => 'v4.10.4',
-      'version' => '4.10.4.0',
+      'pretty_version' => 'v4.10.5',
+      'version' => '4.10.5.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c6d052fc58cb876152f89f532b95a8d7907e7f0e',
+      'reference' => '4432ba399e47c66624bc73c8c0f811e5c109576f',
     ),
     'opis/closure' => 
     array (
@@ -529,12 +529,12 @@ private static $installed = array (
     ),
     'psr/log' => 
     array (
-      'pretty_version' => '1.1.3',
-      'version' => '1.1.3.0',
+      'pretty_version' => '1.1.4',
+      'version' => '1.1.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0f73288fd15629204f9d42b7055f72dacbe811fc',
+      'reference' => 'd49695b909c3b7628b6289db5479a1c204601f11',
     ),
     'psr/log-implementation' => 
     array (
