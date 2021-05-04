@@ -1,4 +1,4 @@
-name: Sync Branch
+name: Merge and Deploy
 on:
   push:
     branches:
