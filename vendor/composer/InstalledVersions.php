@@ -20,6 +20,8 @@ use Composer\Semver\VersionParser;
 
 
 
+
+
 class InstalledVersions
 {
 private static $installed = array (
@@ -30,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '4f0db181e2c6bf3bbc19147bb5423e6e587e6bb5',
+    'reference' => '10018503f6eaeb71f03b6f8a8b5d038518bc65ca',
     'name' => 'garasijogi/mamoto-website',
   ),
   'versions' => 
@@ -123,7 +125,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '4f0db181e2c6bf3bbc19147bb5423e6e587e6bb5',
+      'reference' => '10018503f6eaeb71f03b6f8a8b5d038518bc65ca',
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -907,7 +909,6 @@ foreach (self::getInstalled() as $installed) {
 $packages[] = array_keys($installed['versions']);
 }
 
-
 if (1 === \count($packages)) {
 return $packages[0];
 }
@@ -1099,6 +1100,7 @@ public static function reload($data)
 self::$installed = $data;
 self::$installedByVendor = array();
 }
+
 
 
 
