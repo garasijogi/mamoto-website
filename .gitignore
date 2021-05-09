@@ -42,6 +42,9 @@ Homestead.json
 _todo/*
 # public/mix-manifest.json
 
+# apache configuration file
+.htaccess
+
 # storage link
 public/storage
 public/js/promo.js.LICENSE.txt
