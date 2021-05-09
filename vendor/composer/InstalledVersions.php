@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'acd4a363ea90fb0df6de29f1a391e4c655f9d329',
+    'reference' => 'ef5af4c71d471bd93ba62a34aed2b4d6024e3859',
     'name' => 'garasijogi/mamoto-website',
   ),
   'versions' => 
@@ -125,7 +125,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'acd4a363ea90fb0df6de29f1a391e4c655f9d329',
+      'reference' => 'ef5af4c71d471bd93ba62a34aed2b4d6024e3859',
     ),
     'guzzlehttp/guzzle' => 
     array (
