@@ -53,3 +53,14 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: deploy-staging
+
+      # access SSH commands
+      - name: Do some shells
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOSTINGER_SSH_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          port: ${{ secrets.HOSTINGER_SSH_PORT }}
+          script: |
+            bash github_actions/deployer-main.sh
