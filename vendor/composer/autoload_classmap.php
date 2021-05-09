@@ -1508,6 +1508,7 @@ return array(
     'League\\CommonMark\\Inline\\Renderer\\TextRenderer' => $vendorDir . '/league/commonmark/src/Inline/Renderer/TextRenderer.php',
     'League\\CommonMark\\Input\\MarkdownInput' => $vendorDir . '/league/commonmark/src/Input/MarkdownInput.php',
     'League\\CommonMark\\Input\\MarkdownInputInterface' => $vendorDir . '/league/commonmark/src/Input/MarkdownInputInterface.php',
+    'League\\CommonMark\\MarkdownConverter' => $vendorDir . '/league/commonmark/src/MarkdownConverter.php',
     'League\\CommonMark\\MarkdownConverterInterface' => $vendorDir . '/league/commonmark/src/MarkdownConverterInterface.php',
     'League\\CommonMark\\Node\\Node' => $vendorDir . '/league/commonmark/src/Node/Node.php',
     'League\\CommonMark\\Node\\NodeWalker' => $vendorDir . '/league/commonmark/src/Node/NodeWalker.php',
