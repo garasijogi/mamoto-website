@@ -806,4 +806,37 @@ footer p {
   }
 }
 
+/* floating button start */
+.al-fb {
+  width: 208px;
+  height: 63px;
+  right: 1rem;
+  bottom: 5rem;
+  position: fixed;
+  border-radius: 50px;
+  background-color: var(--pipiss);
+  display: flex;
+  justify-content: space-evenly;
+  z-index: 2;
+  align-items: center;
+  box-shadow: 3px 3px 5px grey;
+}
+
+.al-fb h6 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--darkgrey);
+  margin-bottom: 0;
+}
+
+.al-fb img {
+  width: 44px;
+}
+
+.al-fb:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+/* floating button end */
 
