@@ -119,6 +119,7 @@ mix.scripts(
         'resources/js/admin/promo/promo__initial.js',
         'resources/js/admin/swal_toast.js', // toast using sweet alert2
         'resources/js/admin/promo/promo_index.js',
+        "resources/js/admin/modal-imageViewer.js",
     ],
     'public/js/admin/promo.js'
 );

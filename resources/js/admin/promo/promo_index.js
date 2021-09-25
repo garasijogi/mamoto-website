@@ -36,7 +36,7 @@ const getPromo = (url=url_get) => {
           flag_previousRetrieveNull = false; // matikan flag
         }
         $.each(data.data, function (index, value) {
-          container_promo_row.append('<div div class= "col-lg-6 col-12 card-promo" > <div class="card mb-3" style="max-width:100%"><div class="row no-gutters"><div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '"></div><div class="col-lg-7 col-md-8"><div class="card-body h-100 card-body-promo-card"><h5 class="card-title font-weight-bolder">' + value.name + '</h5><p class="card-text mb-0 font-weight-lighter">' + value.post + '</p><p class="card-text"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p><div class="d-flex justify-content-end btn-promo-container"><div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i class="fa fa-eye"></i></button></div></div></div></div></div></div></div>');
+          container_promo_row.append('<div class="col-lg-4 col-md-6 col-12 card-promo"><div class="card mb-3" style="max-width:100%"><a href="javascript:showImage(' + "'" + value.photo + "'" + ', ' + "'" + value.name + "'" + ')"><img class="card-img-top rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '"></a><div class="card-body h-100 card-body-promo-card"><h5 class="card-title font-weight-bolder">' + value.name + '</h5><p class="card-text mb-0 font-weight-lighter">' + value.post + '</p><p class="card-text mb-4"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p><div class="d-flex justify-content-end btn-promo-container"><div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i class="fa fa-pencil-alt"></i></button></div></div></div></div></div>');
         });
       }
       
@@ -133,6 +133,17 @@ container_promo_row.on('click', btnPromo_edit, function () {
       input_image.val(data.photo);
       edit_promo_originPhoto = data.photo;
       image_promo.attr('src', data.photo_link); // reset image chooser ke default
+
+      // set tanggal periode pada daterange
+      let period_start = moment(data.period_start, "YYYY-MMMM-DD", 'id').format('DD MMMM YYYY');
+      let period_end = moment(data.period_end, "YYYY-MMMM-DD", 'id').format('DD MMMM YYYY');
+      input_daterange.data('daterangepicker').setStartDate(period_start);
+      input_daterange.data('daterangepicker').setEndDate(period_end);
+      input_daterange.val(period_start + " - " + period_end);
+      // set tanggal periode pada hidden daterange
+      let dateChoosen = data.period_start + "/" + data.period_end;
+      input_period.val(dateChoosen);
+
       // ganti kelas stack jadi hover
       (image_promo_stack.hasClass('rr-promo-add-image-stack-static')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-static').addClass('rr-promo-add-image-stack-hover') : "";
     },
@@ -264,6 +275,9 @@ image_cropper_btn_modeCrop.on('click', function (e) {
 input_daterange.daterangepicker({
   "autoUpdateInput": false,
   "minDate": moment(),
+  "startDate": moment(),
+  "endDate": moment().add(1, 'months'),
+  // "minDate": moment(),
   "locale": {
     "format": "DD MMMM YYYY",
     "applyLabel": "Pilih",
@@ -359,11 +373,18 @@ formPromo.validate({
   submitHandler: function(form){
     let photo = input_image.val();
 
+    // validator daterange
+    let period = input_period.val();
+    if (period == "" || period == undefined || period == null){
+      Swal.fire({ icon: 'error', title: 'Periode promo tidak boleh kosong.', text: 'Harap tambahkan periode promo.' });
+      return false;
+    }
+
+    // validator poster
     if (photo == "" || photo == undefined || photo == null) {
       Swal.fire({ icon: 'error', title: 'Poster tidak boleh kosong.', text: 'Harap tambahkan poster promo.' });
     } else {
       // prepare form data
-      let period = input_period.val();
       let period_splitted = period.split('/');
       let formData = {
         name: form.name.value,
@@ -455,6 +476,10 @@ const resetForm = () => {
   (image_promo_stack.hasClass('rr-promo-add-image-stack-hover')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-hover').addClass('rr-promo-add-image-stack-static') : "";
   input_image.val(''); // kosongkan input hidden image
   input_period.val('');
+
+  // reset daterange
+  input_daterange.data('daterangepicker').setStartDate(moment());
+  input_daterange.data('daterangepicker').setEndDate(moment().add(1, 'months'));
 }
 
 // show swalerror on ajax error, validation error
