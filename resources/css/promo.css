@@ -16,7 +16,7 @@
 .promo-btn {
   background-color: white;
   color: black;
-  border: 0.20em solid #DCBE8E;
+  border: 0.20em solid #F8EDEB;
   box-sizing: border-box;
   border-radius: 5em;
   padding: 0.35em 2em;
@@ -32,7 +32,7 @@
 }
 
 .promo-btn:hover {
-  background-color: #DCBE8E;
+  background-color: #F8EDEB;
   /* color: white; */
 }
 
@@ -55,7 +55,7 @@
   margin-bottom: 1.0425em;
 }
 
-.promo-moreInfo{
+.promo-moreInfo {
   font-size: 1.3em;
 }
 
