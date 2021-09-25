@@ -28,7 +28,6 @@ class HomeController extends Controller
         $jumbotrons = Company_jumbotron::get();
         $displayed_portfolios = Displayed_portfolio::with('portfolio')->get();
         $displayed_feedbacks = Displayed_feedback::with('feedback')->whereNotNull('feedback_id')->get();
-        $whatsapp = Contact::where('name', 'whatsapp')->first();
-        return view('home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'promo', 'whatsapp'));
+        return view('home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'promo'));
     }
 }
