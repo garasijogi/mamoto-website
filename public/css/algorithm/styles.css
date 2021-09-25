@@ -410,7 +410,7 @@ body.login-page {
 
 /* 5.1.1) The Modal (background) */
 .al-image-viewer-modal {
-  padding: 10vh 0;
+  padding: 100px 0;
   display: none; /* Hidden by default */
   justify-content: center;
   position: fixed; /* Stay in place */
@@ -427,8 +427,8 @@ body.login-page {
 /* 5.1.2) Modal Content (Image) */
 .al-image-viewer-modal-content {
   margin: auto;
-  max-height: 200vh;
-  max-width: 200vh;
+  max-height: 80vh;
+  max-width: 80vw;
   background: transparent;
 }
 
