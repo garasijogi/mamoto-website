@@ -234,11 +234,11 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'Dashboard',
-            'url'         => 'admin',
-            'icon'        => 'fas fa-fw fa-tachometer-alt',
-        ],
+        // [
+        //     'text'        => 'Dashboard',
+        //     'url'         => 'admin',
+        //     'icon'        => 'fas fa-fw fa-tachometer-alt',
+        // ],
         [
             'text' => 'Pesanan',
             'url'  => 'admin/pesanan',
