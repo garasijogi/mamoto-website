@@ -13,13 +13,23 @@
             </div>
         </div>
         <div class="col-12 d-flex justify-content-center">
-            <img src="/images/bridestory_logo.png" width="100px" height="30px" style="object-fit: contain">
+            <a href="https://www.bridestory.com/mamotopicture" target="_blank">
+                <img src="/images/bridestory_logo.png" width="100px" height="30px" style="object-fit: contain">
+            </a>
         </div>
         <div class="col-12 pt-0 pb-5 d-flex justify-content-center">
-            <img class="al-icon-footer mx-3" src="/images/youtube_logo.svg" width="37px" height="37px" style="object-fit: contain">
-            <img class="al-icon-footer mx-3" src="/images/youtube_logo.svg" width="37px" height="37px" style="object-fit: contain">
-            <img class="al-icon-footer mx-3" src="/images/ig_logo.svg" width="37px" height="37px" style="object-fit: contain">
-            <img class="al-icon-footer mx-3" src="/images/fb_logo.svg" width="37px" height="37px" style="object-fit: contain">
+            <a href="https://www.youtube.com/channel/UCheVKImQlhnox9i9KM3nZ7w" target="_blank">
+                <img class="al-icon-footer mx-3" src="/images/youtube_logo.svg" width="37px" height="37px" style="object-fit: contain">
+            </a>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mamotopicture@gmail.com" target="_blank">
+                <img class="al-icon-footer mx-3" src="/images/mail_logo.svg" width="37px" height="37px" style="object-fit: contain">
+            </a>
+            <a href="https://www.instagram.com/mamotopicture/" target="_blank">
+                <img class="al-icon-footer mx-3" src="/images/ig_logo.svg" width="37px" height="37px" style="object-fit: contain">
+            </a>
+            <a href="" target="_blank">
+                <img class="al-icon-footer mx-3" src="/images/fb_logo.svg" width="37px" height="37px" style="object-fit: contain">
+            </a>
         </div>
         <div class="col-12 text-center">
             <p class="al-grey-color">&copy 2021 <span class="font-weight-bold">Mamoto Picture.</span> garasijogi</p>
