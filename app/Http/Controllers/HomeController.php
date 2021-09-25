@@ -7,6 +7,7 @@ use App\Displayed_feedback;
 use App\Displayed_portfolio;
 use App\DisplayedPromo;
 use App\Promo;
+use App\Contact;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
         $jumbotrons = Company_jumbotron::get();
         $displayed_portfolios = Displayed_portfolio::with('portfolio')->get();
         $displayed_feedbacks = Displayed_feedback::with('feedback')->whereNotNull('feedback_id')->get();
-        return view('home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'promo'));
+        $whatsapp = Contact::where('name', 'whatsapp')->first();
+        return view('home', compact('jumbotrons', 'displayed_portfolios', 'displayed_feedbacks', 'promo', 'whatsapp'));
     }
 }
