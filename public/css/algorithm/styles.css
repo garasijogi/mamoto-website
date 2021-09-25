@@ -840,3 +840,26 @@ footer p {
 }
 /* floating button end */
 
+/* background img */
+.al-wedding-ring-bg {
+  background-image: url("../../images/wedding-ring.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center 100%;
+}
+
+.al-wing-bg {
+  background-image: url("../../images/wing.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center 100%;
+}
+
+.al-min-height-39 {
+  min-height: 39rem;
+}
+
+.al-min-height-25 {
+  min-height: 25rem;
+}
+/* end background img */

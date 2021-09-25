@@ -3,7 +3,7 @@
 @section('content')
 <div class="al-container d-block">
     <div class="container">
-        <div class="text-center ns-faq-title">
+        <div class="text-center ns-faq-title mt-5 al-wing-bg al-min-height-25">
             <h1 class="ns-title">Frequently Asked Question</h1>
         </div>
         <div class="row">
