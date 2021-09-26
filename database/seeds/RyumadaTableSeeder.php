@@ -13,6 +13,12 @@ class RyumadaTableSeeder extends Seeder
      */
     public function run()
     {
+        // // books_packages table seeder
+        // DB::table('books_packages')->insert([
+        //     'products' => 'Wedding',
+        //     'budgets' => '{["name_products":"Basic", "price":"7,5"]}',
+        // ]);
+
         // company_about table seeder
         DB::table('company_about')->insert([
             'id' => 0,
