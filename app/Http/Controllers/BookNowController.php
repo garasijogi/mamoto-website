@@ -16,7 +16,7 @@ class BookNowController extends Controller
     public function store(Request $request){
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:books',
+            'email' => 'required|email',
             'phone' => 'required',
             'location' => 'required',
         ]);
