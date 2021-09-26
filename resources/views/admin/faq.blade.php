@@ -9,7 +9,7 @@
 @section('content')
     <div class="container">
         <a href="/admin/faq/create" class="btn btn-sm btn-primary">Tambah FAQ.</a>
-        <table class="table mt-3 col-10">
+        <table class="table mt-3 col-12">
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
@@ -29,17 +29,17 @@
                         <td>{{ $faq->question }}</td>
                         <td>{{ $faq->answer }}</td>
                         <td class="d-flex justify-content-start">
-                            <a href="/admin/faq/{{ $faq->id }}/edit " class="text-primary"><abbr title="Edit FAQ">
-                                    <i class="fas fa-fw fa-edit"></i></abbr></a>
+                            <a href="/admin/faq/{{ $faq->id }}/edit " class="text-primary" title="Edit FAQ">
+                                <i class="fas fa-fw fa-edit"></i></a>
                             <button type="button" class="border-0 bg-transparent text-danger" data-toggle="modal"
-                                data-target="#deleteModal{{ $faq->id }} "><abbr title="Delete FAQ">
-                                    <i class="fas fa-fw fa-trash"></i>
+                                data-target="#deleteModal-{{ $faq->id }}" title="Delete FAQ">
+                                <i class=" fas fa-fw fa-trash"></i>
                             </button>
                         </td>
                     </tr>
 
-                    {{-- Modal --}}
-                    <div class="modal fade" id="deleteModal{{ $faq->id }}" tabindex="-1">
+                    {{-- Modal Detail --}}
+                    <div class="modal fade" id="deleteModal-{{ $faq->id }}" tabindex="-1">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">

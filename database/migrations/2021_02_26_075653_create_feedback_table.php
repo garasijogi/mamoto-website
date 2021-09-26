@@ -17,8 +17,8 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->string('mempelai_pria');
             $table->string('mempelai_wanita');
-            $table->text('kesan_pesan');
-            $table->text('kritik_saran');
+            $table->longText('kesan_pesan');
+            $table->longText('kritik_saran');
             $table->timestamps();
         });
     }
