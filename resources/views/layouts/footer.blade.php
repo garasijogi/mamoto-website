@@ -13,13 +13,31 @@
             </div>
         </div>
         <div class="col-12 d-flex justify-content-center">
-            <img src="/images/bridestory_logo.png" width="100px" height="30px" style="object-fit: contain">
+            <a href="{{ $socmed['bridestory']->link . $socmed['bridestory']->contact }}" target="_blank">
+                <img src="/images/bridestory_logo.png" width="100px" height="30px" style="object-fit: contain">
+            </a>
         </div>
         <div class="col-12 pt-0 pb-5 d-flex justify-content-center">
-            <img class="al-icon-footer mx-3" src="/images/youtube_logo.svg" width="37px" height="37px" style="object-fit: contain">
-            <img class="al-icon-footer mx-3" src="/images/youtube_logo.svg" width="37px" height="37px" style="object-fit: contain">
-            <img class="al-icon-footer mx-3" src="/images/ig_logo.svg" width="37px" height="37px" style="object-fit: contain">
-            <img class="al-icon-footer mx-3" src="/images/fb_logo.svg" width="37px" height="37px" style="object-fit: contain">
+            @if ($socmed['youtube'])
+                <a href="{{ $socmed['youtube']->link . $socmed['youtube']->contact }}" target="_blank">
+                    <img class="al-icon-footer mx-3" src="/images/youtube_logo.svg" width="37px" height="37px" style="object-fit: contain">
+                </a>
+            @endif
+            @if ($socmed['email'])
+                <a href="{{ $socmed['email']->link . $socmed['email']->contact }}" target="_blank">
+                    <img class="al-icon-footer mx-3" src="/images/mail_logo.svg" width="37px" height="37px" style="object-fit: contain">
+                </a>
+            @endif
+            @if ($socmed['instagram'])
+                <a href="{{ $socmed['instagram']->link . $socmed['instagram']->contact }}" target="_blank">
+                    <img class="al-icon-footer mx-3" src="/images/ig_logo.svg" width="37px" height="37px" style="object-fit: contain">
+                </a>
+            @endif
+            @if ($socmed['facebook'])
+                <a href="{{ $socmed['facebook']->link . $socmed['facebook']->contact }}" target="_blank">
+                    <img class="al-icon-footer mx-3" src="/images/fb_logo.svg" width="37px" height="37px" style="object-fit: contain">
+                </a>
+            @endif
         </div>
         <div class="col-12 text-center">
             <p class="al-grey-color">&copy 2021 <span class="font-weight-bold">Mamoto Picture.</span> garasijogi</p>

@@ -105,7 +105,7 @@
     </div>
 
     {{-- kelola promo --}}
-    <div class="al-tab border-bottom mb-2">
+    {{-- <div class="al-tab border-bottom mb-2">
         <h6 class="font-weight-bold">Promo yang ditampilkan</h6>
     </div>
     <div class="row text-center pb-4 justify-content-md-center">
@@ -141,7 +141,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     {{-- kelola testimoni --}}
     <div class="al-tab border-bottom mb-4">
