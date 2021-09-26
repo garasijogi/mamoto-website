@@ -46,3 +46,5 @@ public/mix-manifest.json
 public/storage
 public/js/promo.js
 public/js/promo.js.LICENSE.txt
+
+!resources/views/vendor/adminlte/partials/sidebar/menu-item.blade.php
