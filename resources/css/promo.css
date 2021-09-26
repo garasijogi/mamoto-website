@@ -1,4 +1,4 @@
-.container-promo {
+.container-promo{
   color: #999;
 }
 
@@ -16,7 +16,7 @@
 .promo-btn {
   background-color: white;
   color: black;
-  border: 0.20em solid #F8EDEB;
+  border: 0.20em solid #DCBE8E;
   box-sizing: border-box;
   border-radius: 5em;
   padding: 0.35em 2em;
@@ -32,7 +32,7 @@
 }
 
 .promo-btn:hover {
-  background-color: #F8EDEB;
+  background-color: #DCBE8E;
   /* color: white; */
 }
 
@@ -43,7 +43,7 @@
 .promo-img {
   cursor: pointer;
   width: 100%;
-  padding-top: 56.25%;
+  padding-top: 100%;
   background-size: cover;
 }
 
@@ -53,10 +53,6 @@
   background-color: #999;
   /* margin-bottom: 2.085em; */
   margin-bottom: 1.0425em;
-}
-
-.promo-moreInfo {
-  font-size: 1.3em;
 }
 
 .promo-noPromo-img {
@@ -81,8 +77,4 @@
   font-style: normal;
   font-weight: normal;
   color: #888888;
-}
-
-.text-promo-period {
-  font-size: 0.857em;
 }

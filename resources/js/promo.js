@@ -109,7 +109,7 @@ const getPromo = (url=url_get) => {
           toggle_previousNull = false; // matikan flag
         }
         $.each(data.data, function (index, value) {
-          row_promo.append('<div class="col-lg-4 promo-cards mb-5" data-id="' + value.id + '"><div class="promo-img-container"><div class="promo-img promo-showImage" data-imgSrc="' + value.photo + '" data-imgTitle="' + value.name + '" style="background-image:url(' + value.photo + ');"></div></div><div><div class="text-center"><h3 class="promo-title">' + value.name + ' </h3></div><p class="promo-description">' + value.post + '</p><div class="mb-0 text-secondary text-promo-period">Periode Promo<span class="promo-period"><br>' + value.period_start + ' - ' + value.period_end + '</span></div><p><a class="promo-moreInfo" href="javascript:void(0)">more info</a></p><div class="d-flex justify-content-center"><div class="promo-btn" data-link="' + value.link +'">Book Now</div></div></div></div>');
+          row_promo.append('<div class="col-lg-4 promo-cards mb-5" data-id="' + value.id + '"><div class="promo-img-container"><div class="promo-img promo-showImage" data-imgSrc="' + value.photo + '" data-imgTitle="' + value.name + '" style="background-image:url(' + value.photo + ');"></div></div><div><div class="text-center"><h3 class="promo-title">' + value.name + ' </h3></div><p class="promo-description">' + value.post + ' <br /><span><a class="promo-moreInfo" href="javascript:void(0)">more info</a></span></p><div class="d-flex justify-content-center"><div class="promo-btn" data-link="' + value.link +'">Book Now</div></div></div></div>');
         });
       }
     },

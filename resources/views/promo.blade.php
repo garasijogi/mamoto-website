@@ -19,22 +19,23 @@
       </div>
       {{-- promo cards --}}
       {{-- @for ($i = 0; $i < 2; $i++)
-        <div class="col-lg-4 promo-cards mb-5" data-id="' + value.id + '">
+        <div class="col-lg-4 promo-cards">
+          <!-- image -->
           <div class="promo-img-container">
-            <div class="promo-img promo-showImage" data-imgSrc="' + value.photo + '" data-imgTitle="' + value.name + '"
-              style="background-image:url(' + value.photo + ');"></div>
+            <div class="promo-img" style="background-image: url(https://picsum.photos/1080);">
+            </div>
           </div>
           <div>
             <div class="text-center">
-              <h3 class="promo-title">' + value.name + ' </h3>
+              <h3 class="promo-title">
+                PROMO SUPER
+              </h3>
             </div>
-            <p class="promo-description">' + value.post + '</p>
-            <div class="mb-0 text-secondary text-promo-period">Periode Promo<span class="promo-period"><br>' + value.period_start + ' - ' + value.period_end + '</span></div>
-            <p>
-              <a class="promo-moreInfo" href="javascript:void(0)">more info</a>
+            <p class="promo-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit maiores natus dolore minus. <br/><span><a href="#">more info</a></span>
             </p>
             <div class="d-flex justify-content-center">
-              <div class="promo-btn" data-link="' + value.link +'">Book Now</div>
+              <div class="promo-btn" data-link="https://google.com">Book Now</div>
             </div>
           </div>
         </div>

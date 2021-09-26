@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-@include('admin._partials.modal-imageViewer')
+
 {{-- main content --}}
 <div class="card">
   <div class="card-body">
@@ -24,19 +24,22 @@
       {{-- content --}}
       <div class="row promo-content">
         {{-- example code of card content --}}
-        {{-- <div class="col-lg-4 col-md-6 col-12 card-promo">
+        {{-- <div div class="col-lg-6 col-12 card-promo">
           <div class="card mb-3" style="max-width:100%">
-            <a  href="javascript:showImage('+ "'" +value.photo+ "'" +', '+ "'" +value.name+ "'" +')">
-              <img class="card-img-top rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '">
-            </a>
-            <div class="card-body h-100 card-body-promo-card">
-              <h5 class="card-title font-weight-bolder">' + value.name + '</h5>
-              <p class="card-text mb-0 font-weight-lighter">' + value.post + '</p>
-              <p class="card-text mb-4"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p>
-              <div class="d-flex justify-content-end btn-promo-container">
-                <div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i
-                      class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i
-                      class="fa fa-pencil-alt"></i></button></div>
+            <div class="row no-gutters">
+              <div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '"
+                  alt="Poster Promo ->' + value.name + '"></div>
+              <div class="col-lg-7 col-md-8">
+                <div class="card-body h-100 card-body-promo-card">
+                  <h5 class="card-title font-weight-bolder">' + value.name + '</h5>
+                  <p class="card-text mb-0 font-weight-lighter">' + value.post + '</p>
+                  <p class="card-text"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p>
+                  <div class="d-flex justify-content-end btn-promo-container">
+                    <div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i
+                          class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i
+                          class="fa fa-eye"></i></button></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -122,7 +125,7 @@
               </div>
             </div>
             <div class="row justify-content-center image-promo-container">
-              <div class="col-lg-11 col card mb-0 p-3">
+              <div class="col-lg-7 col-sm-8 col card mb-0 p-3 m-sm-0 m-4">
                 <label class="label mb-0 rr-promo-add-label">
                   <img class="rounded rr-image-responsive rr-promo-add-image"
                     src="{{ asset('images/default/image.svg') }}" alt="image poster">
