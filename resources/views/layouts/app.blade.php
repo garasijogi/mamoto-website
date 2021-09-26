@@ -22,7 +22,6 @@
 <body class="user-body">
   @include('layouts.navigation')
   <div id="app">
-    @include('layouts.floating_button')
     <div class="content">
       @yield('content')
     </div>

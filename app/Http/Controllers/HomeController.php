@@ -7,7 +7,6 @@ use App\Displayed_feedback;
 use App\Displayed_portfolio;
 use App\DisplayedPromo;
 use App\Promo;
-use App\Contact;
 
 class HomeController extends Controller
 {
