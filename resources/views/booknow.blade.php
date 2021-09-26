@@ -41,8 +41,8 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {{-- Type of Events --}}
-                            <div class="form-group">
+                            {{-- Type of Events [OLD] --}}
+                            {{-- <div class="form-group">
                                 <label for="" class="ns-label">Type Of Event <sup>*Full Package harap checklist
                                         semua
                                         kotak</sup></label> <br>
@@ -54,6 +54,36 @@
                                 </div>
                                 @endforeach
                                 @error('events')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div> --}}
+                            {{-- pilih paket form --}}
+                            <div class="form-group">
+                                <label for="" class="ns-label">Pilih Paket</label>
+                                {{-- <input type="text" class="form-control form-control-lg ns-form" placeholder="Please choose your package" name="pilih-paket"> --}}
+                                <select class="custom-select custom-select-lg form-control  ns-form" placeholder="Please choose your package" name="pilih-paket">
+                                    <option>Basic 20</option>
+                                    <option></option>
+                                    <option>option 3</option>
+                                    <option>option 4</option>
+                                    <option>option 5</option>
+                                </select>
+                                @error('pilih-paket')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            {{-- Pilih kisaran harga form --}}
+                            <div class="form-group">
+                                <label for="" class="ns-label">Kisaran Budget</label>
+                                <select class="custom-select custom-select-lg form-control  ns-form" placeholder="Estimate your budget"
+                                    name="kisaran-budget">
+                                    <option>option 1</option>
+                                    <option>option 2</option>
+                                    <option>option 3</option>
+                                    <option>option 4</option>
+                                    <option>option 5</option>
+                                </select>
+                                @error('kisaran-budget')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
