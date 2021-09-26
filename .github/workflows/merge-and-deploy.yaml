@@ -27,6 +27,7 @@ jobs:
       # update npm and composer packages
       - name: Create local changes
         run: |
+          php -v
           composer install --no-dev --optimize-autoloader
           npm install && npm run prod
           php artisan adminlte:install && php artisan adminlte:plugins install
