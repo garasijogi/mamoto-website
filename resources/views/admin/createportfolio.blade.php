@@ -79,6 +79,28 @@
   @enderror
 </div> --}}
 
+      {{-- youtube video input --}}
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group mb-2">
+            <label for="venue" class="font-weight-bold">Video</label>
+            <div id="al-yt-input">
+              <div class="row">
+                <div class="col-10">
+                  <input class="al-video-input form-control" type="text" name="video[1]" placeholder="Masukkan Link Video Youtube">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d-flex justify-content-end w-100">
+          <button type="button" class="btn btn-primary mt-2" onclick="addVideoInput()">Tambah Video</button>
+        </div>
+      </div>
+      {{-- end youtube video input --}}
+
 {{-- details portfolio --}}
 <hr>
 <h6 class="mt-4 font-weight-bold">Portfolio Details</h6>

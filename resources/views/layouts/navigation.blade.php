@@ -33,10 +33,16 @@
         </li>
         </li>
         <li class="d-inline p-3"><a href="{{ route('about') }}">ABOUT</a></li>
+        <li class="d-inline p-3"><a href="{{ route('pricelist') }}">PRICELIST</a></li>
         <li class="d-inline p-3"><a href="{{ route('faq') }}">FAQ</a></li>
         <li class="d-inline p-3 al-circle-list-btn"><a href="{{ route('booknow') }}" id='book-now-btn'>BOOK NOW</a>
         </li>
-        <li class="d-inline p-3"><a href="{{ route('promo') }}">PROMO</a></li>
+        <li class="d-inline p-3 al-info mr-2">
+            <a href="{{ route('promo') }}">PROMO</a>
+            @if ($promos_count >= 1)
+                <img src="/icons/info.png" alt="promo-notification">
+            @endif
+        </li>
     </ul>
 </nav>
 

@@ -24,6 +24,7 @@ Route::prefix('portfolio')->group(function () {
     Route::get('{pfType_id}/{portfolios:slug}', 'PortfolioController@show')->name('portfolio.show');
 });
 Route::get('/about', 'AboutController@index')->name('about');
+Route::get('/pricelist', 'PricelistController@index')->name('pricelist');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
 Route::post('/booknow/book', 'BookNowController@store');

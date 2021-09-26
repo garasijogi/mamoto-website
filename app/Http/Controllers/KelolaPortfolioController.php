@@ -46,6 +46,18 @@ class KelolaPortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
+        if($request->video[1]) {
+            foreach($request->video as $index => $video) {
+                $videoData[$index]['id'] = $index;
+                $videoData[$index]['link'] = $video;
+            }
+
+            $videosList = array_merge([], $videoData);
+            $videosList = json_encode($videosList);
+        } else {
+            $videosList = null;
+        }
+
         // delete image if requests exist
         if (isset($request->imgDel)) {
             // add request fileList to new array variable
@@ -72,18 +84,18 @@ class KelolaPortfolioController extends Controller
         }
 
         // videoList
-        if ($request->hasfile('videoList')) {
-            foreach ($request->file('videoList') as $index => $video) {
-                $videos_data[$index]['id'] = $index + 1;
-                $videos_data[$index]['name'] = $video->getClientOriginalName();
-                $videos_data[$index]['type'] = $video->getClientOriginalExtension();
-                $videos_data[$index]['size'] = $video->getSize();
-                $videos_data[$index]['date_uploaded'] = date('d-m-Y');
-            }
-            $videosList = json_encode($videos_data);
-        } else {
-            $videosList = null;
-        }
+        // if ($request->hasfile('videoList')) {
+        //     foreach ($request->file('videoList') as $index => $video) {
+        //         $videos_data[$index]['id'] = $index + 1;
+        //         $videos_data[$index]['name'] = $video->getClientOriginalName();
+        //         $videos_data[$index]['type'] = $video->getClientOriginalExtension();
+        //         $videos_data[$index]['size'] = $video->getSize();
+        //         $videos_data[$index]['date_uploaded'] = date('d-m-Y');
+        //     }
+        //     $videosList = json_encode($videos_data);
+        // } else {
+        //     $videosList = null;
+        // }
 
         // create details json
         $details = [

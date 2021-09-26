@@ -16,11 +16,24 @@ Portfolio - {{$title}}
     </div>
   </div>
 
+  {{-- portfolio videos --}}
+  @if ($portfolio->video)
+    <div class="al-portfolio-cards mt-5">
+      <div class="al-portfolio-cards-content text-center">
+        @foreach (json_decode($portfolio->video) as $index => $video)
+          <div class="mb-3">
+            <iframe width="720" height="500" src="{{ str_replace("watch?v=", "/embed/", $video->link) }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
+          </div>
+        @endforeach
+      </div>
+    </div>
+  @endif
+
   {{-- portfolio cards --}}
-  <div class="al-portfolio-cards">
+  <div class="al-portfolio-cards {{ $portfolio->video ? "pt-0" : "" }}">
     <div class="al-portfolio-cards-content">
       @foreach (json_decode($portfolio->photo) as $index => $photo)
-      <div class="py-3"></div>
       <div class="col-12 px-5 py-4 al-portfolio-card text-center"
         data-aos="{{ $index > 0 ? ($index % 2 != 0 ?  'fade-left' : 'fade-right') : '' }}">
         <div id='{{$index}}' onclick="alImageView(this.id, 'id')">
