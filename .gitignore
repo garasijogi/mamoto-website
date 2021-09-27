@@ -1,4 +1,4 @@
-# THIS FILE IS FOR DEPLOY-STAGING BRANCH
+# THIS FILE IS FOR DEPLOY/ZTEMPLATE BRANCH
 
 # apache configuration file
 .htaccess
@@ -40,3 +40,21 @@ npm-debug.log
 package-lock.json
 # vendor/
 yarn-error.log
+
+# webpack compiled files
+# js compiled files
+# !public/js/
+# public/js/*
+# !public/js/algorithm
+# !public/js/mashiro
+# !public/js/admin/
+# public/js/admin/*
+# !public/js/admin/.directory
+# css compiled files
+# !public/css/
+# public/css/*
+# !public/css/algorithm
+# !public/css/mashiro
+# !public/css/admin/
+# public/css/admin/*
+# !public/css/admin/.directory
