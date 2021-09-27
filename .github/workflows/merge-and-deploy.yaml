@@ -1,0 +1,68 @@
+name: Merge and Deploy
+on: [push]
+jobs:
+  merge-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # merge this branch to deploy staging
+      - uses: actions/checkout@master
+      - name: Merge ${{ github.ref }} > deploy-staging
+        uses: devmasx/merge-branch@v1.3.1
+        with: 
+          type: now
+          from_branch: ${{ github.ref }}
+          target_branch: deploy-staging
+          github_token: ${{ github.token }}
+      
+      # remove local workspaces
+      - uses: AutoModality/action-clean@v1
+      
+      # checkout deploy-staging
+      - uses: actions/checkout@v2
+        with:
+          ref: deploy-staging
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+          fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+      
+      # update npm and composer packages
+      - name: Create local changes
+        run: |
+          php -v
+          composer install --no-dev --optimize-autoloader
+          npm install && npm run prod
+          php artisan adminlte:install && php artisan adminlte:plugins install
+          php artisan storage:link
+      
+      # see changed files
+      - run: git status
+      
+      # list files
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+          
+      # commit changes
+      - name: Commit files
+        run: |
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add .
+            git commit -m "update dependencies" -a
+      
+      # push changes to deploy staging
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: deploy-staging
+
+      # access SSH commands
+      - name: Do some shells
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOSTINGER_SSH_HOST }}
+          username: ${{ secrets.HOSTINGER_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          port: ${{ secrets.HOSTINGER_SSH_PORT }}
+          script: |
+            bash github_actions/deployer-main.sh
