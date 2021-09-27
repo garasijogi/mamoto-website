@@ -1,3 +1,5 @@
+# THIS FILE IS FOR DEPLOY/ZTEMPLATE BRANCH
+
 # apache configuration file
 .htaccess
 
@@ -25,34 +27,34 @@ Homestead.json
 
 # miscelanous
 _todo/*
-public/mix-manifest.json
+# public/mix-manifest.json
 
 # storage link
 public/storage
 
 # Vendor packages
-*/vendor/*
+# */vendor/*
 composer.lock
 node_modules/
 npm-debug.log
 package-lock.json
-vendor/
+# vendor/
 yarn-error.log
 
 # webpack compiled files
 # js compiled files
-!public/js/
-public/js/*
-!public/js/algorithm
-!public/js/mashiro
-!public/js/admin/
-public/js/admin/*
-!public/js/admin/.directory
+# !public/js/
+# public/js/*
+# !public/js/algorithm
+# !public/js/mashiro
+# !public/js/admin/
+# public/js/admin/*
+# !public/js/admin/.directory
 # css compiled files
-!public/css/
-public/css/*
-!public/css/algorithm
-!public/css/mashiro
-!public/css/admin/
-public/css/admin/*
-!public/css/admin/.directory
+# !public/css/
+# public/css/*
+# !public/css/algorithm
+# !public/css/mashiro
+# !public/css/admin/
+# public/css/admin/*
+# !public/css/admin/.directory
