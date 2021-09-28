@@ -1,5 +1,8 @@
 name: Merge and Deploy
-on: [push]
+on:
+  push:
+    branches:
+      - staging
 jobs:
   merge-and-deploy:
     runs-on: ubuntu-latest
