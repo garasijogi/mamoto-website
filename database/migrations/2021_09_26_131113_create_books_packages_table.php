@@ -14,10 +14,8 @@ class CreateBooksPackagesTable extends Migration
     public function up()
     {
         Schema::create('books_packages', function (Blueprint $table) {
-            $table->id();
-            $table->text('products');
+            $table->string('id', 4)->unique();
             $table->json('budgets');
-            $table->timestamps();
         });
     }
 

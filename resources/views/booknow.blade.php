@@ -12,8 +12,8 @@
                         <h6 class="ns-title">Let's Talk About your Moment</h6>
                     </div>
                     <div class="container-fluid col-lg-10 mt-5">
-                        <form action="/booknow/book" method="post" class="ns-font-form">
-                            @csrf
+                        {{-- <form action="/booknow/book" method="post" class="ns-font-form"> --}}
+                        <form id="formBookNow" action="#" method="post" class="ns-font-form" novalidate>
                             {{-- Full Name --}}
                             <div class="form-group">
                                 <label for="" class="ns-label">Full Name</label>
@@ -60,15 +60,14 @@
                             {{-- pilih paket form --}}
                             <div class="form-group">
                                 <label for="" class="ns-label">Pilih Paket</label>
-                                {{-- <input type="text" class="form-control form-control-lg ns-form" placeholder="Please choose your package" name="pilih-paket"> --}}
-                                <select class="custom-select custom-select-lg form-control  ns-form" placeholder="Please choose your package" name="pilih-paket">
-                                    <option>Basic 20</option>
-                                    <option></option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
+                                {{-- <input type="text" class="form-control form-control-lg ns-form" placeholder="Please choose your package" name="pilih_paket"> --}}
+                                <select class="custom-select custom-select-lg form-control  ns-form" placeholder="Please choose your package" name="pilih_paket">
+                                    <option value="" >Please choose your package</option>
+                                    @foreach ($books_packages as $books_package)
+                                        <option value="{{ $books_package['id'] }}" >{{ $books_package['name_product'] }}</option>
+                                    @endforeach
                                 </select>
-                                @error('pilih-paket')
+                                @error('pilih_paket')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -76,14 +75,10 @@
                             <div class="form-group">
                                 <label for="" class="ns-label">Kisaran Budget</label>
                                 <select class="custom-select custom-select-lg form-control  ns-form" placeholder="Estimate your budget"
-                                    name="kisaran-budget">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
+                                    name="kisaran_budget" disabled="true">
+                                    <option value="" >Estimate your budget</option>
                                 </select>
-                                @error('kisaran-budget')
+                                @error('kisaran_budget')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -114,12 +109,8 @@
                                     class="textbox-n form-control form-control-lg ns-form" rows="3"
                                     name="note"></textarea>
                             </div>
-                            <button type="submit" class="btn mb-2 px-5 mx-auto d-block ns-submit">Book Now</button>
+                        <button type="submit" class="btn mb-2 px-5 mx-auto d-block ns-submit" >Book Now</button>
                         </form>
-
-                        <h5 class="text-center mt-4"><b>We will contact you back soon after you fill out the
-                                form</b>
-                        </h5>
                     </div>
                 </div>
             </div>
@@ -127,4 +118,14 @@
         <div class="col-lg-2 col-md-1 col-sm-12"></div>
     </div>
 </div>
+<input type="hidden" name="books_packages" value="{{ json_encode($books_packages) }}">
+<input type="hidden" name="contact_wa" value="{{ json_encode($contact_wa) }}">
+@endsection
+
+@section('js-ryu')
+{{-- jquery validate --}}
+<script src="{{ asset('js/admin/jquery-validate/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('js/admin/jquery-validate/additional-methods.min.js') }}"></script>
+{{-- booknow script --}}
+<script src="{{ asset('js/booknow.js') }}"></script>
 @endsection
