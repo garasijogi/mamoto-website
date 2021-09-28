@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'AlgorithmTableSeeder' => $baseDir . '/database/seeds/AlgorithmTableSeeder.php',
     'App\\Book' => $baseDir . '/app/Book.php',
+    'App\\Books_package' => $baseDir . '/app/Books_package.php',
     'App\\Company_about' => $baseDir . '/app/Company_about.php',
     'App\\Company_jumbotron' => $baseDir . '/app/Company_jumbotron.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',

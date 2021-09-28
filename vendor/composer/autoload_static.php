@@ -14,8 +14,8 @@ class ComposerStaticInit37e26ca9f1bb9cc3998f0fb559504e21
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
@@ -413,6 +413,7 @@ class ComposerStaticInit37e26ca9f1bb9cc3998f0fb559504e21
     public static $classMap = array (
         'AlgorithmTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AlgorithmTableSeeder.php',
         'App\\Book' => __DIR__ . '/../..' . '/app/Book.php',
+        'App\\Books_package' => __DIR__ . '/../..' . '/app/Books_package.php',
         'App\\Company_about' => __DIR__ . '/../..' . '/app/Company_about.php',
         'App\\Company_jumbotron' => __DIR__ . '/../..' . '/app/Company_jumbotron.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
