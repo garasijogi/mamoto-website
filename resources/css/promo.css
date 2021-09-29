@@ -1,0 +1,88 @@
+.container-promo {
+  color: #999;
+}
+
+.overlay-promo-modal {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.80);
+  z-index: 1;
+}
+
+.promo-btn {
+  background-color: white;
+  color: black;
+  border: 0.20em solid #F8EDEB;
+  box-sizing: border-box;
+  border-radius: 5em;
+  padding: 0.35em 2em;
+  cursor: pointer;
+  font-size: 1.181em;
+  line-height: 1.599em;
+  font-weight: 400;
+  /* opacity animation */
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+
+.promo-btn:hover {
+  background-color: #F8EDEB;
+  /* color: white; */
+}
+
+.promo-description {
+  font-size: 1.3em;
+}
+
+.promo-img {
+  cursor: pointer;
+  width: 100%;
+  padding-top: 56.25%;
+  background-size: cover;
+}
+
+.promo-img-container {
+  position: relative;
+  padding: 0.349em;
+  background-color: #999;
+  /* margin-bottom: 2.085em; */
+  margin-bottom: 1.0425em;
+}
+
+.promo-moreInfo {
+  font-size: 1.3em;
+}
+
+.promo-noPromo-img {
+  width: 50em;
+  height: 10em;
+  position: relative;
+  overflow: hidden;
+  background-repeat: round;
+}
+
+.promo-img-spinner-container {
+  border-radius: 5em;
+}
+
+.promo-img-spinner {
+  width: 5em;
+  height: auto;
+}
+
+.promo-title {
+  font-family: Adobe Devanagari;
+  font-style: normal;
+  font-weight: normal;
+  color: #888888;
+}
+
+.text-promo-period {
+  font-size: 0.857em;
+}

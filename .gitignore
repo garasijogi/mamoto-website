@@ -1,18 +1,12 @@
-# Vendor packages
-*/vendor/*
-composer.lock
-node_modules/
-npm-debug.log
-package-lock.json
-vendor/
-yarn-error.log
+# apache configuration file
+.htaccess
 
 # Laravel 4 specific
 bootstrap/compiled.php
 app/storage/
 
 # Laravel 5 & Lumen specific
-public/storage
+# public/storage
 public/hot
 
 # Laravel 5 & Lumen specific with changed public path
@@ -29,6 +23,36 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 
+# miscelanous
+_todo/*
+public/mix-manifest.json
+
+# storage link
+public/storage
+
+# Vendor packages
+*/vendor/*
+composer.lock
+node_modules/
+npm-debug.log
+package-lock.json
+vendor/
+yarn-error.log
+
 # webpack compiled files
-public/css/app.css
-public/js/app.js
+# js compiled files
+!public/js/
+public/js/*
+!public/js/algorithm
+!public/js/mashiro
+!public/js/admin/
+public/js/admin/*
+!public/js/admin/.directory
+# css compiled files
+!public/css/
+public/css/*
+!public/css/algorithm
+!public/css/mashiro
+!public/css/admin/
+public/css/admin/*
+!public/css/admin/.directory

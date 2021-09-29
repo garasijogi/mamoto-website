@@ -37,7 +37,6 @@ class KelolaPortfolioController extends Controller
                 break;
         }
         return view('admin.showportfolio', compact('portfolio', 'jenis_portfolio'));
-        // return view('posts.show', compact('post', 'posts'));
     }
 
     public function create()
@@ -47,32 +46,56 @@ class KelolaPortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
+        if($request->video[1]) {
+            foreach($request->video as $index => $video) {
+                $videoData[$index]['id'] = $index;
+                $videoData[$index]['link'] = $video;
+            }
+
+            $videosList = array_merge([], $videoData);
+            $videosList = json_encode($videosList);
+        } else {
+            $videosList = null;
+        }
+
+        // delete image if requests exist
+        if (isset($request->imgDel)) {
+            // add request fileList to new array variable
+            $photoArray = $request->file('fileList');
+            foreach ($request->imgDel as $imgDel) {
+                unset($photoArray[$imgDel]);
+            };
+            $photoArray = \array_values($photoArray);
+        } else {
+            $photoArray = $request->file('fileList');
+        }
+
         // imagesList
         if ($request->hasfile('fileList')) {
-            foreach ($request->file('fileList') as $index => $image) {
+            foreach ($photoArray as $index => $image) {
                 $images_data[$index]['id'] = $index + 1;
                 $images_data[$index]['name'] = $image->getClientOriginalName();
                 $images_data[$index]['type'] = $image->getClientOriginalExtension();
                 $images_data[$index]['size'] = $image->getSize();
                 $images_data[$index]['date_uploaded'] = date('d-m-Y');
-                $image->storeAs("public/images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
+                $image->storeAs("images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
             }
             $imagesList = json_encode($images_data);
         }
 
         // videoList
-        if ($request->hasfile('videoList')) {
-            foreach ($request->file('videoList') as $index => $video) {
-                $videos_data[$index]['id'] = $index + 1;
-                $videos_data[$index]['name'] = $video->getClientOriginalName();
-                $videos_data[$index]['type'] = $video->getClientOriginalExtension();
-                $videos_data[$index]['size'] = $video->getSize();
-                $videos_data[$index]['date_uploaded'] = date('d-m-Y');
-            }
-            $videosList = json_encode($videos_data);
-        } else {
-            $videosList = null;
-        }
+        // if ($request->hasfile('videoList')) {
+        //     foreach ($request->file('videoList') as $index => $video) {
+        //         $videos_data[$index]['id'] = $index + 1;
+        //         $videos_data[$index]['name'] = $video->getClientOriginalName();
+        //         $videos_data[$index]['type'] = $video->getClientOriginalExtension();
+        //         $videos_data[$index]['size'] = $video->getSize();
+        //         $videos_data[$index]['date_uploaded'] = date('d-m-Y');
+        //     }
+        //     $videosList = json_encode($videos_data);
+        // } else {
+        //     $videosList = null;
+        // }
 
         // create details json
         $details = [
@@ -98,7 +121,6 @@ class KelolaPortfolioController extends Controller
             'slug' => \Str::slug(request('name')),
         ];
 
-        // dd($attr);
         //create new portfolio
         Portfolio::create($attr);
         // flash message
@@ -121,12 +143,11 @@ class KelolaPortfolioController extends Controller
         //authorize
         $this->authorize('update', $portfolio);
         $photoArray = json_decode($portfolio->photo, true);
-        // dd($photoArray);
 
         // delete image if requests exist
         if (isset($request->imgDel)) {
             foreach ($request->imgDel as $imgDel) {
-                \Storage::delete('public/images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug . '/' . $photoArray[$imgDel]['name']);
+                \Storage::delete('images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug . '/' . $photoArray[$imgDel]['name']);
                 unset($photoArray[$imgDel]);
             };
             $photoArray = \array_values($photoArray);
@@ -140,7 +161,7 @@ class KelolaPortfolioController extends Controller
                 $images_data[$index]['type'] = $image->getClientOriginalExtension();
                 $images_data[$index]['size'] = $image->getSize();
                 $images_data[$index]['date_uploaded'] = date('d-m-Y');
-                $image->storeAs("public/images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
+                $image->storeAs("images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')), "{$images_data[$index]['name']}");
             }
             $photoArray = array_merge($photoArray, $images_data);
             $photoArray = json_decode(json_encode($photoArray), true);
@@ -197,7 +218,7 @@ class KelolaPortfolioController extends Controller
 
     public function destroy(Portfolio $portfolio)
     {
-        \Storage::deleteDirectory('public/images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug);
+        \Storage::deleteDirectory('images/portfolio/' . $portfolio->pfType_id . '/' . $portfolio->slug);
         $this->authorize('delete', $portfolio);
         $portfolio->delete();
         session()->flash('error', 'Portfolio telah dihapus');

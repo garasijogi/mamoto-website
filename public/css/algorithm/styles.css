@@ -1,3 +1,26 @@
+html {
+  overflow-x: hidden;
+  min-height: 100% !important;
+  height: 100%;
+}
+
+/* 0) Pre configs */
+@media only screen and (max-width: 700px){
+  .al-image-viewer-modal-content {
+    width: 100%;
+  }
+}
+
+/* color configs */
+:root {
+  --goldbrown: #888888;
+  --pipiss: #F8EDEB;
+  --darkgrey: #999999;
+  --verylightgrey: #f2f2f2;
+}
+
+/* 1) All elements */
+
 @font-face {
   font-family: 'JosefinSlab-Regular';
   src: url("/fonts/josefinslab-regular-webfont.woff");
@@ -8,17 +31,130 @@
   src: url("/fonts/lora-regular-webfont.woff");
 }
 
-* {
+@font-face {
+  font-family: 'Objectivity-Regular';
+  src: url("/fonts/objectivity-regular.woff2");
+}
+
+body {
+  background-color: white !important;
+}
+
+nav {
   font-family: 'JosefinSlab-Regular';
+}
+
+#app {
+  font-family: 'Lora-Regular';
+}
+
+
+/* 2) All Body */
+.al-container {
+  padding: 6rem 5rem 5rem 5rem;
+}
+
+body.user-body:after{
+  content: url(/icons/arrow-right-hover.svg) url(/icons/arrow-left.svg);
+ }
+
+/* 3) Navigation Bar */
+#al-navbar-mobile {
+  display: none;
+}
+
+.al-navbar-mobile-container {
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 5vw;
+}
+
+.al-black-background {
+  position: fixed;
+  z-index: 1031;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  transition: ease 1s;
+}
+
+.al-right-menu-wrapper{
+  top: 0;
+  right: -100vw;
+  width: 35vw;
+  height: 100%;
+  z-index: 1032;
+  position: fixed;
+  background-color: white;
+  transition: ease .5s;
+}
+
+.al-right-menu {
+  padding: 2rem 1rem;
+}
+
+.al-portfolio-menu-item {
+  padding-left: .5rem;
+}
+
+.al-menu-close-btn {
+  color: #d1d1d1;
+  float:right;
+  padding: 1rem 16% 0 0;
+}
+
+.al-menu-item, .al-menu-item li, .al-portflio-expand {
+  color: #888888;
+  text-decoration: none;
+  list-style-type: none;
+  padding: .5rem 0;
+}
+
+.al-menu-parent-portfolio {
+  width: 100%;
+}
+
+.al-menu-item:hover, .al-menu-item li:hover, .al-portflio-expand:hover, .al-menu-item {
+  text-decoration: none !important;
+  color: black;
+  cursor: pointer;
+}
+
+.al-portfolio-menu-item *{
+  display: none;
+}
+
+.al-navbar {
+  padding-left: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.al-mamoto-black-logo {
+  filter: grayscale(1) invert(1);
+  width: 10vw;
+  min-width: 4rem;
+}
+
+.al-mamoto-white-logo {
+  width: 10vw;
+  min-width: 4rem;
 }
 
 .al-bg-gradient-dark {
   background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(255,255,255,0) 100%);
-  padding: 1em 0;
+  /* padding: 1em 0; */
 }
 
-.al-bg-white ul.al-navigation-ul {
-  border-bottom: 1px solid #888888;
+.al-bg-white {
+  background-color: white;
+}
+
+.al-bg-white ul.al-navigation-ul, .al-bg-gradient-dark ul.al-navigation-ul{
+  margin: 0 !important;
   padding: 1em 0;
 }
 
@@ -28,7 +164,7 @@
 }
 
 .al-nav-text-goldbrown li a, .al-nav-text-goldbrown li span {
-  color: #888888;
+  color: var(--goldbrown);
   text-decoration: none;
 }
 
@@ -36,7 +172,7 @@
 .al-navigation-ul li a:hover,
 .al-navigation-ul li span:hover
 {
-  color: #DCBE8E !important;
+  color: var(--pipiss) !important;
   text-decoration: none;
   cursor: pointer;
 }
@@ -47,15 +183,32 @@
   font-weight: 600;
 }
 
-body.al-home-body {
-  background: url("/images/jumbotron.png");
+.al-jumbotron-carousel-1 {
+  background-image: url("../../../storage/images/jumbotron/jumbotron1.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* background-position: center; */
 }
 
-.al-bg-img {
-  background: url("/images/wedding-ring.png");
+.al-jumbotron-carousel-2 {
+  background-image: url("../../../storage/images/jumbotron/jumbotron2.png");
   background-repeat: no-repeat;
-  background-size: 60%;
-  background-position-x: center;
+  background-size: 100%;
+  /* background-position: center; */
+}
+
+.al-jumbotron-carousel-3 {
+  background-image: url("../../../storage/images/jumbotron/jumbotron3.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* background-position: center; */
+}
+
+.al-jumbotron-carousel-4 {
+  background-image: url("../../../storage/images/jumbotron/jumbotron4.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  /* background-position: center; */
 }
 
 body.login-page {
@@ -67,35 +220,47 @@ body.login-page {
 
 .al-full-content {
   height: 100vh;
+  /* margin-left: 6vw; */
 }
 
 .al-circle-list-btn a {
   padding: 5px;
-  border: 2px solid #DCBE8E;
+  border: 2px solid var(--pipiss);
   border-radius: 25px;
 }
 
 #book-now-btn:hover {
-  background-color: #DCBE8E;
+  background-color: var(--pipiss);
   color: white !important;
 }
 .al-jumbotron {
-  height: 70vh;
+  height: 100vh;
 }
 
 #jumbotron {
-  height: 80%;
+  position: absolute;
+  z-index: 10;
   background-image: url("/images/mamoto_picture_logo.png");
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: 40%;
+  background-size: 60%;
+  width: 50%;
+  height: 100%;
+  pointer-events: none;
+  left: 12vw;
 }
-
+.al-jumbotron-text-wrapper {
+  position:absolute;
+  z-index: 20;
+  width: 80vh;
+  left: 11vw;
+  top: 23vh;
+}
 .al-jumbotron-text {
   font-family: 'Lora-Regular';
   position: absolute;
   padding-left: 3.5vw;
-  top: 40vh;
+  top: 20vw;
   left: 0;
   color: white;
   text-shadow: 1px 1px 1px black;
@@ -106,14 +271,18 @@ body.login-page {
   background-repeat: no-repeat;
   width: 32px;
   height: 76px;
+  border:none;
+  background-color:transparent;
+  outline:none;
 }
 
-.al-arrow-right:hover{
+.carousel-control-next:hover .al-arrow-right {
   background-image: url("/icons/arrow-right-hover.svg");
-  transform: rotate(0deg);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
 }
 
-.al-arrow-left:hover{
+.carousel-control-prev:hover .al-arrow-left {
   background-image: url("/icons/arrow-right-hover.svg");
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
@@ -126,6 +295,9 @@ body.login-page {
   height: 76px;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+  border:none;
+  background-color:transparent;
+  outline:none;
 }
 
 .al-navigation-ul li {
@@ -134,7 +306,8 @@ body.login-page {
 }
 
 .al-dropdown-content {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
   background-color: rgba(0,0,0,0.2);
   min-width: 80px;
@@ -142,10 +315,16 @@ body.login-page {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   text-align: center;
+  transition: .3s all;
 }
 
+
 .al-opacity-full {
-  background-color: rgba(220, 190, 142, 1) !important;
+  background-color: rgba(219, 219, 219, 0.856) !important;
+}
+
+.al-opacity-full ul li {
+  color: rgb(134, 134, 134) !important;
 }
 
 .al-dropdown-content ul {
@@ -156,20 +335,557 @@ body.login-page {
   width: 100%;
   padding: 10px 0;
   font-size: 0.73rem;
-  color: white;
+  color: rgb(243, 243, 243);
   font-weight: bold;
 }
 
-.al-navigation-ul li:hover .al-dropdown-content {
-  display: block;
+.portfolio-btn:hover .al-dropdown-content {
+  opacity: 1;
+  visibility: visible;
 }
 
 .al-navigation-ul ul li:hover, .al-navigation-ul ul li:hover a {
-  background-color: #DCBE8E;
-  color: white !important;
+  background-color: var(--pipiss);
+  color: grey !important;
 }
 
 .al-opacity-full ul li:hover, .al-navigation-ul ul li:hover a {
-  background-color: rgba(0,0,0,0.4);
-  color: white !important;
+  background-color: var(--pipiss);
+  color: grey !important;
 }
+
+/* 4) Portfolio Elements */
+.al-big-title {
+  position:absolute;
+  left:0;
+  right:0;
+  height: 13rem;
+  background-color: var(--pipiss);
+}
+
+.al-big-title-font {
+  color: var(--darkgrey);
+  font-size: 3em;
+  font-weight: 500;
+}
+
+.al-breadcrumb h6 {
+  font-size: .8em;
+  font-weight: 600;
+  color: var(--darkgrey);
+}
+
+.al-portfolio-cards {
+  padding-top: 13rem;
+}
+
+.al-grey-color {
+  color: var(--darkgrey);
+}
+
+.al-pink-color {
+  color: var(--pipiss);
+}
+
+.al-font1 {
+  font-family: 'JosefinSlab-Regular';
+}
+
+.al-font2 {
+  font-family: 'Lora-Regular';
+}
+
+.al-portfolio-card{
+  padding-top: 4rem;
+  transition: .3s;
+}
+
+.al-portfolio-card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/* 5) Image viewer */
+/* 5.1) image modal viewer */
+
+/* 5.1.1) The Modal (background) */
+.al-image-viewer-modal {
+  padding: 100px 0;
+  display: none; /* Hidden by default */
+  justify-content: center;
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* 5.1.2) Modal Content (Image) */
+.al-image-viewer-modal-content {
+  margin: auto;
+  max-height: 80vh;
+  max-width: 80vw;
+  background: transparent;
+}
+
+/* 5.2) Add Animation - Zoom in the Modal */
+.al-image-viewer-modal-content {
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0.5)}
+  to {transform:scale(1)}
+}
+
+/* 5.3) The Close Button */
+.al-close-btn {
+  /* position: absolute;
+  top: 0;
+  right: 12%; */
+  transition: 0.3s;
+}
+
+.al-close-btn:hover,
+.al-close-btn:focus {
+  color:slategray !important;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* footer */
+footer {
+  overflow-x: hidden;
+  padding: 2rem .5rem 0 .5rem;
+  position:absolute;
+  left:0;
+  right:0;
+  background: linear-gradient(360deg, rgb(189, 189, 189) 0%, rgba(255, 255, 255, 1) 55%) !important;
+  font-family: 'Objectivity-Regular';
+}
+
+footer p {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.al-icon-footer:hover {
+  cursor: pointer;
+}
+
+/* displayed portfolios */
+.al-dp-title{
+  font-size: 1.7rem;
+}
+
+.al-dp {
+  padding: 0 5rem;
+}
+
+.al-dp-card {
+  transition: .3s;
+}
+
+.al-dp-card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.al-img-circle {
+  width: 100px;
+  border-radius: 50%;
+}
+
+.al-feedback {
+  background-color:var(--pipiss);
+  font-family: 'JosefinSlab-Regular';
+  color: var(--darkgrey);
+}
+
+.content {
+  min-height: 60vh !important;
+}
+
+.al-mt-container {
+  margin-top: 5.3rem;
+}
+
+/* mobile responsive */
+@media only screen and (max-width:600px){
+  #al-navbar-mobile {
+    display: block;
+  }
+
+  .al-dp-title {
+    font-size: 1.35rem;
+  }
+
+  h3.al-font-portfolio-name {
+    font-size: 1.2rem;
+  }
+
+  .carousel-item h4.pt-4 {
+    font-size: 1.2rem;
+  }
+
+  .al-footer-img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .al-jumbotron {
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 30vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.5, 0.5);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.5, 0.5);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.5);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.5, 0.5);
+  }
+
+  .al-jumbotron-text{
+    top: -4vw;
+  }
+
+  .al-dp-card.row {
+    display: block;
+  }
+
+  .col-4.align-self-center {
+    padding: 1rem 0;
+    max-width: 100%;
+  }
+
+  .al-portfolio-card-preview {
+    width: 80vw !important;
+    height: 46vw !important;
+    text-align: center;
+  }
+
+  .al-dp {
+    padding: 0 8.5%;
+  }
+
+}
+
+@media only screen and (max-width: 800px){
+  #al-navbar.fixed-top {
+    top: -100% !important;
+  }
+
+  .al-dp-card.row {
+    display: block;
+  }
+
+  .col-4.align-self-center {
+    padding: 1rem 0;
+    max-width: 100%;
+  }
+
+  .al-portfolio-card-preview {
+    width: 80vw !important;
+    height: 46vw !important;
+    text-align: center;
+  }
+
+}
+
+@media only screen and (min-width:601px) and (max-width:800px){
+  #al-navbar-mobile {
+    display: block;
+  }
+
+  .al-dp-title {
+    font-size: 1.4rem;
+  }
+
+  .al-footer-img {
+    width: 85px !important;
+    height: 85px !important;
+  }
+
+  h3.al-font-portfolio-name {
+    font-size: 1.25rem;
+  }
+
+  .al-portfolio-card-preview {
+    width: 85vw !important;
+    height: 48vw !important;
+  }
+
+  .al-jumbotron-text{
+    top: 6vw;
+  }
+
+  .al-jumbotron {
+    min-height: 40vh;
+    max-height: 40vh;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 40vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.7, 0.7);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.7);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-dp {
+    padding: 0 6.5%;
+  }
+}
+
+@media only screen and (min-width:801px) and (max-width:1000px){
+  .al-footer-img {
+    width: 95px !important;
+    height: 95px !important;
+  }
+
+  .al-dp-title {
+    font-size: 1.5rem;
+  }
+
+  h3.al-font-portfolio-name {
+    font-size: 1.35rem;
+  }
+
+  .al-portfolio-card-preview {
+    width: 60vw !important;
+    height: 34vw !important;
+  }
+
+  .al-jumbotron-text{
+    top: 14vw;
+  }
+
+  .al-jumbotron {
+    min-height: 60vh;
+    max-height: 60vh;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 60vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.7, 0.7);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.7);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.7, 0.7);
+  }
+
+  .al-dp {
+    padding: 0 6.5%;
+  }
+
+  .al-dp-card.row {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1200px){
+  .al-portfolio-card-preview {
+    width: 60vw !important;
+    height: 34vw !important;
+  }
+
+  .al-jumbotron {
+    min-height: 80vh;
+    max-height: 80vh;
+  }
+
+  .al-jumbotron-text{
+    top: 18vw;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 80vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-0.8, 0.8);
+  }
+
+  .al-arrow-left {
+    transform: scale(0.8, 0.8);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(0.8);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-0.8, 0.8);
+  }
+}
+
+@media only screen and (min-width: 1201px){
+  .al-jumbotron {
+    min-height: 90vh;
+    max-height: 90vh;
+  }
+
+  .al-jumbotron-text{
+    top: 19vw;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 90vh;
+  }
+
+  .al-arrow-right {
+    transform: scale(-1, 1);
+  }
+
+  .al-arrow-left {
+    transform: scale(1, 1);
+  }
+
+  .carousel-control-next:hover .al-arrow-right {
+    transform: scale(1);
+  }
+
+  .carousel-control-prev:hover .al-arrow-left {
+    transform: scale(-1, 1);
+  }
+}
+
+@media only screen and (min-width: 1300px){
+  .al-jumbotron {
+    min-height: 100vh;
+    max-height:100vh;
+  }
+
+  .al-jumbotron-text{
+    top: 20vw;
+  }
+
+  .al-jumbotron-carousel-1, .al-jumbotron-carousel-2, .al-jumbotron-carousel-3, .al-jumbotron-carousel-4 {
+    min-height: 90vh;
+  }
+}
+
+/* floating button start */
+.al-fb {
+  width: 50px;
+  height: 63px;
+  right: 1rem;
+  bottom: 5rem;
+  position: fixed;
+  /* border-radius: 50px;
+  background-color: var(--pipiss); */
+  display: flex;
+  justify-content: space-evenly;
+  z-index: 2;
+  align-items: center;
+  /* box-shadow: 3px 3px 5px grey; */
+}
+
+.al-fb {
+  width: 208px;
+  height: 63px;
+  right: 1rem;
+  bottom: 5rem;
+  position: fixed;
+  border-radius: 50px;
+  background-color: var(--pipiss);
+  display: flex;
+  justify-content: space-evenly;
+  z-index: 2;
+  align-items: center;
+  box-shadow: 3px 3px 5px grey;
+}
+
+.al-fb h6 {
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--darkgrey);
+  margin-bottom: 0;
+}
+
+.al-fb img {
+  width: 44px;
+  -webkit-filter: drop-shadow(1px 1px 2px rgb(105, 105, 105));
+  filter: drop-shadow(1px 1px 2px rgb(105, 105, 105));
+}
+
+.al-fb:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+/* floating button end */
+
+/* background img */
+.al-wedding-ring-bg {
+  background-image: url("../../images/wedding-ring.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center 100%;
+}
+
+.al-wing-bg {
+  background-image: url("../../images/wing.png");
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center 100%;
+}
+
+.al-min-height-39 {
+  min-height: 39rem;
+}
+
+.al-min-height-25 {
+  min-height: 25rem;
+}
+/* end background img */
+
+/* notification icon on promo */
+.al-info img {
+  width: 12px;
+  position: absolute;
+  right: .1rem;
+  top: 1rem;
+}
+/* end notification icon on promo */

@@ -3,7 +3,6 @@
 @section('title', 'Kelola Portfolio - Tambah')
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
 @include('layouts.css.al-styles')
 @endsection
 
@@ -62,10 +61,11 @@
       </div>
       <div id='al-showPhotoNameDiv' class='d-none' style="max-height:43vh;overflow:auto">
         <ul id='al-showPhotoName' class="d-none"></ul>
+        <div id="al-deletePhotoContainer"></div>
       </div>
 
       {{-- video --}}
-      <div class="form-group my-2">
+      {{-- <div class="form-group my-2">
         <label for="videoList">Video</label>
         <div class="custom-file">
           <input type="file" name="videoList" class="custom-file-input" id="inputGroupFile02"
@@ -75,153 +75,186 @@
         @error('videoList')
         <div class="text-danger mt-2">
           {{ $message }}
-        </div>
-        @enderror
-      </div>
-
-      {{-- details portfolio --}}
-      <hr>
-      <h6 class="mt-4 font-weight-bold">Portfolio Details</h6>
-      <div class="row">
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="venue" class="font-weight-normal">Venue</label>
-            <input type="text" name="venue" id="venue" placeholder="Masukkan Nama Venue"
-              value="{{ old('venue') ?? '' }}" class="form-control @error('venue') is-invalid @enderror">
-            @error('venue')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="pv" class="font-weight-normal">Photo & Video</label>
-            <input type="text" name="pv" id="pv" placeholder="Masukkan Pengelola Photo & Video"
-              value="{{ old('pv') ?? '' }}" class="form-control @error('pv') is-invalid @enderror">
-            @error('pv')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="makeup" class="font-weight-normal">Make Up</label>
-            <input type="text" name="makeup" id="makeup" placeholder="Masukkan Nama Pengelola Make Up"
-              value="{{ old('makeup') ?? '' }}" class="form-control @error('makeup') is-invalid @enderror">
-            @error('makeup')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="decoration" class="font-weight-normal">Decoration</label>
-            <input type="text" name="decoration" id="decoration" placeholder="Masukkan Nama Pengelola Dekorasi"
-              value="{{ old('decoration') ?? '' }}" class="form-control @error('decoration') is-invalid @enderror">
-            @error('decoration')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="attire" class="font-weight-normal">Attire</label>
-            <input type="text" name="attire" id="attire" placeholder="Masukkan Nama Pengelola Attire"
-              value="{{ old('attire') ?? '' }}" class="form-control @error('attire') is-invalid @enderror">
-            @error('attire')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="henna" class="font-weight-normal">Henna</label>
-            <input type="text" name="henna" id="henna" placeholder="Masukkan Nama Pengelola Henna"
-              value="{{ old('henna') ?? '' }}" class="form-control @error('henna') is-invalid @enderror">
-            @error('henna')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="wo" class="font-weight-normal">Wedding Organizer</label>
-            <input type="text" name="wo" id="wo" placeholder="Masukkan Nama Wedding Organizer"
-              value="{{ old('wo') ?? '' }}" class="form-control @error('wo') is-invalid @enderror">
-            @error('wo')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="form-group mb-2">
-            <label for="lighting" class="font-weight-normal">Lighting</label>
-            <input type="text" name="lighting" id="lighting" placeholder="Masukkan Nama Pengelola Lighting"
-              value="{{ old('lighting') ?? '' }}" class="form-control @error('lighting') is-invalid @enderror">
-            @error('lighting')
-            <div class="text-danger mt-2">
-              {{ $message }}
-            </div>
-            @enderror
-          </div>
-        </div>
-      </div>
-
-      {{-- date --}}
-      <div class="form-group mb-2">
-        <label for="date" class="font-weight-normal">Tanggal</label>
-        <div class="form-group">
-          <div class='input-group date' id='datetimepicker1'>
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="validationTooltipUsernamePrepend"> <i class="fas fa-calendar-alt"></i>
-              </span>
-            </div>
-            <input type='text' class="form-control" name="date" placeholder="Masukkan Tanggal Acara"
-              autocomplete="off" />
-            <span class="input-group-addon">
-              <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-          </div>
-        </div>
-        @error('date')
-        <div class="text-danger mt-2">
-          {{ $message }}
-        </div>
-        @enderror
-      </div>
-
-      <button type="submit" class="btn btn-primary mt-2">Tambah Portfolio</button>
-    </form>
   </div>
-  <div class="col-5 d-flex justify-content-center" style="max-height: 80vh; overflow:auto;">
-    <h6 id='al-photoBox' class="text-center" style="line-height: 55vh">Belum ada foto untuk ditampilkan</h6>
-    <div class="text-center">
-      <div id='al-imageList' class="p-4 position-relative">
+  @enderror
+</div> --}}
+
+      {{-- youtube video input --}}
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group mb-2">
+            <label for="venue" class="font-weight-bold">Video</label>
+            <div id="al-yt-input">
+              <div class="row">
+                <div class="col-10">
+                  <input class="al-video-input form-control" type="text" name="video[1]" placeholder="Masukkan Link Video Youtube">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="row">
+        <div class="d-flex justify-content-end w-100">
+          <button type="button" class="btn btn-primary mt-2" onclick="addVideoInput()">Tambah Video</button>
+        </div>
+      </div>
+      {{-- end youtube video input --}}
+
+{{-- details portfolio --}}
+<hr>
+<h6 class="mt-4 font-weight-bold">Portfolio Details</h6>
+<div class="row">
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="venue" class="font-weight-normal">Venue</label>
+      <input type="text" name="venue" id="venue" placeholder="Masukkan Nama Venue" value="{{ old('venue') ?? '' }}"
+        class="form-control @error('venue') is-invalid @enderror">
+      @error('venue')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
     </div>
   </div>
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="pv" class="font-weight-normal">Photo & Video</label>
+      <input type="text" name="pv" id="pv" placeholder="Masukkan Pengelola Photo & Video" value="{{ old('pv') ?? '' }}"
+        class="form-control @error('pv') is-invalid @enderror">
+      @error('pv')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="makeup" class="font-weight-normal">Make Up</label>
+      <input type="text" name="makeup" id="makeup" placeholder="Masukkan Nama Pengelola Make Up"
+        value="{{ old('makeup') ?? '' }}" class="form-control @error('makeup') is-invalid @enderror">
+      @error('makeup')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="decoration" class="font-weight-normal">Decoration</label>
+      <input type="text" name="decoration" id="decoration" placeholder="Masukkan Nama Pengelola Dekorasi"
+        value="{{ old('decoration') ?? '' }}" class="form-control @error('decoration') is-invalid @enderror">
+      @error('decoration')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="attire" class="font-weight-normal">Attire</label>
+      <input type="text" name="attire" id="attire" placeholder="Masukkan Nama Pengelola Attire"
+        value="{{ old('attire') ?? '' }}" class="form-control @error('attire') is-invalid @enderror">
+      @error('attire')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="henna" class="font-weight-normal">Henna</label>
+      <input type="text" name="henna" id="henna" placeholder="Masukkan Nama Pengelola Henna"
+        value="{{ old('henna') ?? '' }}" class="form-control @error('henna') is-invalid @enderror">
+      @error('henna')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="wo" class="font-weight-normal">Wedding Organizer</label>
+      <input type="text" name="wo" id="wo" placeholder="Masukkan Nama Wedding Organizer" value="{{ old('wo') ?? '' }}"
+        class="form-control @error('wo') is-invalid @enderror">
+      @error('wo')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="form-group mb-2">
+      <label for="lighting" class="font-weight-normal">Lighting</label>
+      <input type="text" name="lighting" id="lighting" placeholder="Masukkan Nama Pengelola Lighting"
+        value="{{ old('lighting') ?? '' }}" class="form-control @error('lighting') is-invalid @enderror">
+      @error('lighting')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+</div>
+
+{{-- date --}}
+<div class="form-group mb-2">
+  <label for="date" class="font-weight-normal">Tanggal</label>
+  <div class="form-group">
+    <div class='input-group date' id='datetimepicker1'>
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="validationTooltipUsernamePrepend"> <i class="fas fa-calendar-alt"></i>
+        </span>
+      </div>
+      <input type='text' class="form-control" name="date" placeholder="Masukkan Tanggal Acara" autocomplete="off" />
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  </div>
+  @error('date')
+  <div class="text-danger mt-2">
+    {{ $message }}
+  </div>
+  @enderror
+</div>
+
+<button type="submit" class="btn btn-primary mt-2">Tambah Portfolio</button>
+</form>
+</div>
+<div class="col-5 d-flex justify-content-center" style="max-height: 80vh; overflow:auto;">
+  <h6 id='al-photoBox' class="text-center" style="line-height: 55vh">Belum ada foto untuk ditampilkan</h6>
+  <div class="text-center">
+    <div id='al-imageList' class="p-4 position-relative">
+    </div>
+  </div>
+</div>
+</div>
+@endsection
+
+@section('modals')
+<!-- Image Viewer Modal -->
+<div id="al-imageViewer" class="al-image-viewer-modal">
+
+  <!-- The Close Button -->
+  <i class="al-close-btn fas fa-times fa-2x text-white"></i>
+
+  <!-- Modal Content (The Image) -->
+  <img class="al-image-viewer-modal-content" id="al-imageViewed">
 </div>
 @endsection
 
