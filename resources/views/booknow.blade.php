@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - Book Now!')
 @section('content')
+
 <div class="container al-mt-container">
     <div class="row">
         <div class="col-lg-2 col-md-1 col-sm-12"></div>

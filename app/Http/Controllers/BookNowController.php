@@ -27,7 +27,7 @@ class BookNowController extends Controller
     public function store(Request $request){
         $validatedData = $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:books',
+            'email' => 'required|email',
             'phone' => 'required',
             'location' => 'required',
         ]);
@@ -38,7 +38,8 @@ class BookNowController extends Controller
             'events' => json_encode($request->event),
             'booking_date' => $request->booking_date,
             'location' => $request->location,
-            'note' => $request->note
+            'note' => $request->note,
+            'status' => 0
         ]);
         session()->flash('books');
         return redirect('booksuccess');
