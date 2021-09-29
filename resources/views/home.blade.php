@@ -143,9 +143,9 @@
                                 <h5 class="font-italic col-6 m-auto">
                                     {{ $displayed_feedback->feedback->kesan_pesan }}
                                 </h5>
-                                <h5 class="font-italic col-6 m-auto">
+                                {{-- <h5 class="font-italic col-6 m-auto">
                                     {{ $displayed_feedback->feedback->kritik_saran }}
-                                </h5>
+                                </h5> --}}
                                 <h4 class="pt-4">
                                     - {{ $displayed_feedback->feedback->mempelai_wanita }} &
                                     {{ $displayed_feedback->feedback->mempelai_pria }} -
