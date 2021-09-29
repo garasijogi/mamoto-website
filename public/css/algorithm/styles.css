@@ -427,8 +427,8 @@ body.login-page {
 /* 5.1.2) Modal Content (Image) */
 .al-image-viewer-modal-content {
   margin: auto;
-  max-height: 80vh;
-  max-width: 80vw;
+  max-height: 70vh;
+  max-width: 57vw;
   background: transparent;
 }
 
