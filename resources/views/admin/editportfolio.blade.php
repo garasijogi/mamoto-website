@@ -108,6 +108,43 @@
       </div>
       @endif --}}
 
+      {{-- youtube video input --}}
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group mb-2">
+            <label for="venue" class="font-weight-bold">Video</label>
+            <div id="al-yt-input">
+              @if (!empty($portfolio->video))
+                @foreach (json_decode($portfolio->video) as $index => $video)
+                  @if ($index == 0)
+                    <div class="row">
+                      <div class="col-10">
+                        <input class="al-video-input form-control" type="text" name="video[{{ ($index + 1) }}]" placeholder="Masukkan Link Video Youtube" value="{{ old("video[{($index + 1)}]") ?? $video->link }}">
+                      </div>
+                    </div>
+                  @else
+                    <div class="row mt-2" id="video_{{ ($index + 1) }}">
+                      <div class="col-10">
+                        <input class="al-video-input form-control" type="text" name="video[{{ ($index + 1) }}]" placeholder="Masukkan Link Video Youtube" value="{{ old("video[{($index + 1)}]") ?? $video->link }}"">
+                      </div>
+                      <div class="col-2 d-flex align-items-center">
+                        <button onclick="deleteVideoInput({{ ($index + 1) }})" type="button" class="btn btn-danger">x</button>
+                      </div>
+                    </div>
+                  @endif
+                @endforeach
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d-flex justify-content-end w-100">
+          <button type="button" class="btn btn-primary mt-2" onclick="addVideoInput()">Tambah Video</button>
+        </div>
+      </div>
+      {{-- end youtube video input --}}
+
       {{-- details portfolio --}}
       <hr>
       <h6 class="mt-4 font-weight-bold">Portfolio Details</h6>

@@ -46,17 +46,7 @@ class KelolaPortfolioController extends Controller
 
     public function store(PortfolioRequest $request)
     {
-        if($request->video[1]) {
-            foreach($request->video as $index => $video) {
-                $videoData[$index]['id'] = $index;
-                $videoData[$index]['link'] = $video;
-            }
-
-            $videosList = array_merge([], $videoData);
-            $videosList = json_encode($videosList);
-        } else {
-            $videosList = null;
-        }
+        $videosList = $request->video[1] ? $this->insert_video($request->video) : null;
 
         // delete image if requests exist
         if (isset($request->imgDel)) {
@@ -82,20 +72,6 @@ class KelolaPortfolioController extends Controller
             }
             $imagesList = json_encode($images_data);
         }
-
-        // videoList
-        // if ($request->hasfile('videoList')) {
-        //     foreach ($request->file('videoList') as $index => $video) {
-        //         $videos_data[$index]['id'] = $index + 1;
-        //         $videos_data[$index]['name'] = $video->getClientOriginalName();
-        //         $videos_data[$index]['type'] = $video->getClientOriginalExtension();
-        //         $videos_data[$index]['size'] = $video->getSize();
-        //         $videos_data[$index]['date_uploaded'] = date('d-m-Y');
-        //     }
-        //     $videosList = json_encode($videos_data);
-        // } else {
-        //     $videosList = null;
-        // }
 
         // create details json
         $details = [
@@ -168,24 +144,12 @@ class KelolaPortfolioController extends Controller
             $photoArray = json_decode(json_encode($photoArray), true);
         }
 
+        $videosList = $request->video[1] ? $this->insert_video($request->video) : null;
+
         foreach ($photoArray as $index => $pa) {
             $photoArray[$index]['id'] = $index + 1;
         }
         $photoArray = json_encode($photoArray);
-
-        //add video if requests exist
-        if ($request->hasfile('videoList')) {
-            foreach ($request->file('videoList') as $index => $video) {
-                $videos_data[$index]['id'] = $index + 1;
-                $videos_data[$index]['name'] = $video->getClientOriginalName();
-                $videos_data[$index]['type'] = $video->getClientOriginalExtension();
-                $videos_data[$index]['size'] = $video->getSize();
-                $videos_data[$index]['date_uploaded'] = date('d-m-Y');
-            }
-            $videosList = json_encode($videos_data);
-        } else {
-            $videosList = null;
-        }
 
         // create details json
         $details = [
@@ -225,5 +189,14 @@ class KelolaPortfolioController extends Controller
         $portfolio->delete();
         session()->flash('error', 'Portfolio telah dihapus');
         return redirect('admin/portfolio');
+    }
+
+    public function insert_video($data) {
+        foreach($data as $index => $video) {
+            $videoData[$index]['id'] = $index;
+            $videoData[$index]['link'] = $video;
+        }
+
+        return json_encode(array_merge([], $videoData));
     }
 }
