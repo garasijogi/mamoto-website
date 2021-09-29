@@ -880,6 +880,13 @@ footer p {
 .al-min-height-25 {
   min-height: 25rem;
 }
+
+@media only screen and (max-width: 1260px){
+  .al-wedding-ring-bg, .al-wing-bg {
+    background-size: 350px;
+    background-position: center 60%;
+  }
+}
 /* end background img */
 
 /* notification icon on promo */
