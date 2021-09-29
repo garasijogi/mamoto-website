@@ -8,6 +8,6 @@ use App\Book_status;
 class Book extends Model
 {
     protected $fillable = [
-        'name', 'phone', 'email', 'events', 'booking_date', 'location', 'note'
+        'name', 'phone', 'email', 'events', 'booking_date', 'location', 'note', 'status'
     ];
 }

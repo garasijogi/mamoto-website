@@ -99,9 +99,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.8) Kelola Pesanan
     Route::get('pesanan', 'KelolaPesananController@index')->name('admin.pesanan');
+    Route::post('pesanan/change-status/{id}', 'KelolaPesananController@changeStatus');
+    Route::post('pesanan/{id}/edit', 'KelolaPesananController@edit');
+    Route::post('pesanan/{id}/delete', 'KelolaPesananController@destroy');
 
     //2.9) Kelola Feedback
     Route::get('feedback', 'KelolaFeedbackController@index')->name('admin.feedback');
+    Route::post('feedback/edit/{feedback:id}', 'KelolaFeedbackController@edit');
+    Route::post('feedback/delete/{id}', 'KelolaFeedbackController@delete');
 
     //2.10) Kelola Gambar
     Route::post('kelolagambar/upload', 'kelolaGambarController@upload')->name('admin.uploadGambar');
