@@ -99,6 +99,7 @@ class KelolaPortfolioController extends Controller
 
         // create details json
         $details = [
+            'location' => ucwords(request('location')),
             'venue' => request('venue'),
             'photo-&-video' => request('pv'),
             'make-up' => request('makeup'),
@@ -188,6 +189,7 @@ class KelolaPortfolioController extends Controller
 
         // create details json
         $details = [
+            'location' => ucwords(request('location')),
             'venue' => request('venue'),
             'photo-&-video' => request('pv'),
             'make-up' => request('makeup'),

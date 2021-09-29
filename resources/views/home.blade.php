@@ -57,7 +57,7 @@
                                         {{ $dp->portfolio->name }}</h3>
                                     <h6 class="text-center al-grey-color al-font1 font-weight-bold">
                                         {{ date('d . m . Y', strtotime($dp->portfolio->date)) }}
-                                        | Jakarta Timur
+                                        |{{ $dp->portfolio->location }}
                                     </h6>
                                 </div>
                             @else

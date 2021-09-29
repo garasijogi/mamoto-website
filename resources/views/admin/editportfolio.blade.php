@@ -80,7 +80,7 @@
       @endif
 
       {{-- video --}}
-      <div class="form-group my-2">
+      {{-- <div class="form-group my-2">
         <label for="videoList">Video</label>
         <div class="custom-file">
           <input type="file" name="videoList" class="custom-file-input" id="inputGroupFile02"
@@ -106,11 +106,25 @@
           @endforeach
         </ul>
       </div>
-      @endif
+      @endif --}}
 
       {{-- details portfolio --}}
       <hr>
       <h6 class="mt-4 font-weight-bold">Portfolio Details</h6>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group mb-2">
+            <label for="location" class="font-weight-normal">Location</label>
+            <input type="text" name="location" id="location" placeholder="Masukkan Lokasi"
+              value="{{ old('location') ?? $details['location'] }}" class="form-control @error('location') is-invalid @enderror">
+            @error('location')
+            <div class="text-danger mt-2">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm">
           <div class="form-group mb-2">
