@@ -9,7 +9,7 @@ a {
 }
 
 a:hover {
-  color: #777;
+  color: rgb(50, 50, 50);
   text-decoration: none;
 }
 
@@ -18,13 +18,13 @@ i:hover {
 }
 
 body {
-  background-color: #F8EDEB !important;
+  background-color: #FFFFFF !important;
   background-position: center center;
   background-repeat: no-repeat;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
   background-attachment: fixed;
 }
 
@@ -58,7 +58,7 @@ body {
 }
 
 .contact-list {
-  background-color: #F9D4CD;
+  background-color: #F8EDEB;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
   border-radius: 50px;
   -webkit-transition: background-color 0.5s ease-out;
@@ -68,7 +68,7 @@ body {
 }
 
 .contact-list:hover {
-  background-color: #dabab4;
+  background-color: #fff0ee;
 }
 
 .contact-list-text {
