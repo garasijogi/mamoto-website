@@ -19,13 +19,23 @@ let phoneNumberInvalidMessage = "Please enter a valid phone number";
 /* ------------------------ document on load function ----------------------- */
 $(function () {
 	getProducts();
+
+    $(".datepicker").datepicker({
+        format: "dd MM yyyy",
+        autoclose: true,
+        clearBtn: true,
+        orientation: 'bottom',
+        startDate: new Date(),
+        todayHighlight: true,
+        zIndexOffset: 1000,
+    })
 });
 
 /* --------------------------------- triggers ------------------------------- */
 pilihPaketDropdown.on('change', function(e) {
 	getProducts();
 });
-
+// validation
 formBookNow.validate({
 	rules: {
 		name: {
@@ -68,6 +78,11 @@ formBookNow.validate({
     unhighlight: function (element, errorClass, validClass) {
         $(element).removeClass('is-invalid');
     },
+    invalidHandler: function(form, validator) {
+        $('html, body').animate({
+            scrollTop: $(validator.errorList[0].element).offset().top - 300
+        }, 1000);
+    },
     submitHandler: function(form) {
         // ambil semua data form
         let formData = {
@@ -106,7 +121,7 @@ ${formData.note}`;
         // susun url
         urlWa = contactWa.link + contactWa.contact + `/?text=${msgBookNow}`;
         window.location.href = urlWa; // arahkan ke URL
-        
+
         return false;
 
     }
@@ -123,19 +138,19 @@ const getProducts = function getProducts() {
 			return choosenDetailPaket = JSON.parse(budgets);
 		}
 	});
-	
+
 	// hapus semua options lalu tambahkan satu option default dan select option tersebut
 	kisaranBudgetDropdown.find('option')
 	.remove()
 	.end()
 	.append(`<option value="" >${kisaranBudgetText}</option>`)
 	.val('');
-	
+
 	if (choosenDetailPaket === undefined || choosenDetailPaket === null || choosenDetailPaket === "") {
 		kisaranBudgetDropdown.prop('disabled', true);
 	} else {
 		kisaranBudgetDropdown.prop('disabled', false);
-		
+
 		// masukkan data choosenDetailPaket ke estimate budget dropdown
 		choosenDetailPaket.forEach((value, index) => {
 			let el = numberWithDots(value.price) + "K" + " - " + value.name;

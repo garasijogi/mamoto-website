@@ -9,7 +9,7 @@
   @include('layouts.css.al-styles')
   <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 </head>
-<body style="background-image: url('{{ asset('images/contact_bg.svg') }}')">
+<body style="background-image: url('{{ asset('images/wedding-ring.png') }}')">
   <div class="container">
     <div class="row my-5">
       <div class="col-lg-6 order-lg-2 mt-2 mt-sm-3 mt-md-4 mt-lg-5">
@@ -29,7 +29,7 @@
       <div class="col-lg-6 order-lg-1 mt-5">
         @foreach ($contacts as $value)
           <a href="{{ $value['link'] }}">
-            <div class="d-flex justify-content-center my-lg-5 my-3">
+            <div class="d-flex justify-content-center my-lg-5 my-4">
               <div class="contact-list w-100 px-5">
                 <p class="contact-list-text d-flex">
                   <span class="d-flex align-items-center"><i class="{{ $value['logo'] }} fa-2x"></i></span>
