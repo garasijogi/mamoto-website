@@ -33,7 +33,7 @@ Portfolio - {{$title}}
             <h3 class="py-2 text-center al-font-portfolio-name al-grey-color">{{$portfolio->name}}</h3>
             <h6 class="text-center al-grey-color al-font1 font-weight-bold">
               {{date("d . m . Y", strtotime($portfolio->date))}}
-              | Jakarta Timur</h6>
+              | {{ json_decode($portfolio->details)->location }}</h6>
           </a>
         </div>
         @endforeach

@@ -427,8 +427,8 @@ body.login-page {
 /* 5.1.2) Modal Content (Image) */
 .al-image-viewer-modal-content {
   margin: auto;
-  max-height: 80vh;
-  max-width: 80vw;
+  max-height: 70vh;
+  max-width: 57vw;
   background: transparent;
 }
 
@@ -808,21 +808,6 @@ footer p {
 
 /* floating button start */
 .al-fb {
-  width: 50px;
-  height: 63px;
-  right: 1rem;
-  bottom: 5rem;
-  position: fixed;
-  /* border-radius: 50px;
-  background-color: var(--pipiss); */
-  display: flex;
-  justify-content: space-evenly;
-  z-index: 2;
-  align-items: center;
-  /* box-shadow: 3px 3px 5px grey; */
-}
-
-.al-fb {
   width: 208px;
   height: 63px;
   right: 1rem;
@@ -855,6 +840,22 @@ footer p {
   cursor: pointer;
   text-decoration: none;
 }
+
+@media only screen and (max-width: 600px){
+  .al-fb {
+    width: 150px;
+    height: 63px;
+  }
+
+  .al-fb h6 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .al-fb img {
+    width: 34px;
+  }
+}
 /* floating button end */
 
 /* background img */
@@ -878,6 +879,13 @@ footer p {
 
 .al-min-height-25 {
   min-height: 25rem;
+}
+
+@media only screen and (max-width: 1260px){
+  .al-wedding-ring-bg, .al-wing-bg {
+    background-size: 350px;
+    background-position: center 60%;
+  }
 }
 /* end background img */
 

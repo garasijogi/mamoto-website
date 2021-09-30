@@ -171,8 +171,8 @@ $modal.on('shown.bs.modal', function () {
 
 $("#crop").on('click', function () {
   canvas = $('#image').cropper('getCroppedCanvas', {
-    width: 1024,
-    height: 576,
+    width: 1600,
+    height: 900,
   });
 
   canvas.toBlob(function (blob) {
