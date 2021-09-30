@@ -48,7 +48,7 @@ class ContactSeeder extends Seeder
                     'contact' => 'mamotopicture',
                     'link' => 'https://www.bridestory.com/',
                     'text' => 'Bridestory',
-                    'logo' => 'fab fa-camera',
+                    'logo' => 'fas fa-camera',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ],
@@ -66,7 +66,7 @@ class ContactSeeder extends Seeder
                     'contact' => 'mamotopicture',
                     'link' => 'https://www.facebook.com/',
                     'text' => 'Facebook',
-                    'logo' => 'fa fa-facebook-f',
+                    'logo' => 'fab fa-facebook',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ],
@@ -81,7 +81,7 @@ class ContactSeeder extends Seeder
                 ],
                 [
                     'name' => 'website',
-                    'contact' => 'mamotopictures.com',
+                    'contact' => 'mamotopicture.com',
                     'link' => 'https://',
                     'text' => 'Visit Website',
                     'logo' => 'fa fa-globe',
