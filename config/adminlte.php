@@ -239,11 +239,11 @@ return [
         //     'url'         => 'admin',
         //     'icon'        => 'fas fa-fw fa-tachometer-alt',
         // ],
-        [
-            'text' => 'Pesanan',
-            'url'  => 'admin/pesanan',
-            'icon' => 'fas fa-fw fa-shopping-cart',
-        ],
+        // [
+        //     'text' => 'Pesanan',
+        //     'url'  => 'admin/pesanan',
+        //     'icon' => 'fas fa-fw fa-shopping-cart',
+        // ],
         [
             'text' => 'Feedback',
             'url'  => 'admin/feedback',

@@ -105,6 +105,20 @@
 <hr>
 <h6 class="mt-4 font-weight-bold">Portfolio Details</h6>
 <div class="row">
+  <div class="col-12">
+    <div class="form-group mb-2">
+      <label for="venue" class="font-weight-normal">Location</label>
+      <input type="text" name="location" id="location" placeholder="Masukkan Lokasi" value="{{ old('location') ?? '' }}"
+        class="form-control @error('location') is-invalid @enderror">
+      @error('location')
+      <div class="text-danger mt-2">
+        {{ $message }}
+      </div>
+      @enderror
+    </div>
+  </div>
+</div>
+<div class="row">
   <div class="col-sm">
     <div class="form-group mb-2">
       <label for="venue" class="font-weight-normal">Venue</label>
