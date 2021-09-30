@@ -8,7 +8,7 @@
     <h1>Kelola Promo</h1>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-danger btn-promo-removeAll"><i class="fa fa-trash-alt"></i> Hapus Semua Promo</button>
+    {{-- <button type="button" class="btn btn-danger btn-promo-removeAll"><i class="fa fa-trash-alt"></i> Hapus Semua Promo</button> --}}
     <button type="button" class="btn btn-success btn-promo-add"><i class="fa fa-plus-circle"></i> Tambah Promo</button>
   </div>
 </div>

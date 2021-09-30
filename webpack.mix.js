@@ -82,6 +82,7 @@ mix.scripts(
 );
 
 /* -------------------------- booknow scripts mixer ------------------------- */
+mix.styles('resources/css/booknow.css', 'public/css/booknow.css');
 mix.js('resources/js/booknow.js', 'public/js/booknow.js');
 
 /* -------------------------- contact scripts mixer ------------------------- */
