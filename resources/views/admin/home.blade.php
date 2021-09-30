@@ -185,12 +185,14 @@
                                         Ganti
                                     </button>
                                 </div>
-                                <div class="col px-0">
-                                    <a data-id="{{ $df->id }}" data-toggle="modal" data-target="#reset-feedback-modal"
-                                        class="text-white btn reset-feedback btn-sm btn-danger">
-                                        Reset
-                                    </a>
-                                </div>
+                                @if (!empty($df->feedback_id))
+                                    <div class="col px-0">
+                                        <a data-id="{{ $df->id }}" data-toggle="modal" data-target="#reset-feedback-modal"
+                                            class="text-white btn reset-feedback btn-sm btn-danger">
+                                            Reset
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </td>
                     </tr>
