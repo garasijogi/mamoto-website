@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-lg-2 col-md-1 col-sm-12"></div>
         <div class="col-lg-8 col-md-10 col-sm-12">
-            <div class="card ns-card mb-5">
+            <div class="card ns-card my-3">
                 <div class="container p-5">
                     <div class="ns-book-head text-center">
                         <h1 class="ns-title">Book Now</h1>
@@ -87,8 +87,7 @@
                             <div class="form-group">
                                 <label for="" class="ns-label">Booking Date</label>
                                 <input placeholder="Please Select the Booking Date"
-                                    class="textbox-n form-control form-control-lg ns-form" type="text"
-                                    onfocus="(this.type='date')" name="booking_date">
+                                    class="textbox-n form-control form-control-lg ns-form datepicker" type="text" name="booking_date">
                                 @error('booking_date')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -121,6 +120,10 @@
 </div>
 <input type="hidden" name="books_packages" value="{{ json_encode($books_packages) }}">
 <input type="hidden" name="contact_wa" value="{{ json_encode($contact_wa) }}">
+@endsection
+
+@section('css-ryu')
+<link rel="stylesheet" href="{{ asset('css/booknow.css') }}">
 @endsection
 
 @section('js-ryu')

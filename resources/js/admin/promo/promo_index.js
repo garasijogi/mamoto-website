@@ -39,7 +39,7 @@ const getPromo = (url=url_get) => {
           container_promo_row.append('<div class="col-lg-4 col-md-6 col-12 card-promo"><div class="card mb-3" style="max-width:100%"><a href="javascript:showImage(' + "'" + value.photo + "'" + ', ' + "'" + value.name + "'" + ')"><img class="card-img-top rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '"></a><div class="card-body h-100 card-body-promo-card"><h5 class="card-title font-weight-bolder">' + value.name + '</h5><p class="card-text mb-0 font-weight-lighter">' + value.post + '</p><p class="card-text mb-4"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p><div class="d-flex justify-content-end btn-promo-container"><div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i class="fa fa-pencil-alt"></i></button></div></div></div></div></div>');
         });
       }
-      
+
     },
     error: function(e){
       Swal.fire({icon: 'error', title: 'Oops...', text: 'Something went wrong!'});
@@ -68,42 +68,42 @@ btnPromo_addPromo.on('click', function () {
   modal_promo.modal('show');
 });
 // remove all button
-btnPromo_removeAll.on('click', function () {
-  Swal.fire({
-    icon: 'warning',
-    title: 'Apa anda yakin?',
-    html: '<div class="bg-gray text-white py-2"><b>saya yakin untuk menghapus promo</b></div>',
-    input: 'text',
-    inputLabel: 'Ketikkan kalimat di atas, untuk menghapus semua promo',
-    showCancelButton: true,
-    allowOutsideClick: false,
-    inputValidator: (value) => {
-      if (value != 'saya yakin untuk menghapus promo') {
-        return 'Kalimat yang anda ketikkan salah'
-      } else {
-        // window.location.replace(url_removeAll);
-        $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': token_csrf
-          },
-          url: url_removeAll,
-          method: 'POST',
-          success: function (data) {
-            Toast.fire({ icon: 'success', title: 'Semua Promo berhasil dihapus' });
+// btnPromo_removeAll.on('click', function () {
+//   Swal.fire({
+//     icon: 'warning',
+//     title: 'Apa anda yakin?',
+//     html: '<div class="bg-gray text-white py-2"><b>saya yakin untuk menghapus promo</b></div>',
+//     input: 'text',
+//     inputLabel: 'Ketikkan kalimat di atas, untuk menghapus semua promo',
+//     showCancelButton: true,
+//     allowOutsideClick: false,
+//     inputValidator: (value) => {
+//       if (value != 'saya yakin untuk menghapus promo') {
+//         return 'Kalimat yang anda ketikkan salah'
+//       } else {
+//         // window.location.replace(url_removeAll);
+//         $.ajax({
+//           headers: {
+//             'X-CSRF-TOKEN': token_csrf
+//           },
+//           url: url_removeAll,
+//           method: 'POST',
+//           success: function (data) {
+//             Toast.fire({ icon: 'success', title: 'Semua Promo berhasil dihapus' });
 
-            // refresh data promo
-            container_promo_row.empty();
-            spinner_promo.show();
-            getPromo(url_get);
-          },
-          error: function (e) {
-            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!' });
-          }
-        });
-      }
-    }
-  })
-});
+//             // refresh data promo
+//             container_promo_row.empty();
+//             spinner_promo.show();
+//             getPromo(url_get);
+//           },
+//           error: function (e) {
+//             Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!' });
+//           }
+//         });
+//       }
+//     }
+//   })
+// });
 // trigger cliknya dari container tapi liat ke dalemnya apa arahnya ke edit atau remove
 container_promo_row.on('click', btnPromo_edit, function () {
   // ganti id form jadi form edit

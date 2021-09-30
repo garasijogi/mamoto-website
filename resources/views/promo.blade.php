@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - Promo')
 @section('content')
-<div class="al-container d-block">
+<div class="al-container d-block al-wedding-ring-bg al-min-height-39">
   {{-- title --}}
   <h1 class="rr-header text-center mb-5">Promo</h1>
-  
+
   {{-- content --}}
   <div class="container container-promo">
     <div class="row justify-content-around row-promo">
@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="showPromo" tabindex="-1" aria-labelledby="showPromoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -78,7 +78,7 @@
       </div>
     </div>
   </div>
-  
+
   <input type="hidden" name="token_csrf" value="{{ csrf_token() }}">
   <input type="hidden" name="image_default" value="{{ asset('images/default/image.svg') }}">
   <input type="hidden" name="url_get" value="{{ route('promo.get') }}">
