@@ -5,7 +5,7 @@
         'type' => 'website',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd291eec5fc929f08cdec5a75ab6ea88d92cb7568',
+        'reference' => 'b2e8d294024f76e906d024657466cc0b41c98c9d',
         'name' => 'garasijogi/mamoto-website',
         'dev' => false,
     ),
@@ -97,7 +97,7 @@
             'type' => 'website',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd291eec5fc929f08cdec5a75ab6ea88d92cb7568',
+            'reference' => 'b2e8d294024f76e906d024657466cc0b41c98c9d',
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
@@ -365,12 +365,12 @@
             'dev_requirement' => false,
         ),
         'monolog/monolog' => array(
-            'pretty_version' => '2.3.4',
-            'version' => '2.3.4.0',
+            'pretty_version' => '2.3.5',
+            'version' => '2.3.5.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
-            'reference' => '437e7a1c50044b92773b361af77620efb76fff59',
+            'reference' => 'fd4380d6fc37626e2f799f29d91195040137eba9',
             'dev_requirement' => false,
         ),
         'nesbot/carbon' => array(
@@ -496,8 +496,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0 || 2.0.0 || 3.0.0',
-                1 => '1.0|2.0',
+                0 => '1.0|2.0',
+                1 => '1.0.0 || 2.0.0 || 3.0.0',
             ),
         ),
         'psr/simple-cache' => array(
