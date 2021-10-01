@@ -198,7 +198,7 @@
 <input type="hidden" name="url_getOnce" value="{{ route('admin.promo.getOnce') }}">
 <input type="hidden" name="url_gallery" value="{{ url('storage/') }}">
 <input type="hidden" name="url_remove" value="{{ route('admin.promo.remove') }}">
-<input type="hidden" name="url_removeAll" value="{{ route('admin.promo.removeAll') }}">
+{{-- <input type="hidden" name="url_removeAll" value="{{ route('admin.promo.removeAll') }}"> --}}
 @endsection
 
 @section('css')
