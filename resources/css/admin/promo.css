@@ -95,3 +95,7 @@
   object-fit: cover;
   object-position: center;
 }
+
+.rr-image-responsive {
+	cursor: zoom-in;
+}

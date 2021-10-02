@@ -16,8 +16,8 @@
       <div class="col-auto">
         <a href="{{ $contact_instagram['link'] }}">
             <div class="d-flex justify-content-center">
-              <div class="bg-white contact-profile">
-                <div class="contact-img" style="background-image: url({{ asset('images/mamoto_logo_hitam.svg') }});"></div>
+              <div class="contact-profile">
+                <div class="contact-img" style="background-image: url({{ asset('images/mamoto_picture_logo.png') }});"></div>
               </div>
             </div>
         </a>
@@ -28,7 +28,7 @@
         </a> --}}
       </div>
     </div>
-    <div class="row mt-3 mb-5 justify-content-center">
+    <div class="row mt-2 mb-5 justify-content-center">
       {{-- links --}}
       <div class="col-lg-6">
         @foreach ($contacts as $value)
