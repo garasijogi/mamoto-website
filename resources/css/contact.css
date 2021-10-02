@@ -19,12 +19,12 @@ i:hover {
 
 body {
   /* background-color: #FFFFFF !important; */
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-attachment: fixed;
 }
 
@@ -109,7 +109,7 @@ body {
   }
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .contact-profile {
     width: 9em;
     height: 9em;
@@ -120,9 +120,9 @@ body {
   .contact-list-text {
     font-size: 1.75em;
   }
-}
+} */
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .contact-profile {
     width: 10em;
     height: 10em;
@@ -144,4 +144,4 @@ body {
   .contact-profile-text {
     font-size: 4em;
   }
-}
+} */

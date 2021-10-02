@@ -17,6 +17,15 @@ class ContactSeeder extends Seeder
         DB::table('contacts')->insert(
             [
                 [
+                    'name' => 'website',
+                    'contact' => 'mamotopicture.com',
+                    'link' => 'https://',
+                    'text' => 'Visit Website',
+                    'logo' => 'fa fa-globe',
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ],
+                [
                     'name' => 'whatsapp',
                     'contact' => '6281281828317',
                     'link' => 'https://wa.me/',
@@ -76,15 +85,6 @@ class ContactSeeder extends Seeder
                     'link' => 'https://www.youtube.com/channel/',
                     'text' => 'Youtube Channel',
                     'logo' => 'fab fa-youtube',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ],
-                [
-                    'name' => 'website',
-                    'contact' => 'mamotopicture.com',
-                    'link' => 'https://',
-                    'text' => 'Visit Website',
-                    'logo' => 'fa fa-globe',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
                 ],
