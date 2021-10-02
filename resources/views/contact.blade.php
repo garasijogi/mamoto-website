@@ -9,27 +9,31 @@
   @include('layouts.css.al-styles')
   <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
 </head>
-<body style="background-image: url('{{ asset('images/wedding-ring.png') }}')">
+<body style="background-image: url('{{ asset('images/default/contact-background.jpg') }}')">
   <div class="container">
-    <div class="row my-5">
-      <div class="col-lg-6 order-lg-2 mt-2 mt-sm-3 mt-md-4 mt-lg-5">
+    <div class="row mt-4 justify-content-center">
+          {{-- social photo profile --}}
+      <div class="col-auto">
         <a href="{{ $contact_instagram['link'] }}">
-          <div class="d-flex justify-content-center">
-            <div class="bg-white contact-profile">
-              <div class="contact-img" style="background-image: url({{ asset('images/mamoto_logo_hitam.svg') }});"></div>
+            <div class="d-flex justify-content-center">
+              <div class="contact-profile">
+                <div class="contact-img" style="background-image: url({{ asset('images/mamoto_picture_logo.png') }});"></div>
+              </div>
             </div>
-          </div>
         </a>
-        <a href="{{ $contact_instagram['link'] }}">
+        {{-- <a href="{{ $contact_instagram['link'] }}">
           <p class="contact-profile-text">
             {{ '@'.$contact_instagram['contact'] }}
           </p>
-        </a>
+        </a> --}}
       </div>
-      <div class="col-lg-6 order-lg-1 mt-5">
+    </div>
+    <div class="row mt-2 mb-5 justify-content-center">
+      {{-- links --}}
+      <div class="col-lg-6">
         @foreach ($contacts as $value)
           <a href="{{ $value['link'] }}">
-            <div class="d-flex justify-content-center my-lg-5 my-4">
+            <div class="d-flex justify-content-center my-3">
               <div class="contact-list w-100 px-5">
                 <p class="contact-list-text d-flex">
                   <span class="d-flex align-items-center"><i class="{{ $value['logo'] }} fa-2x"></i></span>

@@ -19,23 +19,23 @@ i:hover {
 
 body {
   /* background-color: #FFFFFF !important; */
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-attachment: fixed;
 }
 
 .contact-profile {
-  border-radius: 5em;
+  /* border-radius: 5em;
   border-width: 0.0625em;
   border-style: solid;
-  border-color: black;
-  padding: 0.75em;
-  width: 7em;
-  height: 7em;
+  border-color: black; */
+  /* padding: 0.75em; */
+  width: 10em;
+  height: 10em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,12 +73,12 @@ body {
 }
 
 .contact-list:hover {
-	opacity: 1;
+  opacity: 1;
   background-color: #F8EDEB;
 }
 
 .contact-list:active {
-	position: relative;
+  position: relative;
   top: 7px;
   box-shadow: none;
 }
@@ -96,33 +96,20 @@ body {
   padding: 0.75em;
 }
 
-@media (min-width: 576px) {
-  .contact-profile {
-    width: 7em;
-    height: 7em;
-  }
-  .contact-profile-text {
-    font-size: 2em;
-  }
-  .contact-list-text {
-    font-size: 1.25em;
-  }
-}
-
-@media (min-width: 768px) {
+@media (max-width: 576px) {
   .contact-profile {
     width: 9em;
     height: 9em;
   }
-  .contact-profile-text {
-    font-size: 3em;
-  }
+}
+
+@media (min-width: 577px) {
   .contact-list-text {
-    font-size: 1.75em;
+    font-size: 1.15em;
   }
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .contact-profile {
     width: 10em;
     height: 10em;
@@ -144,4 +131,4 @@ body {
   .contact-profile-text {
     font-size: 4em;
   }
-}
+} */
