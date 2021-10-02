@@ -50,13 +50,21 @@ class RyumadaTableSeeder extends Seeder
 
         /* --------------------------- settings for promo --------------------------- */
         // seeder nomor telpon promo
-        DB::table('settings')->insert([
-            'module_name' => 'promo',
-            'setting_name' => 'promo_waNumber',
-            // PRODUCTION ubah nomor telpon
-            'setting_value' => '6285289675777',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+        \App\Setting::insert([
+            // [
+            //     'module_name' => 'promo',
+            //     'setting_name' => 'promo_waNumber',
+            //     'setting_value' => '6285289675777',
+            //     'created_at' => Carbon::now(),
+            //     'updated_at' => Carbon::now()
+            // ],
+            [
+                'module_name' => 'contact',
+                'setting_name' => 'contactFloatingButton_text',
+                'setting_value' => "Halo saya tertarik menggunakan jasa Mamoto Picture. Boleh minta Price Listnya\n\nNama :\nAcara :\nTanggal acara :\nVenue :",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }
