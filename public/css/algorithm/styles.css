@@ -135,12 +135,12 @@ body.user-body:after{
 
 .al-mamoto-black-logo {
   filter: grayscale(1) invert(1);
-  width: 10vw;
+  width: 6vw;
   min-width: 4rem;
 }
 
 .al-mamoto-white-logo {
-  width: 10vw;
+  width: 6vw;
   min-width: 4rem;
 }
 
@@ -808,8 +808,9 @@ footer p {
 
 /* floating button start */
 .al-fb {
-  width: 208px;
-  height: 63px;
+  width: 140px;
+  height: 45px;
+  padding: 0 5px 0 7px;
   right: 1rem;
   bottom: 5rem;
   position: fixed;
@@ -823,7 +824,7 @@ footer p {
 }
 
 .al-fb h6 {
-  font-size: 24px;
+  font-size: 17px;
   font-weight: 600;
   text-align: center;
   color: var(--darkgrey);
@@ -831,7 +832,7 @@ footer p {
 }
 
 .al-fb img {
-  width: 44px;
+  width: 30px;
   -webkit-filter: drop-shadow(1px 1px 2px rgb(105, 105, 105));
   filter: drop-shadow(1px 1px 2px rgb(105, 105, 105));
 }
