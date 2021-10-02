@@ -9,10 +9,15 @@ summernoteElement.summernote({
 	toolbar: [
 		['style', ['bold', 'italic', 'underline', 'clear']],
 		['font', ['strikethrough', 'superscript', 'subscript']],
-		['fontsize', ['undo', 'redo', 'fontsize']],
+		['fontsize', [
+                'undo',
+                'redo',
+                // 'fontsize'
+            ]
+        ],
 		['color', ['color']],
 		['para', ['ul', 'ol', 'paragraph', 'style']],
-		['height', ['height']],
+		// ['height', ['height']],
 		['insert', ['gallery', 'video', 'link', 'hr']],
 		// PRODUCTION remove codeview
 		['view', ['fullscreen', 'codeview', 'help']],
@@ -32,7 +37,7 @@ summernoteElement.summernote({
 			} else {
 				summernoteElement.parent().removeClass('bg-danger');
 			}
-			
+
 			// ubah style tombol save
 			summernoteSaveButton.removeClass('btn-secondary').addClass('btn-primary');
 		},
@@ -43,8 +48,8 @@ summernoteElement.summernote({
 	gallery: { // summernote gallery settings
 		source: {
 			// data: [],
-			url: url_getIndex + 
-				"?page=1" + 
+			url: url_getIndex +
+				"?page=1" +
 				"&path=" + path +
 				"&index=" + index +
 				"&url_getIndex=" + url_getIndex +
@@ -97,7 +102,7 @@ summernoteSaveButton.on('click', function(){
 		toastValidateError();
 	} else {
 		summernoteElement.parent().removeClass('bg-danger');
-		
+
 		// lakukan ajax save data
 		updateAbout(); // update ke database
 	}
