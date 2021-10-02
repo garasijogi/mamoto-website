@@ -15,7 +15,7 @@ class ClientComposer
         'instagram' => Contact::where('name', 'instagram')->first(),
         'youtube' => Contact::where('name', 'youtube')->first(),
         'email' => Contact::where('name', 'email')->first(),
-        'bridestory' => Contact::where('name', 'instagram')->first(),
+        'bridestory' => Contact::where('name', 'bridestory')->first(),
         'facebook' => Contact::where('name', 'facebook')->first()
       ];
 
