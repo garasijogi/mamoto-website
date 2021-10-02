@@ -12,7 +12,7 @@
                 <p class="al-grey-color pt-2">Terdaftar sebagai CV di Kementerian Hukum dan HAM <br>(Kemenkunham)</p>
             </div>
         </div>
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center my-3">
             <a href="{{ $socmed['bridestory']->link . $socmed['bridestory']->contact }}" target="_blank">
                 <img src="/images/bridestory_logo.png" width="100px" height="30px" style="object-fit: contain">
             </a>
