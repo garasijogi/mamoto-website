@@ -30,6 +30,8 @@ class ComposerStaticInit37e26ca9f1bb9cc3998f0fb559504e21
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
+        '74ed299072414d276bb7568fe71d5b0c' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify.php',
+        '9635627915aaea7a98d6d14d04ca5b56' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -39,6 +41,7 @@ class ComposerStaticInit37e26ca9f1bb9cc3998f0fb559504e21
         ),
         'T' => 
         array (
+            'Tinify\\' => 7,
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
         ),
         'S' => 
@@ -154,6 +157,10 @@ class ComposerStaticInit37e26ca9f1bb9cc3998f0fb559504e21
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'Tinify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -3507,6 +3514,11 @@ class ComposerStaticInit37e26ca9f1bb9cc3998f0fb559504e21
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Tinify\\Client' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Client.php',
+        'Tinify\\Exception' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
+        'Tinify\\Result' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Result.php',
+        'Tinify\\ResultMeta' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/ResultMeta.php',
+        'Tinify\\Source' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Source.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
