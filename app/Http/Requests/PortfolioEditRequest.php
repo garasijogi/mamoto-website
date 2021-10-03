@@ -28,6 +28,7 @@ class PortfolioEditRequest extends FormRequest
             'name' => 'required',
             'pfType_id' => 'required',
             'videoList' => 'video|mimes:3gp,mp4,mkv,avi,wmv|max:100024',
+            'location' => '',
             'venue' => '',
             'pv' => '',
             'makeup' => '',
