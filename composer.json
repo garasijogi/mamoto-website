@@ -17,6 +17,7 @@
         "jeroennoten/laravel-adminlte": "^3.5",
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
+        "tinify/tinify": "^1.5",
         "laravel/ui": "2.*"
     },
     "require-dev": {
@@ -49,7 +50,10 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+        "files": [
+            "app/Support/helpers.php"
+        ]
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

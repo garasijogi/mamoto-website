@@ -133,6 +133,12 @@
                     </div>
                   @endif
                 @endforeach
+              @else
+                <div class="row">
+                  <div class="col-10">
+                    <input class="al-video-input form-control" type="text" name="video[1]" placeholder="Masukkan Link Video Youtube">
+                  </div>
+                </div>
               @endif
             </div>
           </div>
