@@ -402,7 +402,11 @@ body.login-page {
 
 .al-portfolio-card:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.1) !important;
+}
+
+.al-portfolio-card img{
+  max-width: 1024px ;
 }
 
 /* 5) Image viewer */
