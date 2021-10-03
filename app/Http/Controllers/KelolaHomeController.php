@@ -11,7 +11,6 @@ use App\Http\Requests\Displayed_feedbackRequest;
 use App\Portfolio_type;
 use App\Promo;
 use App\User;
-use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -56,7 +55,9 @@ class KelolaHomeController extends Controller
         $jumbotron_data = str_replace('data:image/png;base64,', '', $jumbotron_data);
         $jumbotron_data = str_replace(' ', '+', $jumbotron_data);
         $fileName = 'jumbotron' . $jumbotron->id . '.png';
-        Storage::put("images/jumbotron/" . $fileName, base64_decode($jumbotron_data));
+        $compressed = compress_image(base64_decode($jumbotron_data), 'buffer');
+
+        Storage::put("images/jumbotron/" . $fileName, $compressed);
 
         //update data jumbotron
         $this->authorize('update', $user);
