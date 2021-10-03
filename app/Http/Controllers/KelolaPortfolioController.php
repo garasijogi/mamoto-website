@@ -75,6 +75,8 @@ class KelolaPortfolioController extends Controller
                 $directory_path = get_path("storage/images/portfolio/" . request('pfType_id') . '/' . \Str::slug(request('name')));
                 $path = get_path("{$directory_path}/{$images_data[$index]['name']}");
 
+                check_folder(get_path("storage/images/portfolio/"));
+                check_folder(get_path("storage/images/portfolio/" . request('pfType_id')));
                 check_folder($directory_path);
 
                 (compress_image($image))->toFile($path);
