@@ -10,7 +10,8 @@ class PortfolioController extends Controller
 {
     public function wedding(Portfolio_type $portfolio_types)
     {
-        $portfolios = $portfolio_types->find('W')->portfolios()->limit(10)->latest()->paginate(10);
+        $portfolios = $this->get_portfolios($portfolio_types, 'W');
+        
         return view('portfolio', [
             'title' => 'Wedding',
             'portfolios' => $portfolios
@@ -19,7 +20,8 @@ class PortfolioController extends Controller
 
     public function prewed(Portfolio_type $portfolio_types)
     {
-        $portfolios = $portfolio_types->find('preW')->portfolios()->limit(10)->latest()->paginate(10);
+        $portfolios = $this->get_portfolios($portfolio_types, 'preW');
+
         return view('portfolio', [
             'title' => 'Pre Wedding',
             'portfolios' => $portfolios
@@ -28,7 +30,8 @@ class PortfolioController extends Controller
 
     public function sp(Portfolio_type $portfolio_types)
     {
-        $portfolios = $portfolio_types->find('S')->portfolios()->limit(10)->latest()->paginate(10);
+        $portfolios = $this->get_portfolios($portfolio_types, 'S');
+
         return view('portfolio', [
             'title' => 'Siraman/Pengajian',
             'portfolios' => $portfolios
@@ -37,7 +40,8 @@ class PortfolioController extends Controller
 
     public function lamaran(Portfolio_type $portfolio_types)
     {
-        $portfolios = $portfolio_types->find('L')->portfolios()->limit(10)->latest()->paginate(10);
+        $portfolios = $this->get_portfolios($portfolio_types, 'L');
+
         return view('portfolio', [
             'title' => 'Lamaran',
             'portfolios' => $portfolios
@@ -49,5 +53,9 @@ class PortfolioController extends Controller
             'title' => $portfolios->name,
             'portfolio' => $portfolios
         ]);
+    }
+
+    public function get_portfolios($model, $type, $limit = 10, $paginate = 10, $sort_by = 'date', $order_by = 'DESC') {
+        return $model->find($type)->portfolios()->limit($limit)->orderBy($sort_by, $order_by)->paginate($paginate);
     }
 }
