@@ -613,6 +613,24 @@ footer p {
     text-align: center;
   }
 
+  .al-container.al-home {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow-x: hidden;
+  }
+
+  .al-portfolio-card img {
+    width: 80vw !important;
+    height: unset !important;
+  }
+
+  .al-portfolio-card {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
 }
 
 @media only screen and (min-width:601px) and (max-width:800px){
