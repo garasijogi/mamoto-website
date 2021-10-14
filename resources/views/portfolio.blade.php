@@ -3,7 +3,7 @@
 Portfolio - {{$title}}
 @endsection
 @section('content')
-<div class="al-container d-block">
+<div class="al-container d-block al-home">
   {{-- big title --}}
   <div class="d-flex justify-content-center al-big-title p-2">
     <div class="d-flex align-items-center text-center">
