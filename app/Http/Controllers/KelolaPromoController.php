@@ -52,7 +52,6 @@ class KelolaPromoController extends Controller
 			$counter_data = Counter::firstWhere('name', 'promo');
 			$counter_attr = json_decode($counter_data->attribute);
 			// reset counter count jika tahun tidak sama dengan sistem
-			// ($counter_attr->year == date('Y')) ? $counter_count = $counter_data->count : $counter_count = 0;
 			if ($counter_attr->year == date('Y')) {
 				// jika sama gunakan counter yg ada di database
 				$counter_count = $counter_data->count + 1;
@@ -202,7 +201,9 @@ class KelolaPromoController extends Controller
 	private function photoSave($base64_photo)
 	{
 		$file_name = md5(uniqid('promo-') . microtime()) . ".jpg";
-		Storage::put($this->path . $file_name, base64_decode($base64_photo)); // taruh file foto dalam folder gallery promo
+		// Storage::put($this->path . $file_name, base64_decode($base64_photo)); // tanpa compress langsung aja simpan dalam server
+		$compressed = compress_image(base64_decode($base64_photo), 'buffer');
+		Storage::put($this->path . $file_name, $compressed); // taruh file foto dalam folder gallery promo
 		return $file_name;
 	}
 
