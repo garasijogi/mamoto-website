@@ -81,9 +81,6 @@ class kelolaGambarController extends Controller
 			$index = request('index');
 			$file_index = $path . $index; // ambil galeri penyimpan nama foto
 
-			// dd($path);
-			// dd(request()->file('myfile')->getClientOriginalName());
-
 			$file = request()->file('myfile');
 			// ambil file extension
 			// $fileExtension = pathinfo($_FILES['myfile']['name'], PATHINFO_EXTENSION); 
@@ -93,7 +90,8 @@ class kelolaGambarController extends Controller
 				$file_name = md5($_FILES['myfile']['name'] . microtime()) . "." . $fileExtension;
 				// } while (file_exists($path.$fileName) == true);
 			} while (Storage::disk('public')->exists($path . $file_name) == true);
-			$path_file = $file->storeAs("{$path}", "{$file_name}");
+			// $file->storeAs("{$path}", "{$file_name}"); // save file to system without compress it
+			(compress_image($file))->toFile(get_path("storage/{$path}/{$file_name}")); // save file to system and compress it
 
 			$this->addIndexData(
 				$file_index,
@@ -104,14 +102,6 @@ class kelolaGambarController extends Controller
 			);
 			$ret = array();
 			$ret[] = $file_name;
-
-
-			//	This is for custom errors;	
-			/*	$custom_error= array();
-                    $custom_error['jquery-upload-file-error']="File already exists";
-                    echo json_encode($custom_error);
-                    die();
-                    */
 			$error = $_FILES["myfile"]["error"];
 
 			// taruh file informasi json ke dalam file
@@ -180,7 +170,6 @@ class kelolaGambarController extends Controller
 
 		$data_galleryNew = array_values($data_gallery); //reindex array, buat file yg sudah terhapus
 		// tulis kembali file json ke dalam file
-		// file_put_contents($file_index, json_encode($data_gallery));
 		Storage::put($file_index, json_encode($data_galleryNew));
 	}
 }
