@@ -2,7 +2,7 @@ name: Merge and Deploy
 on:
   push:
     branches:
-      - staging
+      - main
 jobs:
   merge-and-deploy:
     runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
       # remove local workspaces; remove all files in the environment
       - uses: AutoModality/action-clean@v1
       
-      # checkout deploy/run
+      # checkout deploy/ztemplate
       - uses: actions/checkout@v2
         with:
           ref: deploy/ztemplate
@@ -50,7 +50,8 @@ jobs:
       # update npm and composer packages
       - name: Install or update dependencies; Create local changes
         run: |
-          composer install --no-dev --optimize-autoloader
+          composer update --no-dev --optimize-autoloader
+          composer dump-autoload -o
           npm install && npm run prod
       
       # see changed files
