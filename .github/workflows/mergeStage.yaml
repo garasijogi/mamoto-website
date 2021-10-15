@@ -87,4 +87,4 @@ jobs:
           password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
           port: ${{ secrets.HOSTINGER_SSH_PORT }}
           script: |
-            bash .0IMPORTANT/github-actions/deployer-main.sh
+            bash .0IMPORTANT/github-actions/deployer-staging.sh
