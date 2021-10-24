@@ -30,6 +30,10 @@ mix.js([
  * place custom plugin script that cannot be covered by npm right here
  */
 
+/* ----------------------------- daterangepicker ---------------------------- */
+mix.copy('resources/js/admin/daterangepicker/daterangepicker.css', 'public/js/admin/daterangepicker/daterangepicker.css')
+mix.copy('resources/js/admin/daterangepicker/daterangepicker.min.js', 'public/js/admin/daterangepicker/daterangepicker.min.js')
+
 /* ------------------------ summernote custom script ------------------------ */
 /**
  * This summernote custom script added responsive to video and image
@@ -77,6 +81,10 @@ mix.scripts(
     "public/js/admin/about.js"
 );
 
+/* -------------------------- booknow scripts mixer ------------------------- */
+mix.styles('resources/css/booknow.css', 'public/css/booknow.css');
+mix.js('resources/js/booknow.js', 'public/js/booknow.js');
+
 /* -------------------------- contact scripts mixer ------------------------- */
 mix.styles('resources/css/contact.css', 'public/css/contact.css'); // userpage css
 mix.js('resources/js/admin/contact/contact__plugins.js', 'public/js/admin/contact_plugins.js');
@@ -100,7 +108,7 @@ mix.styles(
 mix.styles([
         'resources/css/promo.css',
         'resources/css/admin/imageViewer.css'
-    ], 
+    ],
     'public/css/promo.css'
 );
 mix.js('resources/js/promo.js', 'public/js/promo.js'); // script untuk di userpage
@@ -115,6 +123,7 @@ mix.scripts(
         'resources/js/admin/promo/promo__initial.js',
         'resources/js/admin/swal_toast.js', // toast using sweet alert2
         'resources/js/admin/promo/promo_index.js',
+        "resources/js/admin/modal-imageViewer.js",
     ],
     'public/js/admin/promo.js'
 );

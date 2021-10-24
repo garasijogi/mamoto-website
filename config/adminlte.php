@@ -187,7 +187,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -234,16 +234,16 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'Dashboard',
-            'url'         => 'admin',
-            'icon'        => 'fas fa-fw fa-tachometer-alt',
-        ],
-        [
-            'text' => 'Pesanan',
-            'url'  => 'admin/pesanan',
-            'icon' => 'fas fa-fw fa-shopping-cart',
-        ],
+        // [
+        //     'text'        => 'Dashboard',
+        //     'url'         => 'admin',
+        //     'icon'        => 'fas fa-fw fa-tachometer-alt',
+        // ],
+        // [
+        //     'text' => 'Pesanan',
+        //     'url'  => 'admin/pesanan',
+        //     'icon' => 'fas fa-fw fa-shopping-cart',
+        // ],
         [
             'text' => 'Feedback',
             'url'  => 'admin/feedback',

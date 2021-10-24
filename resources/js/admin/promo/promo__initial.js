@@ -14,17 +14,6 @@ const container_promo_row = $('.promo-content');
 const container_promo_contentNo = $('.container-promo-contentNo');
 const container_promo_content = $('.container-promo-content');
 
-// flags
-let flag_previousRetrieveNull = false;
-
-// input variables
-const input_name = $('input[name="name"]');
-const textarea_post = $('textarea[name="post"]');
-const textarea_link = $('textarea[name="link"]');
-const input_image = $('input[name="photo"]');
-let edit_promo_id; // id promo container for editor
-let edit_promo_originPhoto; // container original photo
-
 // cropper variables
 var cropper;
 const image_promo = $('.rr-promo-add-image');
@@ -43,11 +32,28 @@ const image_cropper_container = $('.image-cropper-container');
 const image_input = $('#inputImage');
 const image_spinner_src = $('input[name="spinner"]').val();
 
+// daterange picker
+const daterange_start = $('input[name="daterange_start"]').val();
+const daterange_end = $('input[name="daterange_end"]').val();
+
+// flags
+let flag_previousRetrieveNull = false;
+
 // form
 const formPromo = $('#formPromo');
 
 // image default
 const image_default = $('input[name="image_default"]').val();
+
+// input variables
+const input_daterange = $('input[name="daterange"]');
+const input_image = $('input[name="photo"]');
+const input_name = $('input[name="name"]');
+const input_period = $('input[name="period"]');
+const textarea_post = $('textarea[name="post"]');
+const textarea_link = $('textarea[name="link"]');
+let edit_promo_id; // id promo container for editor
+let edit_promo_originPhoto; // container original photo
 
 // modals
 const modal_promo = $('#modal_promo');

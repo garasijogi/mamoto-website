@@ -23,13 +23,12 @@
                 <div class="col-4">
                     <img id="jumbo{{ $index+1 }}" width="350px" height="200px"
                         style="display: block;object-fit: contain;max-width:100%"
-                        src="{{ file_exists($jumbotron->path) ? $jumbotron->path : "/images/no-image.png" }}"
-                        alt="Jumbotron {{ $index+1 }}">
+                        src="{{$jumbotron->path ?? "/images/no-image.png" }}" alt="Jumbotron {{ $index+1 }}">
                 </div>
                 <div class="col-8">
                     {{-- photo --}}
-                    <form action="/admin/jumbotron/{{ $jumbotron->id }}/edit" method="post" class="mb-4"
-                        enctype="multipart/form-data">
+                    <form action="/admin/jumbotron/{{ $jumbotron->id }}/edit" method="post"
+                        class="mb-4 form-jumbotron-{{ $index+1 }}" enctype="multipart/form-data">
                         @method('patch')
                         @csrf
                         <div class="form-group mb-2">
@@ -41,7 +40,7 @@
                                 <input type="hidden" name="jumbo{{ $index+1 }}cropped" id="inputjumbo{{ $index+1 }}">
                                 <label class="custom-file-label" for="inputGroupFile01">Pilih file</label>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-2">Simpan</button>
+                            {{-- <button type="submit" class="btn btn-primary mt-2">Simpan</button> --}}
                         </div>
                     </form>
                 </div>
@@ -67,7 +66,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                <button type="button" class="btn btn-primary" id="crop" data-action="save">Crop and Save</button>
             </div>
         </div>
     </div>

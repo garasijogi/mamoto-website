@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - Book Success!')
 @section('content')
+<div class="al-container d-block">
     <div class="container">
         <div class="row justify-content-center">
             @if (session('books'))
@@ -16,4 +17,5 @@
             @endif
         </div>
     </div>
+</div>
 @endsection

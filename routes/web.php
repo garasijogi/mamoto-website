@@ -24,6 +24,7 @@ Route::prefix('portfolio')->group(function () {
     Route::get('{pfType_id}/{portfolios:slug}', 'PortfolioController@show')->name('portfolio.show');
 });
 Route::get('/about', 'AboutController@index')->name('about');
+Route::get('/pricelist', 'PricelistController@index')->name('pricelist');
 Route::get('/faq', 'FAQController@index')->name('faq');
 Route::get('/booknow', 'BookNowController@index')->name('booknow');
 Route::post('/booknow/book', 'BookNowController@store');
@@ -59,6 +60,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::patch('jumbotron/{jumbotron:id}/edit', 'KelolaHomeController@update_jumbotron');
     Route::get('displayed-portfolio/{id}', 'KelolaHomeController@displayed_portfolio')->name('admin.displayedportfolio');
     Route::patch('displayed-portfolio/{pftype}/edit', 'KelolaHomeController@update_dp');
+    Route::patch('displayed-feedback/edit', 'KelolaHomeController@update_df');
+    Route::get('displayed-feedback/{df:id}/clear', 'KelolaHomeController@clear_df');
+    Route::get('displayed-promo', 'KelolaHomeController@displayed_promo')->name('admin.displayedpromo');
+    Route::get('displayed-promo/{id}/add', 'KelolaHomeController@store_displayed_promo');
 
     //2.4) Kelola Portfolio
     Route::get('portfolio', 'KelolaPortfolioController@index')->name('admin.portfolio');
@@ -82,7 +87,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('promo/edit', 'KelolaPromoController@edit')->name('admin.promo.edit');
     Route::post('promo/remove', 'KelolaPromoController@remove')->name('admin.promo.remove');
     // DANGEROUS ROUTE?!
-    Route::post('promo/removeAll', 'KelolaPromoController@removeAll')->name('admin.promo.removeAll');
+    // Route::post('promo/removeAll', 'KelolaPromoController@removeAll')->name('admin.promo.removeAll');
 
     //2.7) Kelola FAQ
     Route::get('faq', 'KelolaFAQController@index')->name('admin.faq');
@@ -94,9 +99,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     //2.8) Kelola Pesanan
     Route::get('pesanan', 'KelolaPesananController@index')->name('admin.pesanan');
+    Route::post('pesanan/change-status/{id}', 'KelolaPesananController@changeStatus');
+    Route::post('pesanan/{id}/edit', 'KelolaPesananController@edit');
+    Route::post('pesanan/{id}/delete', 'KelolaPesananController@destroy');
 
     //2.9) Kelola Feedback
     Route::get('feedback', 'KelolaFeedbackController@index')->name('admin.feedback');
+    Route::post('feedback/edit/{feedback:id}', 'KelolaFeedbackController@edit');
+    Route::post('feedback/delete/{id}', 'KelolaFeedbackController@delete');
 
     //2.10) Kelola Gambar
     Route::post('kelolagambar/upload', 'kelolaGambarController@upload')->name('admin.uploadGambar');

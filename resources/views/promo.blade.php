@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - Promo')
 @section('content')
-<div class="al-container d-block">
+<div class="al-container d-block al-wedding-ring-bg al-min-height-39">
   {{-- title --}}
   <h1 class="rr-header text-center mb-5">Promo</h1>
-  
+
   {{-- content --}}
   <div class="container container-promo">
     <div class="row justify-content-around row-promo">
@@ -19,23 +19,22 @@
       </div>
       {{-- promo cards --}}
       {{-- @for ($i = 0; $i < 2; $i++)
-        <div class="col-lg-4 promo-cards">
-          <!-- image -->
+        <div class="col-lg-4 promo-cards mb-5" data-id="' + value.id + '">
           <div class="promo-img-container">
-            <div class="promo-img" style="background-image: url(https://picsum.photos/1080);">
-            </div>
+            <div class="promo-img promo-showImage" data-imgSrc="' + value.photo + '" data-imgTitle="' + value.name + '"
+              style="background-image:url(' + value.photo + ');"></div>
           </div>
           <div>
             <div class="text-center">
-              <h3 class="promo-title">
-                PROMO SUPER
-              </h3>
+              <h3 class="promo-title">' + value.name + ' </h3>
             </div>
-            <p class="promo-description">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit maiores natus dolore minus. <br/><span><a href="#">more info</a></span>
+            <p class="promo-description">' + value.post + '</p>
+            <div class="mb-0 text-secondary text-promo-period">Periode Promo<span class="promo-period"><br>' + value.period_start + ' - ' + value.period_end + '</span></div>
+            <p>
+              <a class="promo-moreInfo" href="javascript:void(0)">more info</a>
             </p>
             <div class="d-flex justify-content-center">
-              <div class="promo-btn" data-link="https://google.com">Book Now</div>
+              <div class="promo-btn" data-link="' + value.link +'">Book Now</div>
             </div>
           </div>
         </div>
@@ -52,7 +51,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="showPromo" tabindex="-1" aria-labelledby="showPromoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -79,7 +78,7 @@
       </div>
     </div>
   </div>
-  
+
   <input type="hidden" name="token_csrf" value="{{ csrf_token() }}">
   <input type="hidden" name="image_default" value="{{ asset('images/default/image.svg') }}">
   <input type="hidden" name="url_get" value="{{ route('promo.get') }}">

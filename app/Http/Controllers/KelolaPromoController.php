@@ -1,4 +1,6 @@
 <?php
+// NOW buat fungsi get expired promos
+// NOW buat date di add promo untuk yang terbaru saja
 
 namespace App\Http\Controllers;
 
@@ -50,7 +52,6 @@ class KelolaPromoController extends Controller
 			$counter_data = Counter::firstWhere('name', 'promo');
 			$counter_attr = json_decode($counter_data->attribute);
 			// reset counter count jika tahun tidak sama dengan sistem
-			// ($counter_attr->year == date('Y')) ? $counter_count = $counter_data->count : $counter_count = 0;
 			if ($counter_attr->year == date('Y')) {
 				// jika sama gunakan counter yg ada di database
 				$counter_count = $counter_data->count + 1;
@@ -124,7 +125,12 @@ class KelolaPromoController extends Controller
 			return response()->json($formData_validated);
 		}
 	}
-
+	
+	/**
+	 * ambil semua data promo untu AJAX
+	 *
+	 * @return response()->json($promo_list)
+	 */
 	public function get()
 	{
 		/* ---------------------- teks wa untuk order langsung ---------------------- */
@@ -134,7 +140,8 @@ class KelolaPromoController extends Controller
 		$wa_link = $wa->link . $wa->contact . "?text=";
 
 		// ambil data promo paginate 6 per refresh
-		$promo_list = Promo::latest()->paginate(6)->toArray();
+		// NOW fungsi whereDate ini masih salah
+		$promo_list = Promo::whereDate('period_end', '>=', date('Y-m-d', time()))->latest()->paginate(6)->toArray();
 		foreach ($promo_list['data'] as $k => $v) {
 			$promo_list['data'][$k] = [
 				'id' => $v['id'],
@@ -142,6 +149,8 @@ class KelolaPromoController extends Controller
 				'post' => \Str::limit($v['post'], 92, '...'),
 				'photo' => url($this->url_storage) . "/" . $v['photo'],
 				'link' => $wa_link . $v['link'],
+				'period_start' => Carbon::parse($v['period_start'])->isoFormat('LL'),
+				'period_end' => Carbon::parse($v['period_end'])->isoFormat('LL'),
 				'created_at' => Carbon::parse($v['created_at'])->diffForHumans(),
 				'updated_at' => Carbon::parse($v['updated_at'])->diffForHumans()
 			];
@@ -192,7 +201,9 @@ class KelolaPromoController extends Controller
 	private function photoSave($base64_photo)
 	{
 		$file_name = md5(uniqid('promo-') . microtime()) . ".jpg";
-		Storage::put($this->path . $file_name, base64_decode($base64_photo)); // taruh file foto dalam folder gallery promo
+		// Storage::put($this->path . $file_name, base64_decode($base64_photo)); // tanpa compress langsung aja simpan dalam server
+		$compressed = compress_image(base64_decode($base64_photo), 'buffer');
+		Storage::put($this->path . $file_name, $compressed); // taruh file foto dalam folder gallery promo
 		return $file_name;
 	}
 
@@ -244,6 +255,8 @@ class KelolaPromoController extends Controller
 			'id' => $id,
 			'name' => $formData['name'],
 			'post' => $formData['post'],
+			'period_start' => $formData['period_start'],
+			'period_end' => $formData['period_end'],
 			'link' => $formData['link'],
 			'photo' => $this->path . $file_name
 		];
@@ -260,6 +273,8 @@ class KelolaPromoController extends Controller
 		return Validator::make($formData, [
 			'name' => 'required|min:8',
 			'post' => 'required|min:12',
+			'period_start' => 'required|date_format:Y-m-d',
+			'period_end' => 'required|date_format:Y-m-d',
 			'link' => 'required',
 			'photo' => 'required',
 		]);

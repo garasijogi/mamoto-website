@@ -36,10 +36,10 @@ const getPromo = (url=url_get) => {
           flag_previousRetrieveNull = false; // matikan flag
         }
         $.each(data.data, function (index, value) {
-          container_promo_row.append('<div div class= "col-lg-6 col-12 card-promo" > <div class="card mb-3" style="max-width:100%"><div class="row no-gutters"><div class="col-lg-5 col-md-4"><img class="rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '"></div><div class="col-lg-7 col-md-8"><div class="card-body h-100 card-body-promo-card"><h5 class="card-title font-weight-bolder">' + value.name + '</h5><p class="card-text mb-0 font-weight-lighter">' + value.post + '</p><p class="card-text"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p><div class="d-flex justify-content-end btn-promo-container"><div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i class="fa fa-eye"></i></button></div></div></div></div></div></div></div>');
+          container_promo_row.append('<div class="col-lg-4 col-md-6 col-12 card-promo"><div class="card mb-3" style="max-width:100%"><a href="javascript:showImage(' + "'" + value.photo + "'" + ', ' + "'" + value.name + "'" + ')"><img class="card-img-top rr-image-responsive" src="' + value.photo + '" alt="Poster Promo ->' + value.name + '"></a><div class="card-body h-100 card-body-promo-card"><h5 class="card-title font-weight-bolder">' + value.name + '</h5><p class="card-text mb-0 font-weight-lighter">' + value.post + '</p><p class="card-text mb-4"><small class="text-muted">Ditambahkan ' + value.created_at + '</small></p><div class="d-flex justify-content-end btn-promo-container"><div class="btn-group" data-id="' + value.id + '"><button class="btn btn-danger btn-promo-remove"><i class="fas fa-trash-alt"></i></button><button class="btn btn-primary btn-promo-edit"><i class="fa fa-pencil-alt"></i></button></div></div></div></div></div>');
         });
       }
-      
+
     },
     error: function(e){
       Swal.fire({icon: 'error', title: 'Oops...', text: 'Something went wrong!'});
@@ -68,42 +68,42 @@ btnPromo_addPromo.on('click', function () {
   modal_promo.modal('show');
 });
 // remove all button
-btnPromo_removeAll.on('click', function () {
-  Swal.fire({
-    icon: 'warning',
-    title: 'Apa anda yakin?',
-    html: '<div class="bg-gray text-white py-2"><b>saya yakin untuk menghapus promo</b></div>',
-    input: 'text',
-    inputLabel: 'Ketikkan kalimat di atas, untuk menghapus semua promo',
-    showCancelButton: true,
-    allowOutsideClick: false,
-    inputValidator: (value) => {
-      if (value != 'saya yakin untuk menghapus promo') {
-        return 'Kalimat yang anda ketikkan salah'
-      } else {
-        // window.location.replace(url_removeAll);
-        $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': token_csrf
-          },
-          url: url_removeAll,
-          method: 'POST',
-          success: function (data) {
-            Toast.fire({ icon: 'success', title: 'Semua Promo berhasil dihapus' });
+// btnPromo_removeAll.on('click', function () {
+//   Swal.fire({
+//     icon: 'warning',
+//     title: 'Apa anda yakin?',
+//     html: '<div class="bg-gray text-white py-2"><b>saya yakin untuk menghapus promo</b></div>',
+//     input: 'text',
+//     inputLabel: 'Ketikkan kalimat di atas, untuk menghapus semua promo',
+//     showCancelButton: true,
+//     allowOutsideClick: false,
+//     inputValidator: (value) => {
+//       if (value != 'saya yakin untuk menghapus promo') {
+//         return 'Kalimat yang anda ketikkan salah'
+//       } else {
+//         // window.location.replace(url_removeAll);
+//         $.ajax({
+//           headers: {
+//             'X-CSRF-TOKEN': token_csrf
+//           },
+//           url: url_removeAll,
+//           method: 'POST',
+//           success: function (data) {
+//             Toast.fire({ icon: 'success', title: 'Semua Promo berhasil dihapus' });
 
-            // refresh data promo
-            container_promo_row.empty();
-            spinner_promo.show();
-            getPromo(url_get);
-          },
-          error: function (e) {
-            Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!' });
-          }
-        });
-      }
-    }
-  })
-});
+//             // refresh data promo
+//             container_promo_row.empty();
+//             spinner_promo.show();
+//             getPromo(url_get);
+//           },
+//           error: function (e) {
+//             Swal.fire({ icon: 'error', title: 'Oops...', text: 'Something went wrong!' });
+//           }
+//         });
+//       }
+//     }
+//   })
+// });
 // trigger cliknya dari container tapi liat ke dalemnya apa arahnya ke edit atau remove
 container_promo_row.on('click', btnPromo_edit, function () {
   // ganti id form jadi form edit
@@ -133,6 +133,17 @@ container_promo_row.on('click', btnPromo_edit, function () {
       input_image.val(data.photo);
       edit_promo_originPhoto = data.photo;
       image_promo.attr('src', data.photo_link); // reset image chooser ke default
+
+      // set tanggal periode pada daterange
+      let period_start = moment(data.period_start, "YYYY-MMMM-DD", 'id').format('DD MMMM YYYY');
+      let period_end = moment(data.period_end, "YYYY-MMMM-DD", 'id').format('DD MMMM YYYY');
+      input_daterange.data('daterangepicker').setStartDate(period_start);
+      input_daterange.data('daterangepicker').setEndDate(period_end);
+      input_daterange.val(period_start + " - " + period_end);
+      // set tanggal periode pada hidden daterange
+      let dateChoosen = data.period_start + "/" + data.period_end;
+      input_period.val(dateChoosen);
+
       // ganti kelas stack jadi hover
       (image_promo_stack.hasClass('rr-promo-add-image-stack-static')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-static').addClass('rr-promo-add-image-stack-hover') : "";
     },
@@ -217,7 +228,7 @@ image_input.on('change', function(e){
   image_cropper_container.show();
   // initialize image cropper
   cropper = new Cropper(image_cropper, {
-    aspectRatio: 1,
+    aspectRatio: 16 / 9,
     viewMode: 3,
   });
 });
@@ -258,6 +269,66 @@ image_cropper_btn_modeDrag.on('click', function(e){
 });
 image_cropper_btn_modeCrop.on('click', function (e) {
   cropper.setDragMode('crop');
+});
+
+/* ---------------------------- daterange picker ---------------------------- */
+input_daterange.daterangepicker({
+  "autoUpdateInput": false,
+  "minDate": moment(),
+  "startDate": moment(),
+  "endDate": moment().add(1, 'months'),
+  // "minDate": moment(),
+  "locale": {
+    "format": "DD MMMM YYYY",
+    "applyLabel": "Pilih",
+    "cancelLabel": "Hapus",
+    "separator": " - ",
+    "daysOfWeek": [
+      "Min",
+      "Sen",
+      "Sel",
+      "Rab",
+      "Kam",
+      "Jum",
+      "Sab"
+    ],
+    "monthNames": [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember"
+    ],
+    "firstDay": 1
+  },
+  "opens": "center",
+  "drops": "auto"
+}, function (start, end, label) {
+});
+// on apply daterangepicker
+input_daterange.on('apply.daterangepicker', function (ev, picker) {
+  $(this).val(picker.startDate.format('DD MMMM YYYY') + ' - ' + picker.endDate.format('DD MMMM YYYY')); // set value tanggal dan format locally
+
+  // ubah value pada input hidden period
+  let dateRaw = $(this).val();
+  let dateArray = dateRaw.split(" - ");
+  $.each(dateArray, function (i, v) {
+    dateArray[i] = moment(v, "DD MMMM YYYY", 'id').format('YYYY-MM-DD');
+  });
+  let dateChoosen = dateArray[0] + "/" + dateArray[1];
+  input_period.val(dateChoosen);
+});
+// on cancel, clear the form control
+input_daterange.on('cancel.daterangepicker', function (ev, picker) {
+  $(this).val(''); // hapus form
+  input_period.val('');
 });
 
 /* ------------------------------ form handler ------------------------------ */
@@ -302,13 +373,24 @@ formPromo.validate({
   submitHandler: function(form){
     let photo = input_image.val();
 
+    // validator daterange
+    let period = input_period.val();
+    if (period == "" || period == undefined || period == null){
+      Swal.fire({ icon: 'error', title: 'Periode promo tidak boleh kosong.', text: 'Harap tambahkan periode promo.' });
+      return false;
+    }
+
+    // validator poster
     if (photo == "" || photo == undefined || photo == null) {
       Swal.fire({ icon: 'error', title: 'Poster tidak boleh kosong.', text: 'Harap tambahkan poster promo.' });
     } else {
       // prepare form data
+      let period_splitted = period.split('/');
       let formData = {
         name: form.name.value,
         post: form.post.value,
+        period_start: period_splitted[0],
+        period_end: period_splitted[1],
         link: form.link.value,
         photo: photo
       };
@@ -324,14 +406,14 @@ formPromo.validate({
           method: 'POST',
           data: formData,
           beforeSend: function () {
-            // reset the form and image chooser
-            resetForm();
-            modal_promo.modal('hide'); // sembunyikan modal form add
             // menampilkan swal loading
             showLoadingSwal('Menambahkan Promo..', 'Harap Tunggu, sistem sedang menambahkan promo.');
           },
           success: function (data) {
             Toast.fire({ icon: 'success', title: 'Promo telah ditambahkan' });
+            // reset the form and image chooser
+            resetForm();
+            modal_promo.modal('hide'); // sembunyikan modal form add
 
             // refresh data promo
             container_promo_row.empty();
@@ -393,6 +475,11 @@ const resetForm = () => {
   image_promo.attr('src', image_default); // reset image chooser ke default
   (image_promo_stack.hasClass('rr-promo-add-image-stack-hover')) ? image_promo_stack.removeClass('rr-promo-add-image-stack-hover').addClass('rr-promo-add-image-stack-static') : "";
   input_image.val(''); // kosongkan input hidden image
+  input_period.val('');
+
+  // reset daterange
+  input_daterange.data('daterangepicker').setStartDate(moment());
+  input_daterange.data('daterangepicker').setEndDate(moment().add(1, 'months'));
 }
 
 // show swalerror on ajax error, validation error

@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="icon" href="favicon.png">
 
   <title>
     @yield('title')
@@ -19,9 +20,10 @@
 
 </head>
 
-<body>
+<body class="user-body">
   @include('layouts.navigation')
   <div id="app">
+    @include('layouts.floating_button')
     <div class="content">
       @yield('content')
     </div>

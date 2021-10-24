@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - FAQ')
 @section('content')
+<div class="al-container d-block al-wing-bg al-min-height-25">
     <div class="container">
-        <div class="text-center ns-faq-title">
+        <div class="mt-5 text-center ns-faq-title ">
             <h1 class="ns-title">Frequently Asked Question</h1>
         </div>
         <div class="row">
@@ -13,7 +14,7 @@
                     @foreach ($faq as $item)
                         <div class="row">
                             <div class="col-11">
-                                <p class="ns-question mb-0">{{ $item->question }}</p>
+                                <p class="mb-0 ns-question">{{ $item->question }}</p>
                             </div>
                             <button type="button" class="ns-button collapsible"><i class="fas fa-plus"></i></button>
                             <div class="ns-content col-12">
@@ -33,4 +34,5 @@
             <div class="col-lg-1 col-md-1 col-sm-12"></div>
         </div>
     </div>
+</div>
 @endsection

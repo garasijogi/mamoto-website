@@ -13,6 +13,22 @@ class RyumadaTableSeeder extends Seeder
      */
     public function run()
     {
+        // books_packages table seeder
+        \App\Books_package::insert([
+            [
+                'id' => 'preW',
+                'budgets' => '[{"name":"Chocolate","price":"2500"},{"name":"Vanilla","price":"3500"},{"name":"Cream","price":"6000"}]',
+            ],
+            [
+                'id' => 'W',
+                'budgets' => '[{"name": "Basic", "price": "7500"}, {"name": "Medium", "price": "11500"}, {"name": "Exclusive", "price": "22500"}, {"name": "Custom", "price": "5000"}]',
+            ],
+            [
+                'id' => 'S',
+                'budgets' => '[{"name":"Tulip","price":"4500"}]',
+            ]
+        ]);
+
         // company_about table seeder
         DB::table('company_about')->insert([
             'id' => 0,
@@ -20,68 +36,6 @@ class RyumadaTableSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
-
-        // contacts table seeder
-        DB::table('contacts')->insert(
-            // PRODUCTION cek contact dengan kesesuaian mamoto
-            [
-                [
-                    'name' => 'whatsapp',
-                    // PRODUCTION change whatsapp number
-                    'contact' => '6285289675777',
-                    'link' => 'https://wa.me/',
-                    'text' => 'Contact via Whatsapp',
-                    'logo' => 'fab fa-whatsapp',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ],
-                [
-                    'name' => 'instagram',
-                    'contact' => 'mamotopicture',
-                    'link' => 'https://www.instagram.com/',
-                    'text' => 'Instagram',
-                    'logo' => 'fab fa-instagram',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ],
-                [
-                    'name' => 'website',
-                    // PRODUCTION change website domain
-                    'contact' => 'mamotopictures.com',
-                    'link' => 'https://',
-                    'text' => 'Visit Website',
-                    'logo' => 'fa fa-globe',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ],
-                [
-                    'name' => 'youtube',
-                    // PRODUCTION change youtube channel to link
-                    'contact' => 'mamotopicture',
-                    'link' => 'https://www.youtube.com/c/',
-                    'text' => 'Youtube Channel',
-                    'logo' => 'fab fa-youtube',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ],
-                [
-                    'name' => 'email',
-                    'contact' => 'contact@mamotopicture.com',
-                    'link' => 'mailto:',
-                    'text' => 'Contact via Email',
-                    'logo' => 'fa fa-envelope',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ],
-                // [
-                //     'name' => 'facebook',
-                //     'contact' => 'mamotopicture',
-                //     'logo' => 'fa fa-facebook-f',
-                //     'created_at' => Carbon::now(),
-                //     'updated_at' => Carbon::now()
-                // ],
-            ]
-        );
 
         // counter for promo
         DB::table('counters')->insert([
@@ -96,13 +50,21 @@ class RyumadaTableSeeder extends Seeder
 
         /* --------------------------- settings for promo --------------------------- */
         // seeder nomor telpon promo
-        DB::table('settings')->insert([
-            'module_name' => 'promo',
-            'setting_name' => 'promo_waNumber',
-            // PRODUCTION ubah nomor telpon
-            'setting_value' => '6285289675777',
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+        \App\Setting::insert([
+            // [
+            //     'module_name' => 'promo',
+            //     'setting_name' => 'promo_waNumber',
+            //     'setting_value' => '6285289675777',
+            //     'created_at' => Carbon::now(),
+            //     'updated_at' => Carbon::now()
+            // ],
+            [
+                'module_name' => 'contact',
+                'setting_name' => 'contactFloatingButton_text',
+                'setting_value' => "Halo saya tertarik menggunakan jasa Mamoto Picture. Boleh minta Price Listnya\n\nNama :\nAcara :\nTanggal acara :\nVenue :",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
         ]);
     }
 }

@@ -80,7 +80,7 @@
       @endif
 
       {{-- video --}}
-      <div class="form-group my-2">
+      {{-- <div class="form-group my-2">
         <label for="videoList">Video</label>
         <div class="custom-file">
           <input type="file" name="videoList" class="custom-file-input" id="inputGroupFile02"
@@ -106,11 +106,68 @@
           @endforeach
         </ul>
       </div>
-      @endif
+      @endif --}}
+
+      {{-- youtube video input --}}
+      <div class="row">
+        <div class="col-sm">
+          <div class="form-group mb-2">
+            <label for="venue" class="font-weight-bold">Video</label>
+            <div id="al-yt-input">
+              @if (!empty($portfolio->video))
+                @foreach (json_decode($portfolio->video) as $index => $video)
+                  @if ($index == 0)
+                    <div class="row">
+                      <div class="col-10">
+                        <input class="al-video-input form-control" type="text" name="video[{{ ($index + 1) }}]" placeholder="Masukkan Link Video Youtube" value="{{ old("video[{($index + 1)}]") ?? $video->link }}">
+                      </div>
+                    </div>
+                  @else
+                    <div class="row mt-2" id="video_{{ ($index + 1) }}">
+                      <div class="col-10">
+                        <input class="al-video-input form-control" type="text" name="video[{{ ($index + 1) }}]" placeholder="Masukkan Link Video Youtube" value="{{ old("video[{($index + 1)}]") ?? $video->link }}"">
+                      </div>
+                      <div class="col-2 d-flex align-items-center">
+                        <button onclick="deleteVideoInput({{ ($index + 1) }})" type="button" class="btn btn-danger">x</button>
+                      </div>
+                    </div>
+                  @endif
+                @endforeach
+              @else
+                <div class="row">
+                  <div class="col-10">
+                    <input class="al-video-input form-control" type="text" name="video[1]" placeholder="Masukkan Link Video Youtube">
+                  </div>
+                </div>
+              @endif
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="d-flex justify-content-end w-100">
+          <button type="button" class="btn btn-primary mt-2" onclick="addVideoInput()">Tambah Video</button>
+        </div>
+      </div>
+      {{-- end youtube video input --}}
 
       {{-- details portfolio --}}
       <hr>
       <h6 class="mt-4 font-weight-bold">Portfolio Details</h6>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group mb-2">
+            <label for="location" class="font-weight-normal">Location</label>
+            <input type="text" name="location" id="location" placeholder="Masukkan Lokasi"
+              value="{{ old('location') ?? $details['location'] }}" class="form-control @error('location') is-invalid @enderror">
+            @error('location')
+            <div class="text-danger mt-2">
+              {{ $message }}
+            </div>
+            @enderror
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm">
           <div class="form-group mb-2">

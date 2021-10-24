@@ -6,6 +6,10 @@
 <h1 class="px-4 mt-2">Kelola Home</h1>
 @endsection
 
+@section('css')
+@include('layouts.css.al-styles')
+@endsection
+
 @section('content')
 <div class="px-4">
     {{-- kelola jumbotron --}}
@@ -23,9 +27,11 @@
                 </ol>
                 <div class="carousel-inner">
                     @foreach ($jumbotrons as $index => $jumbotron)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                        <img class="d-block w-100" height="300px" style="object-fit: contain;"
-                            src="{{ $jumbotron->path }}" alt="slide {{ $index+1 }}">
+                    <div
+                        class="carousel-item {{ !empty($jumbotron->path) ? '' : 'bg-dark'  }} {{ $index === 0 ? 'active' : '' }}">
+                        <img class="d-block w-100 shadow-sm {{ !empty($jumbotron->path) ? '' : 'al-invert'  }}"
+                            height="300px" style="object-fit: contain;"
+                            src="{{ $jumbotron->path ?? "/images/no-image.png" }}" alt="slide {{ $index+1 }}">
                     </div>
                     @endforeach
                 </div>
@@ -85,7 +91,11 @@
                     @endif
                 </div>
                 <div class="col-12 text-center p-2">
-                    <a href="/admin/displayed-portfolio/W" class="btn btn-sm btn-primary text-white">
+                    <h6 class="{{ empty($dp->portfolio->name) ? 'al-grey-color' : '' }}">
+                        {{ $dp->portfolio->name ?? 'Belum dipilih' }}
+                    </h6>
+
+                    <a href="/admin/displayed-portfolio/{{ $dp->pfType_id }}" class="btn btn-sm btn-primary text-white">
                         Ganti Portfolio
                     </a>
                 </div>
@@ -95,24 +105,43 @@
     </div>
 
     {{-- kelola promo --}}
-    <div class="al-tab border-bottom mb-2">
+    {{-- <div class="al-tab border-bottom mb-2">
         <h6 class="font-weight-bold">Promo yang ditampilkan</h6>
     </div>
-    <div class="row text-center">
-        <div class="col-12">
-            <img width='500px' height='250px' style='object-fit:cover;'
-                src="https://i0.wp.com/www.theweddingvowsg.com/wp-content/uploads/2016/09/wedding-photographers-indonesia-Featured-photo-Bunn-Salarzon.jpg?resize=960%2C637&ssl=1"
-                alt="Card image cap">
+    <div class="row text-center pb-4 justify-content-md-center">
+        <div class="col-md-6 text-center">
+            <div id="promo-carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    @foreach ($displayed_promos as $index => $displayed_promo)
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"
+                        class="{{ $index == 0 ? 'active' : '' }}"></li>
+                    @endforeach
+                </ol>
+                <div class="carousel-inner">
+                    @foreach ($displayed_promos as $index => $displayed_promo)
+                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                        <img class="d-block w-100" height="300px" style="object-fit: contain;"
+                            src="{{ !empty($displayed_promo->promo->photo) ? '/storage/'.$displayed_promo->promo->photo : '/images/no-image.png' }}" alt="slide {{ $index+1 }}">
+                        <a href="" class="py-2 fas fa-trash fa-lg text-danger"></a>
+                    </div>
+                    @endforeach
+                </div>
+                <a class="carousel-control-prev" href="#promo-carousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#promo-carousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="{{ route('admin.displayedpromo') }}" class="btn btn-sm btn-primary">Tambah</a>
+                </div>
+            </div>
         </div>
-        <div class="col-12 p-2">
-            <h6>Promo Akhir Bulan serba 20%</h6>
-        </div>
-        <div class="col-12 pb-2">
-            <button class="btn btn-sm btn-primary">
-                Ganti Promo
-            </button>
-        </div>
-    </div>
+    </div> --}}
 
     {{-- kelola testimoni --}}
     <div class="al-tab border-bottom mb-4">
@@ -130,68 +159,182 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($displayed_feedbacks as $index => $df)
                     <tr>
-                        <td>1</td>
-                        <td>Zizah & Arianto</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio inventore harum labore
-                            dolorem asperiores modi? Totam fugiat nemo repellendus ad architecto laboriosam quia a,
-                            expedita aliquam quibusdam earum, assumenda perferendis!</td>
+                        <td class="text-center">{{ $index + 1 }}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary">
-                                Ganti
-                            </button>
+                            @if (!empty($df->feedback_id))
+                            {{ $df->feedback->mempelai_pria . ' & ' . $df->feedback->mempelai_wanita }}
+                            @else
+                            Feedback belum dipilih.
+                            @endif
+                        </td>
+                        <td>
+                            @if (!empty($df->feedback_id))
+                            Kesan Pesan: {{ $df->feedback->kesan_pesan}} <br>Kritik Saran:
+                            {{ $df->feedback->kritik_saran }}
+                            @else
+                            -
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            <div class="row">
+                                <div class="col px-0">
+                                    <button data-id="{{ $df->id }}" data-toggle="modal" data-target="#feedback-modal"
+                                        class="btn change-feedback btn-sm btn-primary mx-0">
+                                        Ganti
+                                    </button>
+                                </div>
+                                @if (!empty($df->feedback_id))
+                                    <div class="col px-0">
+                                        <a data-id="{{ $df->id }}" data-toggle="modal" data-target="#reset-feedback-modal"
+                                            class="text-white btn reset-feedback btn-sm btn-danger">
+                                            Reset
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Ani & Aldi</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, odit.</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary">
-                                Ganti
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Rina & Gandhi</td>
-                        <td>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione molestiae tenetur
-                            provident beatae et, amet hic. Ducimus vel voluptas perferendis atque molestias dolore
-                            nisi
-                            placeat suscipit ab, ea tenetur laboriosam, animi itaque. Perspiciatis quidem doloribus
-                            fugiat qui quas ad delectus nesciunt porro repellat debitis blanditiis optio tenetur
-                            illum
-                            corporis asperiores, eaque voluptas nemo sequi possimus accusantium sunt? Nisi incidunt
-                            impedit magni numquam adipisci eveniet eum tempora sed autem odio aliquid debitis
-                            molestiae,
-                            recusandae molestias facilis? Blanditiis incidunt aliquid excepturi recusandae fugiat
-                            beatae, adipisci, aspernatur saepe eaque quisquam nam? Eum, odit voluptatum. Id
-                            eligendi,
-                            nesciunt nostrum soluta doloribus voluptas sunt voluptatem!</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary">
-                                Ganti
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Nasya & Nizar</td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, quo facilis earum rem
-                            deserunt natus qui alias dolor reprehenderit repudiandae error placeat accusantium
-                            voluptas
-                            quis veniam, corporis quibusdam, consequuntur at laboriosam cumque autem obcaecati! Ex
-                            quisquam corrupti quae iure unde voluptas neque cum atque, culpa cumque. Dolore pariatur
-                            inventore omnis.</td>
-                        <td>
-                            <button class="btn btn-sm btn-primary">
-                                Ganti
-                            </button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+@endsection
+
+@section('modals')
+{{-- modal for select feedback --}}
+<div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Pilih feedback</h5>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead class="text-center">
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Feedback</th>
+                            <th class="text-center" scope="col">Handle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($feedbacks as $index => $fb)
+                        <tr>
+                            <td class="text-center">{{ $index + 1 }}</td>
+                            <td>
+                                {{ $fb->mempelai_pria . ' & ' . $fb->mempelai_wanita }}
+                            </td>
+                            <td>
+                                Kesan/Pesan: {{ $fb->kesan_pesan}} <br>Kritik/Saran: {{ $fb->kritik_saran }}
+                            </td>
+                            <td class="text-center">
+                                <button data-toggle="modal" onclick="modalCustomerPhotoUpload()" data-id="{{ $fb->id }}"
+                                    data-target="#uploadphoto-modal" class="btn btn-sm btn-primary dp-id">
+                                    Pilih
+                                </button>
+                            </td>
+                        </tr>
+                        @empty
+                        <h6>No Feedback data.</h6>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- modal for upload photo --}}
+<div class="modal fade" id="uploadphoto-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Pilih Foto Customer</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="img-container">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-8">
+                                    <img id="image" src="/images/no-image.png" alt='Your image' width="250px"
+                                        height="250px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input customer-photo" id="customer-photo">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
+                    {{-- photo --}}
+                    <form action="/admin/displayed-feedback/edit" method="post" class="mb-4"
+                        enctype="multipart/form-data" id="formCustomerPhoto">
+                        @method('patch')
+                        @csrf
+                        <input type="hidden" value="" id="inputCustomerFile" name="inputCustomerFile">
+                        <input type="hidden" name="feedback_id" id="feedback_id" value="">
+                        <input type="hidden" name="dp_id" id="dp_id" value="">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitForm('formCustomerPhoto')">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- modal for crop photo --}}
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-8 al-cropper-height">
+                            <img id="image-cropped" src="" alt='Your image'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="crop_image()">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- modal for reset feedback --}}
+<div class="modal fade" id="reset-feedback-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-weight-bold" id="exampleModalLabel">Konfirmasi</h5>
+            </div>
+            <div class="modal-body">
+                <h6>Apakah Anda yakin ingin mereset feedback ke- yang ditampilkan?</h6>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Ya</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('js')
+@include('layouts.js.al-scripts')
 @endsection

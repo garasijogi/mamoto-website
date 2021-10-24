@@ -1,4 +1,9 @@
 // 1) User
+// animate on scroll library
+AOS.init({
+  offset: 200,
+  duration: 800
+});
 
 // 2) Admin
 // delete user
@@ -111,21 +116,6 @@ $('div').on('mouseenter', '.al-img-card-selected', function (e) {
   $('.al-del-img-card').css('display', 'none');
 });
 
-//change foto
-// function changePhoto(input, id) {
-//   var files = input.files;
-// $('#image').cropper('destroy');
-// //   // image list
-// for (let i = 0; i < files.length; i++) {
-//   var reader = new FileReader();
-//   reader.onload = function (e) {
-//     $("#image").attr("src", e.target.result);
-//     $("#jumbo" + id).attr("src", e.target.result);
-//   };
-//   reader.readAsDataURL(files[i]);
-// }
-// }
-
 //cropper
 var $modal = $('#modal');
 var image = $('#image');
@@ -150,8 +140,6 @@ $(".image").on("change", function (e) {
     $modal.modal('show');
   };
 
-  // $("#image").attr("src", e.target.result);
-  // $("#jumbo" + id).attr("src", e.target.result);
   var reader;
   var file;
   var url;
@@ -183,8 +171,8 @@ $modal.on('shown.bs.modal', function () {
 
 $("#crop").on('click', function () {
   canvas = $('#image').cropper('getCroppedCanvas', {
-    width: 1024,
-    height: 576,
+    width: 1600,
+    height: 900,
   });
 
   canvas.toBlob(function (blob) {
@@ -193,8 +181,10 @@ $("#crop").on('click', function () {
     reader.readAsDataURL(blob);
     reader.onloadend = function () {
       var base64data = reader.result;
-      $("#jumbo" + index).attr("src", base64data)
-      $('#inputjumbo' + index).attr('value', base64data);
+      $("#image").attr("src", base64data);
+      $("#jumbo" + index).attr("src", base64data);
+      $("#inputjumbo" + index).attr("value", base64data);
+      $('.form-jumbotron-' + index).trigger('submit');
       $modal.modal('hide');
     }
   });
@@ -212,16 +202,102 @@ $('.submit-form').on('click', function () {
   $('#selected_portfolio_form').submit();
 })
 
-function changeJumbotron(where) {
-  let now = parseInt($('.al-jumbotron-carousel').data('now'));
-  where == 'next' ? now++ : now--;
-  now > 4 ? now = 1 : now = now;
-  now < 1 ? now = 4 : now = now;
-  $('.al-jumbotron-carousel').data('now', '' + now);
-  let url = 'url("../../..' + $('.al-jumbotron-carousel').data('jumbotron' + now) + '")';
-  $('.al-jumbotron-carousel')
-    .fadeOut(500, function () {
-      $('.al-jumbotron-carousel').css('background-image', url);
-    })
-    .fadeIn(500);
+// displayed feedback on kelola home
+function modalCustomerPhotoUpload() {
+  $('#feedback-modal').modal('hide');
+  $('.modal-backdrop').remove();
 }
+
+$("#customer-photo").on("change", function (e) {
+  var files = e.target.files;
+
+  for (let i = 0; i < files.length; i++) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $("#image").attr("src", e.target.result);
+      $("#image-cropped").attr("src", e.target.result);
+    };
+    reader.readAsDataURL(files[i]);
+  }
+
+  $('#modal').modal("show");
+  $('#modal').on('shown.bs.modal', function () {
+    cropper = $("#image-cropped").cropper({
+      aspectRatio: 1 / 1,
+      viewMode: 2,
+      dragMode: 'move'
+    });
+  }).on('hidden.bs.modal', function () {
+    $('#image-cropped').cropper('destroy');
+    cropper = null;
+  });
+});
+
+function crop_image() {
+  var canvas = $('#image-cropped').cropper('getCroppedCanvas', {
+    width: 512,
+    height: 512,
+  });
+
+  canvas.toBlob(function (blob) {
+    url = URL.createObjectURL(blob);
+    var reader = new FileReader();
+    reader.readAsDataURL(blob);
+    reader.onloadend = function () {
+      var base64data = reader.result;
+      $("#image").attr("src", base64data);
+      $('#inputCustomerFile').attr('value', base64data);
+      $("#modal").modal('hide');
+    }
+  });
+}
+
+function submitForm(formName) {
+  $('#' + formName).submit();
+}
+
+$('.change-feedback').on('click', function () {
+  $('#dp_id').attr('value', $(this).data('id'));
+})
+
+$('.dp-id').on('click', function () {
+  $('#feedback_id').attr('value', $(this).data('id'));
+})
+
+$('.reset-feedback').on('click', function () {
+  $('#reset-feedback-modal .modal-body h6').text('Apakah Anda yakin ingin mereset feedback ke-' + $(this).data('id') + ' yang ditampilkan?');
+  $('#reset-feedback-modal .modal-footer button.btn-primary').attr('data-id', $(this).data('id'));
+})
+
+$('#reset-feedback-modal .modal-footer button.btn-primary').on('click', function () {
+  window.location.href = '/admin/displayed-feedback/' + $(this).data('id') + '/clear';
+})
+
+// right menu mobile responsive
+$("#al-right-menu-button").on('click', function () {
+  $('div.al-black-background').css('display', 'unset');
+  $('div.al-right-menu-wrapper').css('right', 0);
+})
+
+$('div.al-black-background').on('click', () => {
+  $('div.al-right-menu-wrapper').css('right', '-100vw');
+  $('div.al-black-background').css('display', 'none');
+});
+
+$('a.portoflio.al-menu-item').on('click', () => {
+  let el = 'a.portoflio.al-menu-item';
+  if ($(el).data('open') === false) {
+    $('.al-portfolio-menu-item *').css('display', 'block');
+    $('#al-portfolio-menu-dropdown').removeClass('fa-caret-down').addClass('fa-caret-up');
+    $(el).data('open', true);
+  } else {
+    $('.al-portfolio-menu-item *').css('display', 'none');
+    $('#al-portfolio-menu-dropdown').removeClass('fa-caret-up').addClass('fa-caret-down');
+    $(el).data('open', false);
+  }
+})
+
+$('.al-menu-close-btn').on('click', () => {
+  $('div.al-right-menu-wrapper').css('right', '-100vw');
+  $('div.al-black-background').css('display', 'none');
+})

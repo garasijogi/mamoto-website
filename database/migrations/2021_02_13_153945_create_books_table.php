@@ -20,8 +20,9 @@ class CreateBooksTable extends Migration
             $table->string('email')->unique();
             $table->json('events');
             $table->timestamp('booking_date');
-            $table->string('location');
-            $table->string('note')->nullable();
+            $table->text('location');
+            $table->text('note')->nullable();
+            $table->integer('status');
             $table->timestamps();
         });
     }

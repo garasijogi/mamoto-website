@@ -13,5 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AlgorithmTableSeeder::class);
         $this->call(RyumadaTableSeeder::class);
+
+        // per module seeder
+        $this->call(ContactSeeder::class);
     }
 }

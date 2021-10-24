@@ -5,6 +5,18 @@
   }
 }
 
+/* color configs */
+:root {
+  --goldbrown: #888888;
+  --pipiss: #F8EDEB;
+  --darkgrey: #999999;
+  --verylightgrey: #f2f2f2;
+}
+
+.al-grey-color {
+  color: var(--darkgrey);
+}
+
 .al-portfolio-link, .al-portfolio-link:hover {
   color: inherit;
 }
@@ -414,4 +426,18 @@ img#image {
 .cropper-disabled .cropper-line,
 .cropper-disabled .cropper-point {
   cursor: not-allowed;
+}
+
+.al-cropper-height {
+  max-height: 80vh;
+  min-height: 70vh;
+}
+
+.al-promo-card:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.al-invert {
+    filter: brightness(0) invert(1);
 }

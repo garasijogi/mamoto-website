@@ -66,7 +66,7 @@ class AlgorithmTableSeeder extends Seeder
         \App\Company_jumbotron::insert([
             [
                 'id' => 1,
-                'path' => '/storage/images/jumbotron/jumbotron1.png',
+                'path' => null,
                 'name' => 'jumbotron1',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -74,7 +74,7 @@ class AlgorithmTableSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'path' => '/storage/images/jumbotron/jumbotron2.png',
+                'path' => null,
                 'name' => 'jumbotron2',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -82,7 +82,7 @@ class AlgorithmTableSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'path' => '/storage/images/jumbotron/jumbotron3.png',
+                'path' => null,
                 'name' => 'jumbotron3',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -90,7 +90,7 @@ class AlgorithmTableSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'path' => '/storage/images/jumbotron/jumbotron4.png',
+                'path' => null,
                 'name' => 'jumbotron4',
                 'date' => Carbon::now(),
                 'created_at' => Carbon::now(),
@@ -127,6 +127,46 @@ class AlgorithmTableSeeder extends Seeder
                 'pfType_id' => 'L',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+        ]);
+
+        //Displayed Feedback
+        \App\Displayed_feedback::insert([
+            [
+                'id' => 1,
+                'feedback_id' => null,
+                'photo_path' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 2,
+                'feedback_id' => null,
+                'photo_path' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 3,
+                'feedback_id' => null,
+                'photo_path' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+            [
+                'id' => 4,
+                'feedback_id' => null,
+                'photo_path' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ],
+        ]);
+
+        //Displayed promo table
+        \App\DisplayedPromo::insert([
+            [
+                'id' => 1,
+                'promo_id' => null
             ],
         ]);
     }

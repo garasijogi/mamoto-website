@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Mamoto Picture - Feedback')
 @section('content')
+<div class="al-container d-block">
     <div class="container">
         <div class="text-center ns-faq-title">
             <h1 class="ns-title">Mamoto Picture Testimoni</h1>
@@ -54,4 +55,5 @@
             <div class="col-lg-2 col-md-2 col-sm-12"></div>
         </div>
     </div>
+</div>
 @endsection
