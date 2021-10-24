@@ -60,7 +60,7 @@
                             </div> --}}
                             {{-- pilih paket form --}}
                             <div class="form-group">
-                                <label for="" class="ns-label">Pilih Paket</label>
+                                <label for="" class="ns-label">Package</label>
                                 {{-- <input type="text" class="form-control form-control-lg ns-form" placeholder="Please choose your package" name="pilih_paket"> --}}
                                 <select class="custom-select custom-select-lg form-control  ns-form" placeholder="Please choose your package" name="pilih_paket">
                                     <option value="" >Please choose your package</option>
@@ -74,7 +74,7 @@
                             </div>
                             {{-- Pilih kisaran harga form --}}
                             <div class="form-group">
-                                <label for="" class="ns-label">Kisaran Budget</label>
+                                <label for="" class="ns-label">Budget Estimation</label>
                                 <select class="custom-select custom-select-lg form-control  ns-form" placeholder="Estimate your budget"
                                     name="kisaran_budget" disabled="true">
                                     <option value="" >Estimate your budget</option>
