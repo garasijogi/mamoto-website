@@ -74,10 +74,8 @@
         </a>
         <a href="#" class="portoflio al-menu-item" data-open="false"
             style="display: flex; align-items:center; justify-content:space-between">
-            <li class="al-menu-item al-menu-parent-portfolio">
-                Portfolio
+            <li class="al-menu-item al-menu-parent-portfolio">Portfolio<i id="al-portfolio-menu-dropdown" class="fa fa-caret-down"></i>
             </li>
-            <i id="al-portfolio-menu-dropdown" class="fa fa-caret-down"></i>
         </a>
         <ul class="al-portfolio-menu-item">
             <a href="{{ route('portfolio.wedding') }}" class="al-portflio-expand">
@@ -96,6 +94,11 @@
         <a href="{{ route('about') }}" class="al-menu-item">
             <li class="al-menu-item">
                 About
+            </li>
+        </a>
+        <a href="{{ route('pricelist') }}" class="al-menu-item">
+            <li class="al-menu-item">
+                Pricelist
             </li>
         </a>
         <a href="{{ route('faq') }}" class="al-menu-item">

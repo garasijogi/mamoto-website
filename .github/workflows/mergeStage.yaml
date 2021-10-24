@@ -1,56 +1,57 @@
-name: Merge and Deploy
+name: Merge and Stage
 on:
   push:
     branches:
       - staging
 jobs:
-  merge-and-deploy:
+  merge-and-stage:
     runs-on: ubuntu-latest
     steps:
-      # merge this branch to deploy/ztemplate
+      # merge this branch to deploy/ztemplate-staging
       - uses: actions/checkout@master
-      - name: Merge ${{ github.ref }} > deploy/ztemplate
+      - name: Merge ${{ github.ref }} > deploy/ztemplate-staging
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
           from_branch: ${{ github.ref }}
-          target_branch: deploy/ztemplate
+          target_branch: deploy/ztemplate-staging
           github_token: ${{ github.token }}
           
       # remove local workspaces; remove all files in the environment
       - uses: AutoModality/action-clean@v1
       
-      # checkout deploy/run
+      # checkout deploy/ztemplate-staging
       - uses: actions/checkout@v2
         with:
-          ref: deploy/ztemplate
+          ref: deploy/ztemplate-staging
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
           
-      # merge deploy/ztemplate to deploy/run
+      # merge deploy/ztemplate-staging to deploy/staging
       - uses: actions/checkout@master
-      - name: Merge deploy/ztemplate > deploy/run
+      - name: Merge deploy/ztemplate-staging > deploy/staging
         uses: devmasx/merge-branch@v1.3.1
         with: 
           type: now
           from_branch: ${{ github.ref }}
-          target_branch: deploy/run
+          target_branch: deploy/staging
           github_token: ${{ github.token }}
       
       # remove local workspaces; remove all files in the environment
       - uses: AutoModality/action-clean@v1
       
-      # checkout deploy/run
+      # checkout deploy/staging
       - uses: actions/checkout@v2
         with:
-          ref: deploy/run
+          ref: deploy/staging
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
       
       # update npm and composer packages
       - name: Install or update dependencies; Create local changes
         run: |
-          composer install --no-dev --optimize-autoloader
+          composer update --no-dev --optimize-autoloader
+          composer dump-autoload -o
           npm install && npm run prod
       
       # see changed files
@@ -62,7 +63,7 @@ jobs:
         run: |
           ls -l ${{ github.workspace }}
           
-      # commit changes to deploy/run branch
+      # commit changes to deploy/staging branch
       - name: Commit changed files
         run: |
             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -70,12 +71,12 @@ jobs:
             git add .
             git commit -m "merge and deploy workflow" -a
       
-      # push changes to origin deploy/run
-      - name: Push changes to deploy/run
+      # push changes to origin deploy/staging
+      - name: Push changes to deploy/staging
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: deploy/run
+          branch: deploy/staging
 
       # SSH commands to access production server
       - name: Do some shells in the production server
@@ -86,4 +87,4 @@ jobs:
           password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
           port: ${{ secrets.HOSTINGER_SSH_PORT }}
           script: |
-            bash .0IMPORTANT/github-actions/deployer-main.sh
+            bash .0IMPORTANT/github-actions/deployer-staging.sh
