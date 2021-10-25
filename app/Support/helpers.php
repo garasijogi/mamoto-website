@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\File;
 
 if (!function_exists('compress_image')) {
   function compress_image($data, $type = 'file') {
-    \Tinify\setKey(env("TINIFY_API_KEY"));
+    \Tinify\setKey(config('app.tinify_apiKey'));
 
     switch($type) {
       case 'buffer' : return \Tinify\fromBuffer($data)->toBuffer();
