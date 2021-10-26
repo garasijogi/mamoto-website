@@ -34,6 +34,25 @@
                         class="d-block text-decoration-none" data-aos="fade-{{ $index % 2 != 0 ? 'left' : 'right' }}">
                         <div class="row al-dp-card {{ $index > 0 ? 'py-5' : 'pb-5 pt-3' }}">
                             @if ($index % 2 != 0)
+                                <div class="col-8 text-right">
+                                    @foreach (array_slice(json_decode($dp->portfolio->photo), 0, 1) as $photo)
+                                        <img width='700px' height='400px' style='object-fit:cover;'
+                                            class="al-portfolio-card-preview"
+                                            src="/storage/images/portfolio/{{ $dp->pfType_id }}/{{ $dp->portfolio->slug }}/{{ $photo->name }}"
+                                            alt=" Card image cap">
+                                    @endforeach
+                                </div>
+                            @else
+                                <div class="col-8 text-right">
+                                    @foreach (array_slice(json_decode($dp->portfolio->photo), 0, 1) as $photo)
+                                        <img width='700px' height='400px' style='object-fit:cover;'
+                                            class="al-portfolio-card-preview"
+                                            src="/storage/images/portfolio/{{ $dp->pfType_id }}/{{ $dp->portfolio->slug }}/{{ $photo->name }}"
+                                            alt=" Card image cap">
+                                    @endforeach
+                                </div>
+                            @endif
+                            @if ($index % 2 != 0)
                                 <div class="col-4 align-self-center">
                                     <h6 class="text-center al-grey-color al-font1 font-weight-bold">
                                         @switch($dp->pfType_id)
@@ -59,25 +78,6 @@
                                         {{ date('d . m . Y', strtotime($dp->portfolio->date)) }}
                                         | {{ json_decode($dp->portfolio->details)->location }}
                                     </h6>
-                                </div>
-                            @else
-                                <div class="col-8 text-right">
-                                    @foreach (array_slice(json_decode($dp->portfolio->photo), 0, 1) as $photo)
-                                        <img width='700px' height='400px' style='object-fit:cover;'
-                                            class="al-portfolio-card-preview"
-                                            src="/storage/images/portfolio/{{ $dp->pfType_id }}/{{ $dp->portfolio->slug }}/{{ $photo->name }}"
-                                            alt=" Card image cap">
-                                    @endforeach
-                                </div>
-                            @endif
-                            @if ($index % 2 != 0)
-                                <div class="col-8 text-right">
-                                    @foreach (array_slice(json_decode($dp->portfolio->photo), 0, 1) as $photo)
-                                        <img width='700px' height='400px' style='object-fit:cover;'
-                                            class="al-portfolio-card-preview"
-                                            src="/storage/images/portfolio/{{ $dp->pfType_id }}/{{ $dp->portfolio->slug }}/{{ $photo->name }}"
-                                            alt=" Card image cap">
-                                    @endforeach
                                 </div>
                             @else
                                 <div class="col-4 align-self-center">
