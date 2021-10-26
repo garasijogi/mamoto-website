@@ -642,6 +642,10 @@ footer p {
   .content {
     overflow-x: hidden !important;
   }
+
+  .al-container {
+    padding: 6rem 0 5rem 0 !important;
+  }
 }
 
 @media only screen and (min-width:601px) and (max-width:800px){
