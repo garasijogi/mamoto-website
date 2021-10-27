@@ -36,15 +36,6 @@ class ContactSeeder extends Seeder
                 ],
                 [
                     'name' => 'whatsapp1',
-                    'contact' => '6281288368000',
-                    'link' => 'https://wa.me/',
-                    'text' => 'Whatsapp Admin Mull',
-                    'logo' => 'fab fa-whatsapp',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ],
-                [
-                    'name' => 'whatsapp2',
                     'contact' => '6281292245688',
                     'link' => 'https://wa.me/',
                     'text' => 'Whatsapp Admin Yusra',
