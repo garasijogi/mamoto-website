@@ -936,3 +936,23 @@ footer p {
   top: 1rem;
 }
 /* end notification icon on promo */
+
+/* latest projects responsive */
+.al-dp.mobile {
+  display: none !important;
+}
+
+.al-dp.desktop {
+  display: block !important;
+}
+
+@media only screen and (max-width: 1000px) {
+  .al-dp.mobile {
+    display: block !important;
+  }
+
+  .al-dp.desktop {
+    display: none !important;
+  }
+}
+/* end latest projects responsive */
