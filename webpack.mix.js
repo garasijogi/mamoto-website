@@ -87,6 +87,7 @@ mix.js('resources/js/booknow.js', 'public/js/booknow.js');
 
 /* -------------------------- contact scripts mixer ------------------------- */
 mix.styles('resources/css/contact.css', 'public/css/contact.css'); // userpage css
+mix.styles('resources/css/admin/contact.css', 'public/css/admin/contact.css'); // admin-page css
 mix.js('resources/js/admin/contact/contact__plugins.js', 'public/js/admin/contact_plugins.js');
 mix.scripts(
     [
