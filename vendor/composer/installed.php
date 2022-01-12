@@ -5,7 +5,7 @@
         'type' => 'website',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '05f22f1c8d96a0c332323281ea03c99b63d8faf3',
+        'reference' => 'd4241e4fd63e2dfa9e22dd16c48346cfbca85ce6',
         'name' => 'garasijogi/mamoto-website',
         'dev' => false,
     ),
@@ -97,7 +97,7 @@
             'type' => 'website',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '05f22f1c8d96a0c332323281ea03c99b63d8faf3',
+            'reference' => 'd4241e4fd63e2dfa9e22dd16c48346cfbca85ce6',
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
