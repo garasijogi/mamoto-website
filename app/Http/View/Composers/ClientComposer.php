@@ -19,8 +19,6 @@ class ClientComposer
         'bridestory' => Contact::where('name', 'bridestory')->first(),
         'facebook' => Contact::where('name', 'facebook')->first()
       ];
-      // ambil text pemesanan dari setting
-      $this->whatsapp->text = urlencode(Setting::where('setting_name', 'contactFloatingButton_text')->first()->setting_value);
       $this->promos_count = Promo::get()->count();
     }
 

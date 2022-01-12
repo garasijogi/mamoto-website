@@ -71,7 +71,7 @@
 @endsection
 
 @section('css')
-    
+  <link rel="stylesheet" href="{{ asset('css/admin/contact.css') }}">
 @endsection
 
 @section('js')
