@@ -52,6 +52,10 @@ jobs:
         uses: shivammathur/setup-php@2.16.0
         with: 
           php-version: '7.4'
+
+      - name: Override NODE options for the most recent version
+        if: matrix.node-version == '17'
+        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
       
       # update npm and composer packages
       - name: Install or update dependencies; Create local changes
