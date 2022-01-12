@@ -47,6 +47,12 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
           fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
       
+      # change php version to 7.4
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.16.0
+        with: 
+          php-version: '7.4'
+      
       # update npm and composer packages
       - name: Install or update dependencies; Create local changes
         run: |
